@@ -4,6 +4,8 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'net.neoforged.gradle.userdev' version '7.0.57'
+    // parchment not available yet for 1.20.1+
+    // id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
 version = mod_version
@@ -22,6 +24,15 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 //minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
 //minecraft.accessTransformers.entry public net.minecraft.client.Minecraft textureManager # textureManager
+
+//minecraft {
+//    mappings {
+//        // Sets the mappings to use those from Mojang for Minecraft 1.19.4.
+//        mappings channel: parchment, version: mapping_version
+//
+//    }
+//    // ...
+//}
 
 // Default run configurations.
 // These can be tweaked, removed, or duplicated as needed.
