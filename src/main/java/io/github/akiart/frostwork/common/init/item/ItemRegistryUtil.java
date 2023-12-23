@@ -1,7 +1,13 @@
 package io.github.akiart.frostwork.common.init.item;
 
+import io.github.akiart.frostwork.common.init.FItems;
+import io.github.akiart.frostwork.common.init.block.registrySets.MushroomBlockSet;
 import io.github.akiart.frostwork.common.init.block.registrySets.StoneBlockSet;
+import io.github.akiart.frostwork.common.init.block.registrySets.WoodBlockSet;
+import io.github.akiart.frostwork.common.init.item.registrySets.AbstractWoodItemSet;
+import io.github.akiart.frostwork.common.init.item.registrySets.MushroomItemSet;
 import io.github.akiart.frostwork.common.init.item.registrySets.StoneItemSet;
+import io.github.akiart.frostwork.common.init.item.registrySets.WoodItemSet;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -13,8 +19,8 @@ import java.util.function.Supplier;
 
 public class ItemRegistryUtil {
     public static HashSet<StoneItemSet> stones = new HashSet<>();
-    //public static HashSet<AbstractWoodItemSet> woods = new HashSet<>();
-    public static HashSet<DeferredItem<BlockItem>> blockItems = new HashSet<>();
+    public static HashSet<AbstractWoodItemSet> woods = new HashSet<>();
+
     public static HashSet<DeferredItem<? extends Item>> simpleItems = new HashSet<>();
     public static HashSet<DeferredItem<? extends Item>> all = new HashSet<>();
 
@@ -26,16 +32,18 @@ public class ItemRegistryUtil {
         return reg;
     }
 
-//    public static WoodItemSet registerWoodItems(WoodBlockSet set) {
-//        var obj = new WoodItemSet(set);
-//        woods.add(obj);
-//
-//        return  obj;
-//    }
+    public static WoodItemSet registerWoodItems(WoodBlockSet set) {
+        var obj = new WoodItemSet(set);
+        woods.add(obj);
+
+        return  obj;
+    }
 
     public static DeferredItem<BlockItem> registerFromBlock(DeferredBlock<? extends Block> parent) {
-        return register(parent.getId().getPath(),
-                () -> new BlockItem(parent.get(), new Item.Properties()));
+        var item = FItems.ITEMS.registerSimpleBlockItem(parent);
+        all.add(item);
+
+        return item;
     }
 
     public static StoneItemSet registerStoneItems(StoneBlockSet parent) {
@@ -44,13 +52,9 @@ public class ItemRegistryUtil {
         return obj;
     }
 
-//    public static io.github.akiart.fantasia.common.initializers.item.registrySets.StoneVariants createStoneItemSet(StoneVariants parent) {
-//        return new io.github.akiart.fantasia.common.initializers.item.registrySets.StoneVariants(parent);
-//    }
-
-    public static DeferredItem<BlockItem> registerSimpleBlockItem(DeferredBlock<? extends Block> block) {
-        DeferredItem<BlockItem> item = registerFromBlock(block);
-        blockItems.add(item);
-        return item;
+    public static MushroomItemSet registerMushroomItems(MushroomBlockSet parent) {
+        MushroomItemSet obj = new MushroomItemSet(parent);
+        woods.add(obj);
+        return obj;
     }
 }

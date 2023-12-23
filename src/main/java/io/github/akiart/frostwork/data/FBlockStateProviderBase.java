@@ -2,7 +2,10 @@ package io.github.akiart.frostwork.data;
 
 import com.mojang.logging.LogUtils;
 import io.github.akiart.frostwork.Frostwork;
+import io.github.akiart.frostwork.common.init.block.registrySets.AbstractWoodBlockSet;
+import io.github.akiart.frostwork.common.init.block.registrySets.MushroomBlockSet;
 import io.github.akiart.frostwork.common.init.block.registrySets.StoneBlockSet;
+import io.github.akiart.frostwork.common.init.block.registrySets.WoodBlockSet;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -35,33 +38,51 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 //        simpleBlock(block, model);
 //    }
 
-//    protected void woods(WoodBlockSet blockSet) {
-//
-//        ResourceLocation plankTexture = blockTexture(blockSet.planks.get());
-//        ResourceLocation logTex = blockTexture(blockSet.log.get());
-//        ResourceLocation strippedLogTex = blockTexture(blockSet.strippedLog.get());
-//
-//        woods(blockSet, plankTexture);
-//
-//        logBlock(blockSet.log.get());
-//        logBlock(blockSet.strippedLog.get());
-//        axisBlock(blockSet.strippedWood.get(), strippedLogTex, strippedLogTex);
-//        axisBlock(blockSet.wood.get(), logTex, logTex);
-//    }
+    protected void mushroom(MushroomBlockSet blockSet) {
 
-//    protected void woods(AbstractWoodBlockSet set, ResourceLocation plankTexture) {
-//        simpleBlock(set.planks.get());
-//        simpleBlock(set.leaves.get());
-//        slabBlock(set.slab.get(), set.planks.getId(), plankTexture);
-//        fenceBlock(set.fence.get(), plankTexture);
-//        fenceGateBlock(set.fenceGate.get(), plankTexture);
-//        buttonBlock(set.button.get(), plankTexture);
-//        pressurePlateBlock(set.pressurePlate.get(), plankTexture);
-//        stairsBlock(set.stairs.get(), plankTexture);
-//        trapdoorBlock(set.trapDoor.get(), getLocation(set.getName() + "_trapdoor"), true);
-//        doorBlock(set.door.get(), getLocation(set.getName() + "_door_bottom"), getLocation(set.getName() + "_door_top"));
-//
-//    }
+        ResourceLocation plankTexture = blockTexture(blockSet.planks.get());
+
+        woods(blockSet, plankTexture);
+        logBlock(blockSet.stem.get());
+        simpleBlock(blockSet.cap.get());
+        logBlock(blockSet.strippedStem.get());
+    }
+
+    protected void wood(WoodBlockSet blockSet) {
+
+        ResourceLocation plankTexture = blockTexture(blockSet.planks.get());
+        ResourceLocation logTex = blockTexture(blockSet.log.get());
+        ResourceLocation strippedLogTex = blockTexture(blockSet.strippedLog.get());
+
+        woods(blockSet, plankTexture);
+        simpleBlock(blockSet.leaves.get());
+
+        logBlock(blockSet.log.get());
+        logBlock(blockSet.strippedLog.get());
+        axisBlock(blockSet.strippedWood.get(), strippedLogTex, strippedLogTex);
+        axisBlock(blockSet.wood.get(), logTex, logTex);
+    }
+
+    protected void woods(AbstractWoodBlockSet set, ResourceLocation plankTexture) {
+        simpleBlock(set.planks.get());
+        slabBlock(set.slab.get(), set.planks.getId(), plankTexture);
+        fenceBlock(set.fence.get(), plankTexture);
+        fenceGateBlock(set.fenceGate.get(), plankTexture);
+        buttonBlock(set.button.get(), plankTexture);
+        pressurePlateBlock(set.pressurePlate.get(), plankTexture);
+        stairsBlock(set.stairs.get(), plankTexture);
+        trapdoorBlockWithRenderType(
+                set.trapDoor.get(),
+                getLocation(set.getName() + "_trapdoor"),
+                true,
+                "cutout");
+
+        doorBlockWithRenderType(
+                set.door.get(),
+                getLocation(set.getName() + "_door_bottom"),
+                getLocation(set.getName() + "_door_top"),
+                "cutout");
+    }
 
     protected void stones(StoneBlockSet blockSet) {
         ResourceLocation texture = blockTexture(blockSet.block.get());

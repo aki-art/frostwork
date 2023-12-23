@@ -17,11 +17,15 @@ public class StoneBlockSet extends AbstractBlockSet {
     public final DeferredBlock<PressurePlateBlock> pressurePlate;
     public final DeferredBlock<ButtonBlock> button;
 
-    private final String name;
-
     public StoneBlockSet(String name, float hardness, float resistance, MapColor color, boolean redstoneComponents) {
+        this(name, hardness, resistance, color, redstoneComponents, BlockBehaviour.Properties.of()
+                .mapColor(color)
+                .requiresCorrectToolForDrops()
+                .strength(hardness, resistance));
+    }
 
-        this.name = name;
+    public StoneBlockSet(String name, float hardness, float resistance, MapColor color, boolean redstoneComponents, BlockBehaviour.Properties properties) {
+        super(name, properties);
 
         block = register(name,
                 () -> new Block(BlockBehaviour.Properties.of()

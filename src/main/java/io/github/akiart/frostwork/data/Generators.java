@@ -17,6 +17,7 @@ public class Generators {
         var output = dataGen.getPackOutput();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
+        Frostwork.LOGGER.info("DATAGEN BEGIN");
         // Items & Blocks
         dataGen.addProvider(event.includeServer(), new FBlockStateProvider(output, Frostwork.MOD_ID, fileHelper));
         dataGen.addProvider(event.includeServer(), new FItemModelProvider(output, Frostwork.MOD_ID, fileHelper));

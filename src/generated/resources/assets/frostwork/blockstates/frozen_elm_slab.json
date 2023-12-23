@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "frostwork:block/frozen_elm_slab"
+    },
+    "type=double": {
+      "model": "frostwork:block/frozen_elm_planks"
+    },
+    "type=top": {
+      "model": "frostwork:block/frozen_elm_slab_top"
+    }
+  }
+}

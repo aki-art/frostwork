@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "frostwork:block/elm_planks",
+    "side": "frostwork:block/elm_planks",
+    "top": "frostwork:block/elm_planks"
+  }
+}

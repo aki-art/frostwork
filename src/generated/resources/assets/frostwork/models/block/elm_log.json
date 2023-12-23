@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "frostwork:block/elm_log_top",
+    "side": "frostwork:block/elm_log"
+  }
+}

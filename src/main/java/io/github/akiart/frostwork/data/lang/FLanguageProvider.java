@@ -1,6 +1,6 @@
 package io.github.akiart.frostwork.data.lang;
 
-import io.github.akiart.frostwork.common.init.block.FBlocks;
+import io.github.akiart.frostwork.common.init.FBlocks;
 import io.github.akiart.frostwork.common.init.block.registrySets.StoneBlockSet;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;

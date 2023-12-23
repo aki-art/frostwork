@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "frostwork:block/grimcap_slab"
+    },
+    "type=double": {
+      "model": "frostwork:block/grimcap_planks"
+    },
+    "type=top": {
+      "model": "frostwork:block/grimcap_slab_top"
+    }
+  }
+}

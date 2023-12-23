@@ -1,7 +1,6 @@
 package io.github.akiart.frostwork.common.init;
 
 import io.github.akiart.frostwork.Frostwork;
-import io.github.akiart.frostwork.common.init.item.FItems;
 import io.github.akiart.frostwork.common.init.item.ItemRegistryUtil;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
