@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "frostwork:block/cracked_edelstone_bricks",
+    "side": "frostwork:block/cracked_edelstone_bricks",
+    "top": "frostwork:block/cracked_edelstone_bricks"
+  }
+}

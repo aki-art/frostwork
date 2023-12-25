@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "frostwork:block/edelstone_slab"
+    },
+    "type=double": {
+      "model": "frostwork:block/edelstone"
+    },
+    "type=top": {
+      "model": "frostwork:block/edelstone_slab_top"
+    }
+  }
+}

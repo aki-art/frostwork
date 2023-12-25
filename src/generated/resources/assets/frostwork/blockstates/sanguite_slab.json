@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "frostwork:block/sanguite_slab"
+    },
+    "type=double": {
+      "model": "frostwork:block/sanguite"
+    },
+    "type=top": {
+      "model": "frostwork:block/sanguite_slab_top"
+    }
+  }
+}

@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
@@ -26,6 +27,14 @@ public class BlockRegistryUtil {
     private static HashSet<WoodBlockSet> woods = new HashSet<WoodBlockSet>();
     private static HashSet<MushroomBlockSet> mushrooms = new HashSet<MushroomBlockSet>();
 
+    public static WoodBlockSet registerTransparentWoodSet(String name, MapColor plankColor, MapColor barkColor, MapColor leavesColor, WoodType woodType) {
+        var set = new WoodBlockSet(name, plankColor, barkColor, leavesColor, woodType);
+        set.doorRenderType = "translucent";
+        woods.add(set);
+
+        return set;
+    }
+
     public static WoodBlockSet registerWoodSet(String name, MapColor plankColor, MapColor barkColor, MapColor leavesColor, WoodType woodType) {
         var set = new WoodBlockSet(name, plankColor, barkColor, leavesColor, woodType);
         woods.add(set);
@@ -33,8 +42,8 @@ public class BlockRegistryUtil {
         return set;
     }
 
-    public static MushroomBlockSet registerMushroomSet(String name, MapColor plankColor, MapColor barkColor, MapColor leavesColor, WoodType woodType) {
-        var set = new MushroomBlockSet(name, plankColor, barkColor, leavesColor, woodType);
+    public static MushroomBlockSet registerMushroomSet(String name, MapColor plankColor, MapColor barkColor, WoodType woodType, SoundType soundType) {
+        var set = new MushroomBlockSet(name, plankColor, barkColor, woodType, soundType);
         mushrooms.add(set);
 
         return set;

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "frostwork:block/cracked_edelstone_bricks"
+  }
+}

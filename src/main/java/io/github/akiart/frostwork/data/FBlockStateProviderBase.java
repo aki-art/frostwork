@@ -6,10 +6,15 @@ import io.github.akiart.frostwork.common.init.block.registrySets.AbstractWoodBlo
 import io.github.akiart.frostwork.common.init.block.registrySets.MushroomBlockSet;
 import io.github.akiart.frostwork.common.init.block.registrySets.StoneBlockSet;
 import io.github.akiart.frostwork.common.init.block.registrySets.WoodBlockSet;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import org.slf4j.Logger;
 
 public abstract class FBlockStateProviderBase extends BlockStateProvider {
@@ -75,13 +80,38 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
                 set.trapDoor.get(),
                 getLocation(set.getName() + "_trapdoor"),
                 true,
-                "cutout");
+                set.doorRenderType);
 
         doorBlockWithRenderType(
                 set.door.get(),
                 getLocation(set.getName() + "_door_bottom"),
                 getLocation(set.getName() + "_door_top"),
-                "cutout");
+                set.doorRenderType);
+    }
+
+    protected ResourceLocation getBlockName(DeferredBlock<?> block) {
+        return BuiltInRegistries.BLOCK.getKey(block.get());
+    }
+
+    protected void snowyBlock(SnowyDirtBlock block) {
+        getVariantBuilder(block).forAllStates(state -> {
+
+            boolean snowy = state.getValue(SnowyDirtBlock.SNOWY);
+
+            ResourceLocation all = blockTexture(block);
+            ModelFile model;
+            var name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+
+            if (snowy) {
+                ResourceLocation side = getLocation("snowy_" + name);
+                ResourceLocation top = new ResourceLocation("block/snow");
+                model = models().cubeBottomTop(name, side, all, top);
+            } else {
+                model = models().cubeAll("snowy_" + name, all);
+            }
+
+            return ConfiguredModel.builder().modelFile(model).build();
+        });
     }
 
     protected void stones(StoneBlockSet blockSet) {

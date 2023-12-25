@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "snowy=false": {
+      "model": "frostwork:block/snowy_frozen_dirt"
+    },
+    "snowy=true": {
+      "model": "frostwork:block/frozen_dirt"
+    }
+  }
+}

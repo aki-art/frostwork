@@ -21,7 +21,7 @@ public class WoodBlockSet extends AbstractWoodBlockSet {
     }
 
     public WoodBlockSet(String name, MapColor plankColor, MapColor barkColor, MapColor leavesColor, WoodType woodType, BlockBehaviour.Properties properties) {
-        super(name, plankColor, barkColor, woodType, properties);
+        super(name, plankColor, woodType, properties);
 
         log = log(name, barkColor, "_log");
         wood = log(name, barkColor, "_wood");

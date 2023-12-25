@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "frostwork:block/polished_sanguite",
+    "side": "frostwork:block/polished_sanguite",
+    "top": "frostwork:block/polished_sanguite"
+  }
+}

@@ -12,6 +12,8 @@ public abstract class AbstractBlockSet {
     public final String name;
     protected final BlockBehaviour.Properties properties;
 
+    public String doorRenderType = "cutout";
+
     public String getName() {
         return name;
     }

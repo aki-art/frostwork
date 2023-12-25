@@ -15,10 +15,17 @@ public class FLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         add("frostwork_tab", "Frostwork Blocks");
         stones();
+
+        add(FBlocks.EDELSTONE_COAL_ORE.get(), "Edelstone Coal Ore");
+        add(FBlocks.WOLF_BLOCK.get(), "Wolf Block");
     }
 
     private void stones() {
         addStones("Obsidian Bricks", FBlocks.OBSIDIAN_BRICKS);
+        addStones("Edelstone", FBlocks.EDELSTONE);
+        addStones("Edelstone Brick", FBlocks.EDELSTONE_BRICKS);
+        addStones("Sanguite", FBlocks.SANGUITE);
+        addStones("Polished Sanguite", FBlocks.POLISHED_SANGUITE);
     }
 
     private void addStones(String name, StoneBlockSet stoneSet) {

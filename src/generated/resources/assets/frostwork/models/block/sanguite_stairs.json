@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "frostwork:block/sanguite",
+    "side": "frostwork:block/sanguite",
+    "top": "frostwork:block/sanguite"
+  }
+}

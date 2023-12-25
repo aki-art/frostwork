@@ -12,7 +12,6 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 public abstract class AbstractWoodBlockSet extends AbstractBlockSet {
 
     protected final WoodType woodType;
-    protected SoundType plankSoundType;
 
     // public final DeferredBlock<Block> barrel
     // public final DeferredBlock<Block> bookShelf
@@ -35,9 +34,11 @@ public abstract class AbstractWoodBlockSet extends AbstractBlockSet {
     public final DeferredBlock<StairBlock> stairs;
 
 
-    protected AbstractWoodBlockSet(String name, MapColor plankColor, MapColor barkColor, WoodType woodType, BlockBehaviour.Properties properties)
+    protected AbstractWoodBlockSet(String name, MapColor plankColor, WoodType woodType, BlockBehaviour.Properties properties)
     {
         super(name, properties);
+
+       // Frostwork.LOGGER.debug("adding set: " + getName() + " with property: " + properties.soundType);
 
         this.woodType = woodType;
 
@@ -54,24 +55,20 @@ public abstract class AbstractWoodBlockSet extends AbstractBlockSet {
         //sign = createSign(name, woodType);
         //wallSign = createWallSign(name, woodType);
         //chest = createChest(name, woodType);
-
-        plankSoundType = SoundType.WOOD;
     }
 
     private DeferredBlock<FenceGateBlock> createFenceGate(String name, MapColor plankColor) {
         return register(name + "_fence_gate",
                 () -> new FenceGateBlock(woodType, BlockBehaviour.Properties.ofFullCopy(planks.get())
                         .mapColor(plankColor)
-                        .strength(2.0F, 3.0F)
-                        .sound(plankSoundType)));
+                        .strength(2.0F, 3.0F)));
     }
 
     private DeferredBlock<FenceBlock> createFence(String name, MapColor plankColor) {
         return BlockRegistryUtil.register(name + "_fence",
                 () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(planks.get())
                         .mapColor(plankColor)
-                        .strength(2.0F, 3.0F)
-                        .sound(plankSoundType)));
+                        .strength(2.0F, 3.0F)));
     }
 
     private DeferredBlock<DoorBlock> createDoor(String name, MapColor plankColor) {
@@ -134,17 +131,15 @@ public abstract class AbstractWoodBlockSet extends AbstractBlockSet {
 
     private DeferredBlock<Block> createPlanks(String name, MapColor plankColor) {
         return register(name + "_planks",
-                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS)
+                () -> new Block(properties
                         .mapColor(plankColor)
-                        .strength(2.0F, 3.0F)
-                        .sound(plankSoundType)));
+                        .strength(2.0F, 3.0F)));
     }
 
     protected DeferredBlock<RotatedPillarBlock> log(String name, MapColor plankColor, MapColor barkColor, String suffix) {
         return register(name + suffix,
                 () -> new RotatedPillarBlock(properties
                         .mapColor((state) -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? plankColor : barkColor)
-                        .sound(plankSoundType)
                         .strength(2.0f)));
     }
 
@@ -152,7 +147,6 @@ public abstract class AbstractWoodBlockSet extends AbstractBlockSet {
         return register(name + suffix,
                 () -> new RotatedPillarBlock(properties
                         .mapColor(color)
-                        .sound(plankSoundType)
                         .strength(2.0f)));
     }
 }
