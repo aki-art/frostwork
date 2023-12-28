@@ -3,11 +3,14 @@ package io.github.akiart.frostwork.common.init.block.registrySets;
 import io.github.akiart.frostwork.common.init.block.BlockRegistryUtil;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
+
+import java.util.Map;
 
 public abstract class AbstractWoodBlockSet extends AbstractBlockSet {
 
@@ -56,6 +59,7 @@ public abstract class AbstractWoodBlockSet extends AbstractBlockSet {
         //wallSign = createWallSign(name, woodType);
         //chest = createChest(name, woodType);
     }
+    public abstract void setStripMaps(Map<Block, Block> stripMap);
 
     private DeferredBlock<FenceGateBlock> createFenceGate(String name, MapColor plankColor) {
         return register(name + "_fence_gate",
@@ -148,5 +152,10 @@ public abstract class AbstractWoodBlockSet extends AbstractBlockSet {
                 () -> new RotatedPillarBlock(properties
                         .mapColor(color)
                         .strength(2.0f)));
+    }
+
+    protected DeferredBlock<SaplingBlock> sapling(String name, TreeGrower grower, MapColor color) {
+        return register(name + "_sapling", () -> new SaplingBlock(grower, BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_SAPLING)
+                .mapColor(color)));
     }
 }

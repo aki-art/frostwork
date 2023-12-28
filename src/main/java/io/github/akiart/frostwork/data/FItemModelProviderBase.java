@@ -79,12 +79,23 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
             fromBlock(wood.strippedWood);
             fromBlock(wood.wood);
             fromBlock(wood.strippedLog);
+            saplingItem(wood.sapling);
         }
         else if(blocks instanceof MushroomBlockSet mushroom) {
             fromBlock(mushroom.cap);
             fromBlock(mushroom.stem);
             fromBlock(mushroom.strippedStem);
         }
+    }
+
+    private ItemModelBuilder saplingItem(DeferredBlock<? extends Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(Frostwork.MOD_ID,"block/" + item.getId().getPath()));
+    }
+
+    public void tallPlant(DeferredBlock<? extends Block> plant) {
+        generate(plant.getId().getPath(), getBlockLocation(getBlockName(plant).getPath() + "_upper"));
     }
 
     public void miscItem(DeferredItem<? extends Item> item) {

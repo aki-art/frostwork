@@ -1,0 +1,33 @@
+{
+  "config": {
+    "feature": {
+      "config": {
+        "feature": "minecraft:spruce_snowy",
+        "decorator": {
+          "config": {
+            "outer": {
+              "config": {},
+              "type": "minecraft:square"
+            },
+            "inner": {
+              "config": {},
+              "type": "minecraft:heightmap"
+            }
+          },
+          "type": "minecraft:decorated"
+        }
+      },
+      "type": "minecraft:decorated"
+    },
+    "decorator": {
+      "config": {
+          "noise_to_count_ratio": 40,
+          "noise_factor": 240.0,
+          "noise_offset": 0.2,
+          "noise_cutoff": 4
+      },
+      "type": "fantasia:squiggly_placer"
+    }
+  },
+  "type": "minecraft:decorated"
+}

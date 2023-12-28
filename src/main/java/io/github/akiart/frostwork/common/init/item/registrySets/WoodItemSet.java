@@ -10,6 +10,7 @@ public class WoodItemSet extends AbstractWoodItemSet {
     public final DeferredItem<BlockItem> wood;
     public final DeferredItem<BlockItem> strippedWood;
     public final DeferredItem<BlockItem> leaves;
+    public final DeferredItem<BlockItem> sapling;
 
     public WoodItemSet(WoodBlockSet set) {
         super(set);
@@ -19,6 +20,7 @@ public class WoodItemSet extends AbstractWoodItemSet {
         strippedLog = tryRegisterFromBlock(set.strippedLog);
         strippedWood = tryRegisterFromBlock(set.strippedWood);
         leaves = tryRegisterFromBlock(set.leaves);
+        sapling = tryRegisterFromBlock(set.sapling);
     }
 }
 

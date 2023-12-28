@@ -1,0 +1,8 @@
+{
+  "parent": "frostwork:block/simple_emissive",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "emissive": "frostwork:block/malachite_ice_ore_emissive",
+    "texture": "frostwork:block/malachite_ice_ore"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "frostwork:block/polished_malachite_slab"
+    },
+    "type=double": {
+      "model": "frostwork:block/polished_malachite"
+    },
+    "type=top": {
+      "model": "frostwork:block/polished_malachite_slab_top"
+    }
+  }
+}

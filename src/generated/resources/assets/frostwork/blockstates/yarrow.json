@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "frostwork:block/yarrow_lower"
+    },
+    "half=upper": {
+      "model": "frostwork:block/yarrow_upper"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+	"config": {
+		"feature": {
+			"config": {
+				"feature": {
+					"config": {
+						"block": {
+							"Name": "minecraft:diorite"
+						},
+						"target": {
+							"Properties": {
+								"snowy": "false"
+							},
+							"Name": "minecraft:grass_block"
+						},
+						"radius": {
+							"base": 3,
+							"spread": 0
+						},
+						"surfaceOnly": true,
+						"manhattan": true,
+						"xz_variance": 3,
+						"y_variance": 3
+					},
+					"type": "fantasia:boulder"
+				},
+				"decorator": {
+					"config": {
+						"outer": {
+							"config": {
+							},
+							"type": "minecraft:square"
+						},
+						"inner": {
+							"config": {
+							},
+							"type": "minecraft:heightmap"
+						}
+					},
+					"type": "minecraft:decorated"
+				}
+			},
+			"type": "minecraft:decorated"
+		},
+		"decorator": {
+			"config": {
+				"chance": 100
+			},
+			"type": "minecraft:chance"
+		}
+	},
+	"type": "minecraft:decorated"
+}

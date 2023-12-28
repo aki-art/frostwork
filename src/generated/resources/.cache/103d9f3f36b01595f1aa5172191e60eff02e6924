@@ -1,0 +1,5 @@
+// 1.20.4	2023-12-28T07:33:04.6692434	Registries
+8683bee4be75f3b6a126345667309ed42c8097ae data/frostwork/neoforge/biome_modifier/add_edelstone_coal_ore.json
+e892eb1ed937041ce27eaef2308ffcd032640693 data/frostwork/worldgen/configured_feature/edelstone_coal_ore.json
+bcca7817996d9b328ef2898f180bf63eb48137f3 data/frostwork/worldgen/configured_feature/frozen_elm.json
+97b26470c8d0f3ce099198ebcf03b36eb3ddf6e4 data/frostwork/worldgen/placed_feature/edelstone_coal_ore_placed.json

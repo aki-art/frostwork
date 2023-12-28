@@ -9,6 +9,8 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
+import java.util.Map;
+
 public class MushroomBlockSet extends AbstractWoodBlockSet {
     public final DeferredBlock<RotatedPillarBlock> stem;
     public final DeferredBlock<RotatedPillarBlock> strippedStem;
@@ -24,6 +26,11 @@ public class MushroomBlockSet extends AbstractWoodBlockSet {
         cap = createCap(name, capColor);
         stem = log(name, plankColor, "_stem");
         strippedStem = log(name, plankColor, "_stripped_stem");
+    }
+
+    @Override
+    public void setStripMaps(Map<Block, Block> stripMap) {
+        stripMap.put(stem.get(), strippedStem.get());
     }
 
     private DeferredBlock<Block> createCap(String name, MapColor capColor) {

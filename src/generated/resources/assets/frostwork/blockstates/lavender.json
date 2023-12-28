@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "frostwork:block/lavender_lower"
+    },
+    "half=upper": {
+      "model": "frostwork:block/lavender_upper"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+	"config": {
+		"feature": {
+			"config": {
+				"feature": {
+					"config": {
+						"basin_block": {
+							"Name": "minecraft:gravel"
+						},
+						"fluid": {
+							"Name": "minecraft:water",
+							"Properties": {
+								"level": "0"
+							}
+						},
+						"radius": {
+							"base": 4,
+							"spread": 3
+						},
+						"islands": false
+					},
+					"type": "fantasia:pond"
+				},
+				"decorator": {
+					"config": {
+						"outer": {
+							"config": {
+							},
+							"type": "minecraft:square"
+						},
+						"inner": {
+							"config": {
+							},
+							"type": "minecraft:heightmap"
+						}
+					},
+					"type": "minecraft:decorated"
+				}
+			},
+			"type": "minecraft:decorated"
+		},
+		"decorator": {
+			"config": {
+				"chance": 15
+			},
+			"type": "minecraft:chance"
+		}
+	},
+	"type": "minecraft:decorated"
+}

@@ -9,7 +9,10 @@ import io.github.akiart.frostwork.common.init.block.registrySets.WoodBlockSet;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.SnowyDirtBlock;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -35,13 +38,13 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 //        return block.
 //    }
 
-//    protected void crossBlock(Block block) {
-//        ModelFile model = models()
-//                .cross(getName(block), blockTexture(block))
-//                .renderType("cutout");
-//
-//        simpleBlock(block, model);
-//    }
+    protected void crossBlock(DeferredBlock<? extends Block> block) {
+        ModelFile model = models()
+                .cross(getBlockName(block).getPath(), blockTexture(block.get()))
+                .renderType("cutout");
+
+        simpleBlock(block.get(), model);
+    }
 
     protected void mushroom(MushroomBlockSet blockSet) {
 
@@ -66,6 +69,8 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
         logBlock(blockSet.strippedLog.get());
         axisBlock(blockSet.strippedWood.get(), strippedLogTex, strippedLogTex);
         axisBlock(blockSet.wood.get(), logTex, logTex);
+
+        crossBlock(blockSet.sapling);
     }
 
     protected void woods(AbstractWoodBlockSet set, ResourceLocation plankTexture) {
@@ -91,6 +96,21 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 
     protected ResourceLocation getBlockName(DeferredBlock<?> block) {
         return BuiltInRegistries.BLOCK.getKey(block.get());
+    }
+
+    protected void tallPlant(DeferredBlock<? extends Block> block) {
+        String name = getBlockName(block).getPath();
+
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            DoubleBlockHalf half = state.getValue(DoublePlantBlock.HALF);
+            String partName = name + "_" + half.getSerializedName();
+
+            ModelFile model = models()
+                    .cross(partName, getLocation(partName))
+                    .renderType("cutout");
+
+            return ConfiguredModel.builder().modelFile(model).build();
+        });
     }
 
     protected void snowyBlock(SnowyDirtBlock block) {
