@@ -1,12 +1,12 @@
 package io.github.akiart.frostwork.data;
 
 import io.github.akiart.frostwork.Frostwork;
-import io.github.akiart.frostwork.common.init.block.registrySets.AbstractWoodBlockSet;
-import io.github.akiart.frostwork.common.init.block.registrySets.MushroomBlockSet;
-import io.github.akiart.frostwork.common.init.block.registrySets.StoneBlockSet;
-import io.github.akiart.frostwork.common.init.block.registrySets.WoodBlockSet;
-import io.github.akiart.frostwork.common.init.item.registrySets.AbstractWoodItemSet;
-import io.github.akiart.frostwork.common.init.item.registrySets.StoneItemSet;
+import io.github.akiart.frostwork.common.block.registrySets.AbstractWoodBlockSet;
+import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
+import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
+import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
+import io.github.akiart.frostwork.common.item.registrySets.AbstractWoodItemSet;
+import io.github.akiart.frostwork.common.item.registrySets.StoneItemSet;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;

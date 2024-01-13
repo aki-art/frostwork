@@ -1,7 +1,7 @@
 package io.github.akiart.frostwork.data;
 
 
-import io.github.akiart.frostwork.common.init.FLootTables;
+import io.github.akiart.frostwork.common.FLootTables;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "frostwork:block/aquamire",
+    "side": "frostwork:block/aquamire",
+    "top": "frostwork:block/aquamire"
+  }
+}

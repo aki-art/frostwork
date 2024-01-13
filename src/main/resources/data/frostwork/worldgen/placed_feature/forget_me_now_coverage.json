@@ -1,0 +1,65 @@
+{
+    "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+            "to_place": {
+                "type": "minecraft:weighted_state_provider",
+                "entries": [{
+                        "weight": 5,
+                        "data": {
+                            "Name": "frostwork:forget_me_now",
+                            "Properties": {
+                                "facing": "west"
+                            }
+                        }
+                    },
+                    {
+                        "weight": 5,
+                        "data": {
+                            "Name": "frostwork:forget_me_now",
+                            "Properties": {
+                                "facing": "east"
+                            }
+                        }
+                    },
+                    {
+                        "weight": 5,
+                        "data": {
+                            "Name": "frostwork:forget_me_now",
+                            "Properties": {
+                                "facing": "south"
+                            }
+                        }
+                    },
+                    {
+                        "weight": 5,
+                        "data": {
+                            "Name": "frostwork:forget_me_now",
+                            "Properties": {
+                                "FACING": "north"
+                            }
+                        }
+                    },
+                    {
+                        "weight": 1,
+                        "data": {
+                            "Name": "minecraft:short_grass"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "placement": [{
+            "type": "minecraft:count",
+            "count": 256
+        },
+        {
+            "type": "minecraft:in_square"
+        },
+        {
+            "type": "minecraft:heightmap",
+            "heightmap": "OCEAN_FLOOR"
+        }
+    ]
+}

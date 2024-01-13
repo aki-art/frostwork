@@ -1,0 +1,113 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"2": "frostwork:block/gourd_stem",
+		"3": "frostwork:block/gourd_leaf"
+	},
+	"elements": [
+		{
+			"from": [8, 0, 0],
+			"to": [8, 11, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 0, 5.5], "texture": "#2"},
+				"east": {"uv": [0, 0, 8, 5.5], "texture": "#2"},
+				"south": {"uv": [0, 0, 0, 5.5], "texture": "#2"},
+				"west": {"uv": [8, 0, 0, 5.5], "texture": "#2"},
+				"up": {"uv": [0, 8, 0, 0], "texture": "#2"},
+				"down": {"uv": [0, 0, 0, 8], "texture": "#2"}
+			}
+		},
+		{
+			"name": "leaf_a",
+			"from": [12.81023, 1.78911, 0],
+			"to": [12.81023, 13.78911, 11],
+			"rotation": {"angle": 45, "axis": "z", "origin": [12.5, 7.75, 5.5]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 6], "texture": "#3"},
+				"east": {"uv": [0, 0, 5.5, 6], "texture": "#3"},
+				"south": {"uv": [0, 0, 0, 6], "texture": "#3"},
+				"west": {"uv": [0, 0, 5.5, 6], "texture": "#3"},
+				"up": {"uv": [0, 5, 0, 0], "texture": "#3"},
+				"down": {"uv": [0, 0, 0, 5], "texture": "#3"}
+			}
+		},
+		{
+			"name": "gourd_stem_small",
+			"from": [7, 6.325, 5.5],
+			"to": [14.5, 10.825, 5.5],
+			"faces": {
+				"north": {"uv": [9.25, 0, 5.5, 2.25], "texture": "#3"},
+				"east": {"uv": [0, 0, 0, 2.25], "texture": "#missing"},
+				"south": {"uv": [5.5, 0, 9.25, 2.25], "texture": "#3"},
+				"west": {"uv": [0, 0, 0, 2.25], "texture": "#missing"},
+				"up": {"uv": [0, 0, 3.75, 0], "texture": "#missing"},
+				"down": {"uv": [0, 0, 3.75, 0], "texture": "#missing"}
+			}
+		},
+		{
+			"name": "leaf_a",
+			"from": [4.25, -3, 1.5],
+			"to": [4.25, 9, 12.5],
+			"rotation": {"angle": -45, "axis": "z", "origin": [13.25, 6.75, 5.25]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 6], "texture": "#3"},
+				"east": {"uv": [0, 0, 5.5, 6], "texture": "#3"},
+				"south": {"uv": [0, 0, 0, 6], "texture": "#3"},
+				"west": {"uv": [0, 0, 5.5, 6], "texture": "#3"},
+				"up": {"uv": [0, 5, 0, 0], "rotation": 180, "texture": "#3"},
+				"down": {"uv": [0, 0, 0, 5], "rotation": 180, "texture": "#3"}
+			}
+		},
+		{
+			"name": "gourd_stem_small",
+			"from": [2.75, 2.325, 7],
+			"to": [10.25, 6.825, 7],
+			"rotation": {"angle": -45, "axis": "z", "origin": [13.25, 6.75, 5.25]},
+			"faces": {
+				"north": {"uv": [5.5, 0, 9.25, 2.25], "texture": "#3"},
+				"east": {"uv": [0, 0, 0, 2.25], "texture": "#missing"},
+				"south": {"uv": [9.25, 0, 5.5, 2.25], "texture": "#3"},
+				"west": {"uv": [0, 0, 0, 2.25], "texture": "#missing"},
+				"up": {"uv": [0, 0, 3.75, 0], "rotation": 180, "texture": "#missing"},
+				"down": {"uv": [0, 0, 3.75, 0], "rotation": 180, "texture": "#missing"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-82, 0, 0],
+			"scale": [0.38, 0.38, 0.38]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-82, 0, 0],
+			"scale": [0.38, 0.38, 0.38]
+		},
+		"firstperson_righthand": {
+			"rotation": [-102, 0, 0],
+			"translation": [0, 0.25, -3.25],
+			"scale": [0.66, 0.66, 0.66]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-111, 0, 0],
+			"translation": [0.25, 0.25, -3.25],
+			"scale": [0.66, 0.66, 0.66]
+		},
+		"ground": {
+			"rotation": [-90, 0, 0],
+			"scale": [0.66, 0.66, 0.66]
+		},
+		"gui": {
+			"rotation": [-89, 0, 0]
+		},
+		"head": {
+			"rotation": [-90, 0, 0],
+			"translation": [0, 5, -3],
+			"scale": [1.35938, 1.35938, 1.35938]
+		},
+		"fixed": {
+			"rotation": [-90, 0, 0],
+			"translation": [0, 0, -2.5]
+		}
+	}
+}

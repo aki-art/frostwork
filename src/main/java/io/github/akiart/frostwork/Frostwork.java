@@ -1,15 +1,24 @@
 package io.github.akiart.frostwork;
 
-import io.github.akiart.frostwork.common.init.FBlocks;
-import io.github.akiart.frostwork.common.init.FCreativeModeTabs;
-import io.github.akiart.frostwork.common.init.FItems;
-import io.github.akiart.frostwork.common.init.block.BlockRegistryUtil;
-import io.github.akiart.frostwork.common.worldgen.tree.FTreeGrowers;
+import io.github.akiart.frostwork.common.EntityEvents;
+import io.github.akiart.frostwork.common.FCreativeModeTabs;
+import io.github.akiart.frostwork.common.block.BlockRegistryUtil;
+import io.github.akiart.frostwork.common.block.FBlocks;
+import io.github.akiart.frostwork.common.effects.FEffects;
+import io.github.akiart.frostwork.common.item.FItems;
+import io.github.akiart.frostwork.common.potion.FPotions;
+import io.github.akiart.frostwork.common.worldgen.FantasiaBiomeSource;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.registries.RegisterEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,12 +34,24 @@ public class Frostwork {
         initRegistry(modEventBus);
 
         modEventBus.addListener(this::setup);
+        modEventBus.addListener(this::worldgenRegistryInit);
+
+        NeoForge.EVENT_BUS.register(EntityEvents.class);
     }
 
     private static void initRegistry(IEventBus modEventBus) {
         FBlocks.BLOCKS.register(modEventBus);
         FItems.ITEMS.register(modEventBus);
+        FEffects.EFFECTS.register(modEventBus);
+        FPotions.POTIONS.register(modEventBus);
+
         FCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
+    }
+
+
+    public void worldgenRegistryInit(RegisterEvent evt) {
+        if (evt.getRegistryKey().equals(Registries.BIOME_SOURCE))
+            Registry.register(BuiltInRegistries.BIOME_SOURCE, new ResourceLocation(MOD_ID, "fantasia"), FantasiaBiomeSource.CODEC);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -41,7 +62,8 @@ public class Frostwork {
             BlockRegistryUtil.getMushrooms().forEach(t -> t.setStripMaps(stripMap));
             AxeItem.STRIPPABLES = stripMap;
 
-            FTreeGrowers.initialize();
+            //BrewingRecipeRegistry.addRecipe(Ingredient.of(Potions.AWKWARD))
+
             //FWoodType.values().forEach(WoodType::register);
         });
     }

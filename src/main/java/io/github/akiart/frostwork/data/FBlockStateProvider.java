@@ -1,7 +1,7 @@
 package io.github.akiart.frostwork.data;
 
-import io.github.akiart.frostwork.common.init.FBlocks;
-import io.github.akiart.frostwork.common.init.block.BlockRegistryUtil;
+import io.github.akiart.frostwork.common.block.FBlocks;
+import io.github.akiart.frostwork.common.block.BlockRegistryUtil;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -39,6 +39,22 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
     private void plants() {
         tallPlant(FBlocks.LAVENDER);
         tallPlant(FBlocks.YARROW);
+        //forgetMeNow();
+        crossBlock(FBlocks.FORGET_ME_NOW);
+    }
+
+    private void forgetMeNow() {
+        getVariantBuilder(FBlocks.FORGET_ME_NOW.get()).forAllStates(state -> {
+
+            ModelFile model = models()
+                    .withExistingParent(getBlockName(FBlocks.FORGET_ME_NOW).getPath(), new ResourceLocation("frostwork:block/small_flower"))
+                    .texture("0", getLocation("forget_me_now"))
+                    .renderType("cutout");
+
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .build();
+        });
     }
 
     private void partialEmissive(DeferredBlock<? extends Block> block, String renderType) {

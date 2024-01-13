@@ -2,10 +2,11 @@ package io.github.akiart.frostwork.data;
 
 import com.mojang.logging.LogUtils;
 import io.github.akiart.frostwork.Frostwork;
-import io.github.akiart.frostwork.common.init.block.registrySets.AbstractWoodBlockSet;
-import io.github.akiart.frostwork.common.init.block.registrySets.MushroomBlockSet;
-import io.github.akiart.frostwork.common.init.block.registrySets.StoneBlockSet;
-import io.github.akiart.frostwork.common.init.block.registrySets.WoodBlockSet;
+import io.github.akiart.frostwork.common.block.FBlocks;
+import io.github.akiart.frostwork.common.block.registrySets.AbstractWoodBlockSet;
+import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
+import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
+import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -56,21 +57,24 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
         logBlock(blockSet.strippedStem.get());
     }
 
-    protected void wood(WoodBlockSet blockSet) {
+    protected void wood(AbstractWoodBlockSet blockSet) {
 
         ResourceLocation plankTexture = blockTexture(blockSet.planks.get());
-        ResourceLocation logTex = blockTexture(blockSet.log.get());
-        ResourceLocation strippedLogTex = blockTexture(blockSet.strippedLog.get());
-
         woods(blockSet, plankTexture);
-        simpleBlock(blockSet.leaves.get());
 
-        logBlock(blockSet.log.get());
-        logBlock(blockSet.strippedLog.get());
-        axisBlock(blockSet.strippedWood.get(), strippedLogTex, strippedLogTex);
-        axisBlock(blockSet.wood.get(), logTex, logTex);
+        if(blockSet instanceof WoodBlockSet wood) {
+            ResourceLocation logTex = blockTexture(wood.log.get());
+            ResourceLocation strippedLogTex = blockTexture(wood.strippedLog.get());
 
-        crossBlock(blockSet.sapling);
+            simpleBlock(wood.leaves.get());
+
+            logBlock(wood.log.get());
+            logBlock(wood.strippedLog.get());
+            axisBlock(wood.strippedWood.get(), strippedLogTex, strippedLogTex);
+            axisBlock(wood.wood.get(), logTex, logTex);
+
+            crossBlock(wood.sapling);
+        }
     }
 
     protected void woods(AbstractWoodBlockSet set, ResourceLocation plankTexture) {
@@ -137,7 +141,24 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
     protected void stones(StoneBlockSet blockSet) {
         ResourceLocation texture = blockTexture(blockSet.block.get());
 
-        simpleBlock(blockSet.block.get());
+        if(blockSet.equals(FBlocks.POLISHED_AQUAMIRE)) {
+            Block block = blockSet.block.get();
+            getVariantBuilder(block).forAllStates(state -> {
+
+                ResourceLocation all = blockTexture(block);
+                ModelFile model;
+                var name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+
+                ResourceLocation side = getLocation(name +"_side");
+
+                model = models().cubeColumn(name, side, all);
+
+                return ConfiguredModel.builder().modelFile(model).build();
+            });
+        }
+        else {
+            simpleBlock(blockSet.block.get());
+        }
         stairsBlock(blockSet.stairs.get(), texture);
         wallBlock(blockSet.wall.get(), texture);
         slabBlock(blockSet.slab.get(), blockSet.block.getId(), texture);

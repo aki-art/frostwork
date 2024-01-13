@@ -1,11 +1,11 @@
 package io.github.akiart.frostwork.data.tags;
 
 import io.github.akiart.frostwork.common.FTags;
-import io.github.akiart.frostwork.common.init.FBlocks;
-import io.github.akiart.frostwork.common.init.block.BlockRegistryUtil;
-import io.github.akiart.frostwork.common.init.block.registrySets.AbstractWoodBlockSet;
-import io.github.akiart.frostwork.common.init.block.registrySets.StoneBlockSet;
-import io.github.akiart.frostwork.common.init.block.registrySets.WoodBlockSet;
+import io.github.akiart.frostwork.common.block.FBlocks;
+import io.github.akiart.frostwork.common.block.BlockRegistryUtil;
+import io.github.akiart.frostwork.common.block.registrySets.AbstractWoodBlockSet;
+import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
+import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;

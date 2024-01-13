@@ -1,10 +1,12 @@
 package io.github.akiart.frostwork.data.lang;
 
-import io.github.akiart.frostwork.common.init.FBlocks;
-import io.github.akiart.frostwork.common.init.block.registrySets.AbstractWoodBlockSet;
-import io.github.akiart.frostwork.common.init.block.registrySets.MushroomBlockSet;
-import io.github.akiart.frostwork.common.init.block.registrySets.StoneBlockSet;
-import io.github.akiart.frostwork.common.init.block.registrySets.WoodBlockSet;
+import io.github.akiart.frostwork.common.block.FBlocks;
+import io.github.akiart.frostwork.common.effects.FEffects;
+import io.github.akiart.frostwork.common.block.registrySets.AbstractWoodBlockSet;
+import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
+import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
+import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
+import io.github.akiart.frostwork.common.item.FItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
@@ -18,9 +20,21 @@ public class FLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         add("frostwork_tab", "Frostwork Blocks");
 
+        enchantments();
+        effects();
+
         stones();
         trees();
 
+        blocks();
+        items();
+    }
+
+    private void items() {
+        add(FItems.TATZELWURM_SCALE.get(), "Tatzelwurm Scale");
+    }
+
+    private void blocks() {
         add(FBlocks.EDELSTONE_COAL_ORE.get(), "Edelstone Coal Ore");
         add(FBlocks.MALACHITE_ICE_ORE.get(), "Malachite Ore");
         add(FBlocks.WOLF_BLOCK.get(), "Wolf Block");
@@ -29,6 +43,28 @@ public class FLanguageProvider extends LanguageProvider {
         add(FBlocks.GRIMCAP_GILL.get(), "Grimcap Gill");
         add(FBlocks.LAVENDER.get(), "Lavender");
         add(FBlocks.YARROW.get(), "Yarrow");
+        add(FBlocks.FORGET_ME_NOW.get(), "Forget-Me-Now");
+    }
+
+    private void effects() {
+        add(FEffects.FRAIL.get(), "Frail");
+    }
+
+    private void enchantments() {
+        // for Enchantment Descriptions: enchantment.%MOD_ID%.%ENCH_ID%.desc https://github.com/Darkhax-Minecraft/Enchantment-Descriptions
+        add("enchantment.frostwork.poison_thorns.desc", "Chance to poison on contact damage.");
+        add("enchantment.frostwork.freezing.desc", "Chance to freeze an enemy on hit. Frozen smaller entities are completely stunned, large entities get slowed.");
+        add("enchantment.frostwork.freezing_thorns.desc", "Chance to freeze on contact damage. Frozen smaller entities are completely stunned, large entities get slowed.");
+        add("enchantment.frostwork.meteor.desc", "Chance to spawn a Meteor homing in on the hit entity, dealing large AoE damage on hit. Higher levels increase chance.");
+        add("enchantment.frostwork.homing.desc", "Curves projectiles towards the last hit target. Exclusive to Frostwork ranged weapons.");
+        add("enchantment.frostwork.sanguine.desc", "Life-steal.");
+        add("enchantment.frostwork.trollskin.desc", "Slowly regenerate health in cold biomes or while standing on ice.");
+        add("enchantment.frostwork.poison_protection.desc", "Reduced poison duration, and chance to resist poison entirely.");
+        add("enchantment.frostwork.fear.desc", "Chance to afflict a hit target with Fear, which will force them to retreat. (may not work with some unique modded AI-s). Higher level increases chance and duration of effect.");
+        add("enchantment.frostwork.polymorph.desc", "Chance to turn the enemy into a random passive creature. The drops and XP will be matching the passive creatures. Level increases chance.");
+        add("enchantment.frostwork.gentle_explosions.desc", "Prevents the cannon function of a Frostwork Pickaxe from breaking blocks.");
+        add("enchantment.frostwork.bee_thorns.desc", "Releases an angry bee familiar when hit, allied to the wearer. The bee disappears in 15 seconds.");
+
     }
 
     private void trees() {
@@ -43,6 +79,9 @@ public class FLanguageProvider extends LanguageProvider {
         addStones("Edelstone Brick", FBlocks.EDELSTONE_BRICKS);
         addStones("Sanguite", FBlocks.SANGUITE);
         addStones("Polished Sanguite", FBlocks.POLISHED_SANGUITE);
+        addStones("Marlstone", FBlocks.MARLSTONE);
+        addStones("Aquamire", FBlocks.AQUAMIRE);
+        addStones("Polished Aquamire", FBlocks.POLISHED_AQUAMIRE);
     }
 
     private void addTree(String name, AbstractWoodBlockSet woodSet) {

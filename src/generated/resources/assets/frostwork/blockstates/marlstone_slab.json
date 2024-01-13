@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "frostwork:block/marlstone_slab"
+    },
+    "type=double": {
+      "model": "frostwork:block/marlstone"
+    },
+    "type=top": {
+      "model": "frostwork:block/marlstone_slab_top"
+    }
+  }
+}

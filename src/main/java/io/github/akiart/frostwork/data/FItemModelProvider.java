@@ -1,8 +1,9 @@
 package io.github.akiart.frostwork.data;
 
 import io.github.akiart.frostwork.Frostwork;
-import io.github.akiart.frostwork.common.init.FBlocks;
-import io.github.akiart.frostwork.common.init.item.ItemRegistryUtil;
+import io.github.akiart.frostwork.common.block.FBlocks;
+import io.github.akiart.frostwork.common.item.FItems;
+import io.github.akiart.frostwork.common.item.ItemRegistryUtil;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -31,10 +32,13 @@ public class FItemModelProvider extends FItemModelProviderBase {
         fromBlock(FBlocks.GRIMCAP_GILL);
 
         plants();
+
+        miscItem(FItems.TATZELWURM_SCALE);
     }
 
     private void plants() {
         tallPlant(FBlocks.LAVENDER);
         tallPlant(FBlocks.YARROW);
+        miscItem(FItems.FORGET_ME_NOW);
     }
 }

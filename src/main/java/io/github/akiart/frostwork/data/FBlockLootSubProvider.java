@@ -1,8 +1,8 @@
 package io.github.akiart.frostwork.data;
 
 import io.github.akiart.frostwork.Frostwork;
-import io.github.akiart.frostwork.common.init.FBlocks;
-import io.github.akiart.frostwork.common.init.block.BlockRegistryUtil;
+import io.github.akiart.frostwork.common.block.FBlocks;
+import io.github.akiart.frostwork.common.block.BlockRegistryUtil;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 

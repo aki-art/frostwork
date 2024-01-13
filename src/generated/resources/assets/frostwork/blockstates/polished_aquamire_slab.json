@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "frostwork:block/polished_aquamire_slab"
+    },
+    "type=double": {
+      "model": "frostwork:block/polished_aquamire"
+    },
+    "type=top": {
+      "model": "frostwork:block/polished_aquamire_slab_top"
+    }
+  }
+}

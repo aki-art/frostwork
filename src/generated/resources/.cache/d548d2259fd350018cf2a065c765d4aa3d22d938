@@ -1,4 +1,8 @@
-// 1.20.4	2023-12-28T07:33:04.6652422	Item Models: frostwork
+// 1.20.4	2024-01-13T07:14:07.7825485	Item Models: frostwork
+c4f111fb6eaeb2eb878ad963a3ca346968be5da1 assets/frostwork/models/item/aquamire.json
+d1db1648114a7e53db818b708cdde47ff27e72cf assets/frostwork/models/item/aquamire_slab.json
+fd03b32a97be690033d84ce567913dfeced68042 assets/frostwork/models/item/aquamire_stairs.json
+708367d7d82a3f02ec417346138b37bfbccb0857 assets/frostwork/models/item/aquamire_wall.json
 dff1030e234d7e6b2b8cec55abc575eab1aff9f1 assets/frostwork/models/item/cracked_edelstone_bricks.json
 957568d84e2f289af79b294c904c884835a82cf0 assets/frostwork/models/item/cracked_edelstone_bricks_slab.json
 7077ffb1b8c4938be701838878136d09b959e535 assets/frostwork/models/item/cracked_edelstone_bricks_stairs.json
@@ -30,6 +34,7 @@ c54c06ad6627929449f418f2a23b93690968a608 assets/frostwork/models/item/elm_stairs
 f1f32abb0cb103e0ef93acc6b55767ea12f2ee49 assets/frostwork/models/item/elm_stripped_wood.json
 63dd529882c04882e31f035aaec03d07306ea80a assets/frostwork/models/item/elm_trapdoor.json
 055db859de03acd8880fe10a2a0c293460320938 assets/frostwork/models/item/elm_wood.json
+20cf6f5fa929f510a7328a7cc1e9ee9719d37047 assets/frostwork/models/item/forget_me_now.json
 6aaa08f432f77ed87f64bcc2b12a9d8eaea075fa assets/frostwork/models/item/frozen_dirt.json
 ea93d22c03d8a9b6f2c3179c5205835d99e166d4 assets/frostwork/models/item/frozen_elm_button.json
 0441624b4c75969df2a9c842b2e456e8529ab4c8 assets/frostwork/models/item/frozen_elm_door.json
@@ -62,6 +67,10 @@ cfea5d459ab1a857a677281dba479a3f2616de08 assets/frostwork/models/item/grimcap_st
 1e828b9d5dd86b67b40864c6c09cab80fe32d09e assets/frostwork/models/item/lavender.json
 57054170ba250a82700ddf377206a5f555529358 assets/frostwork/models/item/malachite_block.json
 6f4fed151c8923a3f50842104016b722787a20bb assets/frostwork/models/item/malachite_ice_ore.json
+130ffdfd9bad827b1140f36b14fcfec46cf93e9e assets/frostwork/models/item/marlstone.json
+36f697a6de759b62e1a984719b34d670080a82a3 assets/frostwork/models/item/marlstone_slab.json
+37f582ccf2e9447945ae65d15b34dc28fae30d8b assets/frostwork/models/item/marlstone_stairs.json
+5cfb32460889785c1f3c5f6ac1fa75438710af60 assets/frostwork/models/item/marlstone_wall.json
 6e6d3b6a4ab4dce4367441418e42035c254b12d7 assets/frostwork/models/item/obsidian_bricks.json
 0ae8fc7d26f42508b10195124e48b018acfe73f9 assets/frostwork/models/item/obsidian_bricks_button.json
 e6bf06584eb3324e8b554f19185d10efd2c6721f assets/frostwork/models/item/obsidian_bricks_pressure_plate.json
@@ -70,6 +79,10 @@ e6bf06584eb3324e8b554f19185d10efd2c6721f assets/frostwork/models/item/obsidian_b
 296ad5134486b0f6075a79e755da26c38e9a71fc assets/frostwork/models/item/obsidian_bricks_wall.json
 e7fd1347154101cd065a8ff258bf286104d3a937 assets/frostwork/models/item/overgrown_sanguite.json
 f0514c4ac8404910d451f955d789e68234effafa assets/frostwork/models/item/overgrowth.json
+26ffaff54f4d7727f530b7a94c2370ba758044ea assets/frostwork/models/item/polished_aquamire.json
+c061fc659eed74961da2e5b8fc2075f9fa9f2e02 assets/frostwork/models/item/polished_aquamire_slab.json
+a07608906d2ca83f7a78c588675f75f41837767a assets/frostwork/models/item/polished_aquamire_stairs.json
+c6c5d2b4c13a7fbdc15d477cfcf088af4b00ff30 assets/frostwork/models/item/polished_aquamire_wall.json
 9d0f10562ae252c6ab7704471eb11022bc0c4ed4 assets/frostwork/models/item/polished_edelstone.json
 d559a219aa440897e3f8dc4a341ebebf0303dd68 assets/frostwork/models/item/polished_edelstone_slab.json
 bd1daa256e932bad116b515b272dd362946a3f23 assets/frostwork/models/item/polished_edelstone_stairs.json
@@ -86,5 +99,6 @@ e89774e37696fc0e0119604b1b334d6e936f6abb assets/frostwork/models/item/sanguite.j
 f4e0c9dc9701434f289817a411650b3e6630869f assets/frostwork/models/item/sanguite_slab.json
 12f9f2f7b1236cfd406cb986acb67cfba1bfbc41 assets/frostwork/models/item/sanguite_stairs.json
 1ac721175370bd3df564cb2741de736f7b93d0cd assets/frostwork/models/item/sanguite_wall.json
+b7c288583afb9ba7c2abe1e671e391fa57eb10f7 assets/frostwork/models/item/tatzelwurm_scale.json
 ea9310f78faf2a747c95a3d7bdfad1217ac8843f assets/frostwork/models/item/wolf_block.json
 0d26219b6751a397399a5f2a40c9ec3053669f83 assets/frostwork/models/item/yarrow.json
