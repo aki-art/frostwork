@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/lily_pad",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "texture": "frostwork:block/foam_3"
+  }
+}

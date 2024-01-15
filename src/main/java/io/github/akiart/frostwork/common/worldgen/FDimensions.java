@@ -33,6 +33,7 @@ public class FDimensions {
                 new FixedBiomeSource(biomeRegistry.getOrThrow(FBiomes.ALPINE_TUNDRA)),
                 noiseGenSettings.getOrThrow(FNoiseGenerationSettings.FANTASIA_NOISE_SETTINGS_ID));
 
+
         NoiseBasedChunkGenerator noiseBasedChunkGenerator = new NoiseBasedChunkGenerator(
                 FantasiaBiomeSource.createFromList(
                         new Climate.ParameterList<>(List.of(
@@ -44,7 +45,17 @@ public class FDimensions {
                         ))),
                 noiseGenSettings.getOrThrow(FNoiseGenerationSettings.FANTASIA_NOISE_SETTINGS_ID));
 
-        LevelStem stem = new LevelStem(dimensionTypes.getOrThrow(FDimensionTypes.FANTASIA_TYPE), noiseBasedChunkGenerator);
+        FastNoiseLiteChunkGenerator fnlChunkGen = new FastNoiseLiteChunkGenerator(FantasiaBiomeSource.createFromList(
+                new Climate.ParameterList<>(List.of(
+                        Pair.of(
+                                Climate.parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.ALPINE_TUNDRA)),
+                        Pair.of(
+                                Climate.parameters(0.1F, 0.2F, 0.0F, 0.2F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.FROZEN_CAVE))
+
+                ))),
+                noiseGenSettings.getOrThrow(FNoiseGenerationSettings.FANTASIA_NOISE_SETTINGS_ID));
+
+        LevelStem stem = new LevelStem(dimensionTypes.getOrThrow(FDimensionTypes.FANTASIA_TYPE), fnlChunkGen);
 
         context.register(FANTASIA_STEM, stem);
     }

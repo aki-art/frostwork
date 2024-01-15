@@ -34,6 +34,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
         plants();
 
         miscItem(FItems.TATZELWURM_SCALE);
+        miscItem(FItems.TATZELWURM_ARROW);
     }
 
     private void plants() {

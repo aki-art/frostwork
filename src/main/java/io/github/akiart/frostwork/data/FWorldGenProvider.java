@@ -22,6 +22,7 @@ public class FWorldGenProvider extends DatapackBuiltinEntriesProvider {
             //.add(Registries.BIOME_SOURCE, FBiomeSources::boostrap)
             .add(Registries.NOISE_SETTINGS, FNoiseGenerationSettings::bootstrap)
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, FBiomeModifiers::bootstrap)
+            //.add(Registries.CHUNK_GENERATOR, FChunkGenerators::bootstrap)
             .add(Registries.LEVEL_STEM, FDimensions::bootstrap);
 
     public FWorldGenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

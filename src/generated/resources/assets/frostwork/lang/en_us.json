@@ -29,6 +29,7 @@
   "block.frostwork.elm_stripped_wood": "Stripped Elm Wood",
   "block.frostwork.elm_trapdoor": "Elm Trapdoor",
   "block.frostwork.elm_wood": "Elm Wood",
+  "block.frostwork.foam": "Foam",
   "block.frostwork.forget_me_now": "Forget-Me-Now",
   "block.frostwork.frozen_elm_button": "Frozen Elm Button",
   "block.frostwork.frozen_elm_door": "Frozen Elm Door",
@@ -87,6 +88,7 @@
   "block.frostwork.wolf_block": "Wolf Block",
   "block.frostwork.yarrow": "Yarrow",
   "effect.frostwork.frail": "Frail",
+  "effect.frostwork.poison_resistance": "Poison Resistance",
   "enchantment.frostwork.bee_thorns.desc": "Releases an angry bee familiar when hit, allied to the wearer. The bee disappears in 15 seconds.",
   "enchantment.frostwork.fear.desc": "Chance to afflict a hit target with Fear, which will force them to retreat. (may not work with some unique modded AI-s). Higher level increases chance and duration of effect.",
   "enchantment.frostwork.freezing.desc": "Chance to freeze an enemy on hit. Frozen smaller entities are completely stunned, large entities get slowed.",
@@ -99,5 +101,7 @@
   "enchantment.frostwork.polymorph.desc": "Chance to turn the enemy into a random passive creature. The drops and XP will be matching the passive creatures. Level increases chance.",
   "enchantment.frostwork.sanguine.desc": "Life-steal.",
   "enchantment.frostwork.trollskin.desc": "Slowly regenerate health in cold biomes or while standing on ice.",
-  "frostwork_tab": "Frostwork Blocks"
+  "frostwork.frostwork_tab": "Frostwork",
+  "item.frostwork.tatzelwurm_arrow": "Tatzelwurm Arrow",
+  "item.frostwork.tatzelwurm_scale": "Tatzelwurm Scale"
 }

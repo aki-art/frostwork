@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "fw_foam_amount=1": {
+      "model": "frostwork:block/foam_1"
+    },
+    "fw_foam_amount=2": {
+      "model": "frostwork:block/foam_2"
+    },
+    "fw_foam_amount=3": {
+      "model": "frostwork:block/foam_3"
+    },
+    "fw_foam_amount=4": {
+      "model": "frostwork:block/foam_4"
+    }
+  }
+}

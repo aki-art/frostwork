@@ -2,6 +2,7 @@ package io.github.akiart.frostwork;
 
 import io.github.akiart.frostwork.common.EntityEvents;
 import io.github.akiart.frostwork.common.FCreativeModeTabs;
+import io.github.akiart.frostwork.common.FEntityTypes;
 import io.github.akiart.frostwork.common.block.BlockRegistryUtil;
 import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.effects.FEffects;
@@ -13,6 +14,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.alchemy.PotionBrewing;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -44,6 +47,7 @@ public class Frostwork {
         FItems.ITEMS.register(modEventBus);
         FEffects.EFFECTS.register(modEventBus);
         FPotions.POTIONS.register(modEventBus);
+        FEntityTypes.ENTITY_TYPES.register(modEventBus);
 
         FCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
     }
@@ -61,7 +65,7 @@ public class Frostwork {
             BlockRegistryUtil.getWoods().forEach(t -> t.setStripMaps(stripMap));
             BlockRegistryUtil.getMushrooms().forEach(t -> t.setStripMaps(stripMap));
             AxeItem.STRIPPABLES = stripMap;
-
+            PotionBrewing.addMix(Potions.AWKWARD, FItems.TATZELWURM_SCALE.get(), FPotions.POISON_RESISTANCE.get());
             //BrewingRecipeRegistry.addRecipe(Ingredient.of(Potions.AWKWARD))
 
             //FWoodType.values().forEach(WoodType::register);

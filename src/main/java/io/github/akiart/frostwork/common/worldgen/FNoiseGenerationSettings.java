@@ -12,6 +12,10 @@ import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 public class FNoiseGenerationSettings {
+    private static final int MIN_Y = -64;
+    private static final int MAX_Y = 448;
+    private static final int SEA_LEVEL = 150;
+
     protected static final NoiseSettings FANTASIA_NOISE_SETTINGS = NoiseSettings.create(-64, 384, 1, 2);
     protected static final ResourceKey<NoiseGeneratorSettings> FANTASIA_NOISE_SETTINGS_ID =  ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(Frostwork.MOD_ID, "fantasia_noise"));
     private static final ResourceKey<DensityFunction> SHIFT_X = createKey("shift_x");
@@ -23,10 +27,10 @@ public class FNoiseGenerationSettings {
                 FANTASIA_NOISE_SETTINGS,
                 Blocks.STONE.defaultBlockState(),
                 Blocks.WATER.defaultBlockState(),
-                nether(context.lookup(Registries.DENSITY_FUNCTION), context.lookup(Registries.NOISE)),
+                solid(context.lookup(Registries.DENSITY_FUNCTION)),
                 FSurfaceRules.frostworkSurface(),
                 new OverworldBiomeBuilder().spawnTarget(),
-                190,
+                SEA_LEVEL,
                 false,
                 true,
                 true,
@@ -61,6 +65,33 @@ public class FNoiseGenerationSettings {
         return DensityFunctions.lerp(densityfunction2, p_224452_, $$9);
     }
 
+    private static DensityFunction initialDensity(DensityFunction pDensityFunction) {
+        return slideEndLike(pDensityFunction, MIN_Y, MAX_Y);
+    }
+    private static DensityFunction slideEndLike(DensityFunction pDensityFunction, int pMinY, int pMaxY) {
+        return slide(pDensityFunction, pMinY, pMaxY, 72, -184, -23.4375, 4, 32, -0.234375);
+    }
+    protected static NoiseRouter solid(HolderGetter<DensityFunction> pDensityFunctions) {
+        DensityFunction densityfunction = DensityFunctions.cache2d(DensityFunctions.endIslands(0L));
+        DensityFunction densityfunction1 = postProcess(initialDensity(getFunction(pDensityFunctions, NoiseRouterData.FACTOR)));
+        return new NoiseRouter(
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                densityfunction,
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                initialDensity(DensityFunctions.add(densityfunction, DensityFunctions.constant(-0.703125))),
+                densityfunction1,
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                DensityFunctions.zero()
+        );
+    }
     private static NoiseRouter noNewCaves(
             HolderGetter<DensityFunction> pDensityFunctions, HolderGetter<NormalNoise.NoiseParameters> pNoiseParameters, DensityFunction p_256378_
     ) {

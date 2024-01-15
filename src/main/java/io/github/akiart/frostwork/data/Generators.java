@@ -3,6 +3,7 @@ package io.github.akiart.frostwork.data;
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.data.lang.FLanguageProvider;
 import io.github.akiart.frostwork.data.tags.FBlockTagsProvider;
+import io.github.akiart.frostwork.data.tags.FItemTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -27,7 +28,10 @@ public class Generators {
         dataGen.addProvider(event.includeServer(), new FItemModelProvider(output, Frostwork.MOD_ID, fileHelper));
         dataGen.addProvider(event.includeServer(), new FWorldGenProvider(output, lookupProvider));
         dataGen.addProvider(event.includeServer(), new LootTables(output));
-        dataGen.addProvider(event.includeServer(), new FBlockTagsProvider(output, lookupProvider, Frostwork.MOD_ID, fileHelper));
+        FBlockTagsProvider blockTagsProvider = new FBlockTagsProvider(output, lookupProvider, Frostwork.MOD_ID, fileHelper);
+        dataGen.addProvider(event.includeServer(), blockTagsProvider);
+        dataGen.addProvider(event.includeServer(), new FItemTagsProvider(output, lookupProvider, blockTagsProvider.contentsGetter()));
+        dataGen.addProvider(event.includeServer(), new FRecipeProvider(output, lookupProvider));
 
         dataGen.addProvider (event.includeServer(), new FLanguageProvider(dataGen.getPackOutput(), Frostwork.MOD_ID, "en_us"));
     }

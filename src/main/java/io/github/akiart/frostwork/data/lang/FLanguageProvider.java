@@ -1,11 +1,11 @@
 package io.github.akiart.frostwork.data.lang;
 
 import io.github.akiart.frostwork.common.block.FBlocks;
-import io.github.akiart.frostwork.common.effects.FEffects;
 import io.github.akiart.frostwork.common.block.registrySets.AbstractWoodBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
+import io.github.akiart.frostwork.common.effects.FEffects;
 import io.github.akiart.frostwork.common.item.FItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -18,7 +18,7 @@ public class FLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("frostwork_tab", "Frostwork Blocks");
+        add("frostwork.frostwork_tab", "Frostwork");
 
         enchantments();
         effects();
@@ -28,10 +28,12 @@ public class FLanguageProvider extends LanguageProvider {
 
         blocks();
         items();
+
     }
 
     private void items() {
         add(FItems.TATZELWURM_SCALE.get(), "Tatzelwurm Scale");
+        add(FItems.TATZELWURM_ARROW.get(), "Tatzelwurm Arrow");
     }
 
     private void blocks() {
@@ -44,10 +46,13 @@ public class FLanguageProvider extends LanguageProvider {
         add(FBlocks.LAVENDER.get(), "Lavender");
         add(FBlocks.YARROW.get(), "Yarrow");
         add(FBlocks.FORGET_ME_NOW.get(), "Forget-Me-Now");
+        add(FBlocks.FOAM.get(), "Foam");
     }
 
     private void effects() {
         add(FEffects.FRAIL.get(), "Frail");
+        //add(FEffects.FRAIL.get().getDescriptionId(), "Frail");
+        add(FEffects.POISON_RESISTANCE.get(), "Poison Resistance");
     }
 
     private void enchantments() {

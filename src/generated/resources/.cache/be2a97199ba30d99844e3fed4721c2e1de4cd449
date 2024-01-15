@@ -1,11 +1,11 @@
-// 1.20.4	2024-01-13T07:14:07.7875494	Tags for minecraft:block mod id frostwork
+// 1.20.4	2024-01-15T17:34:43.9189546	Tags for minecraft:block mod id frostwork
 af9c59a02fe8b5bdd5d209ab468b2ace14805dd8 data/forge/tags/blocks/fences.json
 2eab9ec277f10a078efea032920fd96e90d33c64 data/forge/tags/blocks/fences/wooden.json
 b6d5f392a349cf9e8511e031cefa422134f52106 data/forge/tags/blocks/fence_gates/wooden.json
-055a89dfad6ccef4395a66fed129b19712e2f675 data/forge/tags/blocks/needs_wood_tool.json
+c01c89dd60075e3f54be2044c9095192de40e0ea data/forge/tags/blocks/needs_wood_tool.json
 ec791ee722343f6660de7e48303e4d15f5321413 data/forge/tags/blocks/ores.json
 ec791ee722343f6660de7e48303e4d15f5321413 data/forge/tags/blocks/ores/coal.json
-e7d903c9c844324abe23a53fb47f9b69705d6371 data/forge/tags/blocks/stone.json
+35b4f71112d6439c1098baf0086c9985a7192911 data/forge/tags/blocks/stone.json
 5503e16969deadb1f2df99e2983e00d8c9a2c6f4 data/frostwork/tags/blocks/edelstone_replaceable.json
 262bc0171ed0fcaea70d06e9865658454aec3592 data/minecraft/tags/blocks/beacon_base_blocks.json
 a3891e55a34569240bc59fb6fd1109c757cfa459 data/minecraft/tags/blocks/buttons.json
@@ -15,12 +15,12 @@ af9c59a02fe8b5bdd5d209ab468b2ace14805dd8 data/minecraft/tags/blocks/fences.json
 b6d5f392a349cf9e8511e031cefa422134f52106 data/minecraft/tags/blocks/fence_gates.json
 123f94f2b0cf2d841b7c48d369fd7926c119e42e data/minecraft/tags/blocks/logs.json
 41da01cccb65494a21a40a668c19b7cd9a31103f data/minecraft/tags/blocks/mineable/axe.json
-9f9c8500de7cb8c6564b6fec8b491f3ea18c96d8 data/minecraft/tags/blocks/mineable/pickaxe.json
+b6185ddc97a8a7d4b09b5641a30c8b6f22a60365 data/minecraft/tags/blocks/mineable/pickaxe.json
 63f7763f3191ed4a1b3140e17549ae26af2be0c5 data/minecraft/tags/blocks/pressure_plates.json
 e261411ac2fc0a99cfb5f04f0ddeff06f2a400c7 data/minecraft/tags/blocks/slabs.json
 ad94e1106916c0baa50de3c544bd10c7087e780b data/minecraft/tags/blocks/stairs.json
 fa647b9539c972f7b4ad909137f1262e8395433f data/minecraft/tags/blocks/trapdoors.json
-b929dda1a4cda039bf70c1382fb5ffb63435c6bf data/minecraft/tags/blocks/walls.json
+176b8a140911270484e5c723587d24d7166d0df3 data/minecraft/tags/blocks/walls.json
 a3891e55a34569240bc59fb6fd1109c757cfa459 data/minecraft/tags/blocks/wooden_buttons.json
 c8b626a840ecf564dc11f0c6deb94012e487a49b data/minecraft/tags/blocks/wooden_doors.json
 af9c59a02fe8b5bdd5d209ab468b2ace14805dd8 data/minecraft/tags/blocks/wooden_fences.json

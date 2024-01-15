@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-03T09:27:00.2205877	Block States: frostwork
+// 1.20.4	2024-01-14T17:04:35.1121024	Block States: frostwork
 ef863421831e760b7348505c37456b1ca8fe91ec assets/frostwork/blockstates/aquamire.json
 28685a4882e0ce8a3134060a509e768a07a715e3 assets/frostwork/blockstates/aquamire_slab.json
 60a35d20f6c368d077650b694e78a3799e292540 assets/frostwork/blockstates/aquamire_stairs.json
@@ -34,6 +34,7 @@ c94035f1f5d8f70d9f172fba7ab44a38333fb79a assets/frostwork/blockstates/elm_slab.j
 1cd5f850d39892a08a7b158882b9b299745de5d6 assets/frostwork/blockstates/elm_stripped_wood.json
 9ca69cf05d5580c0bdb5f612c8dfefd0eee020ed assets/frostwork/blockstates/elm_trapdoor.json
 52b3ae347a02fb4e40478bd8c08c0a755e44b9f0 assets/frostwork/blockstates/elm_wood.json
+7876a205ba242a08c1c6310f125998bd91db1128 assets/frostwork/blockstates/foam.json
 b3ac5e2f3eab08d8e5213abdfab66815cc8095c6 assets/frostwork/blockstates/forget_me_now.json
 d503e88ea55d8f581c7f780ddc9d251beed0006a assets/frostwork/blockstates/frozen_dirt.json
 75148b75a14e805442e17eaa6ba16d7412c5cd55 assets/frostwork/blockstates/frozen_elm_button.json
@@ -180,6 +181,10 @@ b3bbeda07b6da7fd840d45a9ae06407c22fe6019 assets/frostwork/models/block/elm_trapd
 bacaa11012d5fe4747e0b3294cb84a3424d37ccb assets/frostwork/models/block/elm_trapdoor_top.json
 cbd75483f4c2eeefc833aa8d83bfd65afa684bf3 assets/frostwork/models/block/elm_wood.json
 70220b973396d1c99852901919c699737d0c9bc4 assets/frostwork/models/block/elm_wood_horizontal.json
+05b447016e0f00c5b413e57c7a0c18e205b54efc assets/frostwork/models/block/foam_1.json
+2f04a63d0e82170c74da20e1f54ab33b24561b8b assets/frostwork/models/block/foam_2.json
+508da5ae8be40badfc8dda2acfe9577c08d1afa3 assets/frostwork/models/block/foam_3.json
+8ac87fd86835cdd27b999d98ee4cd0cf51f90011 assets/frostwork/models/block/foam_4.json
 4ac836d01b6a33604f9dd6134b472d397041cc42 assets/frostwork/models/block/forget_me_now.json
 d22b6433a2bc058d0e792c255a438885b3d81ef3 assets/frostwork/models/block/frozen_dirt.json
 6d15e1661bc24e6342bacf7f3f0556b631784662 assets/frostwork/models/block/frozen_elm_button.json

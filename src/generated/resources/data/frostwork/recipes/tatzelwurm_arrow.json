@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "F": {
+      "tag": "forge:feathers"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "T": {
+      "item": "frostwork:tatzelwurm_scale"
+    }
+  },
+  "pattern": [
+    "T",
+    "S",
+    "F"
+  ],
+  "result": {
+    "count": 4,
+    "item": "frostwork:tatzelwurm_arrow"
+  }
+}

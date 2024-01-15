@@ -2,6 +2,7 @@ package io.github.akiart.frostwork.common.block;
 
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.blockTypes.FTransparentBlock;
+import io.github.akiart.frostwork.common.block.blockTypes.FoamBlock;
 import io.github.akiart.frostwork.common.block.blockTypes.ForgetMeNowBlock;
 import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
@@ -86,4 +87,9 @@ public class FBlocks {
     public static final DeferredBlock<Block> WOLF_BLOCK = BlockRegistryUtil.register("wolf_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)));
     public static final DeferredBlock<Block> DRY_GRASS = BlockRegistryUtil.register("dry_grass", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)));
     public static final DeferredBlock<CarpetBlock> OVERGROWTH = BlockRegistryUtil.register("overgrowth", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
+    public static final DeferredBlock<FoamBlock> FOAM = BlockRegistryUtil.register("foam",
+            () -> new FoamBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.HONEY_BLOCK)
+                    .noCollission()
+                    .noOcclusion()));
 }

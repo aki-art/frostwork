@@ -30,6 +30,7 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         dryGrass();
 
         plants();
+        foam(FBlocks.FOAM);
 
         crossBlock(FBlocks.GRIMCAP_GILL);
 

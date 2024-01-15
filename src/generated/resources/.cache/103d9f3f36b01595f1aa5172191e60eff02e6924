@@ -1,5 +1,4 @@
-// 1.20.4	2024-01-11T10:50:49.5596376	Registries
-ca6e3d6837af6cd5f054e05759dd46522b32da8b data/frostwork/dimension/fantasia.json
+// 1.20.4	2024-01-15T12:57:48.0450074	Registries
 396bb9ef41356e6d80e969e8a4b9551e9215471a data/frostwork/dimension_type/frostwork.json
 8683bee4be75f3b6a126345667309ed42c8097ae data/frostwork/neoforge/biome_modifier/add_edelstone_coal_ore.json
 6f21ae35490d2201887f88e64ef79a1eaea3883b data/frostwork/worldgen/biome/alpine_tundra.json
@@ -8,5 +7,5 @@ e892eb1ed937041ce27eaef2308ffcd032640693 data/frostwork/worldgen/configured_feat
 900d70980e7cce3511c7ce9a59102cd58bc71f20 data/frostwork/worldgen/configured_feature/elm.json
 59ff679e24f8e4107d7497d666e05a51c64b797b data/frostwork/worldgen/configured_feature/forget_me_now_coverage.json
 db10f73a13bb063bc301c42a9e16fb3d179e585b data/frostwork/worldgen/configured_feature/frozen_elm.json
-fad66aa01488ae5fe6e5cbe045cacec4deb1ffdc data/frostwork/worldgen/noise_settings/fantasia_noise.json
+38a26d850a92946104dadee8687db356d518c66c data/frostwork/worldgen/noise_settings/fantasia_noise.json
 97b26470c8d0f3ce099198ebcf03b36eb3ddf6e4 data/frostwork/worldgen/placed_feature/edelstone_coal_ore_placed.json

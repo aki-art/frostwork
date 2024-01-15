@@ -3,6 +3,7 @@ package io.github.akiart.frostwork.data;
 import com.mojang.logging.LogUtils;
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
+import io.github.akiart.frostwork.common.block.blockTypes.FoamBlock;
 import io.github.akiart.frostwork.common.block.registrySets.AbstractWoodBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
@@ -29,6 +30,22 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
     private static final Logger LOGGER = LogUtils.getLogger();
     protected ResourceLocation getVanillaLocation(String name) {
         return new ResourceLocation("block/" + name);
+    }
+
+    protected void foam(DeferredBlock<? extends FoamBlock> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+
+            var stage = state.getValue(FoamBlock.FOAM_AMOUNT);
+            String name = getBlockName(block).getPath() + "_" + stage;
+
+            ModelFile model = models()
+                    .singleTexture(name, getVanillaLocation("lily_pad"), getLocation(name))
+                    .renderType("translucent");
+
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .build();
+        });
     }
 
     protected ResourceLocation getLocation(String name) {
