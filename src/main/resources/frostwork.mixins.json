@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "io.github.akiart.frostwork.mixin",
+  "mixins": [
+    "ExampleMixin"
+  ],
+  "client": [
+    //"client.MixinBlockEntityWithoutLevelRenderer"
+  ],
+  "server": [],
+  //"minVersion": "0.8"
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17"
+}

@@ -2,6 +2,7 @@ package io.github.akiart.frostwork.common.item;
 
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
+import io.github.akiart.frostwork.common.item.itemTypes.BottleOfFoamItem;
 import io.github.akiart.frostwork.common.item.itemTypes.WurmArrowItem;
 import io.github.akiart.frostwork.common.item.registrySets.MushroomItemSet;
 import io.github.akiart.frostwork.common.item.registrySets.StoneItemSet;
@@ -53,8 +54,9 @@ public class FItems {
     public static final DeferredItem<BlockItem> FROZEN_DIRT = ItemRegistryUtil.registerFromBlock(FBlocks.FROZEN_DIRT);
     public static final DeferredItem<BlockItem> DRY_GRASS = ItemRegistryUtil.registerFromBlock(FBlocks.DRY_GRASS);
     public static final DeferredItem<BlockItem> OVERGROWN_SANGUITE = ItemRegistryUtil.registerFromBlock(FBlocks.OVERGROWN_SANGUITE);
-    public static final DeferredItem<BlockItem> FOAM = ItemRegistryUtil.registerFromBlock(FBlocks.FOAM);
+    //public static final DeferredItem<BlockItem> FOAM = ItemRegistryUtil.registerFromBlock(FBlocks.FOAM);
     public static final DeferredItem<BlockItem> OVERGROWTH = ItemRegistryUtil.registerFromBlock(FBlocks.OVERGROWTH);
     public static final DeferredItem<BlockItem> MALACHITE_BLOCK = ItemRegistryUtil.registerFromBlock(FBlocks.MALACHITE_BLOCK);
+    public static final DeferredItem<BottleOfFoamItem> BOTTLE_OF_FOAM = ItemRegistryUtil.register("bottle_of_foam", () -> new BottleOfFoamItem(FBlocks.FOAM.get(), new Item.Properties()));
     public static final DeferredItem<Item> TATZELWURM_SCALE = ItemRegistryUtil.register("tatzelwurm_scale", () -> new Item(new Item.Properties()));
 }

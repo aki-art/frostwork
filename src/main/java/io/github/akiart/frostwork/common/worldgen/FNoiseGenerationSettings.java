@@ -21,19 +21,21 @@ public class FNoiseGenerationSettings {
     private static final ResourceKey<DensityFunction> SHIFT_X = createKey("shift_x");
     private static final ResourceKey<DensityFunction> SHIFT_Z = createKey("shift_z");
     private static final ResourceKey<DensityFunction> BASE_3D_NOISE_NETHER = createKey("nether/base_3d_noise");
-
+    private static final ResourceKey<DensityFunction> SPAGHET = createKey("spaghetti_3d_2");
+    private static final ResourceKey<DensityFunction> SLOPED_CHEESE = createKey("overworld/sloped_cheese");
     public static NoiseGeneratorSettings bootstrap(BootstapContext<NoiseGeneratorSettings> context) {
         var settings = new NoiseGeneratorSettings(
                 FANTASIA_NOISE_SETTINGS,
                 Blocks.STONE.defaultBlockState(),
                 Blocks.WATER.defaultBlockState(),
-                solid(context.lookup(Registries.DENSITY_FUNCTION)),
+                //solid(context.lookup(Registries.DENSITY_FUNCTION)),
+                fantasia(context.lookup(Registries.DENSITY_FUNCTION), context.lookup(Registries.NOISE)),
                 FSurfaceRules.frostworkSurface(),
                 new OverworldBiomeBuilder().spawnTarget(),
-                SEA_LEVEL,
+                0,
                 false,
                 true,
-                true,
+                false,
                 false
         );
 
@@ -42,6 +44,69 @@ public class FNoiseGenerationSettings {
         return settings;
     }
 
+
+    private static DensityFunction spaghet(HolderGetter<NormalNoise.NoiseParameters> pNoiseParameters) {
+        return DensityFunctions.noise(pNoiseParameters.getOrThrow(Noises.SPAGHETTI_3D_1), 3.0, 3.0);
+    }
+
+    private static DensityFunction baseNoise(HolderGetter<DensityFunction> densityFunctions, HolderGetter<NormalNoise.NoiseParameters> noiseParameters) {
+        return new DensityFunctions.ShiftedNoise(spaghet(noiseParameters), spaghet(noiseParameters), spaghet(noiseParameters), 0.4, 2.0, new DensityFunction.NoiseHolder(noiseParameters.getOrThrow(Noises.CAVE_CHEESE)));
+    }
+
+    private static DensityFunction fantasiaFinalDensity(HolderGetter<DensityFunction> densityFunctions, HolderGetter<NormalNoise.NoiseParameters> noiseParameters) {
+        var warpedBase = baseNoise(densityFunctions, noiseParameters);
+
+        //return DensityFunctions.add(warpedBase, growCavesBelow);
+
+        var baseSimplex = new FDensityFunctions.WarpedSimplexDensityFunction(0);
+        var growCavesBelow = new FDensityFunctions.YClampedOffsetCurve(0.00003, 0.4);
+
+        var simplexWithBiggerCavesBelow = DensityFunctions.add(baseSimplex, growCavesBelow);
+
+//        int minY = -54;
+//        var largerCavesBelow = DensityFunctions.yClampedGradient(minY, 195, 0, 0.35);
+//        var evenLargerNearBottom = DensityFunctions.yClampedGradient(minY, 160, -0.3, 0);
+//        var scrapeSurface = DensityFunctions.yClampedGradient(220, 330, 1, 0);
+//        var basin = DensityFunctions.yClampedGradient(-64, minY, 1, 0);
+//
+//        var caves =
+//                DensityFunctions.add(
+//                        DensityFunctions.add(warpedBase, largerCavesBelow),
+//                        evenLargerNearBottom);
+//
+//        caves = DensityFunctions.add(
+//                caves,
+//                basin);
+//
+        return DensityFunctions.interpolated(simplexWithBiggerCavesBelow); //DensityFunctions.mul(caves, scrapeSurface));
+    }
+
+    private static NoiseRouter fantasia(
+            HolderGetter<DensityFunction> pDensityFunctions, HolderGetter<NormalNoise.NoiseParameters> pNoiseParameters) {
+        DensityFunction densityfunction = getFunction(pDensityFunctions, SHIFT_X);
+        DensityFunction densityfunction1 = getFunction(pDensityFunctions, SHIFT_Z);
+        DensityFunction temperature = DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25, pNoiseParameters.getOrThrow(Noises.TEMPERATURE));
+        DensityFunction vegetation = DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25, pNoiseParameters.getOrThrow(Noises.VEGETATION));
+
+        return new NoiseRouter(
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                temperature,
+                vegetation,
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                fantasiaFinalDensity(pDensityFunctions, pNoiseParameters),
+                DensityFunctions.zero(),
+                DensityFunctions.zero(),
+                DensityFunctions.zero()
+        );
+    }
+    // -----------------------------------------
 
     protected static NoiseRouter nether(HolderGetter<DensityFunction> pDensityFunctions, HolderGetter<NormalNoise.NoiseParameters> pNoiseParameters) {
         return noNewCaves(pDensityFunctions, pNoiseParameters, slideNetherLike(pDensityFunctions, 0, 128));
@@ -68,29 +133,12 @@ public class FNoiseGenerationSettings {
     private static DensityFunction initialDensity(DensityFunction pDensityFunction) {
         return slideEndLike(pDensityFunction, MIN_Y, MAX_Y);
     }
+    private static DensityFunction slideOverworld(boolean pAmplified, DensityFunction pDensityFunction) {
+        return slide(pDensityFunction, -64, 384, pAmplified ? 16 : 80, pAmplified ? 0 : 64, -0.078125, 0, 24, pAmplified ? 0.4 : 0.1171875);
+    }
+
     private static DensityFunction slideEndLike(DensityFunction pDensityFunction, int pMinY, int pMaxY) {
         return slide(pDensityFunction, pMinY, pMaxY, 72, -184, -23.4375, 4, 32, -0.234375);
-    }
-    protected static NoiseRouter solid(HolderGetter<DensityFunction> pDensityFunctions) {
-        DensityFunction densityfunction = DensityFunctions.cache2d(DensityFunctions.endIslands(0L));
-        DensityFunction densityfunction1 = postProcess(initialDensity(getFunction(pDensityFunctions, NoiseRouterData.FACTOR)));
-        return new NoiseRouter(
-                DensityFunctions.zero(),
-                DensityFunctions.zero(),
-                DensityFunctions.zero(),
-                DensityFunctions.zero(),
-                DensityFunctions.zero(),
-                DensityFunctions.zero(),
-                DensityFunctions.zero(),
-                densityfunction,
-                DensityFunctions.zero(),
-                DensityFunctions.zero(),
-                initialDensity(DensityFunctions.add(densityfunction, DensityFunctions.constant(-0.703125))),
-                densityfunction1,
-                DensityFunctions.zero(),
-                DensityFunctions.zero(),
-                DensityFunctions.zero()
-        );
     }
     private static NoiseRouter noNewCaves(
             HolderGetter<DensityFunction> pDensityFunctions, HolderGetter<NormalNoise.NoiseParameters> pNoiseParameters, DensityFunction p_256378_

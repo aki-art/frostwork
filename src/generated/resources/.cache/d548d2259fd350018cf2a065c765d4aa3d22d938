@@ -1,8 +1,9 @@
-// 1.20.4	2024-01-13T09:36:59.3539942	Item Models: frostwork
+// 1.20.4	2024-01-15T20:16:28.6580232	Item Models: frostwork
 c4f111fb6eaeb2eb878ad963a3ca346968be5da1 assets/frostwork/models/item/aquamire.json
 d1db1648114a7e53db818b708cdde47ff27e72cf assets/frostwork/models/item/aquamire_slab.json
 fd03b32a97be690033d84ce567913dfeced68042 assets/frostwork/models/item/aquamire_stairs.json
 708367d7d82a3f02ec417346138b37bfbccb0857 assets/frostwork/models/item/aquamire_wall.json
+807cb0acdb18f0171624359a01a4fe0c44659e0d assets/frostwork/models/item/bottle_of_foam.json
 dff1030e234d7e6b2b8cec55abc575eab1aff9f1 assets/frostwork/models/item/cracked_edelstone_bricks.json
 957568d84e2f289af79b294c904c884835a82cf0 assets/frostwork/models/item/cracked_edelstone_bricks_slab.json
 7077ffb1b8c4938be701838878136d09b959e535 assets/frostwork/models/item/cracked_edelstone_bricks_stairs.json

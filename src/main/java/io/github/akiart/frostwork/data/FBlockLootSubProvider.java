@@ -23,6 +23,8 @@ public class FBlockLootSubProvider extends FBlockLootSubProviderBase {
         //createSilkTouchOnlyTable(FBlocks.OVERGROWN_SANGUITE.get());
        // otherWhenSilkTouch(FBlocks.OVERGROWN_SANGUITE.get(), FBlocks.SANGUITE.block.get());
 
+        add(FBlocks.FOAM.get(), noDrop());
+
         addMissingTemp();
     }
 

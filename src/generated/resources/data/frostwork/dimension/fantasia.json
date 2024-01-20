@@ -1,0 +1,36 @@
+{
+  "type": "frostwork:frostwork",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "frostwork:fantasia",
+      "surface_biomes": [
+        {
+          "biome": "frostwork:debug_red",
+          "parameters": {
+            "continentalness": 0.0,
+            "depth": 0.0,
+            "erosion": 0.0,
+            "humidity": 0.0,
+            "offset": 0.0,
+            "temperature": 0.6,
+            "weirdness": 0.0
+          }
+        },
+        {
+          "biome": "frostwork:debug_blue",
+          "parameters": {
+            "continentalness": 0.0,
+            "depth": 0.0,
+            "erosion": 0.2,
+            "humidity": 0.2,
+            "offset": 0.0,
+            "temperature": 0.2,
+            "weirdness": 0.0
+          }
+        }
+      ]
+    },
+    "settings": "frostwork:fantasia_noise"
+  }
+}

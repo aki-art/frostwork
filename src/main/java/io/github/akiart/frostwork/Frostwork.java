@@ -3,12 +3,13 @@ package io.github.akiart.frostwork;
 import io.github.akiart.frostwork.common.EntityEvents;
 import io.github.akiart.frostwork.common.FCreativeModeTabs;
 import io.github.akiart.frostwork.common.FEntityTypes;
+import io.github.akiart.frostwork.common.PlayerEvents;
 import io.github.akiart.frostwork.common.block.BlockRegistryUtil;
 import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.effects.FEffects;
 import io.github.akiart.frostwork.common.item.FItems;
 import io.github.akiart.frostwork.common.potion.FPotions;
-import io.github.akiart.frostwork.common.worldgen.FantasiaBiomeSource;
+import io.github.akiart.frostwork.common.worldgen.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -40,6 +41,7 @@ public class Frostwork {
         modEventBus.addListener(this::worldgenRegistryInit);
 
         NeoForge.EVENT_BUS.register(EntityEvents.class);
+        NeoForge.EVENT_BUS.register(PlayerEvents.class);
     }
 
     private static void initRegistry(IEventBus modEventBus) {
@@ -54,8 +56,21 @@ public class Frostwork {
 
 
     public void worldgenRegistryInit(RegisterEvent evt) {
-        if (evt.getRegistryKey().equals(Registries.BIOME_SOURCE))
+        var key = evt.getRegistryKey();
+
+        if (key.equals(Registries.BIOME_SOURCE))
             Registry.register(BuiltInRegistries.BIOME_SOURCE, new ResourceLocation(MOD_ID, "fantasia"), FantasiaBiomeSource.CODEC);
+        else if(key.equals(Registries.CHUNK_GENERATOR)) {
+
+            Registry.register(BuiltInRegistries.CHUNK_GENERATOR, new ResourceLocation(MOD_ID, "compound_generator"), CompoundNoiseBasedChunkGenerator.CODEC);
+            Registry.register(BuiltInRegistries.CHUNK_GENERATOR, new ResourceLocation(MOD_ID, "fnl_generator"), FastNoiseLiteChunkGenerator.CODEC);
+        }
+        else if(key.equals(Registries.MATERIAL_CONDITION))
+            Registry.register(BuiltInRegistries.MATERIAL_CONDITION, new ResourceLocation(MOD_ID, "cellular_sponge"), FSurfaceRules.CellularBoundaryConditionSource.CODEC.codec());
+        else if(key.equals(Registries.DENSITY_FUNCTION_TYPE)) {
+            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "y_clamped_offset_curve"), FDensityFunctions.YClampedOffsetCurve.CODEC.codec());
+            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "warped_simplex"), FDensityFunctions.WarpedSimplexDensityFunction.CODEC.codec());
+        }
     }
 
     private void setup(final FMLCommonSetupEvent event) {

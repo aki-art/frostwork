@@ -13,10 +13,14 @@ import net.minecraft.world.level.biome.*;
 public class FBiomes {
     public static final ResourceKey<Biome> ALPINE_TUNDRA = ResourceKey.create(Registries.BIOME, new ResourceLocation(Frostwork.MOD_ID, "alpine_tundra"));
     public static final ResourceKey<Biome> FROZEN_CAVE = ResourceKey.create(Registries.BIOME, new ResourceLocation(Frostwork.MOD_ID, "frozen_cave"));
+    public static final ResourceKey<Biome> DEBUG_RED = ResourceKey.create(Registries.BIOME, new ResourceLocation(Frostwork.MOD_ID, "debug_red"));
+    public static final ResourceKey<Biome> DEBUG_BLUE = ResourceKey.create(Registries.BIOME, new ResourceLocation(Frostwork.MOD_ID, "debug_blue"));
 
     public static void boostrap(BootstapContext<Biome> context) {
         context.register(ALPINE_TUNDRA, alpineTundra(context));
         context.register(FROZEN_CAVE, frozenCave(context));
+        context.register(DEBUG_RED, debugBiome(context, 0xFF0000));
+        context.register(DEBUG_BLUE, debugBiome(context, 0x000000FF));
     }
 
     private static Biome frozenCave(BootstapContext<Biome> context) {
@@ -45,6 +49,23 @@ public class FBiomes {
                 .build();
     }
 
+    private static Biome debugBiome(BootstapContext<Biome> context, int color) {
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(false)
+                .downfall(0f)
+                .temperature(0.5f)
+                .generationSettings(BiomeGenerationSettings.EMPTY)
+                .mobSpawnSettings(MobSpawnSettings.EMPTY)
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(color)
+                        .waterFogColor(color)
+                        .skyColor(color)
+                        .fogColor(color)
+
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .build();
+    }
 
     public static Biome alpineTundra(BootstapContext<Biome> context) {
 
