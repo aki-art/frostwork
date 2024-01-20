@@ -18,6 +18,6 @@ public class FEffects {
                     .addAttributeModifier(Attributes.ARMOR, "b089f119-3f8b-4d36-b232-c2e5b2aef05d", -4, AttributeModifier.Operation.ADDITION));
 
     public static final DeferredHolder<MobEffect, MobEffect> POISON_RESISTANCE = EFFECTS.register("poison_resistance",
-            () -> new FrailEffect(MobEffectCategory.BENEFICIAL, Consts.COLORS.POISON_RESISTANCE));
+            () -> new PoisonResistanceEffect(MobEffectCategory.BENEFICIAL, Consts.COLORS.POISON_RESISTANCE));
 
 }
