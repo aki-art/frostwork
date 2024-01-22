@@ -29,5 +29,6 @@ public class FRecipeProvider extends FRecipeProviderBase {
                 .pattern("F")
                 .unlockedBy(getHasName(FItems.TATZELWURM_SCALE), has(FItems.TATZELWURM_SCALE))
                 .save(recipeOutput);
+
     }
 }

@@ -37,6 +37,9 @@ public class FItemModelProvider extends FItemModelProviderBase {
         miscItem(FItems.TATZELWURM_ARROW);
         miscItem(FItems.BOTTLE_OF_FOAM);
         miscItem(FItems.HUNTER_ARMOR);
+
+        fromBlock(FBlocks.HUNTER_PELT_BROWN);
+        fromBlock(FBlocks.HUNTER_PELT_CREAM);
     }
 
     private void plants() {

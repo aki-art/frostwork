@@ -38,10 +38,7 @@ public class HunterArmorItem extends ArmorItem implements GeoItem {
                 if (this.renderer == null)
                     this.renderer = new HunterArmorRenderer();
 
-                // This prepares our GeoArmorRenderer for the current render frame.
-                // These parameters may be null however, so we don't do anything further with them
                 this.renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
-
                 return this.renderer;
             }
         });

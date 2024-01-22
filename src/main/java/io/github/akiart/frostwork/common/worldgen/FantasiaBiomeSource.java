@@ -5,6 +5,7 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.Lifecycle;
 import com.mojang.serialization.MapCodec;
+import io.github.akiart.frostwork.lib.FastNoiseLite;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.biome.*;
 
@@ -20,6 +21,8 @@ public class FantasiaBiomeSource extends BiomeSource {
             .mapEither(DIRECT_CODEC, PRESET_CODEC)
             .xmap(FantasiaBiomeSource::new, (biomeSource) -> biomeSource.parameters).codec();
 
+    private FastNoiseLite testFloatingBiomes;
+
     private final Either<Climate.ParameterList<Holder<Biome>>, Holder<MultiNoiseBiomeSourceParameterList>> parameters;
 
     public static FantasiaBiomeSource createFromList(Climate.ParameterList<Holder<Biome>> pParameters) {
@@ -28,6 +31,10 @@ public class FantasiaBiomeSource extends BiomeSource {
 
     public FantasiaBiomeSource(Either<Climate.ParameterList<Holder<Biome>>, Holder<MultiNoiseBiomeSourceParameterList>> parameters) {
         this.parameters = parameters;
+        this.testFloatingBiomes = new FastNoiseLite(0);
+        testFloatingBiomes.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
+        testFloatingBiomes.SetCellularDistanceFunction(FastNoiseLite.CellularDistanceFunction.Hybrid);
+        testFloatingBiomes.SetCellularReturnType(FastNoiseLite.CellularReturnType.CellValue);
     }
 //    public FantasiaBiomeSource(String someValue) {
 //
@@ -54,6 +61,10 @@ public class FantasiaBiomeSource extends BiomeSource {
 
     @Override
     public Holder<Biome> getNoiseBiome(int x, int y, int z, Climate.Sampler sampler) {
+        if( y * 4 > 310 && testFloatingBiomes.GetNoise(x / 4f, z / 4f) > 0) {
+            return parameters().values().get(2).getSecond();
+        }
+
         return getTestBiome(y, 60);
     }
 

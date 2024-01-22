@@ -37,11 +37,9 @@ public class FDimensions {
                 noiseGenSettings.getOrThrow(FNoiseGenerationSettings.FANTASIA_NOISE_SETTINGS_ID));
 
         Climate.ParameterList<Holder<Biome>> biomes = new Climate.ParameterList<>(List.of(
-                Pair.of(
-                        Climate.parameters(0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.ALPINE_TUNDRA)),
-                Pair.of(
-                        Climate.parameters(0.2F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.FROZEN_CAVE))
-
+                Pair.of(Climate.parameters(0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.ALPINE_TUNDRA)),
+                Pair.of(Climate.parameters(0.2F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.FROZEN_CAVE)),
+                Pair.of(Climate.parameters(0.2F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.FLOATING_MOUNTAINS))
         ));
 
         NoiseBasedChunkGenerator noiseBasedChunkGenerator = new NoiseBasedChunkGenerator(

@@ -4,6 +4,7 @@ import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.blockTypes.FTransparentBlock;
 import io.github.akiart.frostwork.common.block.blockTypes.FoamBlock;
 import io.github.akiart.frostwork.common.block.blockTypes.ForgetMeNowBlock;
+import io.github.akiart.frostwork.common.block.blockTypes.PeltBlock;
 import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
@@ -81,6 +82,8 @@ public class FBlocks {
     public static final DeferredBlock<SnowyDirtBlock> FROZEN_DIRT = BlockRegistryUtil.register("frozen_dirt",
             () -> new SnowyDirtBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
 
+    public static final DeferredBlock<PeltBlock> HUNTER_PELT_BROWN = BlockRegistryUtil.registerPelt("hunter_pelt_brown", MapColor.WOOD);
+    public static final DeferredBlock<PeltBlock> HUNTER_PELT_CREAM = BlockRegistryUtil.registerPelt("hunter_pelt_cream", MapColor.TERRACOTTA_WHITE);
     public static final DeferredBlock<Block> OVERGROWN_SANGUITE = BlockRegistryUtil.register("overgrown_sanguite",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(SANGUITE.block.get())));
 

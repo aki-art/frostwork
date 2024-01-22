@@ -43,6 +43,10 @@ public class FItems {
     public static final DeferredItem<BlockItem> EDELSTONE_COAL_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.EDELSTONE_COAL_ORE);
     public static final DeferredItem<BlockItem> MALACHITE_ICE_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.MALACHITE_ICE_ORE);
 
+    // Pelts
+    public static final DeferredItem<BlockItem> HUNTER_PELT_BROWN = ItemRegistryUtil.registerFromBlock(FBlocks.HUNTER_PELT_BROWN);
+    public static final DeferredItem<BlockItem> HUNTER_PELT_CREAM = ItemRegistryUtil.registerFromBlock(FBlocks.HUNTER_PELT_CREAM);
+
     // Plants
     public static final DeferredItem<BlockItem> LAVENDER = ItemRegistryUtil.registerFromBlock(FBlocks.LAVENDER);
     public static final DeferredItem<BlockItem> YARROW = ItemRegistryUtil.registerFromBlock(FBlocks.YARROW);

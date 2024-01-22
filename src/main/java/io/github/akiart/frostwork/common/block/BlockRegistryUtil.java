@@ -1,5 +1,6 @@
 package io.github.akiart.frostwork.common.block;
 
+import io.github.akiart.frostwork.common.block.blockTypes.PeltBlock;
 import io.github.akiart.frostwork.common.block.registrySets.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
@@ -91,5 +92,14 @@ public class BlockRegistryUtil {
         woods.add(set);
 
         return set;
+    }
+
+    public static DeferredBlock<PeltBlock> registerPelt(String name, MapColor color) {
+        return register(name, () -> new PeltBlock(BlockBehaviour.Properties.of()
+                .sound(SoundType.WOOL)
+                .ignitedByLava()
+                .mapColor(color)
+                .strength(0.1F)
+        ));
     }
 }

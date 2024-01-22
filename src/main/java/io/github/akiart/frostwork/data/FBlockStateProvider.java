@@ -2,8 +2,10 @@ package io.github.akiart.frostwork.data;
 
 import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.block.BlockRegistryUtil;
+import io.github.akiart.frostwork.common.block.blockTypes.PeltBlock;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -35,6 +37,9 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         crossBlock(FBlocks.GRIMCAP_GILL);
 
         partialEmissive(FBlocks.MALACHITE_ICE_ORE, "translucent");
+
+        pelt(FBlocks.HUNTER_PELT_BROWN);
+        pelt(FBlocks.HUNTER_PELT_CREAM);
     }
 
     private void plants() {
@@ -70,6 +75,22 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
                     .renderType(ResourceLocation.tryParse(renderType));
 
             return ConfiguredModel.builder().modelFile(model).build();
+        });
+    }
+
+    private void pelt(DeferredBlock<PeltBlock> block) {
+        var name = block.getId().getPath();
+
+        getVariantBuilder(block.get()).forAllStates(state -> {
+
+            ModelFile model = models().withExistingParent(getBlockName(block).getPath(), new ResourceLocation("frostwork:block/hunter_pelt"))
+                    .texture("0", getLocation(name))
+                    .renderType("cutout");
+
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
+                    .build();
         });
     }
 

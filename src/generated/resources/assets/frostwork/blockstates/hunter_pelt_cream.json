@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "frostwork:block/hunter_pelt_cream",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "frostwork:block/hunter_pelt_cream"
+    },
+    "facing=south": {
+      "model": "frostwork:block/hunter_pelt_cream",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "frostwork:block/hunter_pelt_cream",
+      "y": 270
+    }
+  }
+}

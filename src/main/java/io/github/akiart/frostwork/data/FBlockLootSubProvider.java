@@ -25,6 +25,9 @@ public class FBlockLootSubProvider extends FBlockLootSubProviderBase {
 
         add(FBlocks.FOAM.get(), noDrop());
 
+        dropSelf(FBlocks.HUNTER_PELT_CREAM.get());
+        dropSelf(FBlocks.HUNTER_PELT_BROWN.get());
+
         addMissingTemp();
     }
 

@@ -28,6 +28,18 @@
             "temperature": 0.2,
             "weirdness": 0.0
           }
+        },
+        {
+          "biome": "frostwork:floating_mountains",
+          "parameters": {
+            "continentalness": 0.0,
+            "depth": 1.0,
+            "erosion": 0.2,
+            "humidity": 0.2,
+            "offset": 0.0,
+            "temperature": 0.2,
+            "weirdness": 0.0
+          }
         }
       ]
     },

@@ -1,0 +1,7 @@
+{
+  "parent": "frostwork:block/hunter_pelt",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "frostwork:block/hunter_pelt_brown"
+  }
+}

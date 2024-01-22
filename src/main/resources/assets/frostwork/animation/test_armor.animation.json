@@ -1,9 +1,5 @@
 {
 	"format_version": "1.8.0",
-	"animations": {
-		"idle": {
-			"loop": true
-		}
-	},
+	"animations": {},
 	"geckolib_format_version": 2
 }
