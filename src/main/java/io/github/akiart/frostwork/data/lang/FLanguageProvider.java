@@ -34,6 +34,7 @@ public class FLanguageProvider extends LanguageProvider {
     private void items() {
         add(FItems.TATZELWURM_SCALE.get(), "Tatzelwurm Scale");
         add(FItems.TATZELWURM_ARROW.get(), "Tatzelwurm Arrow");
+        add(FItems.HUNTER_ARMOR.get(), "Hunter Armor");
     }
 
     private void blocks() {

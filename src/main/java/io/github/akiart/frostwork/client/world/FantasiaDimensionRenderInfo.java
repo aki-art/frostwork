@@ -1,9 +1,11 @@
 package io.github.akiart.frostwork.client.world;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import io.github.akiart.frostwork.Frostwork;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -13,7 +15,9 @@ import org.joml.Matrix4f;
 // todo - this seems to have changed significantly since 1.16
 @OnlyIn(Dist.CLIENT)
 public class FantasiaDimensionRenderInfo extends DimensionSpecialEffects {
-    public static final float CLOUD_HEIGHT = 213f;
+    public static final float CLOUD_HEIGHT = 430;
+
+    public static ResourceLocation KEY = new ResourceLocation(Frostwork.MOD_ID, "fantasia_effects");
 
     public FantasiaDimensionRenderInfo() {
         super(CLOUD_HEIGHT, true, SkyType.NONE, false, false);

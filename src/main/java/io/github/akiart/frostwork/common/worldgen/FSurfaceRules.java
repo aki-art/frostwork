@@ -101,8 +101,8 @@ public class FSurfaceRules {
         ImmutableList.Builder<SurfaceRules.RuleSource> builder = ImmutableList.builder();
         builder
                 .add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), BEDROCK))
-                //.add(tundra)
-                //.add(frozen_cavern)
+                .add(tundra)
+                .add(frozen_cavern)
                 //.add(test2);
         ;
 

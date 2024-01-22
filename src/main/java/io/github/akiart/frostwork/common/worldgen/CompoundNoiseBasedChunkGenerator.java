@@ -18,13 +18,13 @@ import java.util.concurrent.Executor;
 
 public class CompoundNoiseBasedChunkGenerator extends NoiseBasedChunkGenerator {
 
-    private final boolean debugStrips; // used to carve out massive strips of land for easy observation of generation.
+    private final int debugStrips; // used to carve out massive strips of land for easy observation of generation.
 
     public static final Codec<CompoundNoiseBasedChunkGenerator> CODEC = RecordCodecBuilder.create(
             instance -> instance
                     .group(
                             BiomeSource.CODEC.fieldOf("biome_source").forGetter(generator -> generator.biomeSource),
-                            Codec.BOOL.fieldOf("debug_strips").forGetter(generator -> generator.debugStrips),
+                            Codec.INT.fieldOf("debug_strips").forGetter(generator -> generator.debugStrips),
                             NoiseGeneratorSettings.CODEC.fieldOf("settings").forGetter(generator -> generator.settings)
                     )
                     .apply(instance, instance.stable(CompoundNoiseBasedChunkGenerator::new))
@@ -35,23 +35,21 @@ public class CompoundNoiseBasedChunkGenerator extends NoiseBasedChunkGenerator {
         return CODEC;
     }
 
-    public CompoundNoiseBasedChunkGenerator(BiomeSource biomeSource, boolean debugStrips, Holder<NoiseGeneratorSettings> settings) {
+    public CompoundNoiseBasedChunkGenerator(BiomeSource biomeSource, int debugStrips, Holder<NoiseGeneratorSettings> settings) {
         super(biomeSource, settings);
         this.debugStrips = debugStrips;
     }
 
         @Override
     public CompletableFuture<ChunkAccess> fillFromNoise(Executor pExecutor, Blender pBlender, RandomState pRandom, StructureManager pStructureManager, ChunkAccess pChunk) {
-        var result = super.fillFromNoise(pExecutor, pBlender, pRandom, pStructureManager, pChunk);
-
         ChunkPos chunkpos = pChunk.getPos();
         int chunkX = chunkpos.getMinBlockX();
         int chunkZ = chunkpos.getMinBlockZ();
 
-        if (debugStrips && Math.floor(chunkX / 150f) % 2 == 0) {
+        if (debugStrips > 0 && Math.floor(chunkX / (float)debugStrips) % 2 == 0) {
             return CompletableFuture.completedFuture(pChunk);
         }
 
-        return result;
+        return super.fillFromNoise(pExecutor, pBlender, pRandom, pStructureManager, pChunk);
     }
 }

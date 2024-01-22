@@ -53,8 +53,6 @@ public class Frostwork {
 
         FCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
     }
-
-
     public void worldgenRegistryInit(RegisterEvent evt) {
         var key = evt.getRegistryKey();
 
@@ -63,16 +61,15 @@ public class Frostwork {
         else if(key.equals(Registries.CHUNK_GENERATOR)) {
 
             Registry.register(BuiltInRegistries.CHUNK_GENERATOR, new ResourceLocation(MOD_ID, "compound_generator"), CompoundNoiseBasedChunkGenerator.CODEC);
-            Registry.register(BuiltInRegistries.CHUNK_GENERATOR, new ResourceLocation(MOD_ID, "fnl_generator"), FastNoiseLiteChunkGenerator.CODEC);
         }
         else if(key.equals(Registries.MATERIAL_CONDITION))
             Registry.register(BuiltInRegistries.MATERIAL_CONDITION, new ResourceLocation(MOD_ID, "cellular_sponge"), FSurfaceRules.CellularBoundaryConditionSource.CODEC.codec());
         else if(key.equals(Registries.DENSITY_FUNCTION_TYPE)) {
             Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "y_clamped_offset_curve"), FDensityFunctions.YClampedOffsetCurve.CODEC.codec());
             Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "warped_simplex"), FDensityFunctions.WarpedSimplexDensityFunction.CODEC.codec());
+            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "fantasia_base_surface"), FDensityFunctions.FantasiaBaseSurfaceDensityFunction.CODEC.codec());
         }
     }
-
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
 

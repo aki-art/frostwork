@@ -3,10 +3,12 @@ package io.github.akiart.frostwork.common.item;
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.item.itemTypes.BottleOfFoamItem;
+import io.github.akiart.frostwork.common.item.itemTypes.HunterArmorItem;
 import io.github.akiart.frostwork.common.item.itemTypes.WurmArrowItem;
 import io.github.akiart.frostwork.common.item.registrySets.MushroomItemSet;
 import io.github.akiart.frostwork.common.item.registrySets.StoneItemSet;
 import io.github.akiart.frostwork.common.item.registrySets.WoodItemSet;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -48,6 +50,10 @@ public class FItems {
 
     // Combat
     public static DeferredItem<WurmArrowItem> TATZELWURM_ARROW = ItemRegistryUtil.register("tatzelwurm_arrow", () -> new WurmArrowItem(new Item.Properties()));
+
+    // Equipment
+    public static DeferredItem<HunterArmorItem> HUNTER_ARMOR = ItemRegistryUtil.register("hunter_armor",
+            () -> new HunterArmorItem(FArmorMaterials.HUNTER, ArmorItem.Type.CHESTPLATE, new Item.Properties()) );
 
     // Misc
     public static final DeferredItem<BlockItem> WOLF_BLOCK = ItemRegistryUtil.registerFromBlock(FBlocks.WOLF_BLOCK);

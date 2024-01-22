@@ -1,12 +1,12 @@
 {
   "type": "frostwork:frostwork",
   "generator": {
-    "type": "minecraft:noise",
+    "type": "frostwork:compound_generator",
     "biome_source": {
       "type": "frostwork:fantasia",
       "surface_biomes": [
         {
-          "biome": "frostwork:debug_red",
+          "biome": "frostwork:alpine_tundra",
           "parameters": {
             "continentalness": 0.0,
             "depth": 0.0,
@@ -18,10 +18,10 @@
           }
         },
         {
-          "biome": "frostwork:debug_blue",
+          "biome": "frostwork:frozen_cave",
           "parameters": {
             "continentalness": 0.0,
-            "depth": 0.0,
+            "depth": 1.0,
             "erosion": 0.2,
             "humidity": 0.2,
             "offset": 0.0,
@@ -31,6 +31,7 @@
         }
       ]
     },
+    "debug_strips": 150,
     "settings": "frostwork:fantasia_noise"
   }
 }

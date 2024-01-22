@@ -38,9 +38,9 @@ public class FDimensions {
 
         Climate.ParameterList<Holder<Biome>> biomes = new Climate.ParameterList<>(List.of(
                 Pair.of(
-                        Climate.parameters(0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.DEBUG_RED)),
+                        Climate.parameters(0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.ALPINE_TUNDRA)),
                 Pair.of(
-                        Climate.parameters(0.2F, 0.2F, 0.0F, 0.2F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.DEBUG_BLUE))
+                        Climate.parameters(0.2F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.FROZEN_CAVE))
 
         ));
 
@@ -51,12 +51,12 @@ public class FDimensions {
         CompoundNoiseBasedChunkGenerator compoundGen = new CompoundNoiseBasedChunkGenerator(
                 //biomeRegistry.getOrThrow(FBiomes.ALPINE_TUNDRA)
                 FantasiaBiomeSource.createFromList(biomes),
-                true,
+                150,
                 noiseGenSettings.getOrThrow(FNoiseGenerationSettings.FANTASIA_NOISE_SETTINGS_ID)
 
         );
 
-        LevelStem stem = new LevelStem(dimensionTypes.getOrThrow(FDimensionTypes.FANTASIA_TYPE), noiseBasedChunkGenerator);
+        LevelStem stem = new LevelStem(dimensionTypes.getOrThrow(FDimensionTypes.FANTASIA_TYPE), compoundGen);
 
         context.register(FANTASIA_STEM, stem);
     }

@@ -102,6 +102,7 @@
   "enchantment.frostwork.sanguine.desc": "Life-steal.",
   "enchantment.frostwork.trollskin.desc": "Slowly regenerate health in cold biomes or while standing on ice.",
   "frostwork.frostwork_tab": "Frostwork",
+  "item.frostwork.hunter_armor": "Hunter Armor",
   "item.frostwork.tatzelwurm_arrow": "Tatzelwurm Arrow",
   "item.frostwork.tatzelwurm_scale": "Tatzelwurm Scale"
 }

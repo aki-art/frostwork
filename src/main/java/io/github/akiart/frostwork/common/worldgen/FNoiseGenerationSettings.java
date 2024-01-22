@@ -16,7 +16,7 @@ public class FNoiseGenerationSettings {
     private static final int MAX_Y = 448;
     private static final int SEA_LEVEL = 150;
 
-    protected static final NoiseSettings FANTASIA_NOISE_SETTINGS = NoiseSettings.create(-64, 384, 1, 2);
+    protected static final NoiseSettings FANTASIA_NOISE_SETTINGS = NoiseSettings.create(-64, 448, 1, 2);
     protected static final ResourceKey<NoiseGeneratorSettings> FANTASIA_NOISE_SETTINGS_ID =  ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(Frostwork.MOD_ID, "fantasia_noise"));
     private static final ResourceKey<DensityFunction> SHIFT_X = createKey("shift_x");
     private static final ResourceKey<DensityFunction> SHIFT_Z = createKey("shift_z");
@@ -32,7 +32,7 @@ public class FNoiseGenerationSettings {
                 fantasia(context.lookup(Registries.DENSITY_FUNCTION), context.lookup(Registries.NOISE)),
                 FSurfaceRules.frostworkSurface(),
                 new OverworldBiomeBuilder().spawnTarget(),
-                0,
+                220,
                 false,
                 true,
                 false,
@@ -54,14 +54,17 @@ public class FNoiseGenerationSettings {
     }
 
     private static DensityFunction fantasiaFinalDensity(HolderGetter<DensityFunction> densityFunctions, HolderGetter<NormalNoise.NoiseParameters> noiseParameters) {
-        var warpedBase = baseNoise(densityFunctions, noiseParameters);
 
-        //return DensityFunctions.add(warpedBase, growCavesBelow);
-
+        // basic cave shape in a solid world
         var baseSimplex = new FDensityFunctions.WarpedSimplexDensityFunction(0);
-        var growCavesBelow = new FDensityFunctions.YClampedOffsetCurve(0.00003, 0.4);
 
-        var simplexWithBiggerCavesBelow = DensityFunctions.add(baseSimplex, growCavesBelow);
+        // caves get bigger the lower we go
+        var growCavesBelow = new FDensityFunctions.YClampedOffsetCurve(0.00002, 0.4);
+        var combinedCaves = DensityFunctions.add(baseSimplex, growCavesBelow);
+
+        // basic 3d surface noise
+        var baseSurface = new FDensityFunctions.FantasiaBaseSurfaceDensityFunction(0);
+        var combined = DensityFunctions.min(combinedCaves, baseSurface);
 
 //        int minY = -54;
 //        var largerCavesBelow = DensityFunctions.yClampedGradient(minY, 195, 0, 0.35);
@@ -78,7 +81,7 @@ public class FNoiseGenerationSettings {
 //                caves,
 //                basin);
 //
-        return DensityFunctions.interpolated(simplexWithBiggerCavesBelow); //DensityFunctions.mul(caves, scrapeSurface));
+        return DensityFunctions.interpolated(combined); //DensityFunctions.mul(caves, scrapeSurface));
     }
 
     private static NoiseRouter fantasia(
@@ -88,18 +91,22 @@ public class FNoiseGenerationSettings {
         DensityFunction temperature = DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25, pNoiseParameters.getOrThrow(Noises.TEMPERATURE));
         DensityFunction vegetation = DensityFunctions.shiftedNoise2d(densityfunction, densityfunction1, 0.25, pNoiseParameters.getOrThrow(Noises.VEGETATION));
 
+        DensityFunction aquiferBarrier = DensityFunctions.noise(pNoiseParameters.getOrThrow(Noises.AQUIFER_BARRIER), 0.5);
+        DensityFunction aquiferFloodedness = DensityFunctions.noise(pNoiseParameters.getOrThrow(Noises.AQUIFER_FLUID_LEVEL_FLOODEDNESS), 0.67);
+        DensityFunction aquiferSpread = DensityFunctions.noise(pNoiseParameters.getOrThrow(Noises.AQUIFER_FLUID_LEVEL_SPREAD), 0.7142857142857143);
+
         return new NoiseRouter(
-                DensityFunctions.zero(),
-                DensityFunctions.zero(),
-                DensityFunctions.zero(),
+                aquiferBarrier,
+                aquiferFloodedness,
+                aquiferSpread,
                 DensityFunctions.zero(),
                 temperature,
                 vegetation,
                 DensityFunctions.zero(),
                 DensityFunctions.zero(),
+                new FDensityFunctions.FantasiaBaseSurfaceDensityFunction(0),
                 DensityFunctions.zero(),
-                DensityFunctions.zero(),
-                DensityFunctions.zero(),
+                new FDensityFunctions.FantasiaBaseSurfaceDensityFunction(0),
                 fantasiaFinalDensity(pDensityFunctions, pNoiseParameters),
                 DensityFunctions.zero(),
                 DensityFunctions.zero(),

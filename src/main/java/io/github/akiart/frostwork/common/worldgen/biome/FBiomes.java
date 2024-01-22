@@ -15,12 +15,14 @@ public class FBiomes {
     public static final ResourceKey<Biome> FROZEN_CAVE = ResourceKey.create(Registries.BIOME, new ResourceLocation(Frostwork.MOD_ID, "frozen_cave"));
     public static final ResourceKey<Biome> DEBUG_RED = ResourceKey.create(Registries.BIOME, new ResourceLocation(Frostwork.MOD_ID, "debug_red"));
     public static final ResourceKey<Biome> DEBUG_BLUE = ResourceKey.create(Registries.BIOME, new ResourceLocation(Frostwork.MOD_ID, "debug_blue"));
+    public static final ResourceKey<Biome> FLOATING_MOUNTAINS = ResourceKey.create(Registries.BIOME, new ResourceLocation(Frostwork.MOD_ID, "floating_mountains"));
 
     public static void boostrap(BootstapContext<Biome> context) {
         context.register(ALPINE_TUNDRA, alpineTundra(context));
         context.register(FROZEN_CAVE, frozenCave(context));
         context.register(DEBUG_RED, debugBiome(context, 0xFF0000));
         context.register(DEBUG_BLUE, debugBiome(context, 0x000000FF));
+        context.register(FLOATING_MOUNTAINS, debugBiome(context, 0x10278388));
     }
 
     private static Biome frozenCave(BootstapContext<Biome> context) {
@@ -36,12 +38,12 @@ public class FBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(0x4159204)
-                        .waterFogColor(0x329011)
-                        .skyColor(0x10278388)
-                        .grassColorOverride(0x13350267)
-                        .foliageColorOverride(0x3962923)
-                        .fogColor(0x9543081)
+                        .waterColor(4159204)
+                        .waterFogColor(329011)
+                        .skyColor(10278388)
+                        .grassColorOverride(13350267)
+                        .foliageColorOverride(3962923)
+                        .fogColor(9543081)
 
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         //.backgroundMusic(Musics.createGameMusic(ModSounds.BAR_BRAWL.getHolder().get()))
@@ -84,12 +86,12 @@ public class FBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(0x4159204)
-                        .waterFogColor(0x329011)
-                        .skyColor(0x10278388)
-                        .grassColorOverride(0x13350267)
-                        .foliageColorOverride(0x3962923)
-                        .fogColor(0x9543081)
+                        .waterColor(4159204)
+                        .waterFogColor(329011)
+                        .skyColor(10278388)
+                        .grassColorOverride(13350267)
+                        .foliageColorOverride(3962923)
+                        .fogColor(9543081)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         //.backgroundMusic(Musics.createGameMusic(ModSounds.BAR_BRAWL.getHolder().get()))
                         .build())
