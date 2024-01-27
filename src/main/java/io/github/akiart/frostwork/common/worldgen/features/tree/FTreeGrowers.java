@@ -1,6 +1,6 @@
 package io.github.akiart.frostwork.common.worldgen.features.tree;
 
-import io.github.akiart.frostwork.common.worldgen.FConfiguredFeatures;
+import io.github.akiart.frostwork.common.worldgen.features.FConfiguredFeatures;
 import net.minecraft.world.level.block.grower.TreeGrower;
 
 import java.util.Optional;

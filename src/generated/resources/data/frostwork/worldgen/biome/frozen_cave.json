@@ -1,5 +1,7 @@
 {
-  "carvers": {},
+  "carvers": {
+    "air": "frostwork:fantasia_cave"
+  },
   "downfall": 0.0,
   "effects": {
     "fog_color": 9543081,
@@ -15,7 +17,17 @@
     "water_color": 4159204,
     "water_fog_color": 329011
   },
-  "features": [],
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "frostwork:edelstone_coal_ore_placed"
+    ]
+  ],
   "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {

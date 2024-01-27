@@ -30,6 +30,12 @@ public class FSurfaceRules {
     private static final SurfaceRules.RuleSource AQUAMIRE = defaultState(FBlocks.AQUAMIRE.block.get());
     private static final SurfaceRules.RuleSource FROZEN_DIRT = defaultState(FBlocks.FROZEN_DIRT.get());
     private static final SurfaceRules.RuleSource DRY_GRASS = defaultState(FBlocks.DRY_GRASS.get());
+    private static final SurfaceRules.RuleSource VERDANT_ROCK = defaultState(FBlocks.VERDANT_ROCK.block.get());
+    private static final SurfaceRules.RuleSource GRASS = defaultState(Blocks.GRASS_BLOCK);
+    private static final SurfaceRules.RuleSource GRAVEL = defaultState(Blocks.GRAVEL);
+    private static final SurfaceRules.RuleSource ICE = defaultState(Blocks.ICE);
+    private static final SurfaceRules.RuleSource BLUE_ICE = defaultState(Blocks.BLUE_ICE);
+    private static final SurfaceRules.RuleSource SNOW = defaultState(Blocks.SNOW_BLOCK);
     private static final SurfaceRules.RuleSource AZAELA_LEAVES = defaultState(Blocks.AZALEA_LEAVES);
 
     // testing stuff
@@ -37,9 +43,11 @@ public class FSurfaceRules {
     private static final SurfaceRules.RuleSource BLUE = defaultState(Blocks.BLUE_CONCRETE);
     private static final SurfaceRules.RuleSource GREEN = defaultState(Blocks.GREEN_CONCRETE);
     private static final SurfaceRules.RuleSource DEEPSLATE = defaultState(Blocks.DEEPSLATE);
-    private static final SurfaceRules.RuleSource MUD = defaultState(Blocks.PACKED_MUD);
+    private static final SurfaceRules.RuleSource MUD = defaultState(Blocks.MUD);
     private static final SurfaceRules.RuleSource TUFF = defaultState(Blocks.TUFF);
     private static final SurfaceRules.RuleSource SANDSTONE = defaultState(Blocks.SANDSTONE);
+    private static final SurfaceRules.RuleSource MOSS = defaultState(Blocks.MOSS_BLOCK);
+    private static final SurfaceRules.RuleSource PITH = defaultState(FBlocks.PITH.block.get());
 
     private static FastNoiseLite cellularNoise;
 
@@ -54,20 +62,65 @@ public class FSurfaceRules {
 
         initNoise();
 
+        // patches of dry grass and grass, with bits of gravel between
         SurfaceRules.RuleSource tundra = SurfaceRules.sequence(
                 SurfaceRules.ifTrue(
-                        SurfaceRules.isBiome(FBiomes.ALPINE_TUNDRA),
+                        SurfaceRules.isBiome(FBiomes.Surface.ALPINE_TUNDRA),
                         SurfaceRules.ifTrue(
                                 SurfaceRules.ON_FLOOR,
-                                DRY_GRASS)
+                                SurfaceRules.sequence(
+                                    SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, -99, -0.5),
+                                            GRAVEL),
+                                        SurfaceRules.ifTrue(
+                                                SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, 0.15),
+                                                DRY_GRASS
+                                        ),
+                                        GRASS)
+                        )
+
                 )
         );
 
+        SurfaceRules.RuleSource hive = SurfaceRules.sequence(
+                SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(FBiomes.Cave.HIVE),
+                        PITH
+                )
+        );
+
+        SurfaceRules.RuleSource verdantGlade = SurfaceRules.sequence(
+                SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(FBiomes.Cave.VERDANT_GLADE),
+                        SurfaceRules.sequence(
+                            SurfaceRules.ifTrue(
+                                    SurfaceRules.ON_FLOOR,
+                                    SurfaceRules.sequence(
+                                            SurfaceRules.ifTrue(
+                                                    SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, -0.8, 0),
+                                                    MOSS),
+                                            SurfaceRules.ifTrue(
+                                                    SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, 0, 0.4),
+                                                    MUD
+                                            ))),
+                                VERDANT_ROCK)
+                )
+        );
+
+        // some of the wall is ice, and some of the floor is snow. the rest is edelstone
         SurfaceRules.RuleSource frozen_cavern = SurfaceRules.sequence(
                 SurfaceRules.ifTrue(
-                        SurfaceRules.isBiome(FBiomes.FROZEN_CAVE),
-                        EDEL_STONE
-                )
+                        SurfaceRules.isBiome(FBiomes.Cave.FROZEN_CAVE),
+                            SurfaceRules.sequence(
+                                    SurfaceRules.ifTrue(
+                                            SurfaceRules.ON_FLOOR,
+                                                SurfaceRules.ifTrue(
+                                                        SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, -99, -0.7), SNOW)
+                                    ),
+                                    SurfaceRules.ifTrue(
+                                            SurfaceRules.noiseCondition(FNoises.FROZEN_CAVERN_ICE, -2, 2), ICE),
+                                    EDEL_STONE)
+                    )
         );
 
 
@@ -101,14 +154,18 @@ public class FSurfaceRules {
         ImmutableList.Builder<SurfaceRules.RuleSource> builder = ImmutableList.builder();
         builder
                 .add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), BEDROCK))
-                .add(tundra)
-                .add(frozen_cavern)
+                .add(
+                        tundra,
+                        frozen_cavern,
+                        verdantGlade,
+                        hive
+                )
                 //.add(test2);
         ;
 
         if (DEBUG_MODE) {
-            builder.add(simpleBiomeFiller(FBiomes.DEBUG_BLUE, BLUE));
-            builder.add(simpleBiomeFiller(FBiomes.DEBUG_RED, RED));
+            builder.add(simpleBiomeFiller(FBiomes.Debug.DEBUG_BLUE, BLUE));
+            builder.add(simpleBiomeFiller(FBiomes.Debug.DEBUG_RED, RED));
         }
 
         return SurfaceRules.sequence(builder.build().toArray(SurfaceRules.RuleSource[]::new));

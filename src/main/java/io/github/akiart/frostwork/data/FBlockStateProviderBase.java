@@ -13,6 +13,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.LanternBlock;
 import net.minecraft.world.level.block.SnowyDirtBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -30,6 +31,37 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
     private static final Logger LOGGER = LogUtils.getLogger();
     protected ResourceLocation getVanillaLocation(String name) {
         return new ResourceLocation("block/" + name);
+    }
+
+    protected void candeloupe(DeferredBlock<? extends LanternBlock> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+
+            var hanging = state.getValue(LanternBlock.HANGING);
+
+            if(hanging) {
+                String name = getBlockName(block).getPath() + "_hanging";
+
+                ModelFile model = models()
+                        .withExistingParent(name, new ResourceLocation(Frostwork.MOD_ID, "block/fruit_lantern_hanging"))
+                        .texture("0", getLocation("candeloupe"))
+                        .renderType("cutout");
+
+                return ConfiguredModel.builder()
+                        .modelFile(model)
+                        .build();
+            }
+            else {
+                String name = getBlockName(block).getPath();
+                ModelFile model = models()
+                        .withExistingParent(name, new ResourceLocation(Frostwork.MOD_ID, "block/fruit_lantern"))
+                        .texture("0", getLocation("candeloupe"))
+                        .renderType("cutout");
+
+                return ConfiguredModel.builder()
+                        .modelFile(model)
+                        .build();
+            }
+        });
     }
 
     protected void foam(DeferredBlock<? extends FoamBlock> block) {

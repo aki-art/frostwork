@@ -1,0 +1,7 @@
+{
+  "parent": "frostwork:block/fruit_lantern",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "frostwork:block/candeloupe"
+  }
+}

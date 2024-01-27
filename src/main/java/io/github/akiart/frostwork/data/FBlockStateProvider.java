@@ -47,6 +47,8 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         tallPlant(FBlocks.YARROW);
         //forgetMeNow();
         crossBlock(FBlocks.FORGET_ME_NOW);
+        crossBlock(FBlocks.BEARBERRY);
+        candeloupe(FBlocks.CANDELOUPE);
     }
 
     private void forgetMeNow() {

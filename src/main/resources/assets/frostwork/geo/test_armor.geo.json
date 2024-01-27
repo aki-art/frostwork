@@ -30,7 +30,10 @@
 				{
 					"name": "armorBody",
 					"parent": "bipedBody",
-					"pivot": [0, 24, 0]
+					"pivot": [0, 24, 0],
+					"cubes": [
+						{"origin": [-4, 11, -3], "size": [8, 16, 6], "uv": [36, 42]}
+					]
 				},
 				{
 					"name": "bipedLeftArm",

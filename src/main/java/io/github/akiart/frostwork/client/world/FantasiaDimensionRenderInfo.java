@@ -25,7 +25,7 @@ public class FantasiaDimensionRenderInfo extends DimensionSpecialEffects {
 
     @Override
     public @NotNull Vec3 getBrightnessDependentFogColor(Vec3 fogColor, float dayLight) {
-        dayLight = Math.max(0.4f, dayLight);
+        dayLight = Math.max(0.2f, dayLight);
         return fogColor.multiply((dayLight * 0.94F + 0.06F), dayLight * 0.94F + 0.06F, dayLight * 0.91F + 0.09F);
     }
 

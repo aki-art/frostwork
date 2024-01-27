@@ -1,6 +1,7 @@
 package io.github.akiart.frostwork.common.worldgen;
 
 import io.github.akiart.frostwork.Frostwork;
+import io.github.akiart.frostwork.common.block.FBlocks;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -14,19 +15,24 @@ import net.minecraft.world.level.levelgen.synth.NormalNoise;
 public class FNoiseGenerationSettings {
     private static final int MIN_Y = -64;
     private static final int MAX_Y = 448;
-    private static final int SEA_LEVEL = 150;
-
-    protected static final NoiseSettings FANTASIA_NOISE_SETTINGS = NoiseSettings.create(-64, 448, 1, 2);
+    private static final int SEA_LEVEL = 198;
+    protected static final NoiseSettings FANTASIA_NOISE_SETTINGS = NoiseSettings.create(0, 448, 1, 2);
     protected static final ResourceKey<NoiseGeneratorSettings> FANTASIA_NOISE_SETTINGS_ID =  ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(Frostwork.MOD_ID, "fantasia_noise"));
     private static final ResourceKey<DensityFunction> SHIFT_X = createKey("shift_x");
     private static final ResourceKey<DensityFunction> SHIFT_Z = createKey("shift_z");
+    private static final ResourceKey<DensityFunction> Y = createKey("y");
     private static final ResourceKey<DensityFunction> BASE_3D_NOISE_NETHER = createKey("nether/base_3d_noise");
     private static final ResourceKey<DensityFunction> SPAGHET = createKey("spaghetti_3d_2");
     private static final ResourceKey<DensityFunction> SLOPED_CHEESE = createKey("overworld/sloped_cheese");
+
+    // using large preset, but i have much fewer mountain regions and less interesting rivers, so this works out for my normal sized biomes
+    private static final ResourceKey<DensityFunction> OFFSET_LARGE = createKey("overworld_large_biomes/offset");
+    private static final ResourceKey<DensityFunction> FACTOR = createKey("overworld_large_biomes/factor");
+    private static final ResourceKey<DensityFunction> SPAGHETTI_2D = createKey("overworld/caves/spaghetti_2d");
     public static NoiseGeneratorSettings bootstrap(BootstapContext<NoiseGeneratorSettings> context) {
         var settings = new NoiseGeneratorSettings(
                 FANTASIA_NOISE_SETTINGS,
-                Blocks.STONE.defaultBlockState(),
+                FBlocks.MARLSTONE.block.get().defaultBlockState(),
                 Blocks.WATER.defaultBlockState(),
                 //solid(context.lookup(Registries.DENSITY_FUNCTION)),
                 fantasia(context.lookup(Registries.DENSITY_FUNCTION), context.lookup(Registries.NOISE)),
@@ -44,7 +50,6 @@ public class FNoiseGenerationSettings {
         return settings;
     }
 
-
     private static DensityFunction spaghet(HolderGetter<NormalNoise.NoiseParameters> pNoiseParameters) {
         return DensityFunctions.noise(pNoiseParameters.getOrThrow(Noises.SPAGHETTI_3D_1), 3.0, 3.0);
     }
@@ -53,35 +58,66 @@ public class FNoiseGenerationSettings {
         return new DensityFunctions.ShiftedNoise(spaghet(noiseParameters), spaghet(noiseParameters), spaghet(noiseParameters), 0.4, 2.0, new DensityFunction.NoiseHolder(noiseParameters.getOrThrow(Noises.CAVE_CHEESE)));
     }
 
+    private static DensityFunction baseDepth(HolderGetter<DensityFunction> pDensityFunctions) {
+        // roughly caps things at y~=200
+        var yLevel = DensityFunctions.yClampedGradient(50, 512, 1.5, -0.8);
+        return DensityFunctions.add(yLevel, getFunction(pDensityFunctions, OFFSET_LARGE));
+    }
+    private static DensityFunction baseDepthButLower(HolderGetter<DensityFunction> pDensityFunctions) {
+        var yLevel = DensityFunctions.yClampedGradient(40, 512, 1.5, -1.5);
+        return DensityFunctions.add(yLevel, getFunction(pDensityFunctions, OFFSET_LARGE));
+    }
+
+    private static DensityFunction noodle(HolderGetter<DensityFunction> pDensityFunctions, HolderGetter<NormalNoise.NoiseParameters> pNoiseParameters) {
+        DensityFunction densityfunction = getFunction(pDensityFunctions, Y);
+
+        int minY = 4;
+        int maxY = 448;
+        DensityFunction densityfunction1 = yLimitedInterpolatable(
+                densityfunction, DensityFunctions.noise(pNoiseParameters.getOrThrow(Noises.NOODLE), 1.0, 1.0), minY, maxY, -1
+        );
+        DensityFunction densityfunction2 = yLimitedInterpolatable(
+                densityfunction, DensityFunctions.mappedNoise(pNoiseParameters.getOrThrow(Noises.NOODLE_THICKNESS), 1.0, 1.0, -0.05, -0.1), minY, maxY, 0
+        );
+
+        double scale = 8.0/3.0;
+
+        DensityFunction densityfunction3 = yLimitedInterpolatable(
+                densityfunction, DensityFunctions.noise(pNoiseParameters.getOrThrow(Noises.NOODLE_RIDGE_A), scale, scale), minY, maxY, 0
+        );
+        DensityFunction densityfunction4 = yLimitedInterpolatable(
+                densityfunction, DensityFunctions.noise(pNoiseParameters.getOrThrow(Noises.NOODLE_RIDGE_B), scale, scale), minY, maxY, 0
+        );
+        DensityFunction densityfunction5 = DensityFunctions.mul(
+                DensityFunctions.constant(1.5), DensityFunctions.max(densityfunction3.abs(), densityfunction4.abs())
+        );
+        return DensityFunctions.rangeChoice(
+                densityfunction1, -1000000.0, 0.0, DensityFunctions.constant(64.0), DensityFunctions.add(densityfunction2, densityfunction5)
+        );
+    }
+
+    private static DensityFunction yLimitedInterpolatable(DensityFunction p_209472_, DensityFunction p_209473_, int p_209474_, int p_209475_, int p_209476_) {
+        return DensityFunctions.interpolated(
+                DensityFunctions.rangeChoice(p_209472_, (double)p_209474_, (double)(p_209475_ + 1), p_209473_, DensityFunctions.constant((double)p_209476_))
+        );
+    }
     private static DensityFunction fantasiaFinalDensity(HolderGetter<DensityFunction> densityFunctions, HolderGetter<NormalNoise.NoiseParameters> noiseParameters) {
 
         // basic cave shape in a solid world
         var baseSimplex = new FDensityFunctions.WarpedSimplexDensityFunction(0);
 
-        // caves get bigger the lower we go
-        var growCavesBelow = new FDensityFunctions.YClampedOffsetCurve(0.00002, 0.4);
-        var combinedCaves = DensityFunctions.add(baseSimplex, growCavesBelow);
+        var closeCavesNearTop = DensityFunctions.add(baseSimplex, DensityFunctions.yClampedGradient(170, 210, 0, 10));
+        var clampedCaves = DensityFunctions.min(closeCavesNearTop, DensityFunctions.constant(1));
 
-        // basic 3d surface noise
-        var baseSurface = new FDensityFunctions.FantasiaBaseSurfaceDensityFunction(0);
-        var combined = DensityFunctions.min(combinedCaves, baseSurface);
+        var surfaceDepth = baseDepth(densityFunctions);
+        var scrapedTop = DensityFunctions.min(surfaceDepth, clampedCaves);
 
-//        int minY = -54;
-//        var largerCavesBelow = DensityFunctions.yClampedGradient(minY, 195, 0, 0.35);
-//        var evenLargerNearBottom = DensityFunctions.yClampedGradient(minY, 160, -0.3, 0);
-//        var scrapeSurface = DensityFunctions.yClampedGradient(220, 330, 1, 0);
-//        var basin = DensityFunctions.yClampedGradient(-64, minY, 1, 0);
-//
-//        var caves =
-//                DensityFunctions.add(
-//                        DensityFunctions.add(warpedBase, largerCavesBelow),
-//                        evenLargerNearBottom);
-//
-//        caves = DensityFunctions.add(
-//                caves,
-//                basin);
-//
-        return DensityFunctions.interpolated(combined); //DensityFunctions.mul(caves, scrapeSurface));
+        var spaghet = getFunction(densityFunctions, SPAGHETTI_2D);
+        var cavedWorld = DensityFunctions.min(scrapedTop, spaghet);
+
+        var closeFloor = DensityFunctions.add(cavedWorld, new FDensityFunctions.ExponentialDensityFunction(16f, 2f));
+
+        return DensityFunctions.interpolated(closeFloor); //DensityFunctions.mul(caves, scrapeSurface));
     }
 
     private static NoiseRouter fantasia(
@@ -96,23 +132,46 @@ public class FNoiseGenerationSettings {
         DensityFunction aquiferSpread = DensityFunctions.noise(pNoiseParameters.getOrThrow(Noises.AQUIFER_FLUID_LEVEL_SPREAD), 0.7142857142857143);
 
         return new NoiseRouter(
-                aquiferBarrier,
-                aquiferFloodedness,
-                aquiferSpread,
-                DensityFunctions.zero(),
+                DensityFunctions.constant(-1),
+                DensityFunctions.constant(-999),
+                DensityFunctions.constant(-1),
+
+                // no lava
+                DensityFunctions.constant(-1),
+
                 temperature,
                 vegetation,
                 DensityFunctions.zero(),
                 DensityFunctions.zero(),
-                new FDensityFunctions.FantasiaBaseSurfaceDensityFunction(0),
+                baseDepthButLower(pDensityFunctions),
                 DensityFunctions.zero(),
-                new FDensityFunctions.FantasiaBaseSurfaceDensityFunction(0),
+                slideFantasia(pDensityFunctions),
                 fantasiaFinalDensity(pDensityFunctions, pNoiseParameters),
+                // no veins
                 DensityFunctions.zero(),
                 DensityFunctions.zero(),
                 DensityFunctions.zero()
         );
     }
+
+    private static DensityFunction slideFantasia(HolderGetter<DensityFunction> densityFunctions) {
+        var factor = getFunction(densityFunctions, FACTOR);
+        var depth = baseDepth(densityFunctions);
+
+        DensityFunction densityfunction10 = noiseGradientDensity(DensityFunctions.cache2d(factor), depth);
+        return slideOverworld(false, DensityFunctions.add(densityfunction10, DensityFunctions.constant(-0.703125)).clamp(-64.0, 64.0));
+    }
+
+
+    private static DensityFunction slideF(boolean pAmplified, DensityFunction pDensityFunction) {
+        return slide(pDensityFunction, 0, 448, pAmplified ? 16 : 80, pAmplified ? 0 : 64, -0.078125, 0, 24, pAmplified ? 0.4 : 0.1171875);
+    }
+
+    private static DensityFunction noiseGradientDensity(DensityFunction pMinFunction, DensityFunction pMaxFunction) {
+        DensityFunction densityfunction = DensityFunctions.mul(pMaxFunction, pMinFunction);
+        return DensityFunctions.mul(DensityFunctions.constant(4.0), densityfunction.quarterNegative());
+    }
+
     // -----------------------------------------
 
     protected static NoiseRouter nether(HolderGetter<DensityFunction> pDensityFunctions, HolderGetter<NormalNoise.NoiseParameters> pNoiseParameters) {

@@ -29,6 +29,8 @@ public class FBlockTagsProvider extends BlockTagsProvider {
         BlockRegistryUtil.getMushrooms().forEach(this::tree);
         BlockRegistryUtil.getWoods().forEach(this::tree);
 
+        tag(BlockTags.DIRT).add(FBlocks.DRY_GRASS.get());
+
         tag(FTags.Blocks.EDELSTONE_REPLACEABLE)
                 .add(FBlocks.EDELSTONE.block.get());
 
@@ -105,6 +107,10 @@ public class FBlockTagsProvider extends BlockTagsProvider {
 
     private void stone(StoneBlockSet set) {
         tag(Tags.Blocks.STONE).add(set.block.get());
+
+        // in case one of these biomes is added to overworld
+        tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).add(set.block.get());
+
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(set.block.get())
                 .add(set.stairs.get())

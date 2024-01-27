@@ -35,8 +35,10 @@ public class FBlockLootSubProvider extends FBlockLootSubProviderBase {
     private void addMissingTemp() {
         FBlocks.BLOCKS.getEntries().forEach(block -> {
             if(!this.map.containsKey(block.getId())) {
-                add(block.get(), noDrop());
-                Frostwork.LOGGER.warn("No loottable set: " + block.getId());
+                if(block != FBlocks.ACID) {
+                    add(block.get(), noDrop());
+                    Frostwork.LOGGER.warn("No loottable set: " + block.getId());
+                }
             }
         });
     }

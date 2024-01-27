@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "frostwork:block/pith",
+    "side": "frostwork:block/pith",
+    "top": "frostwork:block/pith"
+  }
+}

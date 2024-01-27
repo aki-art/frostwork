@@ -35,7 +35,7 @@ public class FLanguageProvider extends LanguageProvider {
         add(FItems.TATZELWURM_SCALE.get(), "Tatzelwurm Scale");
         add(FItems.TATZELWURM_ARROW.get(), "Tatzelwurm Arrow");
         add(FItems.HUNTER_ARMOR.get(), "Hunter Armor");
-
+        add(FItems.ACID_BUCKET.get(), "Acid Bucket");
 
     }
 
@@ -50,6 +50,7 @@ public class FLanguageProvider extends LanguageProvider {
         add(FBlocks.YARROW.get(), "Yarrow");
         add(FBlocks.FORGET_ME_NOW.get(), "Forget-Me-Now");
         add(FBlocks.FOAM.get(), "Foam");
+        add(FBlocks.ACID.get(), "Acid");
 
         add(FBlocks.HUNTER_PELT_BROWN.get(), "Tan Hunter Pelt");
         add(FBlocks.HUNTER_PELT_CREAM.get(), "Cream Hunter Pelt");
@@ -91,8 +92,11 @@ public class FLanguageProvider extends LanguageProvider {
         addStones("Sanguite", FBlocks.SANGUITE);
         addStones("Polished Sanguite", FBlocks.POLISHED_SANGUITE);
         addStones("Marlstone", FBlocks.MARLSTONE);
+        addStones("Marlstone Brick", FBlocks.MARLSTONE_BRICKS);
         addStones("Aquamire", FBlocks.AQUAMIRE);
+        addStones("Verdant Rock", FBlocks.VERDANT_ROCK);
         addStones("Polished Aquamire", FBlocks.POLISHED_AQUAMIRE);
+        addStones("Pith", FBlocks.PITH);
     }
 
     private void addTree(String name, AbstractWoodBlockSet woodSet) {

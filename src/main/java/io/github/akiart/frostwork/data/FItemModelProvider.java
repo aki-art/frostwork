@@ -37,6 +37,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
         miscItem(FItems.TATZELWURM_ARROW);
         miscItem(FItems.BOTTLE_OF_FOAM);
         miscItem(FItems.HUNTER_ARMOR);
+        miscItem(FItems.ACID_BUCKET);
 
         fromBlock(FBlocks.HUNTER_PELT_BROWN);
         fromBlock(FBlocks.HUNTER_PELT_CREAM);
@@ -46,5 +47,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
         tallPlant(FBlocks.LAVENDER);
         tallPlant(FBlocks.YARROW);
         miscItem(FItems.FORGET_ME_NOW);
+        fromBlock(FBlocks.BEARBERRY);
+        fromBlock(FBlocks.CANDELOUPE);
     }
 }

@@ -1,0 +1,19 @@
+{
+  "type": "frostwork:boulder",
+  "config": {
+    "block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:diorite"
+      }
+    },
+    "manhattan": true,
+    "radius": {
+      "max_inclusive": 3,
+      "min_inclusive": 0
+    },
+    "surfaceOnly": true,
+    "target": "#minecraft:dirt",
+    "y_variance": 3.0
+  }
+}

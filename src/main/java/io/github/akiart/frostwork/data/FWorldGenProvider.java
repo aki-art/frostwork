@@ -3,6 +3,7 @@ package io.github.akiart.frostwork.data;
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.worldgen.*;
 import io.github.akiart.frostwork.common.worldgen.biome.FBiomes;
+import io.github.akiart.frostwork.common.worldgen.features.FConfiguredFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -15,6 +16,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class FWorldGenProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
+            .add(Registries.NOISE, FNoises::bootstrap)
+            .add(Registries.CONFIGURED_CARVER, FCarvers::bootstrap)
             .add(Registries.DIMENSION_TYPE, FDimensionTypes::bootstrap)
             .add(Registries.CONFIGURED_FEATURE, FConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, FPlacedFeatures::bootstrap)

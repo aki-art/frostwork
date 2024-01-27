@@ -34,7 +34,7 @@ public class FDimensionTypes {
                 WORLD_HEIGHT,
                 BlockTags.INFINIBURN_OVERWORLD,
                 FantasiaDimensionRenderInfo.KEY,
-                0.02f,
+                0.04f,
                 new DimensionType.MonsterSettings(false, false, ConstantInt.of(0), 0)));
     }
 }

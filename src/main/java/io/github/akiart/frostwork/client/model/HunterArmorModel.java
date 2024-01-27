@@ -13,7 +13,7 @@ public class HunterArmorModel extends GeoModel<HunterArmorItem> {
 
     @Override
     public ResourceLocation getTextureResource(HunterArmorItem animatable) {
-        return new ResourceLocation(Frostwork.MOD_ID, "textures/models/armor/test_armor.png");
+        return new ResourceLocation(Frostwork.MOD_ID, "textures/armor/test_armor.png");
     }
 
     @Override

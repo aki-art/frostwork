@@ -1,19 +1,18 @@
 package io.github.akiart.frostwork.common.block;
 
 import io.github.akiart.frostwork.Frostwork;
-import io.github.akiart.frostwork.common.block.blockTypes.FTransparentBlock;
-import io.github.akiart.frostwork.common.block.blockTypes.FoamBlock;
-import io.github.akiart.frostwork.common.block.blockTypes.ForgetMeNowBlock;
-import io.github.akiart.frostwork.common.block.blockTypes.PeltBlock;
+import io.github.akiart.frostwork.common.block.blockTypes.*;
 import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
+import io.github.akiart.frostwork.common.fluid.FFluids;
 import io.github.akiart.frostwork.common.worldgen.features.tree.FTreeGrowers;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -45,8 +44,11 @@ public class FBlocks {
     public static final StoneBlockSet EDELSTONE_BRICKS = BlockRegistryUtil.registerStones("edelstone_bricks", TUNING.COBBLE_HARDNESS, TUNING.COBBLE_RESISTANCE, MapColor.CLAY, false);
 
     public static final StoneBlockSet MARLSTONE = BlockRegistryUtil.registerStones("marlstone", 5f, 20f, MapColor.CLAY, false);
+    public static final StoneBlockSet MARLSTONE_BRICKS = BlockRegistryUtil.registerStones("marlstone_bricks", 5f, 20f, MapColor.CLAY, false);
 
     public static final StoneBlockSet AQUAMIRE = BlockRegistryUtil.registerStones("aquamire", 5f, 20f, MapColor.COLOR_LIGHT_BLUE, false);
+    public static final StoneBlockSet VERDANT_ROCK = BlockRegistryUtil.registerStones("verdant_rock", 5f, 20f, MapColor.COLOR_GREEN, false);
+    public static final StoneBlockSet PITH = BlockRegistryUtil.registerStones("pith", 5f, 20f, MapColor.COLOR_YELLOW, false);
     public static final StoneBlockSet POLISHED_AQUAMIRE = BlockRegistryUtil.registerStones("polished_aquamire", 5f, 20f, MapColor.COLOR_LIGHT_BLUE, false);
 
     public static final StoneBlockSet SANGUITE = BlockRegistryUtil.registerStones("sanguite", TUNING.COBBLE_HARDNESS, TUNING.COBBLE_RESISTANCE, MapColor.NETHER, false);
@@ -78,6 +80,27 @@ public class FBlocks {
     public static final DeferredBlock<ForgetMeNowBlock> FORGET_ME_NOW = BlockRegistryUtil.register("forget_me_now",
             () -> new ForgetMeNowBlock(MobEffects.WEAKNESS, 40, BlockBehaviour.Properties.ofFullCopy(Blocks.WITHER_ROSE)));
 
+    public static final DeferredBlock<FlowerBlock> BEARBERRY = BlockRegistryUtil.register("bearberry",
+            () -> new FlowerBlock(() -> MobEffects.ABSORPTION, 4, BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.FLOWERING_AZALEA)
+                    .offsetType(BlockBehaviour.OffsetType.XZ)
+                    .pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredBlock<LanternBlock> CANDELOUPE = BlockRegistryUtil.register("candeloupe",
+            () -> new LanternBlock(BlockBehaviour.Properties.of()
+                    .ignitedByLava()
+                    .mapColor(MapColor.GLOW_LICHEN)
+                    .lightLevel(state -> 8)
+                    .forceSolidOn()
+                    .noOcclusion()
+                    .strength(1.0F)
+                    .sound(SoundType.FUNGUS)
+                    .pushReaction(PushReaction.DESTROY)
+                    .emissiveRendering((state, level, pos) -> true)));
+
     // Misc
     public static final DeferredBlock<SnowyDirtBlock> FROZEN_DIRT = BlockRegistryUtil.register("frozen_dirt",
             () -> new SnowyDirtBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
@@ -95,4 +118,9 @@ public class FBlocks {
                     .ofFullCopy(Blocks.HONEY_BLOCK)
                     .noCollission()
                     .noOcclusion()));
+
+    public static final DeferredBlock<AcidLiquidBlock> ACID = BlockRegistryUtil.register("acid",
+            () -> new AcidLiquidBlock(FFluids.ACID_SOURCE, BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)
+                    .lightLevel(state -> 4)
+                    .mapColor(MapColor.COLOR_LIGHT_GREEN)));
 }

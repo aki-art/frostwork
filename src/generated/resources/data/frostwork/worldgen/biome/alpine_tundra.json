@@ -1,5 +1,7 @@
 {
-  "carvers": {},
+  "carvers": {
+    "air": "frostwork:fantasia_cave"
+  },
   "downfall": 0.8,
   "effects": {
     "fog_color": 9543081,
@@ -18,7 +20,10 @@
   "features": [
     [],
     [],
-    [],
+    [
+      "frostwork:small_diorite_boulders",
+      "frostwork:large_diorite_boulders"
+    ],
     [],
     [],
     [],
@@ -26,7 +31,10 @@
     [],
     [],
     [
-      "minecraft:patch_large_fern"
+      "minecraft:patch_large_fern",
+      "frostwork:tundra_flowers",
+      "minecraft:patch_grass_taiga",
+      "frostwork:bearberry_patch"
     ]
   ],
   "has_precipitation": true,
@@ -40,6 +48,12 @@
         "maxCount": 4,
         "minCount": 4,
         "weight": 5
+      },
+      {
+        "type": "minecraft:fox",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 2
       }
     ],
     "misc": [],

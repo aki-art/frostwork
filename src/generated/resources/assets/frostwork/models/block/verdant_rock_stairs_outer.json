@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "frostwork:block/verdant_rock",
+    "side": "frostwork:block/verdant_rock",
+    "top": "frostwork:block/verdant_rock"
+  }
+}

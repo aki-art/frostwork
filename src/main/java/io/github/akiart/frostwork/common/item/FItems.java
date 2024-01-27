@@ -2,15 +2,14 @@ package io.github.akiart.frostwork.common.item;
 
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
+import io.github.akiart.frostwork.common.fluid.FFluids;
 import io.github.akiart.frostwork.common.item.itemTypes.BottleOfFoamItem;
 import io.github.akiart.frostwork.common.item.itemTypes.HunterArmorItem;
 import io.github.akiart.frostwork.common.item.itemTypes.WurmArrowItem;
 import io.github.akiart.frostwork.common.item.registrySets.MushroomItemSet;
 import io.github.akiart.frostwork.common.item.registrySets.StoneItemSet;
 import io.github.akiart.frostwork.common.item.registrySets.WoodItemSet;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -36,7 +35,10 @@ public class FItems {
     public static final StoneItemSet POLISHED_SANGUITE = ItemRegistryUtil.registerStoneItems(FBlocks.POLISHED_SANGUITE);
     public static final StoneItemSet POLISHED_MALACHITE = ItemRegistryUtil.registerStoneItems(FBlocks.POLISHED_MALACHITE);
     public static final StoneItemSet MARLSTONE = ItemRegistryUtil.registerStoneItems(FBlocks.MARLSTONE);
+    public static final StoneItemSet MARLSTON_BRICKS = ItemRegistryUtil.registerStoneItems(FBlocks.MARLSTONE_BRICKS);
     public static final StoneItemSet AQUAMIRE = ItemRegistryUtil.registerStoneItems(FBlocks.AQUAMIRE);
+    public static final StoneItemSet VERDANT_ROCK = ItemRegistryUtil.registerStoneItems(FBlocks.VERDANT_ROCK);
+    public static final StoneItemSet PITH = ItemRegistryUtil.registerStoneItems(FBlocks.PITH);
     public static final StoneItemSet POLISHED_AQUAMIRE = ItemRegistryUtil.registerStoneItems(FBlocks.POLISHED_AQUAMIRE);
 
     // Ores
@@ -51,6 +53,8 @@ public class FItems {
     public static final DeferredItem<BlockItem> LAVENDER = ItemRegistryUtil.registerFromBlock(FBlocks.LAVENDER);
     public static final DeferredItem<BlockItem> YARROW = ItemRegistryUtil.registerFromBlock(FBlocks.YARROW);
     public static final DeferredItem<BlockItem> FORGET_ME_NOW = ItemRegistryUtil.registerFromBlock(FBlocks.FORGET_ME_NOW);
+    public static final DeferredItem<BlockItem> BEARBERRY = ItemRegistryUtil.registerFromBlock(FBlocks.BEARBERRY);
+    public static final DeferredItem<BlockItem> CANDELOUPE = ItemRegistryUtil.registerFromBlock(FBlocks.CANDELOUPE);
 
     // Combat
     public static DeferredItem<WurmArrowItem> TATZELWURM_ARROW = ItemRegistryUtil.register("tatzelwurm_arrow", () -> new WurmArrowItem(new Item.Properties()));
@@ -69,4 +73,8 @@ public class FItems {
     public static final DeferredItem<BlockItem> MALACHITE_BLOCK = ItemRegistryUtil.registerFromBlock(FBlocks.MALACHITE_BLOCK);
     public static final DeferredItem<BottleOfFoamItem> BOTTLE_OF_FOAM = ItemRegistryUtil.register("bottle_of_foam", () -> new BottleOfFoamItem(FBlocks.FOAM.get(), new Item.Properties()));
     public static final DeferredItem<Item> TATZELWURM_SCALE = ItemRegistryUtil.register("tatzelwurm_scale", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ACID_BUCKET = ItemRegistryUtil.register("acid_bucket",
+            () -> new BucketItem(FFluids.ACID_SOURCE, new Item.Properties()
+                    .craftRemainder(Items.BUCKET)
+                    .stacksTo(1)));
 }

@@ -12,7 +12,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
-import net.minecraft.world.level.biome.FixedBiomeSource;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
@@ -32,29 +31,28 @@ public class FDimensions {
         HolderGetter<DimensionType> dimensionTypes = context.lookup(Registries.DIMENSION_TYPE);
         HolderGetter<NoiseGeneratorSettings> noiseGenSettings = context.lookup(Registries.NOISE_SETTINGS);
 
-        NoiseBasedChunkGenerator wrappedChunkGenerator = new NoiseBasedChunkGenerator(
-                new FixedBiomeSource(biomeRegistry.getOrThrow(FBiomes.ALPINE_TUNDRA)),
-                noiseGenSettings.getOrThrow(FNoiseGenerationSettings.FANTASIA_NOISE_SETTINGS_ID));
-
-        Climate.ParameterList<Holder<Biome>> biomes = new Climate.ParameterList<>(List.of(
-                Pair.of(Climate.parameters(0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.ALPINE_TUNDRA)),
-                Pair.of(Climate.parameters(0.2F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.FROZEN_CAVE)),
-                Pair.of(Climate.parameters(0.2F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.FLOATING_MOUNTAINS))
-        ));
-
-        NoiseBasedChunkGenerator noiseBasedChunkGenerator = new NoiseBasedChunkGenerator(
-                FantasiaBiomeSource.createFromList(biomes),
-                noiseGenSettings.getOrThrow(FNoiseGenerationSettings.FANTASIA_NOISE_SETTINGS_ID));
-
-        CompoundNoiseBasedChunkGenerator compoundGen = new CompoundNoiseBasedChunkGenerator(
-                //biomeRegistry.getOrThrow(FBiomes.ALPINE_TUNDRA)
-                FantasiaBiomeSource.createFromList(biomes),
-                150,
-                noiseGenSettings.getOrThrow(FNoiseGenerationSettings.FANTASIA_NOISE_SETTINGS_ID)
-
+        Climate.ParameterList<Holder<Biome>> surfaceBiomes = new Climate.ParameterList<>(
+                List.of(
+                    Pair.of(Climate.parameters(0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Surface.ALPINE_TUNDRA)),
+                    Pair.of(Climate.parameters(-0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Debug.DEBUG_BLUE))
+                )
         );
 
-        LevelStem stem = new LevelStem(dimensionTypes.getOrThrow(FDimensionTypes.FANTASIA_TYPE), compoundGen);
+        Climate.ParameterList<Holder<Biome>> caveBiomes = new Climate.ParameterList<>(
+                List.of(
+                        Pair.of(Climate.parameters(0.5F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Cave.HIVE))
+                        //Pair.of(Climate.parameters(0.5F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.VERDANT_GLADE)),
+                        //Pair.of(Climate.parameters(0F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.FROZEN_CAVE))
+                )
+        );
+
+
+        NoiseBasedChunkGenerator layered = new LayeredNoiseChunkGenerator(
+                FantasiaBiomeSource.createFromList(surfaceBiomes, caveBiomes),
+                300,
+                noiseGenSettings.getOrThrow(FNoiseGenerationSettings.FANTASIA_NOISE_SETTINGS_ID));
+
+        LevelStem stem = new LevelStem(dimensionTypes.getOrThrow(FDimensionTypes.FANTASIA_TYPE), layered);
 
         context.register(FANTASIA_STEM, stem);
     }

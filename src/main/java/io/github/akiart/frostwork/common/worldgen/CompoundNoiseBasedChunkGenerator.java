@@ -64,7 +64,7 @@ public class CompoundNoiseBasedChunkGenerator extends NoiseBasedChunkGenerator {
                     var biome = biomeSource
                             .getNoiseBiome(pos.getX() / 4, pos.getY() / 4, pos.getZ() / 4, pRandom.sampler());
 
-                    if(biome.is(FBiomes.FLOATING_MOUNTAINS)) {
+                    if(biome.is(FBiomes.Sky.FLOATING_MOUNTAINS)) {
                         pChunk.setBlockState(pos, GLASS, false);
                     }
                 }

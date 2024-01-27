@@ -1,9 +1,23 @@
 {
   "type": "frostwork:frostwork",
   "generator": {
-    "type": "frostwork:compound_generator",
+    "type": "frostwork:layered_generator",
     "biome_source": {
       "type": "frostwork:fantasia",
+      "cave_biomes": [
+        {
+          "biome": "frostwork:hive",
+          "parameters": {
+            "continentalness": 0.0,
+            "depth": 1.0,
+            "erosion": 0.2,
+            "humidity": 0.2,
+            "offset": 0.0,
+            "temperature": 0.5,
+            "weirdness": 0.0
+          }
+        }
+      ],
       "surface_biomes": [
         {
           "biome": "frostwork:alpine_tundra",
@@ -18,32 +32,20 @@
           }
         },
         {
-          "biome": "frostwork:frozen_cave",
+          "biome": "frostwork:debug_blue",
           "parameters": {
             "continentalness": 0.0,
-            "depth": 1.0,
-            "erosion": 0.2,
-            "humidity": 0.2,
+            "depth": 0.0,
+            "erosion": 0.0,
+            "humidity": 0.0,
             "offset": 0.0,
-            "temperature": 0.2,
-            "weirdness": 0.0
-          }
-        },
-        {
-          "biome": "frostwork:floating_mountains",
-          "parameters": {
-            "continentalness": 0.0,
-            "depth": 1.0,
-            "erosion": 0.2,
-            "humidity": 0.2,
-            "offset": 0.0,
-            "temperature": 0.2,
+            "temperature": -0.6,
             "weirdness": 0.0
           }
         }
       ]
     },
-    "debug_strips": 150,
+    "debug_strips": 300,
     "settings": "frostwork:fantasia_noise"
   }
 }

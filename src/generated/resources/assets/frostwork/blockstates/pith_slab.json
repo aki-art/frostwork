@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "frostwork:block/pith_slab"
+    },
+    "type=double": {
+      "model": "frostwork:block/pith"
+    },
+    "type=top": {
+      "model": "frostwork:block/pith_slab_top"
+    }
+  }
+}
