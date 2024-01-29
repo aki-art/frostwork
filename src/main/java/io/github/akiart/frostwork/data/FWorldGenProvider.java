@@ -4,6 +4,7 @@ import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.worldgen.*;
 import io.github.akiart.frostwork.common.worldgen.biome.FBiomes;
 import io.github.akiart.frostwork.common.worldgen.features.FConfiguredFeatures;
+import io.github.akiart.frostwork.common.worldgen.features.FPlacedFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;

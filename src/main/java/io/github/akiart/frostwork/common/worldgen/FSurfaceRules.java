@@ -48,6 +48,7 @@ public class FSurfaceRules {
     private static final SurfaceRules.RuleSource SANDSTONE = defaultState(Blocks.SANDSTONE);
     private static final SurfaceRules.RuleSource MOSS = defaultState(Blocks.MOSS_BLOCK);
     private static final SurfaceRules.RuleSource PITH = defaultState(FBlocks.PITH.block.get());
+    private static final SurfaceRules.RuleSource HONEYCOMB_BLOCK = defaultState(Blocks.HONEYCOMB_BLOCK);
 
     private static FastNoiseLite cellularNoise;
 
@@ -82,10 +83,27 @@ public class FSurfaceRules {
                 )
         );
 
+        SurfaceRules.RuleSource grimcapGrove = SurfaceRules.sequence(
+                SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(FBiomes.Cave.GRIMCAP_GROVE),
+                        SurfaceRules.sequence(
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.ON_FLOOR,
+                                        defaultState(FBlocks.OVERGROWN_SANGUITE.get())),
+                                defaultState(FBlocks.SANGUITE.block.get())
+                        )
+                )
+        );
+
         SurfaceRules.RuleSource hive = SurfaceRules.sequence(
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(FBiomes.Cave.HIVE),
-                        PITH
+                        SurfaceRules.sequence(
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, -99, -0.66),
+                                        HONEYCOMB_BLOCK),
+                                PITH
+                        )
                 )
         );
 
@@ -158,7 +176,8 @@ public class FSurfaceRules {
                         tundra,
                         frozen_cavern,
                         verdantGlade,
-                        hive
+                        hive,
+                        grimcapGrove
                 )
                 //.add(test2);
         ;

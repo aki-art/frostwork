@@ -48,9 +48,25 @@ public class FBlocks {
 
     public static final StoneBlockSet AQUAMIRE = BlockRegistryUtil.registerStones("aquamire", 5f, 20f, MapColor.COLOR_LIGHT_BLUE, false);
     public static final StoneBlockSet VERDANT_ROCK = BlockRegistryUtil.registerStones("verdant_rock", 5f, 20f, MapColor.COLOR_GREEN, false);
-    public static final StoneBlockSet PITH = BlockRegistryUtil.registerStones("pith", 5f, 20f, MapColor.COLOR_YELLOW, false);
-    public static final StoneBlockSet POLISHED_AQUAMIRE = BlockRegistryUtil.registerStones("polished_aquamire", 5f, 20f, MapColor.COLOR_LIGHT_BLUE, false);
+    public static final StoneBlockSet PITH = BlockRegistryUtil.registerStones("pith", false,
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_YELLOW)
+                    .strength(6f)
+                    .destroyTime(24f)
+                    .ignitedByLava()
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.CANDLE));
 
+    public static final StoneBlockSet POLISHED_AQUAMIRE = BlockRegistryUtil.registerStones("polished_aquamire", 5f, 20f, MapColor.COLOR_LIGHT_BLUE, false);
+    public static final DeferredBlock<Block> FRAMED_PITH = BlockRegistryUtil.register("framed_pith",
+            () -> new Block(BlockBehaviour.Properties
+                    .of()
+                    .mapColor(MapColor.COLOR_YELLOW)
+                    .strength(6f)
+                    .destroyTime(24f)
+                    .ignitedByLava()
+                    .sound(SoundType.CANDLE)
+            ));
     public static final StoneBlockSet SANGUITE = BlockRegistryUtil.registerStones("sanguite", TUNING.COBBLE_HARDNESS, TUNING.COBBLE_RESISTANCE, MapColor.NETHER, false);
     public static final StoneBlockSet POLISHED_SANGUITE = BlockRegistryUtil.registerStones("polished_sanguite", TUNING.COBBLE_HARDNESS, TUNING.COBBLE_RESISTANCE, MapColor.NETHER, false);
     public static final StoneBlockSet POLISHED_MALACHITE = BlockRegistryUtil.registerStones("polished_malachite", TUNING.COBBLE_HARDNESS, TUNING.COBBLE_RESISTANCE, MapColor.COLOR_GREEN, false);
@@ -80,6 +96,17 @@ public class FBlocks {
     public static final DeferredBlock<ForgetMeNowBlock> FORGET_ME_NOW = BlockRegistryUtil.register("forget_me_now",
             () -> new ForgetMeNowBlock(MobEffects.WEAKNESS, 40, BlockBehaviour.Properties.ofFullCopy(Blocks.WITHER_ROSE)));
 
+    public static final DeferredBlock<BulbSackBlock> BULBSACK = BlockRegistryUtil.register("bulbsack",
+            () -> new BulbSackBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_YELLOW)
+                    //.offsetType(BlockBehaviour.OffsetType.XYZ)
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.SLIME_BLOCK)
+                    .pushReaction(PushReaction.DESTROY)
+                    .emissiveRendering((state, level, pos) -> true)
+                    .lightLevel(state -> state.getValue(BulbSackBlock.SACKS) * 3)));
+
     public static final DeferredBlock<FlowerBlock> BEARBERRY = BlockRegistryUtil.register("bearberry",
             () -> new FlowerBlock(() -> MobEffects.ABSORPTION, 4, BlockBehaviour.Properties.of()
                     .mapColor(MapColor.PLANT)
@@ -87,7 +114,8 @@ public class FBlocks {
                     .instabreak()
                     .sound(SoundType.FLOWERING_AZALEA)
                     .offsetType(BlockBehaviour.OffsetType.XZ)
-                    .pushReaction(PushReaction.DESTROY)));
+                    .pushReaction(PushReaction.DESTROY)
+            ));
 
     public static final DeferredBlock<LanternBlock> CANDELOUPE = BlockRegistryUtil.register("candeloupe",
             () -> new LanternBlock(BlockBehaviour.Properties.of()

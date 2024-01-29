@@ -40,8 +40,9 @@ public class FDimensions {
 
         Climate.ParameterList<Holder<Biome>> caveBiomes = new Climate.ParameterList<>(
                 List.of(
-                        Pair.of(Climate.parameters(0.5F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Cave.HIVE))
-                        //Pair.of(Climate.parameters(0.5F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.VERDANT_GLADE)),
+                        //Pair.of(Climate.parameters(0.5F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Cave.HIVE))
+                        //Pair.of(Climate.parameters(0.5F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Cave.VERDANT_GLADE))
+                        Pair.of(Climate.parameters(0.5F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Cave.GRIMCAP_GROVE))
                         //Pair.of(Climate.parameters(0F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.FROZEN_CAVE))
                 )
         );

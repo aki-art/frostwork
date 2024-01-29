@@ -47,7 +47,7 @@ public class FantasiaBiomeSource extends BiomeSource {
     @Override
     protected Stream<Holder<Biome>> collectPossibleBiomes() {
         var surface = this.surfaceParameters.values().stream().map(Pair::getSecond);
-        var cave = this.surfaceParameters.values().stream().map(Pair::getSecond);
+        var cave = this.caveParameters.values().stream().map(Pair::getSecond);
 
         return Stream.concat(surface, cave);
     }
@@ -66,6 +66,7 @@ public class FantasiaBiomeSource extends BiomeSource {
         var offset = surface + (depth / 100) + buffer;
 
         var isSurface = actualY > offset;
+
         if(isSurface)
             return surfaceParameters.findValue(surfaceSample);
         else

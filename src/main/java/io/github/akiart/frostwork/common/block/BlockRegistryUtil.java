@@ -71,6 +71,12 @@ public class BlockRegistryUtil {
         return obj;
     }
 
+    public static StoneBlockSet registerStones(String name, boolean redstone, BlockBehaviour.Properties properties) {
+        StoneBlockSet obj = new StoneBlockSet(name, redstone, properties);
+        stones.add(obj);
+        return obj;
+    }
+
     public static HashSet<StoneBlockSet> getStones() {
         return stones;
     }

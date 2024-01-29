@@ -4,6 +4,8 @@ import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.FTags;
 import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.worldgen.features.configTypes.BlobConfig;
+import io.github.akiart.frostwork.common.worldgen.features.configTypes.FungusFeatureConfig;
+import io.github.akiart.frostwork.common.worldgen.features.configTypes.Tendrils2DConfig;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -43,21 +45,25 @@ import java.util.List;
 public class FConfiguredFeatures {
 
     // Ores
-    public static final ResourceKey<ConfiguredFeature<?, ?>> EDELSTONE_COAL_ORE = registerKey("edelstone_coal_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> EDELSTONE_COAL_ORE = key("edelstone_coal_ore");
 
     // Trees
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FROZEN_ELM = registerKey("frozen_elm");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ELM = registerKey("elm");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FROZEN_ELM = key("frozen_elm");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ELM = key("elm");
+
+    // Mushrooms
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MEDIUM_GRIMCAP = key("medium_grimcap");
 
     // Vegetation
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FORGET_ME_KNOW_COVERAGE = registerKey("forget_me_now_coverage");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DIORITE_BOULDERS = registerKey("diorite_boulders");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_DIORITE_BOULDERS = registerKey("large_diorite_boulders");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> TUNDRA_FLOWERS = registerKey("tundra_flowers");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> TUNDRA_BEARBERRY = registerKey("tundra_bearberry");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> VERDANT_SINGLE_CANDELOUPE = registerKey("verdant_single_candeloupe");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FORGET_ME_KNOW_COVERAGE = key("forget_me_now_coverage");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DIORITE_BOULDERS = key("diorite_boulders");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_DIORITE_BOULDERS = key("large_diorite_boulders");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> TUNDRA_FLOWERS = key("tundra_flowers");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> TUNDRA_BEARBERRY = key("tundra_bearberry");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> VERDANT_SINGLE_CANDELOUPE = key("verdant_single_candeloupe");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GRIMCAP_BULBSACK = key("grimcap_bulbsack");
 
-    private static ResourceKey<ConfiguredFeature<?, ?>> registerKey(final String name) {
+    private static ResourceKey<ConfiguredFeature<?, ?>> key(final String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Frostwork.MOD_ID, name));
     }
 
@@ -66,6 +72,7 @@ public class FConfiguredFeatures {
 
         register(context, DIORITE_BOULDERS, FFeatures.BOULDER.get(), new BlobConfig(BlockStateProvider.simple(Blocks.DIORITE), BlockTags.DIRT, true, true, 3, UniformInt.of(0, 3)));
         register(context, LARGE_DIORITE_BOULDERS, FFeatures.BOULDER.get(), new BlobConfig(BlockStateProvider.simple(Blocks.DIORITE), BlockTags.DIRT, true, false, 3,  UniformInt.of(2, 5)));
+
 
         register(context, FROZEN_ELM, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(FBlocks.FROZEN_ELM.log.get()),
@@ -96,6 +103,31 @@ public class FConfiguredFeatures {
                 VERDANT_SINGLE_CANDELOUPE,
                 Feature.SIMPLE_BLOCK,
                 new SimpleBlockConfiguration(BlockStateProvider.simple(FBlocks.CANDELOUPE.get())));
+
+        register(context,
+                MEDIUM_GRIMCAP,
+                FFeatures.FUNGUS.get(),
+                new FungusFeatureConfig(
+                        UniformInt.of(4, 6),
+                        BlockStateProvider.simple(FBlocks.GRIMCAP.stem.get()),
+                        -2,
+                        List.of(
+                                new FungusFeatureConfig.Layer(
+                                        BlockStateProvider.simple(FBlocks.GRIMCAP.cap.get()),
+                                        null,
+                                        ConstantInt.of(3)
+                                ),
+                                new FungusFeatureConfig.Layer(
+                                        BlockStateProvider.simple(FBlocks.GRIMCAP.cap.get()),
+                                        BlockStateProvider.simple(FBlocks.GRIMCAP.stem.get()),
+                                        ConstantInt.of(3)
+                                ),
+                                new FungusFeatureConfig.Layer(
+                                        BlockStateProvider.simple(FBlocks.GRIMCAP.cap.get()),
+                                        BlockStateProvider.simple(FBlocks.GRIMCAP.cap.get()),
+                                        ConstantInt.of(2)
+                                )
+                        )));
 
         register(context,
                 FORGET_ME_KNOW_COVERAGE,
@@ -141,6 +173,37 @@ public class FConfiguredFeatures {
                         97, 10, 3, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(FBlocks.BEARBERRY.get())))
                 )
         );
+
+//        var spreadBulbSacks = new RandomPatchConfiguration(
+//                256,
+//                8,
+//                8,
+//                PlacementUtils.onlyWhenEmpty(
+//                        FFeatures.BULBSACK.get(),
+//                        FeatureConfiguration.NONE
+//                )
+//        );
+
+        var tendrilsOfBulbs = new Tendrils2DConfig(
+                UniformInt.of(9, 12),
+                8f,
+                0.7f,
+                999f,
+                PlacementUtils.onlyWhenEmpty(
+                        FFeatures.BULBSACK.get(),
+                        FeatureConfiguration.NONE
+                )
+        );
+
+        FeatureUtils.register(
+                context,
+                GRIMCAP_BULBSACK,
+                Feature.SIMPLE_RANDOM_SELECTOR,
+                new SimpleRandomFeatureConfiguration(
+                        HolderSet.direct(
+                                PlacementUtils.inlinePlaced(FFeatures.TENDRILS_2D.get(), tendrilsOfBulbs)
+                        )
+                ));
 
         FeatureUtils.register(
                 context,

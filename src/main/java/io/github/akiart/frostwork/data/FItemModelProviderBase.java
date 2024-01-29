@@ -83,6 +83,10 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
         }
         else if(blocks instanceof MushroomBlockSet mushroom) {
             fromBlock(mushroom.cap);
+
+            var inventoryName = getBlockName(mushroom.cap).getPath() + "_inventory";
+            withExistingParent(getBlockName(mushroom.cap).getPath(), getBlockLocation(inventoryName));
+
             fromBlock(mushroom.stem);
             fromBlock(mushroom.strippedStem);
         }

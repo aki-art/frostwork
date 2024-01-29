@@ -39,6 +39,8 @@ public class FItems {
     public static final StoneItemSet AQUAMIRE = ItemRegistryUtil.registerStoneItems(FBlocks.AQUAMIRE);
     public static final StoneItemSet VERDANT_ROCK = ItemRegistryUtil.registerStoneItems(FBlocks.VERDANT_ROCK);
     public static final StoneItemSet PITH = ItemRegistryUtil.registerStoneItems(FBlocks.PITH);
+    public static final DeferredItem<BlockItem> FRAMED_PITH = ItemRegistryUtil.registerFromBlock(FBlocks.FRAMED_PITH);
+
     public static final StoneItemSet POLISHED_AQUAMIRE = ItemRegistryUtil.registerStoneItems(FBlocks.POLISHED_AQUAMIRE);
 
     // Ores
@@ -55,6 +57,7 @@ public class FItems {
     public static final DeferredItem<BlockItem> FORGET_ME_NOW = ItemRegistryUtil.registerFromBlock(FBlocks.FORGET_ME_NOW);
     public static final DeferredItem<BlockItem> BEARBERRY = ItemRegistryUtil.registerFromBlock(FBlocks.BEARBERRY);
     public static final DeferredItem<BlockItem> CANDELOUPE = ItemRegistryUtil.registerFromBlock(FBlocks.CANDELOUPE);
+    public static final DeferredItem<BlockItem> BULBSACK = ItemRegistryUtil.registerFromBlock(FBlocks.BULBSACK);
 
     // Combat
     public static DeferredItem<WurmArrowItem> TATZELWURM_ARROW = ItemRegistryUtil.register("tatzelwurm_arrow", () -> new WurmArrowItem(new Item.Properties()));
@@ -76,5 +79,5 @@ public class FItems {
     public static final DeferredItem<Item> ACID_BUCKET = ItemRegistryUtil.register("acid_bucket",
             () -> new BucketItem(FFluids.ACID_SOURCE, new Item.Properties()
                     .craftRemainder(Items.BUCKET)
-                    .stacksTo(1)));
+                    .stacksTo(999)));
 }

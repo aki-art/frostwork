@@ -40,6 +40,8 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
 
         pelt(FBlocks.HUNTER_PELT_BROWN);
         pelt(FBlocks.HUNTER_PELT_CREAM);
+
+        simpleBlock(FBlocks.FRAMED_PITH.get());
     }
 
     private void plants() {
@@ -49,6 +51,7 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         crossBlock(FBlocks.FORGET_ME_NOW);
         crossBlock(FBlocks.BEARBERRY);
         candeloupe(FBlocks.CANDELOUPE);
+        bulbSack(FBlocks.BULBSACK);
     }
 
     private void forgetMeNow() {

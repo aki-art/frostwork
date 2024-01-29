@@ -12,8 +12,12 @@ import io.github.akiart.frostwork.common.fluid.FFluidTypes;
 import io.github.akiart.frostwork.common.fluid.FFluids;
 import io.github.akiart.frostwork.common.item.FItems;
 import io.github.akiart.frostwork.common.potion.FPotions;
-import io.github.akiart.frostwork.common.worldgen.*;
+import io.github.akiart.frostwork.common.worldgen.FDensityFunctions;
+import io.github.akiart.frostwork.common.worldgen.FSurfaceRules;
+import io.github.akiart.frostwork.common.worldgen.FantasiaBiomeSource;
+import io.github.akiart.frostwork.common.worldgen.LayeredNoiseChunkGenerator;
 import io.github.akiart.frostwork.common.worldgen.features.FFeatures;
+import io.github.akiart.frostwork.common.worldgen.features.placementModifiers.FPlacementModifierTypes;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -59,7 +63,9 @@ public class Frostwork {
         FCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         FParticles.PARTICLES.register(modEventBus);
         FFeatures.FEATURES.register(modEventBus);
+        FPlacementModifierTypes.PLACEMENT_MODIFIERS.register(modEventBus);
     }
+
     public void worldgenRegistryInit(RegisterEvent evt) {
         var key = evt.getRegistryKey();
 
@@ -77,6 +83,11 @@ public class Frostwork {
             Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "fantasia_surface_flat"), FDensityFunctions.FlatSurfaceDensityFunction.CODEC.codec());
             Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "exp_floor"), FDensityFunctions.ExponentialDensityFunction.CODEC.codec());
         }
+//        else if(key.equals(Registries.PLACEMENT_MODIFIER_TYPE)) {
+//            Registry.register(BuiltInRegistries.PLACEMENT_MODIFIER_TYPE, new ResourceLocation(MOD_ID, "cellular_boundary"), () -> {
+//                return CellularBoundaryFilter.CODEC;
+//            });
+//        }
     }
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {

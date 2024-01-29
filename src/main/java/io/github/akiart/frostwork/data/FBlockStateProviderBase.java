@@ -3,18 +3,17 @@ package io.github.akiart.frostwork.data;
 import com.mojang.logging.LogUtils;
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
+import io.github.akiart.frostwork.common.block.blockTypes.BulbSackBlock;
 import io.github.akiart.frostwork.common.block.blockTypes.FoamBlock;
 import io.github.akiart.frostwork.common.block.registrySets.AbstractWoodBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.world.level.block.LanternBlock;
-import net.minecraft.world.level.block.SnowyDirtBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -31,6 +30,64 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
     private static final Logger LOGGER = LogUtils.getLogger();
     protected ResourceLocation getVanillaLocation(String name) {
         return new ResourceLocation("block/" + name);
+    }
+
+    protected void mushroomBlock(DeferredBlock<? extends HugeMushroomBlock> block, ResourceLocation insideTexture) {
+
+        var baseModel = models()
+                .withExistingParent(getBlockName(block).getPath(), "template_single_face")
+                .texture("texture", blockTexture(block.get()));
+
+        var insideModel = models()
+                .withExistingParent(getBlockName(block).getPath() + "_inside", "template_single_face")
+                .texture("texture", insideTexture);
+
+        getMultipartBuilder(block.get())
+                .part().modelFile(baseModel).uvLock(true).rotationX(270).addModel().condition(HugeMushroomBlock.UP, true).end()
+                .part().modelFile(baseModel).uvLock(true).rotationX(90).addModel().condition(HugeMushroomBlock.DOWN, true).end()
+                .part().modelFile(baseModel).uvLock(true).addModel().condition(HugeMushroomBlock.NORTH, true).end()
+                .part().modelFile(baseModel).uvLock(true).rotationY(90).addModel().condition(HugeMushroomBlock.EAST, true).end()
+                .part().modelFile(baseModel).uvLock(true).rotationY(180).addModel().condition(HugeMushroomBlock.SOUTH, true).end()
+                .part().modelFile(baseModel).uvLock(true).rotationY(270).addModel().condition(HugeMushroomBlock.WEST, true).end()
+
+                .part().modelFile(insideModel).uvLock(true).rotationX(270).addModel().condition(HugeMushroomBlock.UP, false).end()
+                .part().modelFile(insideModel).uvLock(true).rotationX(90).addModel().condition(HugeMushroomBlock.DOWN, false).end()
+                .part().modelFile(insideModel).uvLock(true).addModel().condition(HugeMushroomBlock.NORTH, false).end()
+                .part().modelFile(insideModel).uvLock(true).rotationY(90).addModel().condition(HugeMushroomBlock.EAST, false).end()
+                .part().modelFile(insideModel).uvLock(true).rotationY(180).addModel().condition(HugeMushroomBlock.SOUTH, false).end()
+                .part().modelFile(insideModel).uvLock(true).rotationY(270).addModel().condition(HugeMushroomBlock.WEST, false).end();
+
+        models().cubeAll(getBlockName(block).getPath() + "_inventory", blockTexture(block.get()));
+    }
+
+    protected void bulbSack(DeferredBlock<? extends BulbSackBlock> block) {
+
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            var sacks = state.getValue(BulbSackBlock.SACKS);
+
+            var modelName = switch(sacks) {
+                default -> "sack_single";
+                case 2 -> "sack_double";
+                case 3 -> "sack_triple";
+            };
+
+            var baseModel = models()
+                    .withExistingParent(getBlockName(block).getPath() + "_"  + sacks, getLocation(modelName))
+                    .renderType("translucent")
+                    .texture("texture", blockTexture(block.get()));
+
+            var facing = state.getValue(BulbSackBlock.FACING);
+            var onSide = facing.getAxis().isHorizontal();
+
+            int x = onSide ? 90 : (facing == Direction.DOWN ? 180 : 0);
+            int y = onSide ? ((((int)facing.toYRot()) + 180) % 360) : 0;
+
+            return ConfiguredModel.builder()
+                    .modelFile(baseModel)
+                    .rotationX(x)
+                    .rotationY(y)
+                    .build();
+        });
     }
 
     protected void candeloupe(DeferredBlock<? extends LanternBlock> block) {
@@ -100,9 +157,10 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 
         ResourceLocation plankTexture = blockTexture(blockSet.planks.get());
 
+
         woods(blockSet, plankTexture);
         logBlock(blockSet.stem.get());
-        simpleBlock(blockSet.cap.get());
+        mushroomBlock(blockSet.cap, getLocation("grimcap_stem_top"));
         logBlock(blockSet.strippedStem.get());
     }
 

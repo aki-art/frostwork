@@ -18,20 +18,17 @@ public class StoneBlockSet extends AbstractBlockSet {
     public final DeferredBlock<ButtonBlock> button;
 
     public StoneBlockSet(String name, float hardness, float resistance, MapColor color, boolean redstoneComponents) {
-        this(name, hardness, resistance, color, redstoneComponents, BlockBehaviour.Properties.of()
+        this(name, redstoneComponents, BlockBehaviour.Properties.of()
                 .mapColor(color)
                 .requiresCorrectToolForDrops()
                 .strength(hardness, resistance));
     }
 
-    public StoneBlockSet(String name, float hardness, float resistance, MapColor color, boolean redstoneComponents, BlockBehaviour.Properties properties) {
+    public StoneBlockSet(String name, boolean redstoneComponents, BlockBehaviour.Properties properties) {
         super(name, properties);
 
         block = register(name,
-                () -> new Block(BlockBehaviour.Properties.of()
-                        .mapColor(color)
-                        .requiresCorrectToolForDrops()
-                        .strength(hardness, resistance)));
+                () -> new Block(properties));
 
         stairs = register(name + "_stairs",
                 () -> new StairBlock(() -> block.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(block.get())));

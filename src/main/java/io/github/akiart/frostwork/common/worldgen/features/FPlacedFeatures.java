@@ -1,7 +1,9 @@
-package io.github.akiart.frostwork.common.worldgen;
+package io.github.akiart.frostwork.common.worldgen.features;
 
 import io.github.akiart.frostwork.Frostwork;
-import io.github.akiart.frostwork.common.worldgen.features.FConfiguredFeatures;
+import io.github.akiart.frostwork.common.worldgen.FOrePlacement;
+import io.github.akiart.frostwork.common.worldgen.features.placementModifiers.RidgedCountPlacement;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -10,8 +12,10 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ClampedInt;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
 
@@ -29,6 +33,7 @@ public class FPlacedFeatures {
         public static final ResourceKey<PlacedFeature> TUNDRA_FLOWERS = registerKey("tundra_flowers");
         public static final ResourceKey<PlacedFeature> BEARBERRY_PATCH = registerKey("bearberry_patch");
         public static final ResourceKey<PlacedFeature> SPORADIC_CANDELOPUE = registerKey("sporadic_candeloupe");
+        public static final ResourceKey<PlacedFeature> GROVE_BULBSACKS = registerKey("grove_bulbsacks");
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {
@@ -49,17 +54,29 @@ public class FPlacedFeatures {
                 BiomeFilter.biome()
         );
 
-
         PlacementUtils.register(
                 context,
                 Vegetation.SPORADIC_CANDELOPUE,
                 configuredFeatures.getOrThrow(FConfiguredFeatures.VERDANT_SINGLE_CANDELOUPE),
-                RarityFilter.onAverageOnceEvery(7),
+                CountPlacement.of(64),
                 InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP,
-                CountPlacement.of(20),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
                 BiomeFilter.biome()
         );
+
+        PlacementUtils.register(
+                context,
+                Vegetation.GROVE_BULBSACKS,
+                configuredFeatures.getOrThrow(FConfiguredFeatures.GRIMCAP_BULBSACK),
+                //RarityFilter.onAverageOnceEvery(7),
+                new RidgedCountPlacement(4f, 0.7f, 999f),
+                //InSquarePlacement.spread(),
+                PlacementUtils.FULL_RANGE,
+                BiomeFilter.biome()
+        );
+
 
         PlacementUtils.register(
                 context,

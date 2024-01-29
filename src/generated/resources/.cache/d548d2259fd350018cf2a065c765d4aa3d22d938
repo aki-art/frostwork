@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-27T22:40:31.9198395	Item Models: frostwork
+// 1.20.4	2024-01-28T21:06:14.8643459	Item Models: frostwork
 60cb02f8185575d6bb334f1739f7ee956338d3fd assets/frostwork/models/item/acid_bucket.json
 c4f111fb6eaeb2eb878ad963a3ca346968be5da1 assets/frostwork/models/item/aquamire.json
 d1db1648114a7e53db818b708cdde47ff27e72cf assets/frostwork/models/item/aquamire_slab.json
@@ -6,6 +6,7 @@ fd03b32a97be690033d84ce567913dfeced68042 assets/frostwork/models/item/aquamire_s
 708367d7d82a3f02ec417346138b37bfbccb0857 assets/frostwork/models/item/aquamire_wall.json
 f02a8b9a62d3385cd94bbfdf3b962f3d4235c88a assets/frostwork/models/item/bearberry.json
 807cb0acdb18f0171624359a01a4fe0c44659e0d assets/frostwork/models/item/bottle_of_foam.json
+fb487d67a237693927c9abefdd3bac20ae23c12a assets/frostwork/models/item/bulbsack.json
 ff288c61ba7106ca392bc51bc320223abb9b8af6 assets/frostwork/models/item/candeloupe.json
 dff1030e234d7e6b2b8cec55abc575eab1aff9f1 assets/frostwork/models/item/cracked_edelstone_bricks.json
 957568d84e2f289af79b294c904c884835a82cf0 assets/frostwork/models/item/cracked_edelstone_bricks_slab.json
@@ -39,6 +40,7 @@ f1f32abb0cb103e0ef93acc6b55767ea12f2ee49 assets/frostwork/models/item/elm_stripp
 63dd529882c04882e31f035aaec03d07306ea80a assets/frostwork/models/item/elm_trapdoor.json
 055db859de03acd8880fe10a2a0c293460320938 assets/frostwork/models/item/elm_wood.json
 20cf6f5fa929f510a7328a7cc1e9ee9719d37047 assets/frostwork/models/item/forget_me_now.json
+d719ec27efa8e842fb7e589af40dbe6669e7dffa assets/frostwork/models/item/framed_pith.json
 6aaa08f432f77ed87f64bcc2b12a9d8eaea075fa assets/frostwork/models/item/frozen_dirt.json
 ea93d22c03d8a9b6f2c3179c5205835d99e166d4 assets/frostwork/models/item/frozen_elm_button.json
 0441624b4c75969df2a9c842b2e456e8529ab4c8 assets/frostwork/models/item/frozen_elm_door.json
@@ -56,7 +58,7 @@ b91f206dfe18276dcd20505e3ba04cb708df7def assets/frostwork/models/item/frozen_elm
 88138a5f1bb7567e77faf5cf11d11e917e800315 assets/frostwork/models/item/frozen_elm_trapdoor.json
 555b659d1eb8aa318637282bc0519fd91fb61914 assets/frostwork/models/item/frozen_elm_wood.json
 f4b00a4d9f0e4fe2a06a0e7560f2c9e8b4c18054 assets/frostwork/models/item/grimcap_button.json
-6d77846feac43b9b638b8a3e5d85c7ce81dfeb5f assets/frostwork/models/item/grimcap_cap.json
+afb1327f6ef81a4ad96ff5f0f5fd0957fddee678 assets/frostwork/models/item/grimcap_cap.json
 6996adabadcec4024e256b7ea142f61d5558a3d4 assets/frostwork/models/item/grimcap_door.json
 99e693933ba8cc3d43641609820a8b21ae582098 assets/frostwork/models/item/grimcap_fence.json
 c6981178aaa782e0e7d55c7d02d938b842272c40 assets/frostwork/models/item/grimcap_fence_gate.json

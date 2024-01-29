@@ -1,9 +1,10 @@
-// 1.20.4	2024-01-27T22:40:31.9368449	Loot Tables
+// 1.20.4	2024-01-28T20:50:44.9965075	Loot Tables
 f164f89777131a53b144fa5a7c03c736c6fd8706 data/frostwork/loot_tables/blocks/aquamire.json
 8a1e744f4dfba1c368803fa9045a5efb88e6570d data/frostwork/loot_tables/blocks/aquamire_slab.json
 1e39e2b659f48452715ecb6816352d02f302b0aa data/frostwork/loot_tables/blocks/aquamire_stairs.json
 f48c2fbc1cc17f3fdb0ad5e2d2c265129d084dfb data/frostwork/loot_tables/blocks/aquamire_wall.json
 8bca19a775593998751fdf59caab6b104708e88e data/frostwork/loot_tables/blocks/bearberry.json
+dc9f9ad030e872fc9ea7a3503e7b100f0a93fa0b data/frostwork/loot_tables/blocks/bulbsack.json
 993bb9806576e85fe7ddfad40781786498f3d0c0 data/frostwork/loot_tables/blocks/candeloupe.json
 1a8484793f7e873d431134bd42cff6759402a338 data/frostwork/loot_tables/blocks/cracked_edelstone_bricks.json
 935300c4cce2d6a9007a3a42df537dc5a3ca4640 data/frostwork/loot_tables/blocks/cracked_edelstone_bricks_slab.json
@@ -38,6 +39,7 @@ f0fefa2c9c758f34e4970e101c7af366bf0acb19 data/frostwork/loot_tables/blocks/elm_t
 77457dd80c0b57e7d40137bd93ce2745622c0482 data/frostwork/loot_tables/blocks/elm_wood.json
 5ed796532ad575d7eeb896d38518406427b9b3c8 data/frostwork/loot_tables/blocks/foam.json
 4a74158f6c21645633a6ed5d802c03c05c90402a data/frostwork/loot_tables/blocks/forget_me_now.json
+58efb91879104db8e34a0c3e4698b982f0345f8d data/frostwork/loot_tables/blocks/framed_pith.json
 dd42e9d8e08cffe8cf383923d32ca9df694bf341 data/frostwork/loot_tables/blocks/frozen_dirt.json
 439d907bd76031f8bdbdf4c41a611b8b04ca8fa7 data/frostwork/loot_tables/blocks/frozen_elm_button.json
 3c26f410a504c8a63fea13906e70a77292e89c1b data/frostwork/loot_tables/blocks/frozen_elm_door.json

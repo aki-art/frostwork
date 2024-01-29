@@ -1,0 +1,7 @@
+{
+  "parent": "frostwork:block/sack_double",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "texture": "frostwork:block/bulbsack"
+  }
+}

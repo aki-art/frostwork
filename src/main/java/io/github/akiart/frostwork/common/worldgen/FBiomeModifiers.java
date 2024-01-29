@@ -1,6 +1,7 @@
 package io.github.akiart.frostwork.common.worldgen;
 
 import io.github.akiart.frostwork.Frostwork;
+import io.github.akiart.frostwork.common.worldgen.features.FPlacedFeatures;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;

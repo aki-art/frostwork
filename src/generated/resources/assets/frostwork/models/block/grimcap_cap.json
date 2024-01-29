@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/template_single_face",
   "textures": {
-    "all": "frostwork:block/grimcap_cap"
+    "texture": "frostwork:block/grimcap_cap"
   }
 }

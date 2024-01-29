@@ -2,13 +2,15 @@ package io.github.akiart.frostwork.common.worldgen.biome;
 
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.worldgen.FCarvers;
-import io.github.akiart.frostwork.common.worldgen.FPlacedFeatures;
+import io.github.akiart.frostwork.common.worldgen.features.FPlacedFeatures;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.Musics;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
@@ -24,6 +26,7 @@ public class FBiomes {
         public static final ResourceKey<Biome> FROZEN_CAVE = key("frozen_cave");
         public static final ResourceKey<Biome> VERDANT_GLADE = key("verdant_glade");
         public static final ResourceKey<Biome> HIVE = key("hive");
+        public static final ResourceKey<Biome> GRIMCAP_GROVE = key("grimcap_grove");
     }
 
     public static class Debug {
@@ -47,6 +50,7 @@ public class FBiomes {
         context.register(Surface.ALPINE_TUNDRA, alpineTundra(context));
         context.register(Cave.FROZEN_CAVE, frozenCave(context));
         context.register(Cave.VERDANT_GLADE, verdantGlade(context));
+        context.register(Cave.GRIMCAP_GROVE, grimcapGrove(context));
         context.register(Cave.HIVE, hive(context));
         context.register(Debug.DEBUG_RED, debugBiome(context, 0xFF0000));
         context.register(Debug.DEBUG_BLUE, debugBiome(context, 0x000000FF));
@@ -81,6 +85,36 @@ public class FBiomes {
                 .build();
     }
 
+    private static Biome grimcapGrove(BootstapContext<Biome> context) {
+        MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+
+        BiomeGenerationSettings.Builder biomeBuilder =
+                new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+
+        biomeBuilder.addCarver(GenerationStep.Carving.AIR, FCarvers.FANTASIA_CAVE);
+
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.GROVE_BULBSACKS);
+
+        return new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .downfall(0f)
+                .temperature(0.4f)
+                .generationSettings(biomeBuilder.build())
+                .mobSpawnSettings(spawnBuilder.build())
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(0x5ea0b1)
+                        .waterFogColor(0x5ea0b1)
+                        .skyColor(0x6f2914)
+                        .grassColorOverride(0x6d2c1b)
+                        .foliageColorOverride(0x6d2c1b)
+                        .fogColor(0x823622)
+
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .backgroundMusic(Musics.createGameMusic(SoundEvents.MUSIC_BIOME_LUSH_CAVES))
+                        .build())
+                .build();
+    }
+
     private static Biome verdantGlade(BootstapContext<Biome> context) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
@@ -108,7 +142,7 @@ public class FBiomes {
                         .fogColor(9543081)
 
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
-                        //.backgroundMusic(Musics.createGameMusic(ModSounds.BAR_BRAWL.getHolder().get()))
+                        .backgroundMusic(Musics.createGameMusic(SoundEvents.MUSIC_BIOME_LUSH_CAVES))
                         .build())
                 .build();
     }
@@ -185,6 +219,7 @@ public class FBiomes {
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_TAIGA)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.BEARBERRY_PATCH);
 
+        //biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.SPORADIC_CANDELOPUE);
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
                 .downfall(0.8f)

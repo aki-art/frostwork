@@ -1,9 +1,6 @@
 package io.github.akiart.frostwork.common.block.registrySets;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
@@ -14,7 +11,7 @@ import java.util.Map;
 public class MushroomBlockSet extends AbstractWoodBlockSet {
     public final DeferredBlock<RotatedPillarBlock> stem;
     public final DeferredBlock<RotatedPillarBlock> strippedStem;
-    public final DeferredBlock<Block> cap;
+    public final DeferredBlock<HugeMushroomBlock> cap;
 
     public MushroomBlockSet(String name, MapColor plankColor, MapColor barkColor, WoodType woodType, SoundType soundType) {
         this(name, plankColor, barkColor, woodType, soundType, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_STEM));
@@ -33,9 +30,9 @@ public class MushroomBlockSet extends AbstractWoodBlockSet {
         stripMap.put(stem.get(), strippedStem.get());
     }
 
-    private DeferredBlock<Block> createCap(String name, MapColor capColor) {
+    private DeferredBlock<HugeMushroomBlock> createCap(String name, MapColor capColor) {
         return register(name + "_cap",
-                () -> new Block(properties
+                () -> new HugeMushroomBlock(properties
                         .mapColor(capColor)
                         .strength(2.0F, 3.0F)
                         .sound(SoundType.FUNGUS)));

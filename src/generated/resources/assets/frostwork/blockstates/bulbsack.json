@@ -1,0 +1,160 @@
+{
+  "variants": {
+    "facing=down,sacks=1,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_1",
+      "x": 180
+    },
+    "facing=down,sacks=1,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_1",
+      "x": 180
+    },
+    "facing=down,sacks=2,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_2",
+      "x": 180
+    },
+    "facing=down,sacks=2,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_2",
+      "x": 180
+    },
+    "facing=down,sacks=3,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_3",
+      "x": 180
+    },
+    "facing=down,sacks=3,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_3",
+      "x": 180
+    },
+    "facing=east,sacks=1,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_1",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,sacks=1,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_1",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,sacks=2,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_2",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,sacks=2,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_2",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,sacks=3,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_3",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,sacks=3,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_3",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,sacks=1,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_1",
+      "x": 90
+    },
+    "facing=north,sacks=1,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_1",
+      "x": 90
+    },
+    "facing=north,sacks=2,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_2",
+      "x": 90
+    },
+    "facing=north,sacks=2,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_2",
+      "x": 90
+    },
+    "facing=north,sacks=3,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_3",
+      "x": 90
+    },
+    "facing=north,sacks=3,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_3",
+      "x": 90
+    },
+    "facing=south,sacks=1,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_1",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,sacks=1,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_1",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,sacks=2,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_2",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,sacks=2,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_2",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,sacks=3,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_3",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,sacks=3,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_3",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up,sacks=1,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_1"
+    },
+    "facing=up,sacks=1,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_1"
+    },
+    "facing=up,sacks=2,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_2"
+    },
+    "facing=up,sacks=2,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_2"
+    },
+    "facing=up,sacks=3,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_3"
+    },
+    "facing=up,sacks=3,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_3"
+    },
+    "facing=west,sacks=1,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_1",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,sacks=1,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_1",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,sacks=2,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_2",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,sacks=2,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_2",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,sacks=3,waterlogged=false": {
+      "model": "frostwork:block/bulbsack_3",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,sacks=3,waterlogged=true": {
+      "model": "frostwork:block/bulbsack_3",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

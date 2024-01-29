@@ -19,6 +19,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
         ItemRegistryUtil.stones.forEach(this::stone);
         ItemRegistryUtil.woods.forEach(this::wood);
 
+        fromBlock(FBlocks.FRAMED_PITH);
         fromBlock(FBlocks.EDELSTONE_COAL_ORE);
         fromBlock(FBlocks.MALACHITE_ICE_ORE);
         fromBlock(FBlocks.WOLF_BLOCK);
@@ -49,5 +50,6 @@ public class FItemModelProvider extends FItemModelProviderBase {
         miscItem(FItems.FORGET_ME_NOW);
         fromBlock(FBlocks.BEARBERRY);
         fromBlock(FBlocks.CANDELOUPE);
+        miscItem(FItems.BULBSACK);
     }
 }

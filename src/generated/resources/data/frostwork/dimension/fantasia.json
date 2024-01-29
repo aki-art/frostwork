@@ -6,7 +6,7 @@
       "type": "frostwork:fantasia",
       "cave_biomes": [
         {
-          "biome": "frostwork:hive",
+          "biome": "frostwork:grimcap_grove",
           "parameters": {
             "continentalness": 0.0,
             "depth": 1.0,
