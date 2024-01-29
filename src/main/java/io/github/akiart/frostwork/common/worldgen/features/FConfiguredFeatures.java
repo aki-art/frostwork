@@ -198,12 +198,18 @@ public class FConfiguredFeatures {
         FeatureUtils.register(
                 context,
                 GRIMCAP_BULBSACK,
-                Feature.SIMPLE_RANDOM_SELECTOR,
-                new SimpleRandomFeatureConfiguration(
-                        HolderSet.direct(
-                                PlacementUtils.inlinePlaced(FFeatures.TENDRILS_2D.get(), tendrilsOfBulbs)
-                        )
-                ));
+                FFeatures.TENDRILS.get(),
+                tendrilsOfBulbs);
+
+//        FeatureUtils.register(
+//                context,
+//                GRIMCAP_BULBSACK,
+//                Feature.SIMPLE_RANDOM_SELECTOR,
+//                new SimpleRandomFeatureConfiguration(
+//                        HolderSet.direct(
+//                                PlacementUtils.inlinePlaced(FFeatures.TENDRILS_2D.get(), tendrilsOfBulbs)
+//                        )
+//                ));
 
         FeatureUtils.register(
                 context,

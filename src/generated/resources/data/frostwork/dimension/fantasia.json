@@ -16,6 +16,18 @@
             "temperature": 0.5,
             "weirdness": 0.0
           }
+        },
+        {
+          "biome": "frostwork:frozen_cave",
+          "parameters": {
+            "continentalness": 0.0,
+            "depth": 1.0,
+            "erosion": 0.2,
+            "humidity": 0.2,
+            "offset": 0.0,
+            "temperature": -2.0,
+            "weirdness": 0.0
+          }
         }
       ],
       "surface_biomes": [

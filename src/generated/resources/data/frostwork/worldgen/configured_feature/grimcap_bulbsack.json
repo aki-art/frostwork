@@ -1,38 +1,30 @@
 {
-  "type": "minecraft:simple_random_selector",
+  "type": "frostwork:tendrils",
   "config": {
-    "features": {
+    "cutoff_max": 999.0,
+    "cutoff_min": 0.7,
+    "feature": {
       "feature": {
-        "type": "frostwork:tendrils_2d",
-        "config": {
-          "cutoff_max": 999.0,
-          "cutoff_min": 0.7,
-          "feature": {
-            "feature": {
-              "type": "frostwork:bulbsack",
-              "config": {}
-            },
-            "placement": [
-              {
-                "type": "minecraft:block_predicate_filter",
-                "predicate": {
-                  "type": "minecraft:matching_blocks",
-                  "blocks": "minecraft:air"
-                }
-              }
-            ]
-          },
-          "frequency": 8.0,
-          "radius": {
-            "type": "minecraft:uniform",
-            "value": {
-              "max_inclusive": 12,
-              "min_inclusive": 9
-            }
+        "type": "frostwork:bulbsack",
+        "config": {}
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
           }
         }
-      },
-      "placement": []
+      ]
+    },
+    "frequency": 8.0,
+    "radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 12,
+        "min_inclusive": 9
+      }
     }
   }
 }

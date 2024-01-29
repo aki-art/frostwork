@@ -69,7 +69,11 @@ public class FantasiaBiomeSource extends BiomeSource {
 
         if(isSurface)
             return surfaceParameters.findValue(surfaceSample);
-        else
+        else {
+            if(actualY > 120) {
+                return caveParameters.values().get(1).getSecond();
+            }
             return caveParameters.findValue(sampler.sample(x, y, z));
+        }
     }
 }

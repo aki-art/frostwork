@@ -2,7 +2,6 @@ package io.github.akiart.frostwork.common.worldgen.features;
 
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.worldgen.FOrePlacement;
-import io.github.akiart.frostwork.common.worldgen.features.placementModifiers.RidgedCountPlacement;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
@@ -71,11 +70,13 @@ public class FPlacedFeatures {
                 Vegetation.GROVE_BULBSACKS,
                 configuredFeatures.getOrThrow(FConfiguredFeatures.GRIMCAP_BULBSACK),
                 //RarityFilter.onAverageOnceEvery(7),
-                new RidgedCountPlacement(4f, 0.7f, 999f),
+                //new RidgedCountPlacement(4f, 0.7f, 999f),
                 //InSquarePlacement.spread(),
-                PlacementUtils.FULL_RANGE,
+                //PlacementUtils.FULL_RANGE,
                 BiomeFilter.biome()
         );
+
+
 
 
         PlacementUtils.register(

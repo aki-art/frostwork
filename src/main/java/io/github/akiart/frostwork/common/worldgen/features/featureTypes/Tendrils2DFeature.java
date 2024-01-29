@@ -11,12 +11,12 @@ public class Tendrils2DFeature extends Feature<Tendrils2DConfig> {
     private FastNoiseLite noise;
 
     public Tendrils2DFeature(Codec<Tendrils2DConfig> codec) {
-        super(codec);
-        noise = new FastNoiseLite(0);
+            super(codec);
+            noise = new FastNoiseLite(0);
 
-        noise.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2S);
-        noise.SetFractalType(FastNoiseLite.FractalType.Ridged);
-        noise.SetFractalOctaves(1);
+            noise.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2S);
+            noise.SetFractalType(FastNoiseLite.FractalType.Ridged);
+            noise.SetFractalOctaves(1);
     }
 
     @Override
@@ -27,7 +27,9 @@ public class Tendrils2DFeature extends Feature<Tendrils2DConfig> {
         var random = context.random();
         var config = context.config();
 
-        var size = config.radius().sample(random) * 2;
+        var size = config.radius().sample(random);
+        size = Math.min(size, 16);
+
         var frequency = config.frequency();
 
         for(BlockPos offset : BlockPos.withinManhattan(pos, size, size, size)) {

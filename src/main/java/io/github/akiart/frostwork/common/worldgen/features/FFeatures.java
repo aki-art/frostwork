@@ -4,10 +4,7 @@ import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.worldgen.features.configTypes.BlobConfig;
 import io.github.akiart.frostwork.common.worldgen.features.configTypes.FungusFeatureConfig;
 import io.github.akiart.frostwork.common.worldgen.features.configTypes.Tendrils2DConfig;
-import io.github.akiart.frostwork.common.worldgen.features.featureTypes.BoulderFeature;
-import io.github.akiart.frostwork.common.worldgen.features.featureTypes.BulbSackFeature;
-import io.github.akiart.frostwork.common.worldgen.features.featureTypes.FungusFeature;
-import io.github.akiart.frostwork.common.worldgen.features.featureTypes.Tendrils2DFeature;
+import io.github.akiart.frostwork.common.worldgen.features.featureTypes.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -22,4 +19,5 @@ public class FFeatures {
     public static final DeferredHolder<Feature<?>, Feature<FungusFeatureConfig>> FUNGUS = FEATURES.register("fungus", () -> new FungusFeature(FungusFeatureConfig.CODEC));
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> BULBSACK = FEATURES.register("bulbsack", () -> new BulbSackFeature(NoneFeatureConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, Feature<Tendrils2DConfig>> TENDRILS_2D = FEATURES.register("tendrils_2d", () -> new Tendrils2DFeature(Tendrils2DConfig.CODEC));
+    public static final DeferredHolder<Feature<?>, Feature<Tendrils2DConfig>> TENDRILS = FEATURES.register("tendrils", () -> new TendrilFeature(Tendrils2DConfig.CODEC));
 }
