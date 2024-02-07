@@ -16,6 +16,7 @@ public class FTags {
 
     public static class Blocks {
         public static final TagKey<Block> EDELSTONE_REPLACEABLE = TagKey.create(Registries.BLOCK, new ResourceLocation(Frostwork.MOD_ID, "edelstone_replaceable"));
+        public static final TagKey<Block> MOLD = TagKey.create(Registries.BLOCK, new ResourceLocation(Frostwork.MOD_ID, "mold"));
 
     }
 

@@ -90,7 +90,7 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
         });
     }
 
-    protected void candeloupe(DeferredBlock<? extends LanternBlock> block) {
+    protected void candeloupe(DeferredBlock<? extends LanternBlock> block, ResourceLocation texture) {
         getVariantBuilder(block.get()).forAllStates(state -> {
 
             var hanging = state.getValue(LanternBlock.HANGING);
@@ -100,7 +100,7 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 
                 ModelFile model = models()
                         .withExistingParent(name, new ResourceLocation(Frostwork.MOD_ID, "block/fruit_lantern_hanging"))
-                        .texture("0", getLocation("candeloupe"))
+                        .texture("0", texture)
                         .renderType("cutout");
 
                 return ConfiguredModel.builder()
@@ -222,6 +222,15 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 
             return ConfiguredModel.builder().modelFile(model).build();
         });
+    }
+
+    protected void translucentSimpleBlock(DeferredBlock<?> block) {
+        var model = models()
+                .cubeAll(getBlockName(block).getPath(), blockTexture(block.get()))
+                .renderType("translucent");
+
+        var models = ConfiguredModel.builder().modelFile(model).build();
+        simpleBlock(block.get(), models);
     }
 
     protected void snowyBlock(SnowyDirtBlock block) {

@@ -28,7 +28,7 @@ public class FCarvers {
                         .configured(
                                 new CaveCarverConfiguration(
                                         0.15F,
-                                        UniformHeight.of(VerticalAnchor.aboveBottom(8), VerticalAnchor.absolute(220)),
+                                        UniformHeight.of(VerticalAnchor.aboveBottom(8), VerticalAnchor.absolute(270)),
                                         UniformFloat.of(0.1F, 0.9F),
                                         VerticalAnchor.aboveBottom(0),
                                         CarverDebugSettings.of(false, FBlocks.FROZEN_ELM.button.get().defaultBlockState()),

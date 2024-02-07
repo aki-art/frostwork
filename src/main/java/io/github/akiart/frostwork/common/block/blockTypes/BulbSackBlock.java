@@ -56,6 +56,8 @@ public class BulbSackBlock extends BushBlock implements BonemealableBlock, Simpl
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+
+        state.getValue(WATERLOGGED);
         return switch (state.getValue(SACKS)) {
             default -> ONE_AABB;
             case 2 -> TWO_AABB;

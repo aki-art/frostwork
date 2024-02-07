@@ -10,7 +10,6 @@ import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -25,7 +24,7 @@ public class FWorldGenProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.BIOME, FBiomes::boostrap)
             //.add(Registries.BIOME_SOURCE, FBiomeSources::boostrap)
             .add(Registries.NOISE_SETTINGS, FNoiseGenerationSettings::bootstrap)
-            .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, FBiomeModifiers::bootstrap)
+            //.add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, FBiomeModifiers::bootstrap)
             //.add(Registries.CHUNK_GENERATOR, FChunkGenerators::bootstrap)
             .add(Registries.LEVEL_STEM, FDimensions::bootstrap);
 

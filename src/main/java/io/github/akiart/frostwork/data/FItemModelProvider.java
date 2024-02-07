@@ -27,7 +27,17 @@ public class FItemModelProvider extends FItemModelProviderBase {
         fromBlock(FBlocks.FROZEN_DIRT);
         fromBlock(FBlocks.OVERGROWN_SANGUITE);
         fromBlock(FBlocks.OVERGROWTH);
+        fromBlock(FBlocks.MILDEW);
         fromBlock(FBlocks.DRY_GRASS);
+        fromBlock(FBlocks.MILDEW_FUZZ);
+        fromBlock(FBlocks.SOMEWHAT_OVERGROWN_SANGUITE);
+        fromBlock(FBlocks.PURPLE_GRIMCAP_CAP);
+
+        fromBlock(FBlocks.GREEN_SCLERITE);
+        fromBlock(FBlocks.PURPLE_SCLERITE);
+        fromBlock(FBlocks.BLUE_SCLERITE);
+        fromBlock(FBlocks.BLACK_SCLERITE);
+
         carpet(FBlocks.OVERGROWTH.getId().getPath(), new ResourceLocation((getBlockTexture(FBlocks.OVERGROWN_SANGUITE.get()) + "_top")));
 
         fromBlock(FBlocks.GRIMCAP_GILL);
@@ -42,6 +52,25 @@ public class FItemModelProvider extends FItemModelProviderBase {
 
         fromBlock(FBlocks.HUNTER_PELT_BROWN);
         fromBlock(FBlocks.HUNTER_PELT_CREAM);
+
+        fromBlock(FBlocks.MARLSTONE_COAL_ORE);
+
+        fromBlock(FBlocks.MARLSTONE_DIAMOND_ORE);
+
+        fromBlock(FBlocks.MARLSTONE_BISMUTH_ORE);
+
+        fromBlock(FBlocks.MARLSTONE_REDSTONE_ORE);
+
+        fromBlock(FBlocks.MARLSTONE_BURIED_OBJECT);
+        fromBlock(FBlocks.VERDANT_BURIED_OBJECT);
+
+        fromBlock(FBlocks.MARLSTONE_WOLFRAMITE_ORE);
+        fromBlock(FBlocks.VERDANT_WOLFRAMITE_ORE);
+
+        fromBlock(FBlocks.MARLSTONE_GOLD_ORE);
+        fromBlock(FBlocks.VERDANT_GOLD_ORE);
+
+        fromBlock(FBlocks.MARLSTONE_LAPIS_ORE);
     }
 
     private void plants() {
@@ -50,6 +79,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
         miscItem(FItems.FORGET_ME_NOW);
         fromBlock(FBlocks.BEARBERRY);
         fromBlock(FBlocks.CANDELOUPE);
+        fromBlock(FBlocks.CARVED_CANDELOUPE);
         miscItem(FItems.BULBSACK);
     }
 }

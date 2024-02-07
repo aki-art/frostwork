@@ -8,6 +8,7 @@ import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
 import io.github.akiart.frostwork.common.fluid.FFluids;
 import io.github.akiart.frostwork.common.worldgen.features.tree.FTreeGrowers;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -32,6 +33,13 @@ public class FBlocks {
     // Mushrooms
     public static final MushroomBlockSet GRIMCAP = BlockRegistryUtil.registerMushroomSet("grimcap", MapColor.SAND, MapColor.NETHER, WoodType.OAK, SoundType.FUNGUS);
 
+    public static final DeferredBlock<HugeMushroomBlock> PURPLE_GRIMCAP_CAP = BlockRegistryUtil.register("purple_grimcap_cap",
+            () -> new HugeMushroomBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.CRIMSON_STEM)
+                    .mapColor(MapColor.COLOR_PURPLE)
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.FUNGUS)));
+
     public static final DeferredBlock<Block> GRIMCAP_GILL = BlockRegistryUtil.register("grimcap_gill",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(GRIMCAP.cap.get())
                     .noCollission()));
@@ -48,6 +56,7 @@ public class FBlocks {
 
     public static final StoneBlockSet AQUAMIRE = BlockRegistryUtil.registerStones("aquamire", 5f, 20f, MapColor.COLOR_LIGHT_BLUE, false);
     public static final StoneBlockSet VERDANT_ROCK = BlockRegistryUtil.registerStones("verdant_rock", 5f, 20f, MapColor.COLOR_GREEN, false);
+
     public static final StoneBlockSet PITH = BlockRegistryUtil.registerStones("pith", false,
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_YELLOW)
@@ -76,6 +85,19 @@ public class FBlocks {
             .sound(SoundType.DEEPSLATE)
             .mapColor(MapColor.COLOR_BLACK)));
 
+    public static final DeferredBlock<Block> MARLSTONE_COAL_ORE = BlockRegistryUtil.register("marlstone_coal_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.MARLSTONE.block.get())));
+    public static final DeferredBlock<Block> MARLSTONE_DIAMOND_ORE = BlockRegistryUtil.register("marlstone_diamond_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.MARLSTONE.block.get())));
+    public static final DeferredBlock<Block> MARLSTONE_REDSTONE_ORE = BlockRegistryUtil.register("marlstone_redstone_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.MARLSTONE.block.get())));
+    public static final DeferredBlock<Block> MARLSTONE_GOLD_ORE = BlockRegistryUtil.register("marlstone_gold_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.MARLSTONE.block.get())));
+    public static final DeferredBlock<Block> MARLSTONE_LAPIS_ORE = BlockRegistryUtil.register("marlstone_lapis_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.MARLSTONE.block.get())));
+    public static final DeferredBlock<Block> MARLSTONE_WOLFRAMITE_ORE = BlockRegistryUtil.register("marlstone_wolframite_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.MARLSTONE.block.get())));
+    public static final DeferredBlock<Block> MARLSTONE_BISMUTH_ORE = BlockRegistryUtil.register("marlstone_bismuth_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.MARLSTONE.block.get())));
+    public static final DeferredBlock<Block> MARLSTONE_BURIED_OBJECT = BlockRegistryUtil.register("marlstone_buried_object", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.MARLSTONE.block.get())));
+
+    public static final DeferredBlock<Block> VERDANT_BURIED_OBJECT = BlockRegistryUtil.register("verdant_rock_buried_object", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.VERDANT_ROCK.block.get())));
+    public static final DeferredBlock<Block> VERDANT_GOLD_ORE = BlockRegistryUtil.register("verdant_rock_gold_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.VERDANT_ROCK.block.get())));
+    public static final DeferredBlock<Block> VERDANT_WOLFRAMITE_ORE = BlockRegistryUtil.register("verdant_rock_wolframite_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.VERDANT_ROCK.block.get())));
+
     public static final DeferredBlock<FTransparentBlock> MALACHITE_ICE_ORE = BlockRegistryUtil.register("malachite_ice_ore", () -> new FTransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ICE)
             .sound(SoundType.GLASS)
             .noOcclusion()
@@ -95,6 +117,14 @@ public class FBlocks {
     public static DeferredBlock<TallFlowerBlock> YARROW = BlockRegistryUtil.basicTallFlower("yarrow");
     public static final DeferredBlock<ForgetMeNowBlock> FORGET_ME_NOW = BlockRegistryUtil.register("forget_me_now",
             () -> new ForgetMeNowBlock(MobEffects.WEAKNESS, 40, BlockBehaviour.Properties.ofFullCopy(Blocks.WITHER_ROSE)));
+
+    public static final DeferredBlock<MildewFuzzBlock> MILDEW_FUZZ = BlockRegistryUtil.register("mildew_fuzz",
+            () -> new MildewFuzzBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_PINK)
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.WET_GRASS)
+                    .pushReaction(PushReaction.DESTROY)));
 
     public static final DeferredBlock<BulbSackBlock> BULBSACK = BlockRegistryUtil.register("bulbsack",
             () -> new BulbSackBlock(BlockBehaviour.Properties.of()
@@ -129,14 +159,57 @@ public class FBlocks {
                     .pushReaction(PushReaction.DESTROY)
                     .emissiveRendering((state, level, pos) -> true)));
 
+    public static final DeferredBlock<LanternBlock> CARVED_CANDELOUPE = BlockRegistryUtil.register("carved_candeloupe",
+            () -> new LanternBlock(BlockBehaviour.Properties.of()
+                    .ignitedByLava()
+                    .mapColor(MapColor.GLOW_LICHEN)
+                    .lightLevel(state -> 8)
+                    .forceSolidOn()
+                    .noOcclusion()
+                    .strength(1.0F)
+                    .sound(SoundType.FUNGUS)
+                    .pushReaction(PushReaction.DESTROY)
+                    .emissiveRendering((state, level, pos) -> true)));
+
     // Misc
     public static final DeferredBlock<SnowyDirtBlock> FROZEN_DIRT = BlockRegistryUtil.register("frozen_dirt",
             () -> new SnowyDirtBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
 
+    public static final DeferredBlock<StainedGlassBlock> GREEN_SCLERITE = BlockRegistryUtil.register("green_sclerite",
+            () -> new StainedGlassBlock(DyeColor.GREEN, BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
+    public static final DeferredBlock<StainedGlassBlock> BLUE_SCLERITE = BlockRegistryUtil.register("blue_sclerite",
+            () -> new StainedGlassBlock(DyeColor.LIGHT_BLUE, BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
+    public static final DeferredBlock<StainedGlassBlock> PURPLE_SCLERITE = BlockRegistryUtil.register("purple_sclerite",
+            () -> new StainedGlassBlock(DyeColor.PURPLE, BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
+    public static final DeferredBlock<StainedGlassBlock> BLACK_SCLERITE = BlockRegistryUtil.register("black_sclerite",
+            () -> new StainedGlassBlock(DyeColor.BLACK, BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
+
+
+
+
+    public  static final DeferredBlock<Block> MILDEW = BlockRegistryUtil.register("mildew",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .sound(SoundType.WOOL)
+                    .mapColor(MapColor.GLOW_LICHEN)
+                    .ignitedByLava()
+                    .friction(0.8f)
+            ));
+
     public static final DeferredBlock<PeltBlock> HUNTER_PELT_BROWN = BlockRegistryUtil.registerPelt("hunter_pelt_brown", MapColor.WOOD);
     public static final DeferredBlock<PeltBlock> HUNTER_PELT_CREAM = BlockRegistryUtil.registerPelt("hunter_pelt_cream", MapColor.TERRACOTTA_WHITE);
-    public static final DeferredBlock<Block> OVERGROWN_SANGUITE = BlockRegistryUtil.register("overgrown_sanguite",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(SANGUITE.block.get())));
+    public static final DeferredBlock<OvergrownMildewBlock> OVERGROWN_SANGUITE = BlockRegistryUtil.register("overgrown_sanguite",
+            () -> new OvergrownMildewBlock(BlockBehaviour.Properties.ofFullCopy(SANGUITE.block.get())
+                    .friction(0.8f)
+                    .ignitedByLava()
+                    .mapColor(MapColor.GLOW_LICHEN)
+                    .sound(SoundType.WOOL)));
+
+    public static final DeferredBlock<OvergrownMildewBlock> SOMEWHAT_OVERGROWN_SANGUITE = BlockRegistryUtil.register("somewhat_overgrown_sanguite",
+            () -> new OvergrownMildewBlock(BlockBehaviour.Properties.ofFullCopy(SANGUITE.block.get())
+                    .friction(0.8f)
+                    .ignitedByLava()
+                    .mapColor(MapColor.GLOW_LICHEN)
+                    .sound(SoundType.WOOL)));
 
     public static final DeferredBlock<Block> WOLF_BLOCK = BlockRegistryUtil.register("wolf_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)));
     public static final DeferredBlock<Block> DRY_GRASS = BlockRegistryUtil.register("dry_grass", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)));

@@ -31,14 +31,14 @@ public class BoulderFeature extends Feature<BlobConfig> {
         var random = context.random();
         var config = context.config();
 
-        if (!level.getBlockState(pos.below()).is(config.target))
+        if (!level.getBlockState(pos.below()).is(config.target()))
             return false;
 
         return createBlob(level, pos, config, random);
     }
 
     private boolean createBlob(WorldGenLevel level, BlockPos pos, BlobConfig config, RandomSource random) {
-        var r = config.getRadius().sample(random);
+        var r = config.radius().sample(random);
         var d = r * 2;
         var noiseScale = 1.15f;
 
@@ -57,7 +57,7 @@ public class BoulderFeature extends Feature<BlobConfig> {
     private void setBlock(WorldGenLevel level, BlobConfig config, BlockPos pos, RandomSource random) {
         BlockState blockstate = level.getBlockState(pos);
         if (blockstate.is(Blocks.AIR) || blockstate.is(target)) {
-            level.setBlock(pos, config.block.getState(random, pos), Block.UPDATE_CLIENTS);
+            level.setBlock(pos, config.block().getState(random, pos), Block.UPDATE_CLIENTS);
         }
     }
 }

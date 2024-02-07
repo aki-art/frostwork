@@ -24,6 +24,7 @@ public class FItems {
     public static final MushroomItemSet GRIMCAP = ItemRegistryUtil.registerMushroomItems(FBlocks.GRIMCAP);
 
     public static final DeferredItem<BlockItem> GRIMCAP_GILL = ItemRegistryUtil.registerFromBlock(FBlocks.GRIMCAP_GILL);
+    public static final DeferredItem<BlockItem> PURPLE_GRIMCAP_CAP = ItemRegistryUtil.registerFromBlock(FBlocks.PURPLE_GRIMCAP_CAP);
 
     // Stones
     public static final StoneItemSet OBSIDIAN_BRICKS = ItemRegistryUtil.registerStoneItems(FBlocks.OBSIDIAN_BRICKS);
@@ -45,6 +46,20 @@ public class FItems {
 
     // Ores
     public static final DeferredItem<BlockItem> EDELSTONE_COAL_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.EDELSTONE_COAL_ORE);
+    public static final DeferredItem<BlockItem> MARLSTONE_COAL_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.MARLSTONE_COAL_ORE);
+    public static final DeferredItem<BlockItem> MARLSTONE_BISMUTH_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.MARLSTONE_BISMUTH_ORE);
+    public static final DeferredItem<BlockItem> MARLSTONE_GOLD_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.MARLSTONE_GOLD_ORE);
+    public static final DeferredItem<BlockItem> MARLSTONE_LAPIS_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.MARLSTONE_LAPIS_ORE);
+    public static final DeferredItem<BlockItem> MARLSTONE_WOLFRAMITE_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.MARLSTONE_WOLFRAMITE_ORE);
+    public static final DeferredItem<BlockItem> MARLSTONE_DIAMOND_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.MARLSTONE_DIAMOND_ORE);
+    public static final DeferredItem<BlockItem> MARLSTONE_REDSTONE_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.MARLSTONE_REDSTONE_ORE);
+    public static final DeferredItem<BlockItem> MARLSTONE_BURIED_OBJECT = ItemRegistryUtil.registerFromBlock(FBlocks.MARLSTONE_BURIED_OBJECT);
+
+    public static final DeferredItem<BlockItem> VERDANT_BURIED_OBJECT = ItemRegistryUtil.registerFromBlock(FBlocks.VERDANT_BURIED_OBJECT);
+    public static final DeferredItem<BlockItem> VERDANT_GOLD_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.VERDANT_GOLD_ORE);
+    public static final DeferredItem<BlockItem> VERDANT_WOLFRAMITE_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.VERDANT_WOLFRAMITE_ORE);
+
+
     public static final DeferredItem<BlockItem> MALACHITE_ICE_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.MALACHITE_ICE_ORE);
 
     // Pelts
@@ -57,7 +72,10 @@ public class FItems {
     public static final DeferredItem<BlockItem> FORGET_ME_NOW = ItemRegistryUtil.registerFromBlock(FBlocks.FORGET_ME_NOW);
     public static final DeferredItem<BlockItem> BEARBERRY = ItemRegistryUtil.registerFromBlock(FBlocks.BEARBERRY);
     public static final DeferredItem<BlockItem> CANDELOUPE = ItemRegistryUtil.registerFromBlock(FBlocks.CANDELOUPE);
+    public static final DeferredItem<BlockItem> CARVED_CANDELOUPE = ItemRegistryUtil.registerFromBlock(FBlocks.CARVED_CANDELOUPE);
     public static final DeferredItem<BlockItem> BULBSACK = ItemRegistryUtil.registerFromBlock(FBlocks.BULBSACK);
+    public static final DeferredItem<BlockItem> MILDEW_FUZZ = ItemRegistryUtil.registerFromBlock(FBlocks.MILDEW_FUZZ);
+    public static final DeferredItem<BlockItem> SOMEWHAT_OVERGROWN_SANGUITE = ItemRegistryUtil.registerFromBlock(FBlocks.SOMEWHAT_OVERGROWN_SANGUITE);
 
     // Combat
     public static DeferredItem<WurmArrowItem> TATZELWURM_ARROW = ItemRegistryUtil.register("tatzelwurm_arrow", () -> new WurmArrowItem(new Item.Properties()));
@@ -68,6 +86,11 @@ public class FItems {
 
     // Misc
     public static final DeferredItem<BlockItem> WOLF_BLOCK = ItemRegistryUtil.registerFromBlock(FBlocks.WOLF_BLOCK);
+    public static final DeferredItem<BlockItem> GREEN_SCLERITE = ItemRegistryUtil.registerFromBlock(FBlocks.GREEN_SCLERITE);
+    public static final DeferredItem<BlockItem> BLUE_SCLERITE = ItemRegistryUtil.registerFromBlock(FBlocks.BLUE_SCLERITE);
+    public static final DeferredItem<BlockItem> BLACK_SCLERITE = ItemRegistryUtil.registerFromBlock(FBlocks.BLACK_SCLERITE);
+    public static final DeferredItem<BlockItem> PURPLE_SCLERITE = ItemRegistryUtil.registerFromBlock(FBlocks.PURPLE_SCLERITE);
+    public static final DeferredItem<BlockItem> MILDEW = ItemRegistryUtil.registerFromBlock(FBlocks.MILDEW);
     public static final DeferredItem<BlockItem> FROZEN_DIRT = ItemRegistryUtil.registerFromBlock(FBlocks.FROZEN_DIRT);
     public static final DeferredItem<BlockItem> DRY_GRASS = ItemRegistryUtil.registerFromBlock(FBlocks.DRY_GRASS);
     public static final DeferredItem<BlockItem> OVERGROWN_SANGUITE = ItemRegistryUtil.registerFromBlock(FBlocks.OVERGROWN_SANGUITE);

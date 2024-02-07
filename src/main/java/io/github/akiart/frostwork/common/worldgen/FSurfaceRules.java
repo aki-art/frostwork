@@ -27,6 +27,7 @@ public class FSurfaceRules {
     private static final SurfaceRules.RuleSource EDEL_STONE = defaultState(FBlocks.EDELSTONE.block.get());
     private static final SurfaceRules.RuleSource BEDROCK = defaultState(Blocks.BEDROCK);
     private static final SurfaceRules.RuleSource SANGUITE = defaultState(FBlocks.SANGUITE.block.get());
+    private static final SurfaceRules.RuleSource OVERGROWN_SANGUITE = defaultState(FBlocks.OVERGROWN_SANGUITE.get());
     private static final SurfaceRules.RuleSource AQUAMIRE = defaultState(FBlocks.AQUAMIRE.block.get());
     private static final SurfaceRules.RuleSource FROZEN_DIRT = defaultState(FBlocks.FROZEN_DIRT.get());
     private static final SurfaceRules.RuleSource DRY_GRASS = defaultState(FBlocks.DRY_GRASS.get());
@@ -89,7 +90,22 @@ public class FSurfaceRules {
                         SurfaceRules.sequence(
                                 SurfaceRules.ifTrue(
                                         SurfaceRules.ON_FLOOR,
-                                        defaultState(FBlocks.OVERGROWN_SANGUITE.get())),
+                                        SurfaceRules.sequence(
+                                                SurfaceRules.ifTrue(
+                                                        SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, -0.8, 0),
+                                                        defaultState(Blocks.GRASS_BLOCK)),
+                                                SurfaceRules.ifTrue(
+                                                        new CellularBoundaryConditionSource(0.1f, 0.2f),
+                                                        defaultState(FBlocks.SOMEWHAT_OVERGROWN_SANGUITE.get())),
+                                                SurfaceRules.ifTrue(
+                                                        new CellularBoundaryConditionSource(1f, 99f),
+                                                        defaultState(FBlocks.MILDEW.get())),
+                                                defaultState(FBlocks.OVERGROWN_SANGUITE.get())
+                                        )
+                                ),
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.UNDER_FLOOR,
+                                        defaultState(FBlocks.SOMEWHAT_OVERGROWN_SANGUITE.get())),
                                 defaultState(FBlocks.SANGUITE.block.get())
                         )
                 )
@@ -100,7 +116,7 @@ public class FSurfaceRules {
                         SurfaceRules.isBiome(FBiomes.Cave.HIVE),
                         SurfaceRules.sequence(
                                 SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, -99, -0.66),
+                                        new CellularBoundaryConditionSource(0.1f, 0.2f),
                                         HONEYCOMB_BLOCK),
                                 PITH
                         )

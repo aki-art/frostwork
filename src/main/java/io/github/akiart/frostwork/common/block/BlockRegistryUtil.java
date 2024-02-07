@@ -77,6 +77,11 @@ public class BlockRegistryUtil {
         return obj;
     }
 
+    public static StoneBlockSet registerStones(String name, StoneBlockSet set) {
+        stones.add(set);
+        return set;
+    }
+
     public static HashSet<StoneBlockSet> getStones() {
         return stones;
     }

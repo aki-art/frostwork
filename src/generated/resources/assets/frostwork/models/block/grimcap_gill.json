@@ -2,6 +2,7 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
+    "all": "frostwork:block/green_sclerite",
     "cross": "frostwork:block/grimcap_gill"
   }
 }

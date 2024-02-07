@@ -1,0 +1,32 @@
+{
+  "type": "frostwork:giant_fungus",
+  "config": {
+    "cap_block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "frostwork:grimcap_stem",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    },
+    "cap_structures": [
+      "frostwork:fungal/giant_grimcap_red_cap"
+    ],
+    "stem_end_radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 6,
+        "min_inclusive": 4
+      }
+    },
+    "stem_length": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 24,
+        "min_inclusive": 10
+      }
+    },
+    "stem_start_radius": 3
+  }
+}

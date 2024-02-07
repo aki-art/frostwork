@@ -37,6 +37,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
+
+// hut location: 19744 10 540212
+
 @Mod(Frostwork.MOD_ID)
 public class Frostwork {
     public static final String MOD_ID = "frostwork";
@@ -50,6 +53,7 @@ public class Frostwork {
 
         NeoForge.EVENT_BUS.register(EntityEvents.class);
         NeoForge.EVENT_BUS.register(PlayerEvents.class);
+
     }
 
     private static void initRegistry(IEventBus modEventBus) {

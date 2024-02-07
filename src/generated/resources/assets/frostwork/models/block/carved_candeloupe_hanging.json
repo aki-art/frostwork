@@ -1,0 +1,7 @@
+{
+  "parent": "frostwork:block/fruit_lantern_hanging",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "frostwork:block/carved_candeloupe"
+  }
+}

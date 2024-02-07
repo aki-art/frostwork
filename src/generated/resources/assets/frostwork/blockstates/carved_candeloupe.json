@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "hanging=false,waterlogged=false": {
+      "model": "frostwork:block/carved_candeloupe"
+    },
+    "hanging=false,waterlogged=true": {
+      "model": "frostwork:block/carved_candeloupe"
+    },
+    "hanging=true,waterlogged=false": {
+      "model": "frostwork:block/carved_candeloupe_hanging"
+    },
+    "hanging=true,waterlogged=true": {
+      "model": "frostwork:block/carved_candeloupe_hanging"
+    }
+  }
+}

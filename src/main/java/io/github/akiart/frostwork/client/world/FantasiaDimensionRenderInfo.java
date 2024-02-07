@@ -30,9 +30,10 @@ public class FantasiaDimensionRenderInfo extends DimensionSpecialEffects {
     }
 
     @Override
-    public boolean isFoggyAt(int x, int z) {
+    public boolean isFoggyAt(int x, int y) {
         return false;
     }
+
 
     @Override
     public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {

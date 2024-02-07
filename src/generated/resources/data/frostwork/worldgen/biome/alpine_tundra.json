@@ -27,7 +27,11 @@
     [],
     [],
     [],
-    [],
+    [
+      "frostwork:marlstone_wolframite_ore",
+      "frostwork:marlstone_buried_object",
+      "frostwork:marlstone_coal_ore"
+    ],
     [],
     [],
     [

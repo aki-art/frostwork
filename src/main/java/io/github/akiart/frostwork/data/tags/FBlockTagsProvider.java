@@ -29,6 +29,11 @@ public class FBlockTagsProvider extends BlockTagsProvider {
         BlockRegistryUtil.getMushrooms().forEach(this::tree);
         BlockRegistryUtil.getWoods().forEach(this::tree);
 
+        tag(FTags.Blocks.MOLD).add(
+                FBlocks.OVERGROWN_SANGUITE.get(),
+                FBlocks.MILDEW.get()
+        );
+
         tag(BlockTags.DIRT).add(FBlocks.DRY_GRASS.get());
 
         tag(FTags.Blocks.EDELSTONE_REPLACEABLE)

@@ -44,13 +44,19 @@ public class FLanguageProvider extends LanguageProvider {
         add(FBlocks.MALACHITE_ICE_ORE.get(), "Malachite Ore");
         add(FBlocks.WOLF_BLOCK.get(), "Wolf Block");
         add(FBlocks.OVERGROWN_SANGUITE.get(), "Overgrown Sanguite");
-        add(FBlocks.OVERGROWTH.get(), "Lichen");
+        add(FBlocks.OVERGROWTH.get(), "Mildew Carpet");
+        add(FBlocks.MILDEW.get(), "Mildew");
+        add(FBlocks.MILDEW_FUZZ.get(), "Mildew Fuzz");
         add(FBlocks.GRIMCAP_GILL.get(), "Grimcap Gill");
         add(FBlocks.LAVENDER.get(), "Lavender");
         add(FBlocks.YARROW.get(), "Yarrow");
         add(FBlocks.FORGET_ME_NOW.get(), "Forget-Me-Now");
         add(FBlocks.FOAM.get(), "Foam");
         add(FBlocks.ACID.get(), "Acid");
+        add(FBlocks.GREEN_SCLERITE.get(), "Green Sclerite");
+        add(FBlocks.PURPLE_SCLERITE.get(), "Purple Sclerite");
+        add(FBlocks.BLACK_SCLERITE.get(), "Dark Sclerite");
+        add(FBlocks.BLUE_SCLERITE.get(), "Blue Sclerite");
 
         add(FBlocks.HUNTER_PELT_BROWN.get(), "Tan Hunter Pelt");
         add(FBlocks.HUNTER_PELT_CREAM.get(), "Cream Hunter Pelt");
@@ -83,6 +89,7 @@ public class FLanguageProvider extends LanguageProvider {
         addTree("Frozen Elm", FBlocks.FROZEN_ELM);
         addTree("Elm", FBlocks.ELM);
         addTree("Grimcap", FBlocks.GRIMCAP);
+        add(FBlocks.PURPLE_GRIMCAP_CAP.get(), "Purple Grimcap Cap");
     }
 
     private void stones() {

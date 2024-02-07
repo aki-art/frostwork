@@ -26,7 +26,15 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         simpleBlock(FBlocks.EDELSTONE_COAL_ORE.get());
         simpleBlock(FBlocks.WOLF_BLOCK.get());
         simpleBlock(FBlocks.MALACHITE_BLOCK.get());
+        mushroomBlock(FBlocks.PURPLE_GRIMCAP_CAP, getLocation("grimcap_stem_top"));
         snowyBlock(FBlocks.FROZEN_DIRT.get());
+        simpleBlock(FBlocks.MILDEW.get());
+
+        translucentSimpleBlock(FBlocks.GREEN_SCLERITE);
+        translucentSimpleBlock(FBlocks.BLUE_SCLERITE);
+        translucentSimpleBlock(FBlocks.PURPLE_SCLERITE);
+        translucentSimpleBlock(FBlocks.BLACK_SCLERITE);
+
         overgrowth();
         overgrownSanguite();
         dryGrass();
@@ -41,7 +49,28 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         pelt(FBlocks.HUNTER_PELT_BROWN);
         pelt(FBlocks.HUNTER_PELT_CREAM);
 
+        simpleBlock(FBlocks.SOMEWHAT_OVERGROWN_SANGUITE.get());
+
         simpleBlock(FBlocks.FRAMED_PITH.get());
+
+        simpleBlock(FBlocks.MARLSTONE_COAL_ORE.get());
+
+        simpleBlock(FBlocks.MARLSTONE_DIAMOND_ORE.get());
+
+        simpleBlock(FBlocks.MARLSTONE_BISMUTH_ORE.get());
+
+        simpleBlock(FBlocks.MARLSTONE_REDSTONE_ORE.get());
+
+        simpleBlock(FBlocks.MARLSTONE_BURIED_OBJECT.get());
+        simpleBlock(FBlocks.VERDANT_BURIED_OBJECT.get());
+
+        simpleBlock(FBlocks.MARLSTONE_WOLFRAMITE_ORE.get());
+        simpleBlock(FBlocks.VERDANT_WOLFRAMITE_ORE.get());
+
+        simpleBlock(FBlocks.MARLSTONE_GOLD_ORE.get());
+        simpleBlock(FBlocks.VERDANT_GOLD_ORE.get());
+
+        simpleBlock(FBlocks.MARLSTONE_LAPIS_ORE.get());
     }
 
     private void plants() {
@@ -50,8 +79,25 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         //forgetMeNow();
         crossBlock(FBlocks.FORGET_ME_NOW);
         crossBlock(FBlocks.BEARBERRY);
-        candeloupe(FBlocks.CANDELOUPE);
+        candeloupe(FBlocks.CANDELOUPE, getLocation("candeloupe"));
+        candeloupe(FBlocks.CARVED_CANDELOUPE, getLocation("carved_candeloupe"));
         bulbSack(FBlocks.BULBSACK);
+        fuzz(FBlocks.MILDEW_FUZZ);
+
+    }
+
+    private void fuzz(DeferredBlock<? extends Block> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+
+            ModelFile model = models()
+                    .withExistingParent(getBlockName(block).getPath(), new ResourceLocation("block/coral_fan"))
+                    .texture("fan", blockTexture(block.get()))
+                    .renderType("cutout");
+
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .build();
+        });
     }
 
     private void forgetMeNow() {

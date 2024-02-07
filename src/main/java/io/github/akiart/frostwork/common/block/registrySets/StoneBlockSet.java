@@ -27,8 +27,7 @@ public class StoneBlockSet extends AbstractBlockSet {
     public StoneBlockSet(String name, boolean redstoneComponents, BlockBehaviour.Properties properties) {
         super(name, properties);
 
-        block = register(name,
-                () -> new Block(properties));
+        block = createBlock(properties);
 
         stairs = register(name + "_stairs",
                 () -> new StairBlock(() -> block.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(block.get())));
@@ -48,6 +47,11 @@ public class StoneBlockSet extends AbstractBlockSet {
                         BlockBehaviour.Properties.of()
                                 .noCollission()
                                 .strength(0.5F))) : null;
+    }
+
+    public DeferredBlock<Block> createBlock(BlockBehaviour.Properties properties) {
+        return register(name,
+                () -> new Block(properties));
     }
 
     @Override

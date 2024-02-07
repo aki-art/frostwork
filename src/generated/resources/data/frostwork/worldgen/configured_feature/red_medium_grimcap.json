@@ -1,0 +1,113 @@
+{
+  "type": "minecraft:random_boolean_selector",
+  "config": {
+    "feature_false": {
+      "feature": {
+        "type": "frostwork:medium_fungus",
+        "config": {
+          "capRadius": {
+            "type": "minecraft:uniform",
+            "value": {
+              "max_inclusive": 1,
+              "min_inclusive": 0
+            }
+          },
+          "cap_block": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "frostwork:purple_grimcap_cap",
+              "Properties": {
+                "down": "false",
+                "east": "true",
+                "north": "true",
+                "south": "true",
+                "up": "true",
+                "west": "true"
+              }
+            }
+          },
+          "decoration": {
+            "feature": {
+              "type": "frostwork:bulbsack",
+              "config": {}
+            },
+            "placement": []
+          },
+          "decoration_chance": 0.1,
+          "square_chance": 1.0,
+          "stem_block": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "frostwork:grimcap_stem",
+              "Properties": {
+                "axis": "y"
+              }
+            }
+          },
+          "stem_length": {
+            "type": "minecraft:uniform",
+            "value": {
+              "max_inclusive": 3,
+              "min_inclusive": 1
+            }
+          }
+        }
+      },
+      "placement": []
+    },
+    "feature_true": {
+      "feature": {
+        "type": "frostwork:medium_fungus",
+        "config": {
+          "capRadius": {
+            "type": "minecraft:uniform",
+            "value": {
+              "max_inclusive": 1,
+              "min_inclusive": 0
+            }
+          },
+          "cap_block": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "frostwork:grimcap_cap",
+              "Properties": {
+                "down": "false",
+                "east": "true",
+                "north": "true",
+                "south": "true",
+                "up": "true",
+                "west": "true"
+              }
+            }
+          },
+          "decoration": {
+            "feature": {
+              "type": "frostwork:bulbsack",
+              "config": {}
+            },
+            "placement": []
+          },
+          "decoration_chance": 0.1,
+          "square_chance": 1.0,
+          "stem_block": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "frostwork:grimcap_stem",
+              "Properties": {
+                "axis": "y"
+              }
+            }
+          },
+          "stem_length": {
+            "type": "minecraft:uniform",
+            "value": {
+              "max_inclusive": 3,
+              "min_inclusive": 1
+            }
+          }
+        }
+      },
+      "placement": []
+    }
+  }
+}

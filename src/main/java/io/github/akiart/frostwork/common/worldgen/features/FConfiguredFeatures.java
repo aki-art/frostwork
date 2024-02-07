@@ -3,9 +3,7 @@ package io.github.akiart.frostwork.common.worldgen.features;
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.FTags;
 import io.github.akiart.frostwork.common.block.FBlocks;
-import io.github.akiart.frostwork.common.worldgen.features.configTypes.BlobConfig;
-import io.github.akiart.frostwork.common.worldgen.features.configTypes.FungusFeatureConfig;
-import io.github.akiart.frostwork.common.worldgen.features.configTypes.Tendrils2DConfig;
+import io.github.akiart.frostwork.common.worldgen.features.configTypes.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -20,9 +18,7 @@ import net.minecraft.util.InclusiveRange;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SnowyDirtBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -35,6 +31,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.DualNoiseProvid
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.treedecorators.AlterGroundDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
@@ -46,13 +43,21 @@ public class FConfiguredFeatures {
 
     // Ores
     public static final ResourceKey<ConfiguredFeature<?, ?>> EDELSTONE_COAL_ORE = key("edelstone_coal_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MARLSTONE_COAL_ORE = key("marlstone_coal_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MARLSTONE_WOLFRAMITE_ORE = key("marlstone_wolframite_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MARLSTONE_BURIED_OBJECT = key("marlstone_buried_object");
 
     // Trees
     public static final ResourceKey<ConfiguredFeature<?, ?>> FROZEN_ELM = key("frozen_elm");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ELM = key("elm");
 
-    // Mushrooms
-    public static final ResourceKey<ConfiguredFeature<?, ?>> MEDIUM_GRIMCAP = key("medium_grimcap");
+    public static class Fungus {
+        //public static final ResourceKey<ConfiguredFeature<?, ?>> SMALL_RED_GRIMCAP = key("small_red_grimcap");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> MEDIUM_GRIMCAP = key("red_medium_grimcap");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_GRIMCAP = key("red_large_grimcap");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> GIANT_GRIMCAP = key("giant_grimcap");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> PURPLE_MEDIUM_GRIMCAP = key("purple_medium_grimcap");
+    }
 
     // Vegetation
     public static final ResourceKey<ConfiguredFeature<?, ?>> FORGET_ME_KNOW_COVERAGE = key("forget_me_now_coverage");
@@ -63,17 +68,60 @@ public class FConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> VERDANT_SINGLE_CANDELOUPE = key("verdant_single_candeloupe");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GRIMCAP_BULBSACK = key("grimcap_bulbsack");
 
+    public static class Vegetation {
+        public static final ResourceKey<ConfiguredFeature<?, ?>> MILDEW_FUZZ = key("mildew_fuzz");
+    }
+
+    public static class Pillars {
+        public static final ResourceKey<ConfiguredFeature<?, ?>> SANGUITE_PILLAR = key("sanguite_pillar");
+    }
+
+    public static class Grimcap {
+        public static final ResourceKey<ConfiguredFeature<? ,? >> SANGUITE_ACID_DELTAS = key("sanguite_acid_deltas");
+    }
+
     private static ResourceKey<ConfiguredFeature<?, ?>> key(final String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Frostwork.MOD_ID, name));
     }
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
-        registerSimpleOre(context, EDELSTONE_COAL_ORE, FTags.Blocks.EDELSTONE_REPLACEABLE, FBlocks.EDELSTONE_COAL_ORE, 9);
+        ores(context);
+        boulders(context);
+        trees(context);
+        plants(context);
+        pillars(context);
 
+        grimcap(context);
+    }
+     // HolderSet.direct(
+    private static void grimcap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+        register(context,
+                Grimcap.SANGUITE_ACID_DELTAS,
+                Feature.DELTA_FEATURE,
+                new DeltaFeatureConfiguration(FBlocks.ACID.get().defaultBlockState(), Blocks.CALCITE.defaultBlockState(), UniformInt.of(3, 7), UniformInt.of(0, 2)));
+    }
+
+    private static void pillars(BootstapContext<ConfiguredFeature<?, ?>> context) {
+        register(context,
+                Pillars.SANGUITE_PILLAR,
+                FFeatures.PILLAR.get(),
+                new PillarFeatureConfig(BlockStateProvider.simple(FBlocks.SANGUITE.block.get()), UniformInt.of(2, 4)));
+    }
+
+    private static void ores(BootstapContext<ConfiguredFeature<?, ?>> context) {
+        registerSimpleOre(context, EDELSTONE_COAL_ORE, FTags.Blocks.EDELSTONE_REPLACEABLE, FBlocks.EDELSTONE_COAL_ORE, 17);
+
+        registerSimpleOre(context, MARLSTONE_COAL_ORE, FBlocks.MARLSTONE.block.get(), FBlocks.MARLSTONE_COAL_ORE, 17);
+        registerSimpleOre(context, MARLSTONE_WOLFRAMITE_ORE, FBlocks.MARLSTONE.block.get(), FBlocks.MARLSTONE_WOLFRAMITE_ORE, 7);
+        registerSimpleOre(context, MARLSTONE_BURIED_OBJECT, FBlocks.MARLSTONE.block.get(), FBlocks.MARLSTONE_BURIED_OBJECT, 1);
+    }
+
+    private static void boulders(BootstapContext<ConfiguredFeature<?, ?>> context) {
         register(context, DIORITE_BOULDERS, FFeatures.BOULDER.get(), new BlobConfig(BlockStateProvider.simple(Blocks.DIORITE), BlockTags.DIRT, true, true, 3, UniformInt.of(0, 3)));
         register(context, LARGE_DIORITE_BOULDERS, FFeatures.BOULDER.get(), new BlobConfig(BlockStateProvider.simple(Blocks.DIORITE), BlockTags.DIRT, true, false, 3,  UniformInt.of(2, 5)));
+    }
 
-
+    private static void trees(BootstapContext<ConfiguredFeature<?, ?>> context) {
         register(context, FROZEN_ELM, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(FBlocks.FROZEN_ELM.log.get()),
                 new StraightTrunkPlacer(6, 2, 2),
@@ -98,36 +146,70 @@ public class FConfiguredFeatures {
                 BlockStateProvider.simple(FBlocks.ELM.leaves.get()),
                 new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 1)).build());
+    }
 
+    private static void plants(BootstapContext<ConfiguredFeature<?, ?>> context) {
         register(context,
                 VERDANT_SINGLE_CANDELOUPE,
                 Feature.SIMPLE_BLOCK,
                 new SimpleBlockConfiguration(BlockStateProvider.simple(FBlocks.CANDELOUPE.get())));
 
         register(context,
-                MEDIUM_GRIMCAP,
-                FFeatures.FUNGUS.get(),
-                new FungusFeatureConfig(
-                        UniformInt.of(4, 6),
-                        BlockStateProvider.simple(FBlocks.GRIMCAP.stem.get()),
-                        -2,
-                        List.of(
-                                new FungusFeatureConfig.Layer(
-                                        BlockStateProvider.simple(FBlocks.GRIMCAP.cap.get()),
-                                        null,
-                                        ConstantInt.of(3)
-                                ),
-                                new FungusFeatureConfig.Layer(
-                                        BlockStateProvider.simple(FBlocks.GRIMCAP.cap.get()),
-                                        BlockStateProvider.simple(FBlocks.GRIMCAP.stem.get()),
-                                        ConstantInt.of(3)
-                                ),
-                                new FungusFeatureConfig.Layer(
-                                        BlockStateProvider.simple(FBlocks.GRIMCAP.cap.get()),
-                                        BlockStateProvider.simple(FBlocks.GRIMCAP.cap.get()),
-                                        ConstantInt.of(2)
+                Vegetation.MILDEW_FUZZ,
+                Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(97, 10, 3, PlacementUtils.inlinePlaced(
+                    Feature.SIMPLE_BLOCK,
+                    new SimpleBlockConfiguration(BlockStateProvider.simple(FBlocks.MILDEW_FUZZ.get())))));
+
+        register(context,
+                Fungus.MEDIUM_GRIMCAP,
+                Feature.RANDOM_BOOLEAN_SELECTOR,
+                new RandomBooleanFeatureConfiguration(
+                        PlacementUtils.inlinePlaced(
+                                FFeatures.MEDIUM_FUNGUS.get(),
+                                new MediumFungusFeatureConfig(
+                                        UniformInt.of(1, 3),
+                                        UniformInt.of(0, 1),
+                                        1f,
+                                        PlacementUtils.inlinePlaced(
+                                                FFeatures.BULBSACK.get(),
+                                                new NoneFeatureConfiguration()),
+                                        0.1f,
+                                        BlockStateProvider.simple(FBlocks.GRIMCAP.cap.get().defaultBlockState().setValue(HugeMushroomBlock.DOWN, false)),
+                                        BlockStateProvider.simple(FBlocks.GRIMCAP.stem.get())
+                                )),
+                        PlacementUtils.inlinePlaced(
+                                FFeatures.MEDIUM_FUNGUS.get(),
+                                new MediumFungusFeatureConfig(
+                                        UniformInt.of(1, 3),
+                                        UniformInt.of(0, 1),
+                                        1f,
+                                        PlacementUtils.inlinePlaced(
+                                                FFeatures.BULBSACK.get(),
+                                                new NoneFeatureConfiguration()),
+                                        0.1f,
+                                        BlockStateProvider.simple(FBlocks.PURPLE_GRIMCAP_CAP.get().defaultBlockState().setValue(HugeMushroomBlock.DOWN, false)),
+                                        BlockStateProvider.simple(FBlocks.GRIMCAP.stem.get())
                                 )
-                        )));
+                        )
+                )
+        ) ;
+
+
+        register(context,
+                Fungus.PURPLE_MEDIUM_GRIMCAP,
+                FFeatures.MEDIUM_FUNGUS.get(),
+                new MediumFungusFeatureConfig(
+                        UniformInt.of(1, 3),
+                        UniformInt.of(0, 1),
+                        1f,
+                        PlacementUtils.inlinePlaced(
+                                FFeatures.BULBSACK.get(),
+                                new NoneFeatureConfiguration()),
+                        0.1f,
+                        BlockStateProvider.simple(FBlocks.PURPLE_GRIMCAP_CAP.get().defaultBlockState().setValue(HugeMushroomBlock.DOWN, false)),
+                        BlockStateProvider.simple(FBlocks.GRIMCAP.stem.get())
+                ));
 
         register(context,
                 FORGET_ME_KNOW_COVERAGE,
@@ -174,15 +256,35 @@ public class FConfiguredFeatures {
                 )
         );
 
-//        var spreadBulbSacks = new RandomPatchConfiguration(
-//                256,
-//                8,
-//                8,
-//                PlacementUtils.onlyWhenEmpty(
-//                        FFeatures.BULBSACK.get(),
-//                        FeatureConfiguration.NONE
-//                )
-//        );
+        FeatureUtils.register(
+                context,
+                Fungus.GIANT_GRIMCAP,
+                FFeatures.GIANT_FUNGUS.get(),
+                new GiantFungusFeatureConfig(
+                        List.of(
+                                new ResourceLocation(Frostwork.MOD_ID, "fungal/giant_grimcap_red_cap")
+                        ),
+                        BlockStateProvider.simple(FBlocks.GRIMCAP.stem.get()),
+                        UniformInt.of(10, 24),
+                        3,
+                        UniformInt.of(4, 6)
+
+                )
+        );
+
+        FeatureUtils.register(
+                context,
+                Fungus.LARGE_GRIMCAP,
+                FFeatures.BIG_FUNGUS.get(),
+                new BigFungusFeatureConfig(
+                        List.of(
+                                new ResourceLocation(Frostwork.MOD_ID, "fungal/red_medium_grimcap_top")
+                        ),
+                        UniformInt.of(4, 7),
+                        BlockStateProvider.simple(FBlocks.GRIMCAP.stem.get()),
+                        0
+                )
+        );
 
         var tendrilsOfBulbs = new Tendrils2DConfig(
                 UniformInt.of(9, 12),
@@ -201,16 +303,6 @@ public class FConfiguredFeatures {
                 FFeatures.TENDRILS.get(),
                 tendrilsOfBulbs);
 
-//        FeatureUtils.register(
-//                context,
-//                GRIMCAP_BULBSACK,
-//                Feature.SIMPLE_RANDOM_SELECTOR,
-//                new SimpleRandomFeatureConfiguration(
-//                        HolderSet.direct(
-//                                PlacementUtils.inlinePlaced(FFeatures.TENDRILS_2D.get(), tendrilsOfBulbs)
-//                        )
-//                ));
-
         FeatureUtils.register(
                 context,
                 TUNDRA_FLOWERS,
@@ -221,6 +313,11 @@ public class FConfiguredFeatures {
                         )
                 )
         );
+    }
+
+    private static void registerSimpleOre(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, Block targetBlock, DeferredBlock<Block> ore, int veinSize) {
+        RuleTest replaceable = new BlockMatchTest(targetBlock);
+        register(context, key, Feature.ORE, new OreConfiguration(replaceable, ore.get().defaultBlockState(), veinSize));
     }
 
     private static void registerSimpleOre(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, TagKey<Block> targetBlock, DeferredBlock<Block> ore, int veinSize) {

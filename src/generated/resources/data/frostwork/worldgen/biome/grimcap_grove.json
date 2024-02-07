@@ -24,17 +24,8 @@
     "water_fog_color": 6201521
   },
   "features": [
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
     [
-      "frostwork:grove_bulbsacks"
+      "frostwork:grove_giant_grimcap"
     ]
   ],
   "has_precipitation": true,

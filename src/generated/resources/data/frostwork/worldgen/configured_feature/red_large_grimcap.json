@@ -1,0 +1,25 @@
+{
+  "type": "frostwork:big_fungus",
+  "config": {
+    "cap_structures": [
+      "frostwork:fungal/red_medium_grimcap_top"
+    ],
+    "cap_y_offset": 0,
+    "stem_block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "frostwork:grimcap_stem",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    },
+    "stem_length": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 7,
+        "min_inclusive": 4
+      }
+    }
+  }
+}
