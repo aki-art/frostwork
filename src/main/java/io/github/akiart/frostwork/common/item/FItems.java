@@ -1,6 +1,7 @@
 package io.github.akiart.frostwork.common.item;
 
 import io.github.akiart.frostwork.Frostwork;
+import io.github.akiart.frostwork.common.FFoods;
 import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.fluid.FFluids;
 import io.github.akiart.frostwork.common.item.itemTypes.BottleOfFoamItem;
@@ -9,16 +10,31 @@ import io.github.akiart.frostwork.common.item.itemTypes.WurmArrowItem;
 import io.github.akiart.frostwork.common.item.registrySets.MushroomItemSet;
 import io.github.akiart.frostwork.common.item.registrySets.StoneItemSet;
 import io.github.akiart.frostwork.common.item.registrySets.WoodItemSet;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class FItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Frostwork.MOD_ID);
+    public static class REFS {
+        public static ResourceKey<Item> CANDELOUPE_SEEDS = ResourceKey.create(Registries.ITEM, new ResourceLocation(Frostwork.MOD_ID, "candelopue_seeds"));
+    }
+
+    public static DeferredItem<Item> CANDELOUPE_SLICE = ItemRegistryUtil.register("candeloupe_slice",
+            () -> new Item(new Item.Properties()
+                    .food(FFoods.CANDELOUPE_SLICE)));
+
+    public static DeferredItem<Item> DAZZLING_CANDELOUPE_SLICE = ItemRegistryUtil.register("dazzling_candeloupe_slice",
+            () -> new Item(new Item.Properties()
+                    .food(FFoods.DAZZLING_CANDELOUPE_SLICE)));
 
     // Trees
     public static final WoodItemSet FROZEN_ELM = ItemRegistryUtil.registerWoodItems(FBlocks.FROZEN_ELM);
     public static final WoodItemSet ELM = ItemRegistryUtil.registerWoodItems(FBlocks.ELM);
+    public static final WoodItemSet VELWOOD = ItemRegistryUtil.registerWoodItems(FBlocks.VELWOOD);
 
     // Mushrooms
     public static final MushroomItemSet GRIMCAP = ItemRegistryUtil.registerMushroomItems(FBlocks.GRIMCAP);
@@ -76,6 +92,11 @@ public class FItems {
     public static final DeferredItem<BlockItem> BULBSACK = ItemRegistryUtil.registerFromBlock(FBlocks.BULBSACK);
     public static final DeferredItem<BlockItem> MILDEW_FUZZ = ItemRegistryUtil.registerFromBlock(FBlocks.MILDEW_FUZZ);
     public static final DeferredItem<BlockItem> SOMEWHAT_OVERGROWN_SANGUITE = ItemRegistryUtil.registerFromBlock(FBlocks.SOMEWHAT_OVERGROWN_SANGUITE);
+
+    // Seeds
+
+    public static final DeferredItem<ItemNameBlockItem> CANDELOUPE_SEEDS = ItemRegistryUtil.register("candeloupe_seeds",
+            () -> new ItemNameBlockItem(FBlocks.CANDELOUPE_STEM.get(), new Item.Properties()));
 
     // Combat
     public static DeferredItem<WurmArrowItem> TATZELWURM_ARROW = ItemRegistryUtil.register("tatzelwurm_arrow", () -> new WurmArrowItem(new Item.Properties()));

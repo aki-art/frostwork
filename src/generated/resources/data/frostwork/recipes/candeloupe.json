@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "frostwork:candeloupe_slice"
+    },
+    {
+      "item": "frostwork:candeloupe_slice"
+    },
+    {
+      "item": "frostwork:candeloupe_slice"
+    },
+    {
+      "item": "frostwork:candeloupe_slice"
+    }
+  ],
+  "result": {
+    "item": "frostwork:candeloupe"
+  }
+}

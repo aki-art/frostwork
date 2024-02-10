@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-04T14:15:25.6606457	Registries
+// 1.20.4	2024-02-08T22:41:37.5288233	Registries
 4b3ea29728a9a3c91e9f1b0ef339d365c609f950 data/frostwork/dimension/fantasia.json
 2a9c0f495e174493426522a6a0990797d77d5690 data/frostwork/dimension_type/frostwork.json
 d03eb81f1b2944790f0706bcb02a00c3874075c3 data/frostwork/worldgen/biome/alpine_tundra.json
@@ -27,9 +27,9 @@ a8e05f666fb0b49340f49dcc90ff85e2c290a1f9 data/frostwork/worldgen/configured_feat
 307e17dcdf372c29f23b393679a1687cf8a73088 data/frostwork/worldgen/configured_feature/red_medium_grimcap.json
 f9978c4dba999377f5ce8c9396b5570c924f0ef0 data/frostwork/worldgen/configured_feature/sanguite_acid_deltas.json
 f84698b848de647ead6468a404334f1726f3a639 data/frostwork/worldgen/configured_feature/sanguite_pillar.json
-8275bd38afa2b743b5d65645227301c9519c4820 data/frostwork/worldgen/configured_feature/tundra_bearberry.json
+aa5ae7d6a4e8207ac2ed4bcae5425dd3cf53f559 data/frostwork/worldgen/configured_feature/tundra_bearberry.json
 ef8bc38f6a6378064989b25425157e6c2926626f data/frostwork/worldgen/configured_feature/tundra_flowers.json
-81da59e7e101fbac99f7e4dfeb125d63f8f188a6 data/frostwork/worldgen/configured_feature/verdant_single_candeloupe.json
+85a04469a5aeaa37aacfca0c13f845e344599685 data/frostwork/worldgen/configured_feature/verdant_single_candeloupe.json
 3b317b83956afe5ddfb674c6a27ce1ccff18b24c data/frostwork/worldgen/noise/alpine_tundra_surface.json
 5ad6ee13fc7ac8e0c6ccda12c884b99cf33d1acb data/frostwork/worldgen/noise/frozen_cavern_ice.json
 6aa4c77dac449388adb97bbc601d865dbfaa4399 data/frostwork/worldgen/noise_settings/fantasia_noise.json

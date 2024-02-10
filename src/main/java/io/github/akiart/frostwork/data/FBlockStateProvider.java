@@ -84,6 +84,8 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         bulbSack(FBlocks.BULBSACK);
         fuzz(FBlocks.MILDEW_FUZZ);
 
+        stem(FBlocks.CANDELOUPE_STEM, FBlocks.ATTACHED_CANDELOUPE_STEM);
+
     }
 
     private void fuzz(DeferredBlock<? extends Block> block) {

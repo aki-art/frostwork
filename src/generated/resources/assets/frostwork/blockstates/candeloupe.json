@@ -1,15 +1,111 @@
 {
   "variants": {
-    "hanging=false,waterlogged=false": {
+    "facing=east,hanging=false,is_attached=false,waterlogged=false": {
       "model": "frostwork:block/candeloupe"
     },
-    "hanging=false,waterlogged=true": {
+    "facing=east,hanging=false,is_attached=false,waterlogged=true": {
       "model": "frostwork:block/candeloupe"
     },
-    "hanging=true,waterlogged=false": {
+    "facing=east,hanging=false,is_attached=true,waterlogged=false": {
+      "model": "frostwork:block/candeloupe_attached"
+    },
+    "facing=east,hanging=false,is_attached=true,waterlogged=true": {
+      "model": "frostwork:block/candeloupe_attached"
+    },
+    "facing=east,hanging=true,is_attached=false,waterlogged=false": {
       "model": "frostwork:block/candeloupe_hanging"
     },
-    "hanging=true,waterlogged=true": {
+    "facing=east,hanging=true,is_attached=false,waterlogged=true": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=east,hanging=true,is_attached=true,waterlogged=false": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=east,hanging=true,is_attached=true,waterlogged=true": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=north,hanging=false,is_attached=false,waterlogged=false": {
+      "model": "frostwork:block/candeloupe",
+      "y": 270
+    },
+    "facing=north,hanging=false,is_attached=false,waterlogged=true": {
+      "model": "frostwork:block/candeloupe",
+      "y": 270
+    },
+    "facing=north,hanging=false,is_attached=true,waterlogged=false": {
+      "model": "frostwork:block/candeloupe_attached",
+      "y": 270
+    },
+    "facing=north,hanging=false,is_attached=true,waterlogged=true": {
+      "model": "frostwork:block/candeloupe_attached",
+      "y": 270
+    },
+    "facing=north,hanging=true,is_attached=false,waterlogged=false": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=north,hanging=true,is_attached=false,waterlogged=true": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=north,hanging=true,is_attached=true,waterlogged=false": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=north,hanging=true,is_attached=true,waterlogged=true": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=south,hanging=false,is_attached=false,waterlogged=false": {
+      "model": "frostwork:block/candeloupe",
+      "y": 90
+    },
+    "facing=south,hanging=false,is_attached=false,waterlogged=true": {
+      "model": "frostwork:block/candeloupe",
+      "y": 90
+    },
+    "facing=south,hanging=false,is_attached=true,waterlogged=false": {
+      "model": "frostwork:block/candeloupe_attached",
+      "y": 90
+    },
+    "facing=south,hanging=false,is_attached=true,waterlogged=true": {
+      "model": "frostwork:block/candeloupe_attached",
+      "y": 90
+    },
+    "facing=south,hanging=true,is_attached=false,waterlogged=false": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=south,hanging=true,is_attached=false,waterlogged=true": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=south,hanging=true,is_attached=true,waterlogged=false": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=south,hanging=true,is_attached=true,waterlogged=true": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=west,hanging=false,is_attached=false,waterlogged=false": {
+      "model": "frostwork:block/candeloupe",
+      "y": 180
+    },
+    "facing=west,hanging=false,is_attached=false,waterlogged=true": {
+      "model": "frostwork:block/candeloupe",
+      "y": 180
+    },
+    "facing=west,hanging=false,is_attached=true,waterlogged=false": {
+      "model": "frostwork:block/candeloupe_attached",
+      "y": 180
+    },
+    "facing=west,hanging=false,is_attached=true,waterlogged=true": {
+      "model": "frostwork:block/candeloupe_attached",
+      "y": 180
+    },
+    "facing=west,hanging=true,is_attached=false,waterlogged=false": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=west,hanging=true,is_attached=false,waterlogged=true": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=west,hanging=true,is_attached=true,waterlogged=false": {
+      "model": "frostwork:block/candeloupe_hanging"
+    },
+    "facing=west,hanging=true,is_attached=true,waterlogged=true": {
       "model": "frostwork:block/candeloupe_hanging"
     }
   }

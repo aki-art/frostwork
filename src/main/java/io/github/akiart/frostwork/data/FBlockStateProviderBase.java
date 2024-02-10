@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.block.blockTypes.BulbSackBlock;
+import io.github.akiart.frostwork.common.block.blockTypes.CandeloupeFruitBlock;
 import io.github.akiart.frostwork.common.block.blockTypes.FoamBlock;
 import io.github.akiart.frostwork.common.block.registrySets.AbstractWoodBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
@@ -94,6 +95,8 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
         getVariantBuilder(block.get()).forAllStates(state -> {
 
             var hanging = state.getValue(LanternBlock.HANGING);
+            var rotation = state.getValue(CandeloupeFruitBlock.FACING);
+            var isAttached = state.getValue(CandeloupeFruitBlock.IS_ATTACHED);
 
             if(hanging) {
                 String name = getBlockName(block).getPath() + "_hanging";
@@ -108,13 +111,25 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
                         .build();
             }
             else {
+                int y = (((int)rotation.toYRot()) + 90) % 360; // 90 more rotated because i copied the original stem, which is also 90 rotated
+
+
                 String name = getBlockName(block).getPath();
-                ModelFile model = models()
-                        .withExistingParent(name, new ResourceLocation(Frostwork.MOD_ID, "block/fruit_lantern"))
+                if(isAttached)
+                    name += "_attached";
+
+                var modelName = isAttached ? "block/fruit_lantern_attached" : "block/fruit_lantern";
+
+                var model = models()
+                        .withExistingParent(name, new ResourceLocation(Frostwork.MOD_ID, modelName))
                         .texture("0", getLocation("candeloupe"))
                         .renderType("cutout");
 
+                if(isAttached)
+                    model.texture("4", getLocation("attached_candelopue_stem"));
+
                 return ConfiguredModel.builder()
+                        .rotationY(y)
                         .modelFile(model)
                         .build();
             }
@@ -231,6 +246,44 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 
         var models = ConfiguredModel.builder().modelFile(model).build();
         simpleBlock(block.get(), models);
+    }
+
+    protected void stem(DeferredBlock<? extends Block> unattachedStem, DeferredBlock<? extends Block> attachedStem) {
+
+        getVariantBuilder(unattachedStem.get()).forAllStates(state -> {
+            var age = state.getValue(StemBlock.AGE);
+            var modelLocation = getLocation(String.format("gourd_stem_%d", age));
+            var name = String.format("candeloupe_stem_stage_%d", age);
+
+            var model = models()
+                    .withExistingParent(name, modelLocation)
+                    .renderType("cutout")
+                    .texture("1", getLocation("candeloupe_stem"))
+                    .texture("2", getLocation("candeloupe_leaf"));
+
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .build();
+        });
+
+        var modelLocation = getLocation("attached_gourd_stem");
+
+        getVariantBuilder(attachedStem.get()).forAllStates(state -> {
+            var rotation = state.getValue(AttachedStemBlock.FACING);
+
+            int y = (((int)rotation.toYRot()) + 270) % 360; // 90 more rotated because i copied the original model, which is also 90 rotated
+
+            var model = models()
+                    .withExistingParent(getBlockName(attachedStem).getPath(), modelLocation)
+                    .renderType("cutout")
+                    .texture("1", getLocation("candeloupe_stem"))
+                    .texture("2", getLocation("candeloupe_leaf"));
+
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationY(y)
+                    .build();
+        });
     }
 
     protected void snowyBlock(SnowyDirtBlock block) {

@@ -250,7 +250,7 @@ public class FConfiguredFeatures {
         FeatureUtils.register(
                 context,
                 TUNDRA_BEARBERRY,
-                Feature.RANDOM_PATCH,
+                Feature.FLOWER,
                 new RandomPatchConfiguration(
                         97, 10, 3, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(FBlocks.BEARBERRY.get())))
                 )

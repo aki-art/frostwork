@@ -1,3 +1,9 @@
-// 1.20.4	2024-01-13T09:37:59.3561468	Recipes
+// 1.20.4	2024-02-09T01:57:12.8847867	Recipes
+835328588206405e3b6db10dcda2f34e94c8f4c3 data/frostwork/advancements/recipes/brewing/dazzling_candeloupe_slice.json
 339abca7d2358f13613c187981a5496f5268077a data/frostwork/advancements/recipes/combat/tatzelwurm_arrow.json
+3087d4084f9b9e52c15fb03330bb36cab43653a2 data/frostwork/advancements/recipes/food/candeloupe.json
+45c65dfc0ce460f5b31bd17e9691fe21f469556d data/frostwork/advancements/recipes/food/candeloupe_seeds.json
+7d8253fba9b13e94973f3b33216111460f72c274 data/frostwork/recipes/candeloupe.json
+52e251a6f109670112c0d08ba293c88ee2e1abbb data/frostwork/recipes/candeloupe_seeds.json
+24e093312a85f9ca5d520aeb5e7979c8898f99ff data/frostwork/recipes/dazzling_candeloupe_slice.json
 6f4870cb552c1feabe509312565371d44f17f0d2 data/frostwork/recipes/tatzelwurm_arrow.json

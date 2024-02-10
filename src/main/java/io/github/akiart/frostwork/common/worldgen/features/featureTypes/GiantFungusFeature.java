@@ -33,26 +33,31 @@ public class GiantFungusFeature extends Feature<GiantFungusFeatureConfig> {
 
     @Override
     public boolean place(FeaturePlaceContext<GiantFungusFeatureConfig> context) {
-        return false;
-//        var sectionAccess = new BulkSectionAccess(context.level());
-//
-//            var endRadius = context.config().stemEndRadius().sample(context.random());
-//            var bottomY = getFloor(context.level(), context.origin(), endRadius);
-//
-//            if(bottomY < context.level().getMinBuildHeight())
-//                return false;
-//
-//            var origin = new BlockPos(context.origin().getX(), bottomY, context.origin().getZ());
-//            var top = placeStem(context, endRadius, sectionAccess, origin, 8);
-//
-//            if (top.isEmpty())
-//                return false;
-//
-//            placeCap(context, origin, 0); //top.getAsInt());
-//
-//        sectionAccess.close();
-//
-//        return true;
+        OptionalInt top;
+        var origin = context.origin().mutable();
+
+        try(BulkSectionAccess sectionAccess = new BulkSectionAccess(context.level())) {
+
+
+            var endRadius = context.config().stemEndRadius().sample(context.random());
+            var bottomY = getFloor(context.level(), context.origin(), endRadius);
+
+            if(bottomY < context.level().getMinBuildHeight())
+                return false;
+
+            origin.setY(bottomY);
+            top = placeStem(context, endRadius, sectionAccess, origin, 8);
+
+
+        }
+
+        if (top.isEmpty()) {
+            return false;
+        }
+
+        placeCap(context, origin, top.getAsInt());
+
+        return true;
     }
 
     private int getFloor(BlockGetter reader, BlockPos startPos, int width) {
@@ -85,7 +90,7 @@ public class GiantFungusFeature extends Feature<GiantFungusFeatureConfig> {
 
     private boolean canReplace(BlockState state) {
         return !state.blocksMotion() ||
-                //state.getBlock() instanceof SpeleothemBlock ||
+                //state.getBlock() instanceof SpeleothemBlock || use some tag probably
                 state.is(BlockTags.ICE);
     }
 
@@ -119,15 +124,12 @@ public class GiantFungusFeature extends Feature<GiantFungusFeatureConfig> {
     }
 
     private OptionalInt placeStem(FeaturePlaceContext<GiantFungusFeatureConfig> context, int endRadius, BulkSectionAccess sectionAccess, BlockPos origin, int spaceForCap) {
-        //var sectionAccess = new BulkSectionAccess(context.level());
-
-            var blockPos = origin.mutable();
 
             var random = context.random();
             var stemLength = context.config().stemLength().sample(random);
             var startRadius = context.config().stemStartRadius();
 
-            stemLength = 22; // getClearAreaAbove(context.level(), blockPos, stemLength);
+            stemLength = getClearAreaAbove(context.level(), context.origin().mutable(), stemLength);
 
             if (stemLength < context.config().stemLength().getMinValue()) {
                 return OptionalInt.empty();
@@ -157,8 +159,6 @@ public class GiantFungusFeature extends Feature<GiantFungusFeatureConfig> {
                                 false);
                     }
                 }
-
-                blockPos.move(Direction.DOWN);
             }
 
             return OptionalInt.of(stemLength);

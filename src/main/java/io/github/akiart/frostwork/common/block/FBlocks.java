@@ -6,7 +6,11 @@ import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
 import io.github.akiart.frostwork.common.fluid.FFluids;
+import io.github.akiart.frostwork.common.item.FItems;
 import io.github.akiart.frostwork.common.worldgen.features.tree.FTreeGrowers;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
@@ -20,6 +24,12 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class FBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Frostwork.MOD_ID);
 
+    public static class REFS {
+        public static ResourceKey<Block> CANDELOUPE = ResourceKey.create(Registries.BLOCK, new ResourceLocation(Frostwork.MOD_ID, "candeloupe"));
+        public static ResourceKey<Block> CANDELOUPE_STEM = ResourceKey.create(Registries.BLOCK, new ResourceLocation(Frostwork.MOD_ID, "candeloupe_stem"));
+        public static ResourceKey<Block> ATTACHED_CANDELOUPE_STEM = ResourceKey.create(Registries.BLOCK, new ResourceLocation(Frostwork.MOD_ID, "attached_candeloupe_stem"));
+    }
+
     public static class TUNING {
         public static final float COBBLE_HARDNESS = 2f;
         public static final float COBBLE_RESISTANCE = 6f;
@@ -27,6 +37,7 @@ public class FBlocks {
 
     // Trees
     public static final WoodBlockSet FROZEN_ELM = BlockRegistryUtil.registerTransparentWoodSet("frozen_elm", MapColor.COLOR_LIGHT_BLUE, MapColor.LAPIS, MapColor.ICE, WoodType.OAK, FTreeGrowers.FROZEN_ELM);
+    public static final WoodBlockSet VELWOOD = BlockRegistryUtil.registerWoodSet("velwood", MapColor.TERRACOTTA_GRAY, MapColor.TERRACOTTA_BROWN, MapColor.TERRACOTTA_GREEN, WoodType.OAK, FTreeGrowers.FROZEN_ELM);
     public static final WoodBlockSet ELM = BlockRegistryUtil.registerTransparentWoodSet("elm", MapColor.WOOD, MapColor.TERRACOTTA_BROWN, MapColor.COLOR_GREEN, WoodType.OAK, FTreeGrowers.ELM);
     //public static final ThinWoodBlockSet ASPEN = BlockRegistryUtil.registerThinWoodSet("aspen", MapColor.SAND, MapColor.SNOW, MapColor.COLOR_YELLOW, WoodType.BIRCH, FTreeGrowers.ELM);
 
@@ -147,8 +158,20 @@ public class FBlocks {
                     .pushReaction(PushReaction.DESTROY)
             ));
 
-    public static final DeferredBlock<LanternBlock> CANDELOUPE = BlockRegistryUtil.register("candeloupe",
-            () -> new LanternBlock(BlockBehaviour.Properties.of()
+    public static final DeferredBlock<CandeloupeFruitBlock> CANDELOUPE = BlockRegistryUtil.register("candeloupe",
+            () -> new CandeloupeFruitBlock(BlockBehaviour.Properties.of()
+                    .ignitedByLava()
+                    .mapColor(MapColor.GLOW_LICHEN)
+                    .lightLevel(state -> 8)
+                    .forceSolidOn()
+                    .noOcclusion()
+                    .strength(1.0F)
+                    .sound(FSoundTypes.CANDELOUPE)
+                    .pushReaction(PushReaction.DESTROY)
+                    .emissiveRendering((state, level, pos) -> true)));
+
+    public static final DeferredBlock<CandeloupeFruitBlock> CARVED_CANDELOUPE = BlockRegistryUtil.register("carved_candeloupe",
+            () -> new CandeloupeFruitBlock(BlockBehaviour.Properties.of()
                     .ignitedByLava()
                     .mapColor(MapColor.GLOW_LICHEN)
                     .lightLevel(state -> 8)
@@ -159,17 +182,38 @@ public class FBlocks {
                     .pushReaction(PushReaction.DESTROY)
                     .emissiveRendering((state, level, pos) -> true)));
 
-    public static final DeferredBlock<LanternBlock> CARVED_CANDELOUPE = BlockRegistryUtil.register("carved_candeloupe",
-            () -> new LanternBlock(BlockBehaviour.Properties.of()
-                    .ignitedByLava()
-                    .mapColor(MapColor.GLOW_LICHEN)
-                    .lightLevel(state -> 8)
-                    .forceSolidOn()
-                    .noOcclusion()
-                    .strength(1.0F)
-                    .sound(SoundType.FUNGUS)
-                    .pushReaction(PushReaction.DESTROY)
-                    .emissiveRendering((state, level, pos) -> true)));
+
+    public static final DeferredBlock<AttachedStemBlock> ATTACHED_CANDELOUPE_STEM = BlockRegistryUtil.register(
+            "attached_candeloupe_stem",
+            () -> new AttachedStemBlock(
+                    REFS.CANDELOUPE_STEM,
+                    REFS.CANDELOUPE,
+                    FItems.REFS.CANDELOUPE_SEEDS,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .randomTicks()
+                            .instabreak()
+                            .sound(SoundType.HARD_CROP)
+                            .pushReaction(PushReaction.DESTROY)
+            )
+    );
+
+    public static final DeferredBlock<CandeloupeStemBlock> CANDELOUPE_STEM = BlockRegistryUtil.register(
+            "candeloupe_stem",
+            () -> new CandeloupeStemBlock(
+                    REFS.CANDELOUPE,
+                    REFS.ATTACHED_CANDELOUPE_STEM,
+                    FItems.REFS.CANDELOUPE_SEEDS,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .randomTicks()
+                            .instabreak()
+                            .sound(SoundType.HARD_CROP)
+                            .pushReaction(PushReaction.DESTROY)
+            )
+    );
 
     // Misc
     public static final DeferredBlock<SnowyDirtBlock> FROZEN_DIRT = BlockRegistryUtil.register("frozen_dirt",

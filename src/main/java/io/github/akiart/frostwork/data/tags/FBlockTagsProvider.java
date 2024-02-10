@@ -9,6 +9,7 @@ import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -29,6 +30,13 @@ public class FBlockTagsProvider extends BlockTagsProvider {
         BlockRegistryUtil.getMushrooms().forEach(this::tree);
         BlockRegistryUtil.getWoods().forEach(this::tree);
 
+        tag(FTags.Blocks.SUSTAINS_CANDELOUPE_FRUIT).add(
+                Blocks.MUD,
+                Blocks.MOSS_BLOCK,
+                FBlocks.VERDANT_ROCK.block.get(),
+                FBlocks.VERDANT_BURIED_OBJECT.get()
+        );
+
         tag(FTags.Blocks.MOLD).add(
                 FBlocks.OVERGROWN_SANGUITE.get(),
                 FBlocks.MILDEW.get()
@@ -44,6 +52,44 @@ public class FBlockTagsProvider extends BlockTagsProvider {
                 FBlocks.MALACHITE_BLOCK.get()
         );
 
+        tag(BlockTags.ANIMALS_SPAWNABLE_ON).add(
+                FBlocks.DRY_GRASS.get()
+        );
+
+        tag(BlockTags.CROPS).add(
+                FBlocks.CANDELOUPE_STEM.get()
+        );
+
+        tag(BlockTags.FOXES_SPAWNABLE_ON).add(
+                FBlocks.DRY_GRASS.get()
+        );
+
+        tag(BlockTags.OCCLUDES_VIBRATION_SIGNALS).add(
+                FBlocks.MILDEW.get()
+        );
+
+        // drip particles
+        tag(BlockTags.IMPERMEABLE).add(
+                FBlocks.BLACK_SCLERITE.get(),
+                FBlocks.BLUE_SCLERITE.get(),
+                FBlocks.GREEN_SCLERITE.get(),
+                FBlocks.PURPLE_SCLERITE.get()
+        );
+
+        tag(BlockTags.RABBITS_SPAWNABLE_ON).add(
+                FBlocks.DRY_GRASS.get()
+        );
+
+        tag(BlockTags.SMALL_FLOWERS).add(
+                FBlocks.FORGET_ME_NOW.get(),
+                FBlocks.BEARBERRY.get()
+        );
+
+        tag(BlockTags.TALL_FLOWERS).add(
+                FBlocks.LAVENDER.get(),
+                FBlocks.YARROW.get()
+        );
+
         tag(BlockTags.COAL_ORES).add(FBlocks.EDELSTONE_COAL_ORE.get());
         tag(Tags.Blocks.ORES_COAL).add(FBlocks.EDELSTONE_COAL_ORE.get());
         tag(Tags.Blocks.ORES).add(FBlocks.EDELSTONE_COAL_ORE.get());
@@ -52,6 +98,10 @@ public class FBlockTagsProvider extends BlockTagsProvider {
                 FBlocks.EDELSTONE_COAL_ORE.get(),
                 FBlocks.WOLF_BLOCK.get(),
                 FBlocks.MALACHITE_BLOCK.get()
+        );
+
+        tag(BlockTags.MINEABLE_WITH_AXE).add(
+                FBlocks.CANDELOUPE.get()
         );
 
         tag(Tags.Blocks.NEEDS_WOOD_TOOL).add(

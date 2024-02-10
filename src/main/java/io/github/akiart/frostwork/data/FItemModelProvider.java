@@ -43,12 +43,14 @@ public class FItemModelProvider extends FItemModelProviderBase {
         fromBlock(FBlocks.GRIMCAP_GILL);
 
         plants();
+        foods();
 
         miscItem(FItems.TATZELWURM_SCALE);
         miscItem(FItems.TATZELWURM_ARROW);
         miscItem(FItems.BOTTLE_OF_FOAM);
         miscItem(FItems.HUNTER_ARMOR);
         miscItem(FItems.ACID_BUCKET);
+        miscItem(FItems.CANDELOUPE_SEEDS);
 
         fromBlock(FBlocks.HUNTER_PELT_BROWN);
         fromBlock(FBlocks.HUNTER_PELT_CREAM);
@@ -71,6 +73,11 @@ public class FItemModelProvider extends FItemModelProviderBase {
         fromBlock(FBlocks.VERDANT_GOLD_ORE);
 
         fromBlock(FBlocks.MARLSTONE_LAPIS_ORE);
+    }
+
+    private void foods() {
+        miscItem(FItems.CANDELOUPE_SLICE);
+        miscItem(FItems.DAZZLING_CANDELOUPE_SLICE);
     }
 
     private void plants() {

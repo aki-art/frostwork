@@ -1,0 +1,8 @@
+{
+  "parent": "frostwork:block/gourd_stem_7",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "1": "frostwork:block/candeloupe_stem",
+    "2": "frostwork:block/candeloupe_leaf"
+  }
+}

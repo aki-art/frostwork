@@ -4,6 +4,7 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'net.neoforged.gradle.userdev' version '7.0.80'
+    id 'org.jetbrains.kotlin.jvm'
     //id 'org.spongepowered.mixin' version '0.8.5'
 }
 
@@ -34,6 +35,7 @@ repositories {
         // Curios API
         url = "https://maven.theillusivec4.top/"
     }
+    mavenCentral()
 }
 
 base {
@@ -121,6 +123,7 @@ dependencies {
     // Curios
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
@@ -173,4 +176,7 @@ publishing {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+kotlin {
+    jvmToolchain(17)
 }

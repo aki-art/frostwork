@@ -3,8 +3,16 @@ package io.github.akiart.frostwork.data;
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.block.BlockRegistryUtil;
+import io.github.akiart.frostwork.common.item.FItems;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.IntRange;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.LimitCount;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.stream.Collectors;
 
@@ -28,6 +36,20 @@ public class FBlockLootSubProvider extends FBlockLootSubProviderBase {
         dropSelf(FBlocks.HUNTER_PELT_CREAM.get());
         dropSelf(FBlocks.HUNTER_PELT_BROWN.get());
 
+        // candeloupe drops itself if silktouched, or 1-2 candelopue slices
+        add(FBlocks.CANDELOUPE.get(),
+                createSilkTouchDispatchTable(
+                    FBlocks.CANDELOUPE.get(),
+                    applyExplosionDecay(
+                            FBlocks.CANDELOUPE.get(),
+                            LootItem.lootTableItem(FItems.CANDELOUPE_SLICE.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 2f)))
+                                    .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+                                    .apply(LimitCount.limitCount(IntRange.upperBound(4)))
+
+                )
+        ));
+
         addMissingTemp();
     }
 
@@ -35,7 +57,7 @@ public class FBlockLootSubProvider extends FBlockLootSubProviderBase {
     private void addMissingTemp() {
         FBlocks.BLOCKS.getEntries().forEach(block -> {
             if(!this.map.containsKey(block.getId())) {
-                if(block != FBlocks.ACID) {
+                if(block != FBlocks.ACID && block != FBlocks.CANDELOUPE) {
                     add(block.get(), noDrop());
                     Frostwork.LOGGER.warn("No loottable set: " + block.getId());
                 }

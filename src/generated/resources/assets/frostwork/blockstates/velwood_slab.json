@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "frostwork:block/velwood_slab"
+    },
+    "type=double": {
+      "model": "frostwork:block/velwood_planks"
+    },
+    "type=top": {
+      "model": "frostwork:block/velwood_slab_top"
+    }
+  }
+}

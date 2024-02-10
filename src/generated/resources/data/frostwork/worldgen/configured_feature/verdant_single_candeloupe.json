@@ -6,7 +6,9 @@
       "state": {
         "Name": "frostwork:candeloupe",
         "Properties": {
+          "facing": "north",
           "hanging": "false",
+          "is_attached": "true",
           "waterlogged": "false"
         }
       }

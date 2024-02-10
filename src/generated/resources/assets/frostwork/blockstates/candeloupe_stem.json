@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "frostwork:block/candeloupe_stem_stage_0"
+    },
+    "age=1": {
+      "model": "frostwork:block/candeloupe_stem_stage_1"
+    },
+    "age=2": {
+      "model": "frostwork:block/candeloupe_stem_stage_2"
+    },
+    "age=3": {
+      "model": "frostwork:block/candeloupe_stem_stage_3"
+    },
+    "age=4": {
+      "model": "frostwork:block/candeloupe_stem_stage_4"
+    },
+    "age=5": {
+      "model": "frostwork:block/candeloupe_stem_stage_5"
+    },
+    "age=6": {
+      "model": "frostwork:block/candeloupe_stem_stage_6"
+    },
+    "age=7": {
+      "model": "frostwork:block/candeloupe_stem_stage_7"
+    }
+  }
+}

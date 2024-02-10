@@ -36,7 +36,9 @@ public class FLanguageProvider extends LanguageProvider {
         add(FItems.TATZELWURM_ARROW.get(), "Tatzelwurm Arrow");
         add(FItems.HUNTER_ARMOR.get(), "Hunter Armor");
         add(FItems.ACID_BUCKET.get(), "Acid Bucket");
-
+        add(FItems.CANDELOUPE_SEEDS.get(), "Candeloupe Seeds");
+        add(FItems.CANDELOUPE_SLICE.get(), "Candeloupe Slice");
+        add(FItems.DAZZLING_CANDELOUPE_SLICE.get(), "Dazzling Candeloupe Slice");
     }
 
     private void blocks() {
@@ -53,10 +55,16 @@ public class FLanguageProvider extends LanguageProvider {
         add(FBlocks.FORGET_ME_NOW.get(), "Forget-Me-Now");
         add(FBlocks.FOAM.get(), "Foam");
         add(FBlocks.ACID.get(), "Acid");
+
         add(FBlocks.GREEN_SCLERITE.get(), "Green Sclerite");
         add(FBlocks.PURPLE_SCLERITE.get(), "Purple Sclerite");
         add(FBlocks.BLACK_SCLERITE.get(), "Dark Sclerite");
         add(FBlocks.BLUE_SCLERITE.get(), "Blue Sclerite");
+
+        add(FBlocks.CANDELOUPE.get(), "Candeloupe");
+        add(FBlocks.CARVED_CANDELOUPE.get(), "Carved Candeloupe");
+        add(FBlocks.CANDELOUPE_STEM.get(), "Candeloupe Stem");
+        add(FBlocks.ATTACHED_CANDELOUPE_STEM.get(), "Candeloupe Stem");
 
         add(FBlocks.HUNTER_PELT_BROWN.get(), "Tan Hunter Pelt");
         add(FBlocks.HUNTER_PELT_CREAM.get(), "Cream Hunter Pelt");
@@ -89,6 +97,7 @@ public class FLanguageProvider extends LanguageProvider {
         addTree("Frozen Elm", FBlocks.FROZEN_ELM);
         addTree("Elm", FBlocks.ELM);
         addTree("Grimcap", FBlocks.GRIMCAP);
+        addTree("Velwood", FBlocks.VELWOOD);
         add(FBlocks.PURPLE_GRIMCAP_CAP.get(), "Purple Grimcap Cap");
     }
 

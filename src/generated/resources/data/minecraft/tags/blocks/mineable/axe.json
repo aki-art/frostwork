@@ -20,6 +20,18 @@
     "frostwork:frozen_elm_stripped_wood",
     "frostwork:frozen_elm_wood",
     "frostwork:frozen_elm_stripped_wood",
+    "frostwork:velwood_planks",
+    "frostwork:velwood_fence",
+    "frostwork:velwood_trapdoor",
+    "frostwork:velwood_fence_gate",
+    "frostwork:velwood_stairs",
+    "frostwork:velwood_slab",
+    "frostwork:velwood_button",
+    "frostwork:velwood_pressure_plate",
+    "frostwork:velwood_log",
+    "frostwork:velwood_stripped_wood",
+    "frostwork:velwood_wood",
+    "frostwork:velwood_stripped_wood",
     "frostwork:elm_planks",
     "frostwork:elm_fence",
     "frostwork:elm_trapdoor",
@@ -31,6 +43,7 @@
     "frostwork:elm_log",
     "frostwork:elm_stripped_wood",
     "frostwork:elm_wood",
-    "frostwork:elm_stripped_wood"
+    "frostwork:elm_stripped_wood",
+    "frostwork:candeloupe"
   ]
 }
