@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-09T23:35:46.1836261	Item Models: frostwork
+// 1.20.4	2024-02-10T18:10:59.565753	Item Models: frostwork
 60cb02f8185575d6bb334f1739f7ee956338d3fd assets/frostwork/models/item/acid_bucket.json
 c4f111fb6eaeb2eb878ad963a3ca346968be5da1 assets/frostwork/models/item/aquamire.json
 d1db1648114a7e53db818b708cdde47ff27e72cf assets/frostwork/models/item/aquamire_slab.json
@@ -63,6 +63,7 @@ b91f206dfe18276dcd20505e3ba04cb708df7def assets/frostwork/models/item/frozen_elm
 9d3306d6db074f11f3a8e77be2cf728ad6691f6b assets/frostwork/models/item/frozen_elm_stripped_wood.json
 88138a5f1bb7567e77faf5cf11d11e917e800315 assets/frostwork/models/item/frozen_elm_trapdoor.json
 555b659d1eb8aa318637282bc0519fd91fb61914 assets/frostwork/models/item/frozen_elm_wood.json
+5fabeff84b656df22335816a8b386eb527d96217 assets/frostwork/models/item/green_sanguite.json
 8e55073da0a218709e1c68722a1de475137e3cdc assets/frostwork/models/item/green_sclerite.json
 f4b00a4d9f0e4fe2a06a0e7560f2c9e8b4c18054 assets/frostwork/models/item/grimcap_button.json
 afb1327f6ef81a4ad96ff5f0f5fd0957fddee678 assets/frostwork/models/item/grimcap_cap.json

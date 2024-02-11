@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-09T23:35:46.1936274	Block States: frostwork
+// 1.20.4	2024-02-10T18:10:59.5777563	Block States: frostwork
 ef863421831e760b7348505c37456b1ca8fe91ec assets/frostwork/blockstates/aquamire.json
 28685a4882e0ce8a3134060a509e768a07a715e3 assets/frostwork/blockstates/aquamire_slab.json
 60a35d20f6c368d077650b694e78a3799e292540 assets/frostwork/blockstates/aquamire_stairs.json
@@ -61,6 +61,7 @@ f8789a01544259cb8e2b25ef5c003efd6f72d93a assets/frostwork/blockstates/frozen_elm
 0b6e59c054124fa8c8f87c5802a46c95be739218 assets/frostwork/blockstates/frozen_elm_stripped_wood.json
 83441704905b92f766cb50425117b2a758806118 assets/frostwork/blockstates/frozen_elm_trapdoor.json
 14693a65491fa493862d1159e7895730b7e1bc1c assets/frostwork/blockstates/frozen_elm_wood.json
+695d715727ff13952a7347bc4102466140059570 assets/frostwork/blockstates/green_sanguite.json
 3140574bd1d306d781a56bb2197de4cb22bdf4fc assets/frostwork/blockstates/green_sclerite.json
 1898d84ab5c7d8423ed6bef2363b11a6196c8f9f assets/frostwork/blockstates/grimcap_button.json
 83fade52029c57ee4e78cc3561f9439753a5b31d assets/frostwork/blockstates/grimcap_cap.json
@@ -301,6 +302,7 @@ be9dde0d29e014d1be9a46adccf63a3dcaf2af91 assets/frostwork/models/block/frozen_el
 0979f88f08202ad76bcc106f199242d25fc62c6a assets/frostwork/models/block/frozen_elm_trapdoor_top.json
 c69a8b8e97a6b62d2ec7338279477dca808b4505 assets/frostwork/models/block/frozen_elm_wood.json
 1d98d691bdc816091005acbdd8820aa2d03637c2 assets/frostwork/models/block/frozen_elm_wood_horizontal.json
+7ab808f29285e08326a47adec83d207c9383a687 assets/frostwork/models/block/green_sanguite.json
 43887cddfd7b87a90ec64d52f5e21cf2c39695a0 assets/frostwork/models/block/green_sclerite.json
 2375754cf6eb3b28ea49700b9d5c86fb6ed61e37 assets/frostwork/models/block/grimcap_button.json
 bd0a948b07598de13b83762883ba5c76e1456447 assets/frostwork/models/block/grimcap_button_pressed.json

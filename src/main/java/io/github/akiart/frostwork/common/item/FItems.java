@@ -57,6 +57,7 @@ public class FItems {
     public static final StoneItemSet VERDANT_ROCK = ItemRegistryUtil.registerStoneItems(FBlocks.VERDANT_ROCK);
     public static final StoneItemSet PITH = ItemRegistryUtil.registerStoneItems(FBlocks.PITH);
     public static final DeferredItem<BlockItem> FRAMED_PITH = ItemRegistryUtil.registerFromBlock(FBlocks.FRAMED_PITH);
+    public static final DeferredItem<BlockItem> GREEN_SANGUITE = ItemRegistryUtil.registerFromBlock(FBlocks.GREEN_SANGUITE);
 
     public static final StoneItemSet POLISHED_AQUAMIRE = ItemRegistryUtil.registerStoneItems(FBlocks.POLISHED_AQUAMIRE);
 

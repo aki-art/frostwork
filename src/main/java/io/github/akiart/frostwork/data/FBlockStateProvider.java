@@ -52,6 +52,7 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         simpleBlock(FBlocks.SOMEWHAT_OVERGROWN_SANGUITE.get());
 
         simpleBlock(FBlocks.FRAMED_PITH.get());
+        simpleBlock(FBlocks.GREEN_SANGUITE.get());
 
         simpleBlock(FBlocks.MARLSTONE_COAL_ORE.get());
 

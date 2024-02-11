@@ -4,7 +4,7 @@
   },
   "downfall": 0.0,
   "effects": {
-    "fog_color": 8533538,
+    "fog_color": 12900911,
     "foliage_color": 7154715,
     "grass_color": 7154715,
     "mood_sound": {
@@ -19,13 +19,36 @@
       "replace_current_music": false,
       "sound": "minecraft:music.overworld.lush_caves"
     },
+    "particle": {
+      "options": {
+        "type": "frostwork:grimcap_spore"
+      },
+      "probability": 0.025
+    },
     "sky_color": 7285012,
     "water_color": 6201521,
     "water_fog_color": 6201521
   },
   "features": [
     [
+      "frostwork:sanguite_pillars",
       "frostwork:grove_giant_grimcap"
+    ],
+    [],
+    [],
+    [],
+    [
+      "frostwork:grimcap_acid_deltas"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "frostwork:grove_bulbsacks",
+      "frostwork:grove_medium_red_grimcap",
+      "frostwork:grove_large_grimcap",
+      "frostwork:grove_mildew_fuzz"
     ]
   ],
   "has_precipitation": true,

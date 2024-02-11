@@ -26,6 +26,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
         fromBlock(FBlocks.MALACHITE_BLOCK);
         fromBlock(FBlocks.FROZEN_DIRT);
         fromBlock(FBlocks.OVERGROWN_SANGUITE);
+        fromBlock(FBlocks.GREEN_SANGUITE);
         fromBlock(FBlocks.OVERGROWTH);
         fromBlock(FBlocks.MILDEW);
         fromBlock(FBlocks.DRY_GRASS);

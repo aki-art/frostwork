@@ -11,4 +11,5 @@ public class FParticles {
     public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, Frostwork.MOD_ID);
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> ACID_BUBBLE = PARTICLES.register("acid_bubble", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GRIM_SPORE = PARTICLES.register("grimcap_spore", () -> new SimpleParticleType(true));
 }

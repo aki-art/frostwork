@@ -1,5 +1,6 @@
 package io.github.akiart.frostwork.client;
 
+import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.worldgen.FDimensionTypes;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -21,6 +22,9 @@ public class FogRenderTweaks {
     }
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onFogRender(ViewportEvent.RenderFog event) {
+
+        if(Frostwork.DEBUG_DISABLE_FOG)
+            return;
 
         if(event.getMode() != FogRenderer.FogMode.FOG_TERRAIN)
             return;

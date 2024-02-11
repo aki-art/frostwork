@@ -88,6 +88,11 @@ public class FBlocks {
                     .sound(SoundType.CANDLE)
             ));
     public static final StoneBlockSet SANGUITE = BlockRegistryUtil.registerStones("sanguite", TUNING.COBBLE_HARDNESS, TUNING.COBBLE_RESISTANCE, MapColor.NETHER, false);
+
+    public static final DeferredBlock<Block> GREEN_SANGUITE = BlockRegistryUtil.register("green_sanguite",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK)
+                    .mapColor(MapColor.TERRACOTTA_GREEN)
+            ));
     public static final StoneBlockSet POLISHED_SANGUITE = BlockRegistryUtil.registerStones("polished_sanguite", TUNING.COBBLE_HARDNESS, TUNING.COBBLE_RESISTANCE, MapColor.NETHER, false);
     public static final StoneBlockSet POLISHED_MALACHITE = BlockRegistryUtil.registerStones("polished_malachite", TUNING.COBBLE_HARDNESS, TUNING.COBBLE_RESISTANCE, MapColor.COLOR_GREEN, false);
 

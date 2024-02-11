@@ -50,7 +50,7 @@ public class FDimensions {
 
         NoiseBasedChunkGenerator layered = new LayeredNoiseChunkGenerator(
                 FantasiaBiomeSource.createFromList(surfaceBiomes, caveBiomes),
-                300,
+                0,
                 noiseGenSettings.getOrThrow(FNoiseGenerationSettings.FANTASIA_NOISE_SETTINGS_ID));
 
         LevelStem stem = new LevelStem(dimensionTypes.getOrThrow(FDimensionTypes.FANTASIA_TYPE), layered);

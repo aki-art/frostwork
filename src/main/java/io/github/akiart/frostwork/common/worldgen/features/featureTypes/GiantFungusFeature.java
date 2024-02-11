@@ -9,10 +9,8 @@ import net.minecraft.core.SectionPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
@@ -37,30 +35,24 @@ public class GiantFungusFeature extends Feature<GiantFungusFeatureConfig> {
         var origin = context.origin().mutable();
 
         try(BulkSectionAccess sectionAccess = new BulkSectionAccess(context.level())) {
-
-
             var endRadius = context.config().stemEndRadius().sample(context.random());
-            var bottomY = getFloor(context.level(), context.origin(), endRadius);
+            var bottomY = getFloor(sectionAccess, context.origin(), endRadius) - 1;
 
             if(bottomY < context.level().getMinBuildHeight())
                 return false;
 
             origin.setY(bottomY);
             top = placeStem(context, endRadius, sectionAccess, origin, 8);
-
-
         }
 
-        if (top.isEmpty()) {
+        if (top.isEmpty())
             return false;
-        }
 
         placeCap(context, origin, top.getAsInt());
-
         return true;
     }
 
-    private int getFloor(BlockGetter reader, BlockPos startPos, int width) {
+    private int getFloor(BulkSectionAccess reader, BlockPos startPos, int width) {
         int[] samples = new int[8];
 
         samples[0] = projectDown(reader, startPos.offset(-width, 0, 0));
@@ -77,7 +69,7 @@ public class GiantFungusFeature extends Feature<GiantFungusFeatureConfig> {
         return Arrays.stream(samples).min().getAsInt();
     }
 
-    private int projectDown(BlockGetter reader, BlockPos offset) {
+    private int projectDown(BulkSectionAccess reader, BlockPos offset) {
         BlockPos.MutableBlockPos p = offset.mutable();
         for(int y = offset.getY(); y > 0; --y) {
             p.setY(y);
@@ -129,7 +121,7 @@ public class GiantFungusFeature extends Feature<GiantFungusFeatureConfig> {
             var stemLength = context.config().stemLength().sample(random);
             var startRadius = context.config().stemStartRadius();
 
-            stemLength = getClearAreaAbove(context.level(), context.origin().mutable(), stemLength);
+            stemLength = getClearAreaAbove(sectionAccess, context.origin().mutable(), stemLength);
 
             if (stemLength < context.config().stemLength().getMinValue()) {
                 return OptionalInt.empty();
@@ -154,8 +146,7 @@ public class GiantFungusFeature extends Feature<GiantFungusFeatureConfig> {
                                 SectionPos.sectionRelative(mutablePos.getX()),
                                 SectionPos.sectionRelative(mutablePos.getY()),
                                 SectionPos.sectionRelative(mutablePos.getZ()),
-                                //context.config().capBlock().getState(random, mutablePos),
-                                Blocks.LIME_WOOL.defaultBlockState(),
+                                context.config().capBlock().getState(random, mutablePos),
                                 false);
                     }
                 }
@@ -164,7 +155,7 @@ public class GiantFungusFeature extends Feature<GiantFungusFeatureConfig> {
             return OptionalInt.of(stemLength);
     }
 
-    private int getClearAreaAbove(BlockGetter sectionAccess, BlockPos.MutableBlockPos blockPos, int stemLength) {
+    private int getClearAreaAbove(BulkSectionAccess sectionAccess, BlockPos.MutableBlockPos blockPos, int stemLength) {
 
         for(int y = 0; y < stemLength; y++) {
             if(!sectionAccess.getBlockState(blockPos).isAir())

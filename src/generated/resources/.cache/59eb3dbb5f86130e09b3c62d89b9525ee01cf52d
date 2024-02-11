@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-10T02:49:49.8512395	Loot Tables
+// 1.20.4	2024-02-10T18:10:59.5697541	Loot Tables
 f164f89777131a53b144fa5a7c03c736c6fd8706 data/frostwork/loot_tables/blocks/aquamire.json
 8a1e744f4dfba1c368803fa9045a5efb88e6570d data/frostwork/loot_tables/blocks/aquamire_slab.json
 1e39e2b659f48452715ecb6816352d02f302b0aa data/frostwork/loot_tables/blocks/aquamire_stairs.json
@@ -61,6 +61,7 @@ dd42e9d8e08cffe8cf383923d32ca9df694bf341 data/frostwork/loot_tables/blocks/froze
 39ed5639072db00a8be5c96336300fa6bfd3733b data/frostwork/loot_tables/blocks/frozen_elm_stripped_wood.json
 076633e884a463f2b50cd9d640c96e6dc153ec75 data/frostwork/loot_tables/blocks/frozen_elm_trapdoor.json
 ebafd40c2c6c4be1fc08af70f3e5f749900c1571 data/frostwork/loot_tables/blocks/frozen_elm_wood.json
+c110f4292cb1b75c2f1557f8ceb3c6821a2ed015 data/frostwork/loot_tables/blocks/green_sanguite.json
 9edb788cbac0ca4156237e4fb9b3cc857b8e87e9 data/frostwork/loot_tables/blocks/green_sclerite.json
 032beab097578804fe93002591dcd0876028b537 data/frostwork/loot_tables/blocks/grimcap_button.json
 dc46e53362308a2db11e96ba37b5ff2549df03a9 data/frostwork/loot_tables/blocks/grimcap_cap.json

@@ -2,6 +2,10 @@ package io.github.akiart.frostwork.common.worldgen;
 
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
+import io.github.akiart.frostwork.common.worldgen.densityFunctions.CellularPlateausDensityFunction;
+import io.github.akiart.frostwork.common.worldgen.densityFunctions.ExponentialDensityFunction;
+import io.github.akiart.frostwork.common.worldgen.densityFunctions.ExponentialYGradientDensityFunction;
+import io.github.akiart.frostwork.common.worldgen.densityFunctions.WarpedSimplexDensityFunction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -13,8 +17,9 @@ import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 public class FNoiseGenerationSettings {
-    private static final int MIN_Y = -64;
+    private static final int MIN_Y = 0;
     private static final int MAX_Y = 448;
+    private static final int PLATEOUS_Y = 70;
     private static final int SEA_LEVEL = 198;
     protected static final NoiseSettings FANTASIA_NOISE_SETTINGS = NoiseSettings.create(0, 448, 1, 2);
     protected static final ResourceKey<NoiseGeneratorSettings> FANTASIA_NOISE_SETTINGS_ID =  ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(Frostwork.MOD_ID, "fantasia_noise"));
@@ -101,12 +106,39 @@ public class FNoiseGenerationSettings {
                 DensityFunctions.rangeChoice(p_209472_, (double)p_209474_, (double)(p_209475_ + 1), p_209473_, DensityFunctions.constant((double)p_209476_))
         );
     }
+
+    private static DensityFunction undergroundPlateaus(HolderGetter<DensityFunction> densityFunctions, HolderGetter<NormalNoise.NoiseParameters> noiseParameters)
+    {
+        // big polygon like voronoi shapes
+        var cached = DensityFunctions.flatCache(new CellularPlateausDensityFunction(0.5f, 1f));
+
+        // make it apply to Y level, giving elevated platforms
+        var y = DensityFunctions.yClampedGradient(10, PLATEOUS_Y, 0.5f, -1);
+        var plateous = DensityFunctions.add(y, cached);
+        //plateous = DensityFunctions.max(plateous, DensityFunctions.constant(0));
+
+        return DensityFunctions.rangeChoice(getFunction(densityFunctions, Y), 0, PLATEOUS_Y, plateous, DensityFunctions.constant(0));
+    }
+
     private static DensityFunction fantasiaFinalDensity(HolderGetter<DensityFunction> densityFunctions, HolderGetter<NormalNoise.NoiseParameters> noiseParameters) {
 
-        // basic cave shape in a solid world
-        var baseSimplex = new FDensityFunctions.WarpedSimplexDensityFunction(0);
+        var plateaus =
+               // DensityFunctions.interpolated(
+                    DensityFunctions.interpolated(
+                            undergroundPlateaus(densityFunctions, noiseParameters));
 
-        var closeCavesNearTop = DensityFunctions.add(baseSimplex, DensityFunctions.yClampedGradient(170, 210, 0, 10));
+        // basic cave shape in a solid world
+        var baseSimplex = DensityFunctions.mul(
+                DensityFunctions.add(
+                    new WarpedSimplexDensityFunction(-0.38f, 3, 1, 1.66f),
+                    DensityFunctions.constant(-0.4f)),
+                DensityFunctions.constant(0.34f));
+
+        var shrinkCavesNearTop = DensityFunctions.add(
+                new ExponentialYGradientDensityFunction(0.00003f, -0.6f),
+                baseSimplex);
+
+        var closeCavesNearTop = DensityFunctions.add(shrinkCavesNearTop, DensityFunctions.yClampedGradient(170, 210, 0, 10));
         var clampedCaves = DensityFunctions.min(closeCavesNearTop, DensityFunctions.constant(1));
 
         var surfaceDepth = baseDepth(densityFunctions);
@@ -115,9 +147,10 @@ public class FNoiseGenerationSettings {
         var spaghet = getFunction(densityFunctions, SPAGHETTI_2D);
         var cavedWorld = DensityFunctions.min(scrapedTop, spaghet);
 
-        var closeFloor = DensityFunctions.add(cavedWorld, new FDensityFunctions.ExponentialDensityFunction(16f, 2f));
+        var closeFloor = DensityFunctions.add(cavedWorld, new ExponentialDensityFunction(16f, 2f));
+        var plateoud = DensityFunctions.add(closeFloor, plateaus);
 
-        return DensityFunctions.interpolated(closeFloor); //DensityFunctions.mul(caves, scrapeSurface));
+        return new WarpedSimplexDensityFunction(-0.38f, 3, 1, 1.66f); // DensityFunctions.interpolated(plateoud); //DensityFunctions.mul(caves, scrapeSurface));
     }
 
     private static NoiseRouter fantasia(
@@ -145,7 +178,8 @@ public class FNoiseGenerationSettings {
                 DensityFunctions.zero(),
                 baseDepthButLower(pDensityFunctions),
                 DensityFunctions.zero(),
-                slideFantasia(pDensityFunctions),
+                // actual initial slideFantasia(pDensityFunctions),
+                DensityFunctions.constant(1),
                 fantasiaFinalDensity(pDensityFunctions, pNoiseParameters),
                 // no veins
                 DensityFunctions.zero(),

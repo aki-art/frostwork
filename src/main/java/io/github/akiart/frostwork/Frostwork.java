@@ -12,10 +12,10 @@ import io.github.akiart.frostwork.common.fluid.FFluidTypes;
 import io.github.akiart.frostwork.common.fluid.FFluids;
 import io.github.akiart.frostwork.common.item.FItems;
 import io.github.akiart.frostwork.common.potion.FPotions;
-import io.github.akiart.frostwork.common.worldgen.FDensityFunctions;
 import io.github.akiart.frostwork.common.worldgen.FSurfaceRules;
 import io.github.akiart.frostwork.common.worldgen.FantasiaBiomeSource;
 import io.github.akiart.frostwork.common.worldgen.LayeredNoiseChunkGenerator;
+import io.github.akiart.frostwork.common.worldgen.densityFunctions.*;
 import io.github.akiart.frostwork.common.worldgen.features.FFeatures;
 import io.github.akiart.frostwork.common.worldgen.features.placementModifiers.FPlacementModifierTypes;
 import net.minecraft.core.Registry;
@@ -44,6 +44,7 @@ import java.util.Map;
 public class Frostwork {
     public static final String MOD_ID = "frostwork";
     public static final Logger LOGGER = LogManager.getLogger();
+    public static final boolean DEBUG_DISABLE_FOG = true;
 
     public Frostwork(IEventBus modEventBus) {
         initRegistry(modEventBus);
@@ -81,11 +82,13 @@ public class Frostwork {
         else if(key.equals(Registries.MATERIAL_CONDITION))
             Registry.register(BuiltInRegistries.MATERIAL_CONDITION, new ResourceLocation(MOD_ID, "cellular_sponge"), FSurfaceRules.CellularBoundaryConditionSource.CODEC.codec());
         else if(key.equals(Registries.DENSITY_FUNCTION_TYPE)) {
-            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "y_clamped_offset_curve"), FDensityFunctions.YClampedOffsetCurve.CODEC.codec());
-            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "warped_simplex"), FDensityFunctions.WarpedSimplexDensityFunction.CODEC.codec());
-            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "fantasia_base_surface"), FDensityFunctions.FantasiaBaseSurfaceDensityFunction.CODEC.codec());
-            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "fantasia_surface_flat"), FDensityFunctions.FlatSurfaceDensityFunction.CODEC.codec());
-            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "exp_floor"), FDensityFunctions.ExponentialDensityFunction.CODEC.codec());
+            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "y_clamped_offset_curve"), YClampedOffsetCurveDensityFunction.CODEC.codec());
+            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "warped_simplex"), WarpedSimplexDensityFunction.CODEC.codec());
+            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "fantasia_base_surface"), FantasiaBaseSurfaceDensityFunction.CODEC.codec());
+            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "fantasia_surface_flat"), FlatSurfaceDensityFunction.CODEC.codec());
+            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "exp_floor"), ExponentialDensityFunction.CODEC.codec());
+            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "cellular_plateaus"), CellularPlateausDensityFunction.CODEC.codec());
+            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "exponential_y_gradient"), ExponentialYGradientDensityFunction.CODEC.codec());
         }
 //        else if(key.equals(Registries.PLACEMENT_MODIFIER_TYPE)) {
 //            Registry.register(BuiltInRegistries.PLACEMENT_MODIFIER_TYPE, new ResourceLocation(MOD_ID, "cellular_boundary"), () -> {

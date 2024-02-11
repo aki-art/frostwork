@@ -30,19 +30,11 @@ public class AcidLiquidBlock extends LiquidBlock {
     public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
         if (!world.isClientSide()) return;
 
-        BlockPos blockpos = pos.above();
-        if (!world.getBlockState(blockpos).isAir()) {
-            if (!world.getBlockState(blockpos).isSolidRender(world, blockpos) && random.nextInt(20) == 0) {
+        BlockPos abovePos = pos.above();
+        if (!world.getBlockState(abovePos).isAir()) {
+            if (!world.getBlockState(abovePos).isSolidRender(world, abovePos) && random.nextInt(20) == 0) {
 
-                double x = (double) pos.getX() + random.nextDouble();
-                double y = pos.getY();
-                double z = (double) pos.getZ() + random.nextDouble();
-
-                double xs = (random.nextDouble() - .5d) * .2d;
-                double ys = random.nextDouble() * .2d;
-                double zs = (random.nextDouble() - .5d) * .2d;
-
-                world.addParticle(FParticles.ACID_BUBBLE.get(), x, y, z, xs, ys, zs);
+                spawnBubbleParticle(world, pos, random);
             }
 
             if (random.nextInt(200) == 0) {
@@ -50,11 +42,26 @@ public class AcidLiquidBlock extends LiquidBlock {
             }
         }
         else {
+            if(random.nextInt(10) == 0)
+                spawnBubbleParticle(world, pos, random);
+
             // only play sound at surface
             if (random.nextInt(200) == 0) {
                 world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BUBBLE_COLUMN_BUBBLE_POP, SoundSource.BLOCKS, 0.5F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
             }
         }
+    }
+
+    private static void spawnBubbleParticle(Level world, BlockPos pos, RandomSource random) {
+        double x = (double) pos.getX() + random.nextDouble();
+        double y = pos.getY();
+        double z = (double) pos.getZ() + random.nextDouble();
+
+        double xs = (random.nextDouble() - .5d) * .2d;
+        double ys = random.nextDouble() * .2d;
+        double zs = (random.nextDouble() - .5d) * .2d;
+
+        world.addParticle(FParticles.ACID_BUBBLE.get(), x, y, z, xs, ys, zs);
     }
 
     @Override

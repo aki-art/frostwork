@@ -125,7 +125,7 @@ public class FPlacedFeatures {
                 context,
                 Vegetation.GROVE_GIANT_GRIMCAP,
                 configuredFeatures.getOrThrow(FConfiguredFeatures.Fungus.GIANT_GRIMCAP),
-                RarityFilter.onAverageOnceEvery(7),
+                RarityFilter.onAverageOnceEvery(4),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 BiomeFilter.biome()

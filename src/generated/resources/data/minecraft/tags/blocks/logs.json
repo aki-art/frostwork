@@ -1,5 +1,9 @@
 {
   "values": [
+    "frostwork:elm_log",
+    "frostwork:elm_stripped_wood",
+    "frostwork:elm_wood",
+    "frostwork:elm_stripped_wood",
     "frostwork:frozen_elm_log",
     "frostwork:frozen_elm_stripped_wood",
     "frostwork:frozen_elm_wood",
@@ -7,10 +11,6 @@
     "frostwork:velwood_log",
     "frostwork:velwood_stripped_wood",
     "frostwork:velwood_wood",
-    "frostwork:velwood_stripped_wood",
-    "frostwork:elm_log",
-    "frostwork:elm_stripped_wood",
-    "frostwork:elm_wood",
-    "frostwork:elm_stripped_wood"
+    "frostwork:velwood_stripped_wood"
   ]
 }

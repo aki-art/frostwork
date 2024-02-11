@@ -57,7 +57,7 @@
         }
       ]
     },
-    "debug_strips": 300,
+    "debug_strips": 0,
     "settings": "frostwork:fantasia_noise"
   }
 }
