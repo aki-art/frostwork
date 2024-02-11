@@ -4,11 +4,12 @@ package io.github.akiart.frostwork.common.worldgen.densityFunctions;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.lib.FastNoiseLite;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.world.level.levelgen.DensityFunction;
 
-public final class WarpedSimplexDensityFunction implements DensityFunction.SimpleFunction {
+public final class WarpedSimplexDensityFunction implements DensityFunction.SimpleFunction, ISeededDensityFunction {
     private static final MapCodec<WarpedSimplexDensityFunction> DATA_CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
                             Codec.FLOAT.fieldOf("fractal_gain").forGetter(fn -> fn.fractalGain),
@@ -64,5 +65,10 @@ public final class WarpedSimplexDensityFunction implements DensityFunction.Simpl
     @Override
     public KeyDispatchDataCodec<? extends DensityFunction> codec() {
         return CODEC;
+    }
+
+    public void setSeed(long pLevelSeed) {
+        cavityNoise.SetSeed((int)(pLevelSeed % Integer.MAX_VALUE));
+        Frostwork.LOGGER.info("SET SEED:" + pLevelSeed);
     }
 }

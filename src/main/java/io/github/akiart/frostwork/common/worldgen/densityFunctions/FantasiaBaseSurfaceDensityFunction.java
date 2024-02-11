@@ -8,7 +8,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 
-public final class FantasiaBaseSurfaceDensityFunction implements DensityFunction.SimpleFunction {
+public final class FantasiaBaseSurfaceDensityFunction implements DensityFunction.SimpleFunction, ISeededDensityFunction {
     public static final KeyDispatchDataCodec<FantasiaBaseSurfaceDensityFunction> CODEC = KeyDispatchDataCodec.of(
             MapCodec.unit(new FantasiaBaseSurfaceDensityFunction(0L))
     );
@@ -87,5 +87,13 @@ public final class FantasiaBaseSurfaceDensityFunction implements DensityFunction
     @Override
     public KeyDispatchDataCodec<? extends DensityFunction> codec() {
         return CODEC;
+    }
+
+    @Override
+    public void setSeed(long seed) {
+        int intSeed = (int)(seed % Integer.MAX_VALUE);
+        surfaceNoise.SetSeed(intSeed);
+        surfaceWarpA.SetSeed(intSeed);
+        surfaceWarpB.SetSeed(intSeed);
     }
 }

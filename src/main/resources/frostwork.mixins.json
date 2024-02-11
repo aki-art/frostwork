@@ -2,7 +2,9 @@
   "required": true,
   "package": "io.github.akiart.frostwork.mixin",
   "mixins": [
-    "ExampleMixin"
+    "ExampleMixin",
+    //"RandomState_NoiseWiringHelper_Mixin",
+    "RandomStateMixin"
   ],
   "client": [
     //"client.MixinBlockEntityWithoutLevelRenderer"

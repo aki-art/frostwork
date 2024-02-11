@@ -3,16 +3,13 @@ package io.github.akiart.frostwork.common.worldgen.densityFunctions;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.lib.FastNoiseLite;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.DensityFunction;
-import net.minecraft.world.level.levelgen.DensityFunctions;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
-import net.minecraft.world.level.levelgen.RandomState;
 
-public class CellularPlateausDensityFunction implements DensityFunction {
+public class CellularPlateausDensityFunction implements DensityFunction, ISeededDensityFunction {
     private final float xzScale;
     private final float yScale;
     private final FastNoiseLite noise;
@@ -51,22 +48,22 @@ public class CellularPlateausDensityFunction implements DensityFunction {
 
     @Override
     public DensityFunction mapAll(Visitor visitor) {
-        try {
-            var helper = Class
-                    .forName("net.minecraft.world.level.levelgen.RandomState$1NoiseWiringHelper");
-
-            var m = helper.getDeclaredMethod("wrapNew", DensityFunction.class);
-            m.invoke(visitor, new DensityFunctions.endIslands(0))
-
-        } catch (ClassNotFoundException | NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        }
-        if(visitor instanceof RandomState.) {
-
-        }
-        else {
-            Frostwork.LOGGER.warn("unexpected noise wrapper");
-        }
+//        try {
+//            var helper = Class
+//                    .forName("net.minecraft.world.level.levelgen.RandomState$1NoiseWiringHelper");
+//
+//            var m = helper.getDeclaredMethod("wrapNew", DensityFunction.class);
+//            m.invoke(visitor, new )
+//
+//        } catch (ClassNotFoundException | NoSuchMethodException e) {
+//            throw new RuntimeException(e);
+//        }
+//        if(visitor instanceof RandomState.) {
+//
+//        }
+//        else {
+//            Frostwork.LOGGER.warn("unexpected noise wrapper");
+//        }
 
         return visitor.apply(this);
     }
@@ -84,5 +81,9 @@ public class CellularPlateausDensityFunction implements DensityFunction {
     @Override
     public KeyDispatchDataCodec<? extends DensityFunction> codec() {
         return CODEC;
+    }
+
+    public void setSeed(long pLevelSeed) {
+        this.noise.SetSeed((int)(pLevelSeed % Integer.MAX_VALUE));
     }
 }
