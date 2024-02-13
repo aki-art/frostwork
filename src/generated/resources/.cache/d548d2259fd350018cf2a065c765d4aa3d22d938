@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-10T18:10:59.565753	Item Models: frostwork
+// 1.20.4	2024-02-12T20:33:58.4098836	Item Models: frostwork
 60cb02f8185575d6bb334f1739f7ee956338d3fd assets/frostwork/models/item/acid_bucket.json
 c4f111fb6eaeb2eb878ad963a3ca346968be5da1 assets/frostwork/models/item/aquamire.json
 d1db1648114a7e53db818b708cdde47ff27e72cf assets/frostwork/models/item/aquamire_slab.json
@@ -81,6 +81,7 @@ cfea5d459ab1a857a677281dba479a3f2616de08 assets/frostwork/models/item/grimcap_st
 d7bada32aabbe722653a0255b52f32805909047d assets/frostwork/models/item/hunter_armor.json
 577ae907e34052ac2e687a4af33a4e8bbb1b962d assets/frostwork/models/item/hunter_pelt_brown.json
 087fbd73749d389dbceab4f949960d472a6da934 assets/frostwork/models/item/hunter_pelt_cream.json
+ec057456fc83db2a2659347c8db4df3b88f59a4f assets/frostwork/models/item/infested_velwood.json
 1e828b9d5dd86b67b40864c6c09cab80fe32d09e assets/frostwork/models/item/lavender.json
 57054170ba250a82700ddf377206a5f555529358 assets/frostwork/models/item/malachite_block.json
 6f4fed151c8923a3f50842104016b722787a20bb assets/frostwork/models/item/malachite_ice_ore.json

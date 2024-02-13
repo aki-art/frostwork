@@ -127,18 +127,29 @@ public class FNoiseGenerationSettings {
                     DensityFunctions.interpolated(
                             undergroundPlateaus(densityFunctions, noiseParameters));
 
+        var undergroundRivers = DensityFunctions.flatCache(new WarpedSimplexDensityFunction(3.240f, 2, 0.05f, 1f));
+        undergroundRivers = DensityFunctions.mul(undergroundRivers, DensityFunctions.constant(-1f));
+        undergroundRivers = DensityFunctions.min(undergroundRivers, plateaus);
+
+        var carvedRivers = DensityFunctions.add(undergroundPlateaus(densityFunctions, noiseParameters), undergroundRivers);
+
+
         // basic cave shape in a solid world
         var baseSimplex = DensityFunctions.mul(
                 DensityFunctions.add(
                     new WarpedSimplexDensityFunction(-0.38f, 3, 1, 1.66f),
-                    DensityFunctions.constant(-0.4f)),
+                    DensityFunctions.constant(0)), // -0.4f
                 DensityFunctions.constant(0.34f));
 
         var shrinkCavesNearTop = DensityFunctions.add(
-                new ExponentialYGradientDensityFunction(0.00003f, -0.6f),
+                new ExponentialYGradientDensityFunction(0.00003f, -0.4f),
                 baseSimplex);
 
-        var closeCavesNearTop = DensityFunctions.add(shrinkCavesNearTop, DensityFunctions.yClampedGradient(170, 210, 0, 10));
+        var croppedCaves = DensityFunctions.rangeChoice(
+                getFunction(densityFunctions, Y), 0, 220, shrinkCavesNearTop, DensityFunctions.constant(1)
+        );
+
+        var closeCavesNearTop = DensityFunctions.add(croppedCaves, DensityFunctions.yClampedGradient(170, 210, 0, 10));
         var clampedCaves = DensityFunctions.min(closeCavesNearTop, DensityFunctions.constant(1));
 
         var surfaceDepth = baseDepth(densityFunctions);
@@ -150,7 +161,8 @@ public class FNoiseGenerationSettings {
         var closeFloor = DensityFunctions.add(cavedWorld, new ExponentialDensityFunction(16f, 2f));
         var plateoud = DensityFunctions.add(closeFloor, plateaus);
 
-        return new WarpedSimplexDensityFunction(-0.38f, 3, 1, 1.66f); // DensityFunctions.interpolated(plateoud); //DensityFunctions.mul(caves, scrapeSurface));
+        return plateoud;
+       // return new WarpedSimplexDensityFunction(-0.38f, 3, 1, 1.66f); // DensityFunctions.interpolated(plateoud); //DensityFunctions.mul(caves, scrapeSurface));
     }
 
     private static NoiseRouter fantasia(

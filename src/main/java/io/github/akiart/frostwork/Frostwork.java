@@ -44,7 +44,7 @@ import java.util.Map;
 public class Frostwork {
     public static final String MOD_ID = "frostwork";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static final boolean DEBUG_DISABLE_FOG = true;
+    public static final boolean DEBUG_DISABLE_FOG = false;
 
     public Frostwork(IEventBus modEventBus) {
         initRegistry(modEventBus);
@@ -69,6 +69,9 @@ public class Frostwork {
         FParticles.PARTICLES.register(modEventBus);
         FFeatures.FEATURES.register(modEventBus);
         FPlacementModifierTypes.PLACEMENT_MODIFIERS.register(modEventBus);
+
+        for(var feature : FFeatures.FEATURES.getEntries())
+            LOGGER.info("feature: " + feature.getId());
     }
 
     public void worldgenRegistryInit(RegisterEvent evt) {

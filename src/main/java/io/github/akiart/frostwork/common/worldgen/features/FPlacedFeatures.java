@@ -1,6 +1,7 @@
 package io.github.akiart.frostwork.common.worldgen.features;
 
 import io.github.akiart.frostwork.Frostwork;
+import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.worldgen.FOrePlacement;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.levelgen.placement.*;
 import java.util.List;
 
 public class FPlacedFeatures {
+
 
     public static class Ores {
         public static final ResourceKey<PlacedFeature> EDELSTONE_COAL_ORE = key("edelstone_coal_ore");
@@ -44,6 +46,9 @@ public class FPlacedFeatures {
         public static final ResourceKey<PlacedFeature> GROVE_GIANT_GRIMCAP = key("grove_giant_grimcap");
         public static final ResourceKey<PlacedFeature> GROVE_MEDIUM_PURPLE_GRIMCAP = key("grove_medium_purple_grimcap");
         public static final ResourceKey<PlacedFeature> GROVE_MILDEW_FUZZ = key("grove_mildew_fuzz");
+        public static final ResourceKey<PlacedFeature> THIN_SHORT_FLOOR_VELWOOD_TREES = key("thin_short_velwood_trees");
+        public static final ResourceKey<PlacedFeature> THIN_TALL_FLOOR_VELWOOD_TREES = key("thin_tall_velwood_trees");
+        public static final ResourceKey<PlacedFeature> BIG_VELWOOD_TREES = key("big_velwood_trees");
     }
 
     public static class Raw {
@@ -60,6 +65,39 @@ public class FPlacedFeatures {
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
+
+        PlacementUtils.register(
+                context,
+                Vegetation.THIN_SHORT_FLOOR_VELWOOD_TREES,
+                configuredFeatures.getOrThrow(FConfiguredFeatures.Vegetation.Trees.VELWOOD_SINGLE_SHORT),
+                CountOnEveryLayerPlacement.of(30),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                PlacementUtils.filteredByBlockSurvival(FBlocks.VELWOOD.sapling.get()),
+                BiomeFilter.biome()
+        );
+
+        PlacementUtils.register(
+                context,
+                Vegetation.THIN_TALL_FLOOR_VELWOOD_TREES,
+                configuredFeatures.getOrThrow(FConfiguredFeatures.Vegetation.Trees.VELWOOD_SINGLE_TALL),
+                CountOnEveryLayerPlacement.of(10),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                PlacementUtils.filteredByBlockSurvival(FBlocks.VELWOOD.sapling.get()),
+                BiomeFilter.biome()
+        );
+
+        PlacementUtils.register(
+                context,
+                Vegetation.BIG_VELWOOD_TREES,
+                configuredFeatures.getOrThrow(FConfiguredFeatures.Vegetation.Trees.VELWOOD_DOUBLE),
+                CountOnEveryLayerPlacement.of(10),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                PlacementUtils.filteredByBlockSurvival(FBlocks.VELWOOD.sapling.get()),
+                BiomeFilter.biome()
+        );
 
         PlacementUtils.register(
                 context,

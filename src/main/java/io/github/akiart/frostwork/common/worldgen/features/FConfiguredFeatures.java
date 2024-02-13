@@ -6,6 +6,7 @@ import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.worldgen.features.configTypes.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderSet;
+import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
@@ -51,6 +52,7 @@ public class FConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> FROZEN_ELM = key("frozen_elm");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ELM = key("elm");
 
+
     public static class Fungus {
         //public static final ResourceKey<ConfiguredFeature<?, ?>> SMALL_RED_GRIMCAP = key("small_red_grimcap");
         public static final ResourceKey<ConfiguredFeature<?, ?>> MEDIUM_GRIMCAP = key("red_medium_grimcap");
@@ -70,6 +72,11 @@ public class FConfiguredFeatures {
 
     public static class Vegetation {
         public static final ResourceKey<ConfiguredFeature<?, ?>> MILDEW_FUZZ = key("mildew_fuzz");
+        public static class Trees {
+            public static final ResourceKey<ConfiguredFeature<?, ?>> VELWOOD_SINGLE_SHORT = key("velwood_single_short");
+            public static final ResourceKey<ConfiguredFeature<?, ?>> VELWOOD_SINGLE_TALL = key("velwood_single_tall");
+            public static final ResourceKey<ConfiguredFeature<?, ?>> VELWOOD_DOUBLE = key("velwood_double");
+        }
     }
 
     public static class Pillars {
@@ -92,6 +99,7 @@ public class FConfiguredFeatures {
         pillars(context);
 
         grimcap(context);
+
     }
      // HolderSet.direct(
     private static void grimcap(BootstapContext<ConfiguredFeature<?, ?>> context) {
@@ -122,6 +130,90 @@ public class FConfiguredFeatures {
     }
 
     private static void trees(BootstapContext<ConfiguredFeature<?, ?>> context) {
+
+        register(context,
+                Vegetation.Trees.VELWOOD_SINGLE_SHORT,
+                FFeatures.VELWOOD_TREE.get(),
+                new VelwoodTreeFeatureConfig(
+                        1,
+                        UniformInt.of(8, 15),
+                        new WeightedStateProvider(
+                                SimpleWeightedRandomList.<BlockState>builder()
+                                        .add(FBlocks.VELWOOD.log.get().defaultBlockState(), 10)
+                                        .add(FBlocks.INFESTED_VELWOOD.get().defaultBlockState(), 1)
+                        ),
+                        List.of(
+                                new VelwoodTreeFeatureConfig.FoliageStructure(
+                                        new ResourceLocation(Frostwork.MOD_ID, "tree/velwood_top_a"),
+                                        new Vec3i(3, 0, 3)
+                                ),
+                                new VelwoodTreeFeatureConfig.FoliageStructure(
+                                        new ResourceLocation(Frostwork.MOD_ID, "tree/velwood_top_b"),
+                                        new Vec3i(3, 0, 3)
+                                )
+                        ),
+                        List.of(
+                                new VelwoodTreeFeatureConfig.FoliageStructure(
+                                        new ResourceLocation(Frostwork.MOD_ID, "tree/velwood_tree_top_uspidedown_a"),
+                                        new Vec3i(3, 0, 3)
+                                )
+                        )
+                ));
+
+        register(context,
+                Vegetation.Trees.VELWOOD_SINGLE_TALL,
+                FFeatures.VELWOOD_TREE.get(),
+                new VelwoodTreeFeatureConfig(
+                        1,
+                        UniformInt.of(15, 60),
+                        new WeightedStateProvider(
+                                SimpleWeightedRandomList.<BlockState>builder()
+                                        .add(FBlocks.VELWOOD.log.get().defaultBlockState(), 10)
+                                        .add(FBlocks.INFESTED_VELWOOD.get().defaultBlockState(), 1)
+                        ),
+                        List.of(
+                                new VelwoodTreeFeatureConfig.FoliageStructure(
+                                        new ResourceLocation(Frostwork.MOD_ID, "tree/velwood_top_a"),
+                                        new Vec3i(3, 0, 3)
+                                ),
+                                new VelwoodTreeFeatureConfig.FoliageStructure(
+                                        new ResourceLocation(Frostwork.MOD_ID, "tree/velwood_top_b"),
+                                        new Vec3i(3, 0, 3)
+                                )
+                        ),
+                        List.of(
+                                new VelwoodTreeFeatureConfig.FoliageStructure(
+                                        new ResourceLocation(Frostwork.MOD_ID, "tree/velwood_tree_top_uspidedown_a"),
+                                        new Vec3i(3, 0, 3)
+                                )
+                        )
+                ));
+
+        register(context,
+                Vegetation.Trees.VELWOOD_DOUBLE,
+                FFeatures.VELWOOD_TREE.get(),
+                new VelwoodTreeFeatureConfig(
+                        2,
+                        UniformInt.of(30, 60),
+                        new WeightedStateProvider(
+                                SimpleWeightedRandomList.<BlockState>builder()
+                                        .add(FBlocks.VELWOOD.log.get().defaultBlockState(), 10)
+                                        .add(FBlocks.INFESTED_VELWOOD.get().defaultBlockState(), 1)
+                        ),
+                        List.of(
+                                new VelwoodTreeFeatureConfig.FoliageStructure(
+                                        new ResourceLocation(Frostwork.MOD_ID, "tree/velwood_big_foliage_up"),
+                                        new Vec3i(4, 0, 4)
+                                )
+                        ),
+                        List.of(
+                                new VelwoodTreeFeatureConfig.FoliageStructure(
+                                        new ResourceLocation(Frostwork.MOD_ID, "tree/velwood_tree_top_uspidedown_a"),
+                                        new Vec3i(3, 0, 3)
+                                )
+                        )
+                ));
+
         register(context, FROZEN_ELM, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(FBlocks.FROZEN_ELM.log.get()),
                 new StraightTrunkPlacer(6, 2, 2),

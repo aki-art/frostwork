@@ -15,6 +15,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -37,7 +38,16 @@ public class FBlocks {
 
     // Trees
     public static final WoodBlockSet FROZEN_ELM = BlockRegistryUtil.registerTransparentWoodSet("frozen_elm", MapColor.COLOR_LIGHT_BLUE, MapColor.LAPIS, MapColor.ICE, WoodType.OAK, FTreeGrowers.FROZEN_ELM);
-    public static final WoodBlockSet VELWOOD = BlockRegistryUtil.registerWoodSet("velwood", MapColor.TERRACOTTA_GRAY, MapColor.TERRACOTTA_BROWN, MapColor.TERRACOTTA_GREEN, WoodType.OAK, FTreeGrowers.FROZEN_ELM);
+    public static final WoodBlockSet VELWOOD = BlockRegistryUtil.registerVelWoodSet("velwood", MapColor.TERRACOTTA_GRAY, MapColor.TERRACOTTA_BROWN, MapColor.TERRACOTTA_GREEN, WoodType.OAK, FTreeGrowers.VELWOOD);
+    public static DeferredBlock<InfectedVelmiteLogBlock> INFESTED_VELWOOD = BlockRegistryUtil.register("infested_velwood",
+            () -> new InfectedVelmiteLogBlock(BlockBehaviour.Properties.of()
+                    .hasPostProcess((pState, pLevel, pPos) -> true)
+                    .sound(SoundType.WOOD)
+                    .instrument(NoteBlockInstrument.BANJO)
+                    .ignitedByLava()
+                    //.lightLevel(state -> 4)
+                    .mapColor(MapColor.TERRACOTTA_BROWN)
+                    .emissiveRendering((pState, pLevel, pPos) -> true)));
     public static final WoodBlockSet ELM = BlockRegistryUtil.registerTransparentWoodSet("elm", MapColor.WOOD, MapColor.TERRACOTTA_BROWN, MapColor.COLOR_GREEN, WoodType.OAK, FTreeGrowers.ELM);
     //public static final ThinWoodBlockSet ASPEN = BlockRegistryUtil.registerThinWoodSet("aspen", MapColor.SAND, MapColor.SNOW, MapColor.COLOR_YELLOW, WoodType.BIRCH, FTreeGrowers.ELM);
 

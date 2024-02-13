@@ -1,14 +1,12 @@
 package io.github.akiart.frostwork.common.block;
 
+import io.github.akiart.frostwork.common.block.blockTypes.FlippableSaplingBlock;
 import io.github.akiart.frostwork.common.block.blockTypes.PeltBlock;
 import io.github.akiart.frostwork.common.block.registrySets.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.TallFlowerBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -44,6 +42,20 @@ public class BlockRegistryUtil {
     public static WoodBlockSet registerTransparentWoodSet(String name, MapColor plankColor, MapColor barkColor, MapColor leavesColor, WoodType woodType, TreeGrower grower) {
         var set = new WoodBlockSet(name, plankColor, barkColor, leavesColor, woodType, grower);
         set.doorRenderType = "translucent";
+        woods.add(set);
+
+        return set;
+    }
+
+    public static WoodBlockSet registerVelWoodSet(String name, MapColor plankColor, MapColor barkColor, MapColor leavesColor, WoodType woodType, TreeGrower grower) {
+        var set = new WoodBlockSet(name, plankColor, barkColor, leavesColor, woodType, grower) {
+            @Override
+            protected DeferredBlock<SaplingBlock> sapling(String name, TreeGrower grower, MapColor color) {
+                return register(name + "_sapling", () -> new FlippableSaplingBlock(grower, BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_SAPLING)
+                        .mapColor(color)));
+            }
+        };
+
         woods.add(set);
 
         return set;

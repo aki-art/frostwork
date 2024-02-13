@@ -1,0 +1,61 @@
+{
+  "type": "frostwork:velwood_tree",
+  "config": {
+    "foliage_structures_downside": [
+      {
+        "offset": [
+          3,
+          0,
+          3
+        ],
+        "structure": "frostwork:tree/velwood_tree_top_uspidedown_a"
+      }
+    ],
+    "foliage_structures_upside": [
+      {
+        "offset": [
+          3,
+          0,
+          3
+        ],
+        "structure": "frostwork:tree/velwood_top_a"
+      },
+      {
+        "offset": [
+          3,
+          0,
+          3
+        ],
+        "structure": "frostwork:tree/velwood_top_b"
+      }
+    ],
+    "height": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 60,
+        "min_inclusive": 15
+      }
+    },
+    "trunk": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "frostwork:velwood_log",
+            "Properties": {
+              "axis": "y"
+            }
+          },
+          "weight": 10
+        },
+        {
+          "data": {
+            "Name": "frostwork:infested_velwood"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "width": 1
+  }
+}

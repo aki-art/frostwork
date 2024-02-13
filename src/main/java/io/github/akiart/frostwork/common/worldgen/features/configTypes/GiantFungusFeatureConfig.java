@@ -14,9 +14,9 @@ public record GiantFungusFeatureConfig(List<ResourceLocation> capStructures, Blo
             instance -> instance.group(
                     ResourceLocation.CODEC.listOf().fieldOf("cap_structures").forGetter(fungus -> fungus.capStructures),
                     BlockStateProvider.CODEC.fieldOf("cap_block").forGetter(GiantFungusFeatureConfig::capBlock),
-                    net.minecraft.util.valueproviders.IntProvider.CODEC.fieldOf("stem_length").forGetter(fungus -> fungus.stemLength),
+                    IntProvider.CODEC.fieldOf("stem_length").forGetter(fungus -> fungus.stemLength),
                     Codec.INT.fieldOf("stem_start_radius").forGetter(fungus -> fungus.stemStartRadius),
-                    net.minecraft.util.valueproviders.IntProvider.CODEC.fieldOf("stem_end_radius").forGetter(fungus -> fungus.stemEndRadius)
+                    IntProvider.CODEC.fieldOf("stem_end_radius").forGetter(fungus -> fungus.stemEndRadius)
             ).apply(instance, GiantFungusFeatureConfig::new)
     );
 }

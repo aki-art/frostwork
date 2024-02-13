@@ -54,7 +54,7 @@ public class SimpleBigFungusFeature extends Feature<BigFungusFeatureConfig> {
         var centerPos = blockPos.offset(-size.getX() / 2, 0, -size.getZ() / 2);
         var offsetPos = template.getZeroPositionWithTransform(centerPos.atY(blockPos.getY()), Mirror.NONE, Rotation.NONE);
 
-        template.placeInWorld(level, offsetPos, offsetPos, placeSettings, random, 4);
+        template.placeInWorld(level, offsetPos, offsetPos, placeSettings, random, Block.UPDATE_INVISIBLE);
 
         return true;
     }

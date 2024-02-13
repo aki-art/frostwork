@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-10T18:10:59.5697541	Loot Tables
+// 1.20.4	2024-02-12T20:33:58.4138846	Loot Tables
 f164f89777131a53b144fa5a7c03c736c6fd8706 data/frostwork/loot_tables/blocks/aquamire.json
 8a1e744f4dfba1c368803fa9045a5efb88e6570d data/frostwork/loot_tables/blocks/aquamire_slab.json
 1e39e2b659f48452715ecb6816352d02f302b0aa data/frostwork/loot_tables/blocks/aquamire_stairs.json
@@ -78,6 +78,7 @@ dc2abb4da2b3d730ac802a2b2e66f6ffb119022b data/frostwork/loot_tables/blocks/grimc
 f3d3e00ccceb91138804cac840c7028b351cd46c data/frostwork/loot_tables/blocks/grimcap_trapdoor.json
 55cb48ae7de8c9dc443b4a41348e0822ea706dc1 data/frostwork/loot_tables/blocks/hunter_pelt_brown.json
 a167e3a9a6e47ce8624faca7600fbb6796d15929 data/frostwork/loot_tables/blocks/hunter_pelt_cream.json
+9eb8975168bc6a8565d6775151e728d0f001c10b data/frostwork/loot_tables/blocks/infested_velwood.json
 633af88bf57b848609ba929727c011b898115c39 data/frostwork/loot_tables/blocks/lavender.json
 0ebfa6a92f5dd8200ffa82e9810d27b4e373eb76 data/frostwork/loot_tables/blocks/malachite_block.json
 40d24a758c81dbf3d7282e71c2e8bf5ec5dcd425 data/frostwork/loot_tables/blocks/malachite_ice_ore.json

@@ -35,6 +35,7 @@ public class FItems {
     public static final WoodItemSet FROZEN_ELM = ItemRegistryUtil.registerWoodItems(FBlocks.FROZEN_ELM);
     public static final WoodItemSet ELM = ItemRegistryUtil.registerWoodItems(FBlocks.ELM);
     public static final WoodItemSet VELWOOD = ItemRegistryUtil.registerWoodItems(FBlocks.VELWOOD);
+    public static final DeferredItem<BlockItem> INFESTED_VELWOOD = ItemRegistryUtil.registerFromBlock(FBlocks.INFESTED_VELWOOD);
 
     // Mushrooms
     public static final MushroomItemSet GRIMCAP = ItemRegistryUtil.registerMushroomItems(FBlocks.GRIMCAP);

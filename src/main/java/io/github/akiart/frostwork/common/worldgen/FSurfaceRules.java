@@ -6,6 +6,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.worldgen.biome.FBiomes;
+import io.github.akiart.frostwork.common.worldgen.biome.biomeConfigs.VerdantGladeConfig;
 import io.github.akiart.frostwork.lib.FastNoiseLite;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -24,32 +25,32 @@ public class FSurfaceRules {
             new ResourceLocation(Frostwork.MOD_ID, "fantasia"));
 
     private static final boolean DEBUG_MODE = true;
-    private static final SurfaceRules.RuleSource EDEL_STONE = defaultState(FBlocks.EDELSTONE.block.get());
-    private static final SurfaceRules.RuleSource BEDROCK = defaultState(Blocks.BEDROCK);
-    private static final SurfaceRules.RuleSource SANGUITE = defaultState(FBlocks.SANGUITE.block.get());
-    private static final SurfaceRules.RuleSource OVERGROWN_SANGUITE = defaultState(FBlocks.OVERGROWN_SANGUITE.get());
-    private static final SurfaceRules.RuleSource AQUAMIRE = defaultState(FBlocks.AQUAMIRE.block.get());
-    private static final SurfaceRules.RuleSource FROZEN_DIRT = defaultState(FBlocks.FROZEN_DIRT.get());
-    private static final SurfaceRules.RuleSource DRY_GRASS = defaultState(FBlocks.DRY_GRASS.get());
-    private static final SurfaceRules.RuleSource VERDANT_ROCK = defaultState(FBlocks.VERDANT_ROCK.block.get());
-    private static final SurfaceRules.RuleSource GRASS = defaultState(Blocks.GRASS_BLOCK);
-    private static final SurfaceRules.RuleSource GRAVEL = defaultState(Blocks.GRAVEL);
-    private static final SurfaceRules.RuleSource ICE = defaultState(Blocks.ICE);
-    private static final SurfaceRules.RuleSource BLUE_ICE = defaultState(Blocks.BLUE_ICE);
-    private static final SurfaceRules.RuleSource SNOW = defaultState(Blocks.SNOW_BLOCK);
-    private static final SurfaceRules.RuleSource AZAELA_LEAVES = defaultState(Blocks.AZALEA_LEAVES);
+    public static final SurfaceRules.RuleSource EDEL_STONE = defaultState(FBlocks.EDELSTONE.block.get());
+    public static final SurfaceRules.RuleSource BEDROCK = defaultState(Blocks.BEDROCK);
+    public static final SurfaceRules.RuleSource SANGUITE = defaultState(FBlocks.SANGUITE.block.get());
+    public static final SurfaceRules.RuleSource OVERGROWN_SANGUITE = defaultState(FBlocks.OVERGROWN_SANGUITE.get());
+    public static final SurfaceRules.RuleSource AQUAMIRE = defaultState(FBlocks.AQUAMIRE.block.get());
+    public static final SurfaceRules.RuleSource FROZEN_DIRT = defaultState(FBlocks.FROZEN_DIRT.get());
+    public static final SurfaceRules.RuleSource DRY_GRASS = defaultState(FBlocks.DRY_GRASS.get());
+    public static final SurfaceRules.RuleSource VERDANT_ROCK = defaultState(FBlocks.VERDANT_ROCK.block.get());
+    public static final SurfaceRules.RuleSource GRASS = defaultState(Blocks.GRASS_BLOCK);
+    public static final SurfaceRules.RuleSource GRAVEL = defaultState(Blocks.GRAVEL);
+    public static final SurfaceRules.RuleSource ICE = defaultState(Blocks.ICE);
+    public static final SurfaceRules.RuleSource BLUE_ICE = defaultState(Blocks.BLUE_ICE);
+    public static final SurfaceRules.RuleSource SNOW = defaultState(Blocks.SNOW_BLOCK);
+    public static final SurfaceRules.RuleSource AZAELA_LEAVES = defaultState(Blocks.AZALEA_LEAVES);
 
     // testing stuff
-    private static final SurfaceRules.RuleSource RED = defaultState(Blocks.RED_CONCRETE);
-    private static final SurfaceRules.RuleSource BLUE = defaultState(Blocks.BLUE_CONCRETE);
-    private static final SurfaceRules.RuleSource GREEN = defaultState(Blocks.GREEN_CONCRETE);
-    private static final SurfaceRules.RuleSource DEEPSLATE = defaultState(Blocks.DEEPSLATE);
-    private static final SurfaceRules.RuleSource MUD = defaultState(Blocks.MUD);
-    private static final SurfaceRules.RuleSource TUFF = defaultState(Blocks.TUFF);
-    private static final SurfaceRules.RuleSource SANDSTONE = defaultState(Blocks.SANDSTONE);
-    private static final SurfaceRules.RuleSource MOSS = defaultState(Blocks.MOSS_BLOCK);
-    private static final SurfaceRules.RuleSource PITH = defaultState(FBlocks.PITH.block.get());
-    private static final SurfaceRules.RuleSource HONEYCOMB_BLOCK = defaultState(Blocks.HONEYCOMB_BLOCK);
+    public static final SurfaceRules.RuleSource RED = defaultState(Blocks.RED_CONCRETE);
+    public static final SurfaceRules.RuleSource BLUE = defaultState(Blocks.BLUE_CONCRETE);
+    public static final SurfaceRules.RuleSource GREEN = defaultState(Blocks.GREEN_CONCRETE);
+    public static final SurfaceRules.RuleSource DEEPSLATE = defaultState(Blocks.DEEPSLATE);
+    public static final SurfaceRules.RuleSource MUD = defaultState(Blocks.MUD);
+    public static final SurfaceRules.RuleSource TUFF = defaultState(Blocks.TUFF);
+    public static final SurfaceRules.RuleSource SANDSTONE = defaultState(Blocks.SANDSTONE);
+    public static final SurfaceRules.RuleSource MOSS = defaultState(Blocks.MOSS_BLOCK);
+    public static final SurfaceRules.RuleSource PITH = defaultState(FBlocks.PITH.block.get());
+    public static final SurfaceRules.RuleSource HONEYCOMB_BLOCK = defaultState(Blocks.HONEYCOMB_BLOCK);
 
     private static FastNoiseLite cellularNoise;
 
@@ -123,24 +124,6 @@ public class FSurfaceRules {
                 )
         );
 
-        SurfaceRules.RuleSource verdantGlade = SurfaceRules.sequence(
-                SurfaceRules.ifTrue(
-                        SurfaceRules.isBiome(FBiomes.Cave.VERDANT_GLADE),
-                        SurfaceRules.sequence(
-                            SurfaceRules.ifTrue(
-                                    SurfaceRules.ON_FLOOR,
-                                    SurfaceRules.sequence(
-                                            SurfaceRules.ifTrue(
-                                                    SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, -0.8, 0),
-                                                    MOSS),
-                                            SurfaceRules.ifTrue(
-                                                    SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, 0, 0.4),
-                                                    MUD
-                                            ))),
-                                VERDANT_ROCK)
-                )
-        );
-
         // some of the wall is ice, and some of the floor is snow. the rest is edelstone
         SurfaceRules.RuleSource frozen_cavern = SurfaceRules.sequence(
                 SurfaceRules.ifTrue(
@@ -187,11 +170,13 @@ public class FSurfaceRules {
 
         ImmutableList.Builder<SurfaceRules.RuleSource> builder = ImmutableList.builder();
         builder
-                .add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), BEDROCK))
+                .add(SurfaceRules.ifTrue(
+                        SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), BEDROCK)
+                )
                 .add(
                         tundra,
                         frozen_cavern,
-                        verdantGlade,
+                        VerdantGladeConfig.createSurfaceRules(),
                         hive,
                         grimcapGrove
                 )

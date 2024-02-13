@@ -22,4 +22,5 @@ public class FFeatures {
     public static final DeferredHolder<Feature<?>, Feature<Tendrils2DConfig>> TENDRILS = FEATURES.register("tendrils", () -> new TendrilFeature(Tendrils2DConfig.CODEC));
     public static final DeferredHolder<Feature<?>, Feature<PillarFeatureConfig>> PILLAR = FEATURES.register("pillar", () -> new PillarFeature(PillarFeatureConfig.CODEC));
     public static final DeferredHolder<Feature<?>, Feature<DiscConfig>> DISC = FEATURES.register("disc", () -> new DiscFeature(DiscConfig.CODEC));
-}
+    public static final DeferredHolder<Feature<?>, Feature<VelwoodTreeFeatureConfig>> VELWOOD_TREE = FEATURES.register("velwood_tree", () -> new VelwoodTreeFeature(VelwoodTreeFeatureConfig.CODEC));
+  }

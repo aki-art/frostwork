@@ -19,6 +19,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
         ItemRegistryUtil.stones.forEach(this::stone);
         ItemRegistryUtil.woods.forEach(this::wood);
 
+        fromBlock(FBlocks.INFESTED_VELWOOD);
         fromBlock(FBlocks.FRAMED_PITH);
         fromBlock(FBlocks.EDELSTONE_COAL_ORE);
         fromBlock(FBlocks.MALACHITE_ICE_ORE);

@@ -4,9 +4,10 @@
   },
   "downfall": 0.0,
   "effects": {
-    "fog_color": 9543081,
-    "foliage_color": 3962923,
-    "grass_color": 13350267,
+    "fog_color": 4894147,
+    "foliage_color": 4164414,
+    "grass_color": 5609797,
+    "grass_color_modifier": "dark_forest",
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
@@ -34,7 +35,10 @@
     [],
     [],
     [
-      "frostwork:sporadic_candeloupe"
+      "frostwork:sporadic_candeloupe",
+      "frostwork:thin_tall_velwood_trees",
+      "frostwork:thin_short_velwood_trees",
+      "frostwork:big_velwood_trees"
     ]
   ],
   "has_precipitation": true,

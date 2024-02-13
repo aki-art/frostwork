@@ -18,11 +18,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 public class FBlockTagsProvider extends BlockTagsProvider {
-
     public FBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, String modId, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, modId, existingFileHelper);
     }
-
     @Override
     protected void addTags(HolderLookup.Provider provider) {
 

@@ -29,7 +29,7 @@
             },
             "neoforge_data": {
                 "color": "FFFFFFFF",
-                "block_light": 6,
+                "block_light": 10,
                 "sky_light": 0,
                 "ambient_occlusion": true
             }
