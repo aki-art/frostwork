@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-12T20:33:58.4098836	Item Models: frostwork
+// 1.20.4	2024-02-14T00:22:10.7719678	Item Models: frostwork
 60cb02f8185575d6bb334f1739f7ee956338d3fd assets/frostwork/models/item/acid_bucket.json
 c4f111fb6eaeb2eb878ad963a3ca346968be5da1 assets/frostwork/models/item/aquamire.json
 d1db1648114a7e53db818b708cdde47ff27e72cf assets/frostwork/models/item/aquamire_slab.json
@@ -137,6 +137,7 @@ e89774e37696fc0e0119604b1b334d6e936f6abb assets/frostwork/models/item/sanguite.j
 f4e0c9dc9701434f289817a411650b3e6630869f assets/frostwork/models/item/sanguite_slab.json
 12f9f2f7b1236cfd406cb986acb67cfba1bfbc41 assets/frostwork/models/item/sanguite_stairs.json
 1ac721175370bd3df564cb2741de736f7b93d0cd assets/frostwork/models/item/sanguite_wall.json
+847b24fb95ae3e7bb4d87d08a6321e1d45fffe92 assets/frostwork/models/item/sap_o_mite_bottle.json
 0f406b57935dfc5c7de5c78a08d5fbf5d6eb1164 assets/frostwork/models/item/somewhat_overgrown_sanguite.json
 fe10d8946dc5069adadda1db9e8bd12df7db6b4f assets/frostwork/models/item/tatzelwurm_arrow.json
 b7c288583afb9ba7c2abe1e671e391fa57eb10f7 assets/frostwork/models/item/tatzelwurm_scale.json

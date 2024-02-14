@@ -121,6 +121,7 @@ public class FItems {
     public static final DeferredItem<BlockItem> OVERGROWTH = ItemRegistryUtil.registerFromBlock(FBlocks.OVERGROWTH);
     public static final DeferredItem<BlockItem> MALACHITE_BLOCK = ItemRegistryUtil.registerFromBlock(FBlocks.MALACHITE_BLOCK);
     public static final DeferredItem<BottleOfFoamItem> BOTTLE_OF_FOAM = ItemRegistryUtil.register("bottle_of_foam", () -> new BottleOfFoamItem(FBlocks.FOAM.get(), new Item.Properties()));
+    public static final DeferredItem<Item> SAP_O_MITE_BOTTLE = ItemRegistryUtil.register("sap_o_mite_bottle", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TATZELWURM_SCALE = ItemRegistryUtil.register("tatzelwurm_scale", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> ACID_BUCKET = ItemRegistryUtil.register("acid_bucket",
             () -> new BucketItem(FFluids.ACID_SOURCE, new Item.Properties()

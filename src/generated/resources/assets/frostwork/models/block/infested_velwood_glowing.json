@@ -1,0 +1,8 @@
+{
+  "parent": "frostwork:block/simple_emissive",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "emissive": "frostwork:block/infested_velwood_emissive",
+    "texture": "frostwork:block/infested_velwood"
+  }
+}

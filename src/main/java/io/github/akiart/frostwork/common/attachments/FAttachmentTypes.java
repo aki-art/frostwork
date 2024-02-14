@@ -10,4 +10,5 @@ public class FAttachmentTypes {
     public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, Frostwork.MOD_ID);
 
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Boolean>> WAS_IN_ACID = ATTACHMENT_TYPES.register("was_in_acid", () -> AttachmentType.builder(() -> false).build());
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> HUNTER_COOLDOWN = ATTACHMENT_TYPES.register("hunter_cooldown", () -> AttachmentType.builder(() -> 50f).build());
 }

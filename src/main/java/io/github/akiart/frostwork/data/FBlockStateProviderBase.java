@@ -6,6 +6,7 @@ import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.block.blockTypes.BulbSackBlock;
 import io.github.akiart.frostwork.common.block.blockTypes.CandeloupeFruitBlock;
 import io.github.akiart.frostwork.common.block.blockTypes.FoamBlock;
+import io.github.akiart.frostwork.common.block.blockTypes.InfectedVelmiteLogBlock;
 import io.github.akiart.frostwork.common.block.registrySets.AbstractWoodBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
@@ -59,6 +60,29 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
                 .part().modelFile(insideModel).uvLock(true).rotationY(270).addModel().condition(HugeMushroomBlock.WEST, false).end();
 
         models().cubeAll(getBlockName(block).getPath() + "_inventory", blockTexture(block.get()));
+    }
+
+    protected void infestedVelwood(DeferredBlock<InfectedVelmiteLogBlock> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            var active = state.getValue(InfectedVelmiteLogBlock.ACTIVE);
+            ModelFile model;
+            String name = getBlockName(block).getPath();
+
+            if(active) {
+                String glowingName = name + "_glowing";
+                model = models()
+                        .withExistingParent(glowingName, new ResourceLocation("frostwork:block/simple_emissive"))
+                        .texture("texture", blockTexture(block.get()))
+                        .texture("emissive", getLocation(name) + "_emissive")
+                        .renderType(ResourceLocation.tryParse("cutout"));
+
+            }
+            else {
+                model = models().cubeAll(name, blockTexture(block.get()));
+            }
+
+            return ConfiguredModel.builder().modelFile(model).build();
+        });
     }
 
     protected void bulbSack(DeferredBlock<? extends BulbSackBlock> block) {

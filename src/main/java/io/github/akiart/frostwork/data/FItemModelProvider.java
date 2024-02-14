@@ -53,6 +53,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
         miscItem(FItems.HUNTER_ARMOR);
         miscItem(FItems.ACID_BUCKET);
         miscItem(FItems.CANDELOUPE_SEEDS);
+        miscItem(FItems.SAP_O_MITE_BOTTLE);
 
         fromBlock(FBlocks.HUNTER_PELT_BROWN);
         fromBlock(FBlocks.HUNTER_PELT_CREAM);

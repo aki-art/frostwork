@@ -13,12 +13,12 @@ import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3d;
 
 public class VelmiteInfectionParticle extends TextureSheetParticle {
-    private static final float R = (float) FUtil.Color.getR(Consts.COLORS.ACID_BLUE_TINT);
-    private static final float G = (float)FUtil.Color.getG(Consts.COLORS.ACID_BLUE_TINT);
-    private static final float B = (float)FUtil.Color.getB(Consts.COLORS.ACID_BLUE_TINT);
-    Vector3d origin;
-    Vector3d current = new Vector3d(0, 0, 0);
-    Vector3d orbitSpeed;
+    private static final float R = (float)FUtil.Color.getR(Consts.COLORS.VELMITE);
+    private static final float G = (float)FUtil.Color.getG(Consts.COLORS.VELMITE);
+    private static final float B = (float)FUtil.Color.getB(Consts.COLORS.VELMITE);
+    private final Vector3d origin;
+    private Vector3d current = new Vector3d(0, 0, 0);
+    private Vector3d orbitSpeed;
 
     protected VelmiteInfectionParticle(ClientLevel pLevel, double originX, double originY, double originZ,
                                        double x, double y, double z, Vec3 orbitModifier) { //, double targetXSpeed, double targetYSpeed, double targetZSpeed) {

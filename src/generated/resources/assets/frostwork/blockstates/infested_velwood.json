@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "active=false": {
       "model": "frostwork:block/infested_velwood"
+    },
+    "active=true": {
+      "model": "frostwork:block/infested_velwood_glowing"
     }
   }
 }

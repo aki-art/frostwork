@@ -50,7 +50,10 @@
         },
         {
           "data": {
-            "Name": "frostwork:infested_velwood"
+            "Name": "frostwork:infested_velwood",
+            "Properties": {
+              "active": "false"
+            }
           },
           "weight": 1
         }

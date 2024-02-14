@@ -39,6 +39,7 @@ public class FLanguageProvider extends LanguageProvider {
         add(FItems.CANDELOUPE_SEEDS.get(), "Candeloupe Seeds");
         add(FItems.CANDELOUPE_SLICE.get(), "Candeloupe Slice");
         add(FItems.DAZZLING_CANDELOUPE_SLICE.get(), "Dazzling Candeloupe Slice");
+        add(FItems.SAP_O_MITE_BOTTLE.get(), "Bottle of Sap O' Mite");
     }
 
     private void blocks() {
@@ -55,6 +56,7 @@ public class FLanguageProvider extends LanguageProvider {
         add(FBlocks.FORGET_ME_NOW.get(), "Forget-Me-Now");
         add(FBlocks.FOAM.get(), "Foam");
         add(FBlocks.ACID.get(), "Acid");
+        add(FBlocks.INFESTED_VELWOOD.get(), "Infested Velwood");
 
         add(FBlocks.GREEN_SCLERITE.get(), "Green Sclerite");
         add(FBlocks.PURPLE_SCLERITE.get(), "Purple Sclerite");

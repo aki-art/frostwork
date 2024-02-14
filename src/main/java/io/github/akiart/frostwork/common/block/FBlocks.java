@@ -44,6 +44,7 @@ public class FBlocks {
                     .hasPostProcess((pState, pLevel, pPos) -> true)
                     .sound(SoundType.WOOD)
                     .instrument(NoteBlockInstrument.BANJO)
+                    .randomTicks()
                     .ignitedByLava()
                     //.lightLevel(state -> 4)
                     .mapColor(MapColor.TERRACOTTA_BROWN)

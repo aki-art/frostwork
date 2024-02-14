@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-13T17:04:21.7436067	Block States: frostwork
+// 1.20.4	2024-02-14T00:37:15.8159853	Block States: frostwork
 ef863421831e760b7348505c37456b1ca8fe91ec assets/frostwork/blockstates/aquamire.json
 28685a4882e0ce8a3134060a509e768a07a715e3 assets/frostwork/blockstates/aquamire_slab.json
 60a35d20f6c368d077650b694e78a3799e292540 assets/frostwork/blockstates/aquamire_stairs.json
@@ -78,7 +78,7 @@ c42a4a33d16c29bdd822b473659bb61382ffc70f assets/frostwork/blockstates/grimcap_pr
 c04d6ac4b13b29831aacc7acb3ca5bb76c6c8bb0 assets/frostwork/blockstates/grimcap_trapdoor.json
 ddee95b02b11b7f6685fd24b64681b08e1037baf assets/frostwork/blockstates/hunter_pelt_brown.json
 c2e03a9449db735fd4ca8305530831907937ef9c assets/frostwork/blockstates/hunter_pelt_cream.json
-5f9cd6616443e7864ab985b9e2771eb5efd0f247 assets/frostwork/blockstates/infested_velwood.json
+3d574da5e969a350203354258ce3e7885d306d39 assets/frostwork/blockstates/infested_velwood.json
 a5206faa0f1ff0e7e82769b4e99ad677db605e5e assets/frostwork/blockstates/lavender.json
 f44546e326f1d610b1360b82978f78a79e71d690 assets/frostwork/blockstates/malachite_block.json
 0a170353e94ea388baebeec8b0826363c0af1379 assets/frostwork/blockstates/malachite_ice_ore.json
@@ -342,7 +342,8 @@ a56137901eeb6cbecbae11f808aa611dce8a48d1 assets/frostwork/models/block/grimcap_s
 39be02e5584ddfc192a67317c99e45d614d4af20 assets/frostwork/models/block/grimcap_trapdoor_top.json
 a8a403a99e0599d4955db2697bd10f738ccec636 assets/frostwork/models/block/hunter_pelt_brown.json
 b695338ad730d944b63058240754ce25cea475e7 assets/frostwork/models/block/hunter_pelt_cream.json
-f4e8d1d89f3973bb1673c7f0717f3d89dca8d0a6 assets/frostwork/models/block/infested_velwood.json
+a328709cc078fd08e6483ba8c64a541c151da013 assets/frostwork/models/block/infested_velwood.json
+f4e8d1d89f3973bb1673c7f0717f3d89dca8d0a6 assets/frostwork/models/block/infested_velwood_glowing.json
 d8bd1fd4ff4a0e636d6e06974880ba735d999672 assets/frostwork/models/block/lavender_lower.json
 9297d1497944affe77ee17453366bcad2aeed8fe assets/frostwork/models/block/lavender_upper.json
 f9581b79e58e3b5c6f8b3996e3d70dc72cb95493 assets/frostwork/models/block/malachite_block.json

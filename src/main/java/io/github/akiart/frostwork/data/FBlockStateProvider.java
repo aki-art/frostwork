@@ -45,7 +45,7 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         crossBlock(FBlocks.GRIMCAP_GILL);
 
         partialEmissive(FBlocks.MALACHITE_ICE_ORE, "translucent");
-        partialEmissive(FBlocks.INFESTED_VELWOOD, "cutout");
+        infestedVelwood(FBlocks.INFESTED_VELWOOD);
 
         pelt(FBlocks.HUNTER_PELT_BROWN);
         pelt(FBlocks.HUNTER_PELT_CREAM);
