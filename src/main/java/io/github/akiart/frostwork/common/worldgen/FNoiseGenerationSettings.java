@@ -2,10 +2,7 @@ package io.github.akiart.frostwork.common.worldgen;
 
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
-import io.github.akiart.frostwork.common.worldgen.densityFunctions.CellularPlateausDensityFunction;
-import io.github.akiart.frostwork.common.worldgen.densityFunctions.ExponentialDensityFunction;
-import io.github.akiart.frostwork.common.worldgen.densityFunctions.ExponentialYGradientDensityFunction;
-import io.github.akiart.frostwork.common.worldgen.densityFunctions.WarpedSimplexDensityFunction;
+import io.github.akiart.frostwork.common.worldgen.densityFunctions.*;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -161,7 +158,8 @@ public class FNoiseGenerationSettings {
         var closeFloor = DensityFunctions.add(cavedWorld, new ExponentialDensityFunction(16f, 2f));
         var plateoud = DensityFunctions.add(closeFloor, plateaus);
 
-        return plateoud;
+        var bigCaves = new BigCavesDensityFunction(0.61f, 4,  2.5f, 0.5f, 0.9f );
+        return closeFloor; // plateoud;
        // return new WarpedSimplexDensityFunction(-0.38f, 3, 1, 1.66f); // DensityFunctions.interpolated(plateoud); //DensityFunctions.mul(caves, scrapeSurface));
     }
 

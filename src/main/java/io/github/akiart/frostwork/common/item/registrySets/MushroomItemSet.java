@@ -8,6 +8,7 @@ public class MushroomItemSet extends AbstractWoodItemSet {
     public final DeferredItem<BlockItem> stem;
     public final DeferredItem<BlockItem> strippedStem;
     public final DeferredItem<BlockItem> cap;
+    public final DeferredItem<BlockItem> smallMushroom;
 
     public MushroomItemSet(MushroomBlockSet set) {
         super(set);
@@ -15,5 +16,6 @@ public class MushroomItemSet extends AbstractWoodItemSet {
         stem = tryRegisterFromBlock(set.stem);
         strippedStem = tryRegisterFromBlock(set.strippedStem);
         cap = tryRegisterFromBlock(set.cap);
+        smallMushroom = tryRegisterFromBlock(set.smallMushroom);
     }
 }

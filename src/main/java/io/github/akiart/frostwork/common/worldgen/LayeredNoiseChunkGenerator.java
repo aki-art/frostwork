@@ -18,7 +18,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
-import java.util.function.Supplier;
 
 public class LayeredNoiseChunkGenerator extends NoiseBasedChunkGenerator {
     //protected final List<Layer> layers;
@@ -61,7 +60,7 @@ public class LayeredNoiseChunkGenerator extends NoiseBasedChunkGenerator {
         int chunkX = chunkpos.getMinBlockX();
         int chunkZ = chunkpos.getMinBlockZ();
 
-        if (debugStrips > 0 && Math.floor(chunkX / (float)debugStrips) % 2 == 0) {
+        if (/*debugStrips > 0 && */Math.floor(chunkX / (float)150) % 2 == 0) {
             return CompletableFuture.completedFuture(chunk);
         }
 

@@ -3,6 +3,7 @@ package io.github.akiart.frostwork.common.worldgen.densityFunctions;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.github.akiart.frostwork.FUtil;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.world.level.levelgen.DensityFunction;
 
@@ -29,7 +30,11 @@ public class ExponentialYGradientDensityFunction implements DensityFunction.Simp
     @Override
     public double compute(FunctionContext context) {
         var y = context.blockY();
-        return (multiplier * y * y) + offset;
+
+        if(y < 200)
+            return Math.max(FUtil.remap(y, 30, 220, -0.15f, 0.3f), -0.3f);
+        return 0f; //(0.007f * y * y) + -0.4f;
+        //return (multiplier * y * y) + offset;
     }
 
     @Override

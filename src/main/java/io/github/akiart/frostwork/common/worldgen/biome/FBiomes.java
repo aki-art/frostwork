@@ -11,6 +11,7 @@ import net.minecraft.world.level.biome.Biome;
 public class FBiomes {
     public static class Surface {
         public static final ResourceKey<Biome> ALPINE_TUNDRA = key("alpine_tundra");
+        public static final ResourceKey<Biome> FROZE_FOREST = key("frozen_forest");
 
     }
 
@@ -36,6 +37,7 @@ public class FBiomes {
 
     public static void boostrap(BootstapContext<Biome> context) {
         context.register(Surface.ALPINE_TUNDRA, new AlpineTundraConfig(context).create());
+        context.register(Surface.FROZE_FOREST, new FrozenForestConfig(context).create());
 
         context.register(Cave.FROZEN_CAVE, new FrozenCaveConfig(context).create());
         context.register(Cave.VERDANT_GLADE, new VerdantGladeConfig(context).create());

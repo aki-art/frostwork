@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-14T00:22:10.7719678	Item Models: frostwork
+// 1.20.4	2024-02-16T14:53:45.626735	Item Models: frostwork
 60cb02f8185575d6bb334f1739f7ee956338d3fd assets/frostwork/models/item/acid_bucket.json
 c4f111fb6eaeb2eb878ad963a3ca346968be5da1 assets/frostwork/models/item/aquamire.json
 d1db1648114a7e53db818b708cdde47ff27e72cf assets/frostwork/models/item/aquamire_slab.json
@@ -71,6 +71,7 @@ afb1327f6ef81a4ad96ff5f0f5fd0957fddee678 assets/frostwork/models/item/grimcap_ca
 99e693933ba8cc3d43641609820a8b21ae582098 assets/frostwork/models/item/grimcap_fence.json
 c6981178aaa782e0e7d55c7d02d938b842272c40 assets/frostwork/models/item/grimcap_fence_gate.json
 f464bdba1b1b187af71ad7384d3a8204b0a9f2fb assets/frostwork/models/item/grimcap_gill.json
+441807957d7a29c361b7ff6a73867ffaf7e45842 assets/frostwork/models/item/grimcap_mushroom.json
 16af78a0d6652adc6d0b053b31e633f3a783dfa5 assets/frostwork/models/item/grimcap_planks.json
 c01beb56dc1569b75c6851932a411ede971d01cd assets/frostwork/models/item/grimcap_pressure_plate.json
 cbf5e984089c3fc4c53d82ef710fa21f222677de assets/frostwork/models/item/grimcap_slab.json

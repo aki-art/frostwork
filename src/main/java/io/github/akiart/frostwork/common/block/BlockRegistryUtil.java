@@ -4,6 +4,7 @@ import io.github.akiart.frostwork.common.block.blockTypes.FlippableSaplingBlock;
 import io.github.akiart.frostwork.common.block.blockTypes.PeltBlock;
 import io.github.akiart.frostwork.common.block.registrySets.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -68,8 +70,8 @@ public class BlockRegistryUtil {
         return set;
     }
 
-    public static MushroomBlockSet registerMushroomSet(String name, MapColor plankColor, MapColor barkColor, WoodType woodType, SoundType soundType) {
-        var set = new MushroomBlockSet(name, plankColor, barkColor, woodType, soundType);
+    public static MushroomBlockSet registerMushroomSet(String name, MapColor plankColor, MapColor barkColor, WoodType woodType, SoundType soundType, ResourceKey<ConfiguredFeature<?, ?>> feature) {
+        var set = new MushroomBlockSet(name, plankColor, barkColor, woodType, soundType, feature);
         mushrooms.add(set);
 
         return set;

@@ -40,7 +40,9 @@ public class FBlockTagsProvider extends BlockTagsProvider {
                 FBlocks.MILDEW.get()
         );
 
-        tag(BlockTags.DIRT).add(FBlocks.DRY_GRASS.get());
+        tag(BlockTags.DIRT).add(
+                FBlocks.DRY_GRASS.get(),
+                FBlocks.FROZEN_DIRT.get());
 
         tag(FTags.Blocks.EDELSTONE_REPLACEABLE)
                 .add(FBlocks.EDELSTONE.block.get());

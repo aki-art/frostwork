@@ -13,6 +13,9 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 
 public class SimpleBigFungusFeature extends Feature<BigFungusFeatureConfig> {
+    private static final int BLOCK_UPDATE_FLAGS = Block.UPDATE_KNOWN_SHAPE
+            | Block.UPDATE_CLIENTS
+            | Block.UPDATE_NEIGHBORS;
     public SimpleBigFungusFeature(Codec<BigFungusFeatureConfig> codec) {
         super(codec);
     }
@@ -28,7 +31,7 @@ public class SimpleBigFungusFeature extends Feature<BigFungusFeatureConfig> {
         var blockPos = origin.mutable();
 
         for(int y = 0; y < stemLength; y++) {
-            level.setBlock(blockPos, config.stemBlock().getState(random, blockPos), Block.UPDATE_CLIENTS);
+            level.setBlock(blockPos, config.stemBlock().getState(random, blockPos), BLOCK_UPDATE_FLAGS);
             blockPos.move(Direction.UP);
         }
 
@@ -54,7 +57,7 @@ public class SimpleBigFungusFeature extends Feature<BigFungusFeatureConfig> {
         var centerPos = blockPos.offset(-size.getX() / 2, 0, -size.getZ() / 2);
         var offsetPos = template.getZeroPositionWithTransform(centerPos.atY(blockPos.getY()), Mirror.NONE, Rotation.NONE);
 
-        template.placeInWorld(level, offsetPos, offsetPos, placeSettings, random, Block.UPDATE_INVISIBLE);
+        template.placeInWorld(level, offsetPos, offsetPos, placeSettings, random, BLOCK_UPDATE_FLAGS);
 
         return true;
     }

@@ -55,9 +55,6 @@ public class FantasiaBiomeSource extends BiomeSource {
     @Override
     public Holder<Biome> getNoiseBiome(int x, int y, int z, Climate.Sampler sampler) {
 
-        if(true)
-            return caveParameters.values().get(0).getSecond();
-
         // harder separation between surface and cave biomes.
         var actualY = y * 4;
 
@@ -73,10 +70,12 @@ public class FantasiaBiomeSource extends BiomeSource {
         if(isSurface)
             return surfaceParameters.findValue(surfaceSample);
         else {
-            if(actualY > 120) {
-                return caveParameters.values().get(1).getSecond();
-            }
-            return caveParameters.findValue(sampler.sample(x, y, z));
+
+            return caveParameters.values().get(0).getSecond();
+//            if(actualY > 120) {
+//                return caveParameters.values().get(1).getSecond();
+//            }
+//            return caveParameters.findValue(sampler.sample(x, y, z));
         }
     }
 }

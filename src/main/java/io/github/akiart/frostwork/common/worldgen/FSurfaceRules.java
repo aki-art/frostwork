@@ -6,6 +6,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.worldgen.biome.FBiomes;
+import io.github.akiart.frostwork.common.worldgen.biome.biomeConfigs.FrozenForestConfig;
 import io.github.akiart.frostwork.common.worldgen.biome.biomeConfigs.VerdantGladeConfig;
 import io.github.akiart.frostwork.lib.FastNoiseLite;
 import net.minecraft.core.registries.Registries;
@@ -54,7 +55,7 @@ public class FSurfaceRules {
 
     private static FastNoiseLite cellularNoise;
 
-    private static SurfaceRules.RuleSource defaultState(Block block) {
+    public static SurfaceRules.RuleSource defaultState(Block block) {
         return SurfaceRules.state(block.defaultBlockState());
     }
 
@@ -171,14 +172,23 @@ public class FSurfaceRules {
         ImmutableList.Builder<SurfaceRules.RuleSource> builder = ImmutableList.builder();
         builder
                 .add(SurfaceRules.ifTrue(
-                        SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), BEDROCK)
+                        SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)),
+                        BEDROCK)
+                )
+                .add(SurfaceRules.ifTrue(
+                        SurfaceRules.verticalGradient("acid_flood", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(12)),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.hole(),
+                                defaultState(FBlocks.ACID.get())
+                        ))
                 )
                 .add(
                         tundra,
                         frozen_cavern,
                         VerdantGladeConfig.createSurfaceRules(),
                         hive,
-                        grimcapGrove
+                        grimcapGrove,
+                        FrozenForestConfig.createSurfaceRules()
                 )
                 //.add(test2);
         ;

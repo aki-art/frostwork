@@ -196,11 +196,11 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
 
         ResourceLocation plankTexture = blockTexture(blockSet.planks.get());
 
-
         woods(blockSet, plankTexture);
         logBlock(blockSet.stem.get());
         mushroomBlock(blockSet.cap, getLocation("grimcap_stem_top"));
         logBlock(blockSet.strippedStem.get());
+        crossBlock(blockSet.smallMushroom);
     }
 
     protected void wood(AbstractWoodBlockSet blockSet) {

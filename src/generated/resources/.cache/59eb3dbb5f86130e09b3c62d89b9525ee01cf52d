@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-12T20:33:58.4138846	Loot Tables
+// 1.20.4	2024-02-16T14:49:44.5088478	Loot Tables
 f164f89777131a53b144fa5a7c03c736c6fd8706 data/frostwork/loot_tables/blocks/aquamire.json
 8a1e744f4dfba1c368803fa9045a5efb88e6570d data/frostwork/loot_tables/blocks/aquamire_slab.json
 1e39e2b659f48452715ecb6816352d02f302b0aa data/frostwork/loot_tables/blocks/aquamire_stairs.json
@@ -69,6 +69,7 @@ dc46e53362308a2db11e96ba37b5ff2549df03a9 data/frostwork/loot_tables/blocks/grimc
 d83c5d708391421b35a6cac51b2366998e065d00 data/frostwork/loot_tables/blocks/grimcap_fence.json
 ebd849ce9530d910316a09e3945d6e8e0a6b33fb data/frostwork/loot_tables/blocks/grimcap_fence_gate.json
 349deb935d0d3ebba1427dbab302743770872c02 data/frostwork/loot_tables/blocks/grimcap_gill.json
+3e43c2f4a7884d2b81a051f4139e48e7f3bd70cc data/frostwork/loot_tables/blocks/grimcap_mushroom.json
 67300c77e423ffeb77a2ac3212578191773ab436 data/frostwork/loot_tables/blocks/grimcap_planks.json
 c23720d41ff588ab53e1ec3ff0dbeded76ad82d1 data/frostwork/loot_tables/blocks/grimcap_pressure_plate.json
 80ad43850551f87080684e0e1d799dddb3fa0a28 data/frostwork/loot_tables/blocks/grimcap_slab.json

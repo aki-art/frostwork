@@ -7,7 +7,8 @@ import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
 import io.github.akiart.frostwork.common.fluid.FFluids;
 import io.github.akiart.frostwork.common.item.FItems;
-import io.github.akiart.frostwork.common.worldgen.features.tree.FTreeGrowers;
+import io.github.akiart.frostwork.common.worldgen.features.FConfiguredFeatures;
+import io.github.akiart.frostwork.common.worldgen.features.FTreeGrowers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -53,7 +54,7 @@ public class FBlocks {
     //public static final ThinWoodBlockSet ASPEN = BlockRegistryUtil.registerThinWoodSet("aspen", MapColor.SAND, MapColor.SNOW, MapColor.COLOR_YELLOW, WoodType.BIRCH, FTreeGrowers.ELM);
 
     // Mushrooms
-    public static final MushroomBlockSet GRIMCAP = BlockRegistryUtil.registerMushroomSet("grimcap", MapColor.SAND, MapColor.NETHER, WoodType.OAK, SoundType.FUNGUS);
+    public static final MushroomBlockSet GRIMCAP = BlockRegistryUtil.registerMushroomSet("grimcap", MapColor.SAND, MapColor.NETHER, WoodType.OAK, SoundType.FUNGUS, FConfiguredFeatures.Fungus.LARGE_GRIMCAP);
 
     public static final DeferredBlock<HugeMushroomBlock> PURPLE_GRIMCAP_CAP = BlockRegistryUtil.register("purple_grimcap_cap",
             () -> new HugeMushroomBlock(BlockBehaviour.Properties

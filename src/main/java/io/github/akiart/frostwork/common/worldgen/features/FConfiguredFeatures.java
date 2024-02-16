@@ -48,10 +48,6 @@ public class FConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> MARLSTONE_WOLFRAMITE_ORE = key("marlstone_wolframite_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MARLSTONE_BURIED_OBJECT = key("marlstone_buried_object");
 
-    // Trees
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FROZEN_ELM = key("frozen_elm");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ELM = key("elm");
-
 
     public static class Fungus {
         //public static final ResourceKey<ConfiguredFeature<?, ?>> SMALL_RED_GRIMCAP = key("small_red_grimcap");
@@ -76,6 +72,8 @@ public class FConfiguredFeatures {
             public static final ResourceKey<ConfiguredFeature<?, ?>> VELWOOD_SINGLE_SHORT = key("velwood_single_short");
             public static final ResourceKey<ConfiguredFeature<?, ?>> VELWOOD_SINGLE_TALL = key("velwood_single_tall");
             public static final ResourceKey<ConfiguredFeature<?, ?>> VELWOOD_DOUBLE = key("velwood_double");
+            public static final ResourceKey<ConfiguredFeature<?, ?>> FROZEN_ELM = key("frozen_elm");
+            public static final ResourceKey<ConfiguredFeature<?, ?>> ELM = key("elm");
         }
     }
 
@@ -214,7 +212,7 @@ public class FConfiguredFeatures {
                         )
                 ));
 
-        register(context, FROZEN_ELM, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+        register(context, Vegetation.Trees.FROZEN_ELM, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(FBlocks.FROZEN_ELM.log.get()),
                 new StraightTrunkPlacer(6, 2, 2),
                 BlockStateProvider.simple(FBlocks.FROZEN_ELM.leaves.get()),
@@ -232,7 +230,7 @@ public class FConfiguredFeatures {
                 ))
                 .build());
 
-        register(context, ELM, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+        register(context, Vegetation.Trees.ELM, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(FBlocks.ELM.log.get()),
                 new StraightTrunkPlacer(6, 2, 2),
                 BlockStateProvider.simple(FBlocks.ELM.leaves.get()),

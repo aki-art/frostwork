@@ -92,6 +92,7 @@ public class Frostwork {
             Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "exp_floor"), ExponentialDensityFunction.CODEC.codec());
             Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "cellular_plateaus"), CellularPlateausDensityFunction.CODEC.codec());
             Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "exponential_y_gradient"), ExponentialYGradientDensityFunction.CODEC.codec());
+            Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, new ResourceLocation(MOD_ID, "big_caves"), BigCavesDensityFunction.CODEC.codec());
         }
 //        else if(key.equals(Registries.PLACEMENT_MODIFIER_TYPE)) {
 //            Registry.register(BuiltInRegistries.PLACEMENT_MODIFIER_TYPE, new ResourceLocation(MOD_ID, "cellular_boundary"), () -> {

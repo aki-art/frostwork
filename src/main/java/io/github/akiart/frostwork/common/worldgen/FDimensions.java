@@ -33,8 +33,8 @@ public class FDimensions {
 
         Climate.ParameterList<Holder<Biome>> surfaceBiomes = new Climate.ParameterList<>(
                 List.of(
-                    Pair.of(Climate.parameters(0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Surface.ALPINE_TUNDRA)),
-                    Pair.of(Climate.parameters(-0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Debug.DEBUG_BLUE))
+                    Pair.of(Climate.parameters(0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Surface.FROZE_FOREST))
+                   // Pair.of(Climate.parameters(-0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Debug.DEBUG_BLUE))
                 )
         );
 

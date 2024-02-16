@@ -44,7 +44,7 @@
       ],
       "surface_biomes": [
         {
-          "biome": "frostwork:alpine_tundra",
+          "biome": "frostwork:frozen_forest",
           "parameters": {
             "continentalness": 0.0,
             "depth": 0.0,
@@ -52,18 +52,6 @@
             "humidity": 0.0,
             "offset": 0.0,
             "temperature": 0.6,
-            "weirdness": 0.0
-          }
-        },
-        {
-          "biome": "frostwork:debug_blue",
-          "parameters": {
-            "continentalness": 0.0,
-            "depth": 0.0,
-            "erosion": 0.0,
-            "humidity": 0.0,
-            "offset": 0.0,
-            "temperature": -0.6,
             "weirdness": 0.0
           }
         }

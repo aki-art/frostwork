@@ -49,6 +49,7 @@ public class FPlacedFeatures {
         public static final ResourceKey<PlacedFeature> THIN_SHORT_FLOOR_VELWOOD_TREES = key("thin_short_velwood_trees");
         public static final ResourceKey<PlacedFeature> THIN_TALL_FLOOR_VELWOOD_TREES = key("thin_tall_velwood_trees");
         public static final ResourceKey<PlacedFeature> BIG_VELWOOD_TREES = key("big_velwood_trees");
+        public static final ResourceKey<PlacedFeature> FROZEN_FOREST_ELM_TREES = key("frozen_forest_elm_trees");
     }
 
     public static class Raw {
@@ -65,6 +66,17 @@ public class FPlacedFeatures {
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
+
+        PlacementUtils.register(
+                context,
+                Vegetation.FROZEN_FOREST_ELM_TREES,
+                configuredFeatures.getOrThrow(FConfiguredFeatures.Vegetation.Trees.FROZEN_ELM),
+                PlacementUtils.countExtra(0, 0.1F, 1),
+                InSquarePlacement.spread(),
+                SurfaceWaterDepthFilter.forMaxDepth(0),
+                PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
+                BiomeFilter.biome()
+        );
 
         PlacementUtils.register(
                 context,
@@ -200,8 +212,6 @@ public class FPlacedFeatures {
                 //PlacementUtils.FULL_RANGE,
                 BiomeFilter.biome()
         );
-
-
 
 
         PlacementUtils.register(

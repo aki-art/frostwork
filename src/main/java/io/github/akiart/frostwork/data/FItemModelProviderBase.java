@@ -89,6 +89,8 @@ public abstract class FItemModelProviderBase extends ItemModelProvider {
 
             fromBlock(mushroom.stem);
             fromBlock(mushroom.strippedStem);
+
+            saplingItem(mushroom.smallMushroom);
         }
     }
 
