@@ -9,7 +9,6 @@ import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 
@@ -80,7 +79,7 @@ public class AlpineTundraConfig extends BaseBiomeConfig {
                                                                         // the rest is regular grass
                                                                         GRASS)
                                                                 ),
-                                                                defaultState(Blocks.YELLOW_TERRACOTTA)
+                                                                DIRT
                                                             )
                                                     )
                                             )
