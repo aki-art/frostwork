@@ -57,7 +57,7 @@ public class CompoundNoiseBasedChunkGenerator extends NoiseBasedChunkGenerator {
         }
 
         for (int xOffset = 0; xOffset < 16; xOffset += 4) {
-            for (int yOffset = 220; yOffset < 448; yOffset += 4) {
+            for (int yOffset = FNoiseGenerationSettings.CAVES_TOP; yOffset < 448; yOffset += 4) {
                 for (int zOffset = 0; zOffset < 16; zOffset += 4) {
 
                     pos.set(chunkX + xOffset, yOffset, chunkZ + zOffset);

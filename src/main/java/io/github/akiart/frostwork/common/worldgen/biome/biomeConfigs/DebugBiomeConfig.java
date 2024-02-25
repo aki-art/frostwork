@@ -7,7 +7,7 @@ public class DebugBiomeConfig extends BaseBiomeConfig{
     private final int color;
 
     public DebugBiomeConfig(BootstapContext<Biome> context, int color) {
-        super(context);
+        super(context, false);
         this.color = color;
     }
 

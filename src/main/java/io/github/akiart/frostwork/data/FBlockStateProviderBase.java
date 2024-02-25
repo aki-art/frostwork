@@ -3,10 +3,7 @@ package io.github.akiart.frostwork.data;
 import com.mojang.logging.LogUtils;
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
-import io.github.akiart.frostwork.common.block.blockTypes.BulbSackBlock;
-import io.github.akiart.frostwork.common.block.blockTypes.CandeloupeFruitBlock;
-import io.github.akiart.frostwork.common.block.blockTypes.FoamBlock;
-import io.github.akiart.frostwork.common.block.blockTypes.InfectedVelmiteLogBlock;
+import io.github.akiart.frostwork.common.block.blockTypes.*;
 import io.github.akiart.frostwork.common.block.registrySets.AbstractWoodBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
@@ -80,6 +77,20 @@ public abstract class FBlockStateProviderBase extends BlockStateProvider {
             else {
                 model = models().cubeAll(name, blockTexture(block.get()));
             }
+
+            return ConfiguredModel.builder().modelFile(model).build();
+        });
+    }
+
+    protected void dripstoneLike(DeferredBlock<? extends SpeleothemBlock> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            var verticalDirection = state.getValue(SpeleothemBlock.TIP_DIRECTION);
+            var thickness = state.getValue(SpeleothemBlock.THICKNESS);
+
+            var name = getBlockName(block).getPath() + "_" + verticalDirection.getSerializedName() + "_" + thickness.getSerializedName();
+            ModelFile model = models()
+                    .cross(name, getLocation(name))
+                    .renderType("cutout");
 
             return ConfiguredModel.builder().modelFile(model).build();
         });

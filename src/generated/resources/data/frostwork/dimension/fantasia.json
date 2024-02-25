@@ -6,45 +6,21 @@
       "type": "frostwork:fantasia",
       "cave_biomes": [
         {
-          "biome": "frostwork:verdant_glade",
-          "parameters": {
-            "continentalness": 0.0,
-            "depth": 1.0,
-            "erosion": 0.2,
-            "humidity": 0.2,
-            "offset": 0.0,
-            "temperature": 0.5,
-            "weirdness": 0.0
-          }
-        },
-        {
           "biome": "frostwork:grimcap_grove",
           "parameters": {
             "continentalness": 0.0,
             "depth": 1.0,
             "erosion": 0.2,
-            "humidity": 0.2,
+            "humidity": 0.3,
             "offset": 0.0,
-            "temperature": 0.5,
-            "weirdness": 0.0
-          }
-        },
-        {
-          "biome": "frostwork:frozen_cave",
-          "parameters": {
-            "continentalness": 0.0,
-            "depth": 1.0,
-            "erosion": 0.2,
-            "humidity": 0.2,
-            "offset": 0.0,
-            "temperature": -2.0,
+            "temperature": 0.3,
             "weirdness": 0.0
           }
         }
       ],
       "surface_biomes": [
         {
-          "biome": "frostwork:frozen_forest",
+          "biome": "frostwork:alpine_tundra",
           "parameters": {
             "continentalness": 0.0,
             "depth": 0.0,

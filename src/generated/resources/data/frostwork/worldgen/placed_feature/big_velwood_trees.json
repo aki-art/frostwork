@@ -9,6 +9,13 @@
       "type": "minecraft:in_square"
     },
     {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:matching_blocks",
+        "blocks": "minecraft:air"
+      }
+    },
+    {
       "type": "minecraft:height_range",
       "height": {
         "type": "minecraft:uniform",
@@ -17,19 +24,6 @@
         },
         "min_inclusive": {
           "above_bottom": 0
-        }
-      }
-    },
-    {
-      "type": "minecraft:block_predicate_filter",
-      "predicate": {
-        "type": "minecraft:would_survive",
-        "state": {
-          "Name": "frostwork:velwood_sapling",
-          "Properties": {
-            "stage": "0",
-            "vertical_direction": "up"
-          }
         }
       }
     },

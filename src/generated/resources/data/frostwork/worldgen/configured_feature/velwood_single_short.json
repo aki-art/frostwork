@@ -52,7 +52,7 @@
           "data": {
             "Name": "frostwork:infested_velwood",
             "Properties": {
-              "active": "false"
+              "active": "true"
             }
           },
           "weight": 1

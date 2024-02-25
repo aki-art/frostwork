@@ -3,6 +3,7 @@ package io.github.akiart.frostwork.client;
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.client.particles.FParticles;
 import io.github.akiart.frostwork.client.particles.particleTypes.AcidBubbleParticle;
+import io.github.akiart.frostwork.client.particles.particleTypes.AirBubbleColumUpParticle;
 import io.github.akiart.frostwork.client.particles.particleTypes.AmbientSuspendedParticle;
 import io.github.akiart.frostwork.client.particles.particleTypes.VelmiteInfectionParticle;
 import io.github.akiart.frostwork.client.renderer.entityRenderer.WurmArrowRenderer;
@@ -42,6 +43,7 @@ public class ClientSetup {
     public static void registerParticles(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(FParticles.GRIM_SPORE.get(), AmbientSuspendedParticle.GrimSporeProvider::new);
         event.registerSpriteSet(FParticles.ACID_BUBBLE.get(), AcidBubbleParticle.Provider::new);
+        event.registerSpriteSet(FParticles.AIR_BUBBLE.get(), AirBubbleColumUpParticle.Provider::new);
         event.registerSpriteSet(FParticles.VELMITE_INFECTION.get(), VelmiteInfectionParticle.Provider::new);
         //mc.particleEngine.register(FParticleTypes.DRIPPING_ACID.get(), AcidDripParticle.DrippingAcidFactory::new);
         //mc.particleEngine.register(FParticleTypes.FALLING_ACID.get(), AcidDripParticle.FallingAcidFactory::new);

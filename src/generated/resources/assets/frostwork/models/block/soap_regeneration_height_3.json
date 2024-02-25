@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/snow_height6",
+  "textures": {
+    "particle": "frostwork:block/soap_regeneration",
+    "texture": "frostwork:block/soap_regeneration"
+  }
+}

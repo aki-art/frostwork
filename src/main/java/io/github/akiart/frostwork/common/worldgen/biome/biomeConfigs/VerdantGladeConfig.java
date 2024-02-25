@@ -1,10 +1,10 @@
 package io.github.akiart.frostwork.common.worldgen.biome.biomeConfigs;
 
-import io.github.akiart.frostwork.common.worldgen.FCarvers;
 import io.github.akiart.frostwork.common.worldgen.FNoises;
 import io.github.akiart.frostwork.common.worldgen.FSurfaceRules;
 import io.github.akiart.frostwork.common.worldgen.biome.FBiomes;
 import io.github.akiart.frostwork.common.worldgen.features.FPlacedFeatures;
+import io.github.akiart.frostwork.common.worldgen.features.placedFeatures.VerdantGladePlacements;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.sounds.Musics;
 import net.minecraft.sounds.SoundEvents;
@@ -14,20 +14,19 @@ import net.minecraft.world.level.levelgen.SurfaceRules;
 
 public class VerdantGladeConfig extends BaseBiomeConfig {
     public VerdantGladeConfig(BootstapContext<Biome> context) {
-        super(context);
+        super(context, false);
     }
 
     @Override
     protected Biome configure(BiomeGenerationSettings.Builder biomeBuilder, MobSpawnSettings.Builder spawnBuilder) {
 
         biomeBuilder
-                .addCarver(GenerationStep.Carving.AIR, FCarvers.FANTASIA_CAVE);
-
-        biomeBuilder
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.SPORADIC_CANDELOPUE)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.THIN_TALL_FLOOR_VELWOOD_TREES)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.THIN_SHORT_FLOOR_VELWOOD_TREES)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.BIG_VELWOOD_TREES);
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.THIN_SHORT_CEILING_VELWOOD_TREES)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VerdantGladePlacements.Vegetation.UNDERGROUND_FERN_PATCH);
+                //.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.BIG_VELWOOD_TREES);
 
 
         return new Biome.BiomeBuilder()
@@ -73,13 +72,13 @@ public class VerdantGladeConfig extends BaseBiomeConfig {
                                         SurfaceRules.sequence(
                                                 SurfaceRules.ifTrue(
                                                         SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, -0.8, 0.1),
-                                                        FSurfaceRules.MOSS),
+                                                        FSurfaceRules.MUD),
                                                 SurfaceRules.ifTrue(
-                                                        SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, 0.1, 3),
-                                                        FSurfaceRules.MUD
+                                                        SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, 0.1, 2),
+                                                        FSurfaceRules.MOSS
                                                 ),
                                                 SurfaceRules.ifTrue(
-                                                        SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, 3),
+                                                        SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, 2),
                                                         FSurfaceRules.GRASS
                                                 )
                                         )),

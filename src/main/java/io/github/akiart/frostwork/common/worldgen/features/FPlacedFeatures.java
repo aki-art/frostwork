@@ -2,7 +2,11 @@ package io.github.akiart.frostwork.common.worldgen.features;
 
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
+import io.github.akiart.frostwork.common.block.blockTypes.FlippableSaplingBlock;
 import io.github.akiart.frostwork.common.worldgen.FOrePlacement;
+import io.github.akiart.frostwork.common.worldgen.features.configuredFeatures.VerdantGladeFeatures;
+import io.github.akiart.frostwork.common.worldgen.features.placedFeatures.*;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
@@ -11,9 +15,7 @@ import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.valueproviders.ClampedInt;
 import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -31,47 +33,34 @@ public class FPlacedFeatures {
         public static final ResourceKey<PlacedFeature> MARLSTONE_BURIED_OBJECT = key("marlstone_buried_object");
     }
 
-    public static class Surface {
-        public static final ResourceKey<PlacedFeature> SMALL_DIORITE_BOULDERS = key("small_diorite_boulders");
-        public static final ResourceKey<PlacedFeature> LARGE_DIORITE_BOULDERS = key("large_diorite_boulders");
-    }
-
     public static class Vegetation {
-        public static final ResourceKey<PlacedFeature> TUNDRA_FLOWERS = key("tundra_flowers");
-        public static final ResourceKey<PlacedFeature> BEARBERRY_PATCH = key("bearberry_patch");
         public static final ResourceKey<PlacedFeature> SPORADIC_CANDELOPUE = key("sporadic_candeloupe");
-        public static final ResourceKey<PlacedFeature> GROVE_BULBSACKS = key("grove_bulbsacks");
-        public static final ResourceKey<PlacedFeature> GROVE_MEDIUM_RED_GRIMCAP = key("grove_medium_red_grimcap");
-        public static final ResourceKey<PlacedFeature> GROVE_LARGE_GRIMCAP = key("grove_large_grimcap");
-        public static final ResourceKey<PlacedFeature> GROVE_GIANT_GRIMCAP = key("grove_giant_grimcap");
-        public static final ResourceKey<PlacedFeature> GROVE_MEDIUM_PURPLE_GRIMCAP = key("grove_medium_purple_grimcap");
-        public static final ResourceKey<PlacedFeature> GROVE_MILDEW_FUZZ = key("grove_mildew_fuzz");
+
         public static final ResourceKey<PlacedFeature> THIN_SHORT_FLOOR_VELWOOD_TREES = key("thin_short_velwood_trees");
+        public static final ResourceKey<PlacedFeature> THIN_SHORT_CEILING_VELWOOD_TREES = key("thin_short_ceiling_velwood_trees");
         public static final ResourceKey<PlacedFeature> THIN_TALL_FLOOR_VELWOOD_TREES = key("thin_tall_velwood_trees");
         public static final ResourceKey<PlacedFeature> BIG_VELWOOD_TREES = key("big_velwood_trees");
         public static final ResourceKey<PlacedFeature> FROZEN_FOREST_ELM_TREES = key("frozen_forest_elm_trees");
     }
 
-    public static class Raw {
-        public static final ResourceKey<PlacedFeature> SANGUITE_PILLARS = key("sanguite_pillars");
-    }
-
-    public static class Deltas {
-        public static final ResourceKey<PlacedFeature> GRIMCAP_ACID = key("grimcap_acid_deltas");
-    }
-
-    private static ResourceKey<PlacedFeature> key(String name) {
+    public static ResourceKey<PlacedFeature> key(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Frostwork.MOD_ID, name));
     }
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
+        VerdantGladePlacements.register(context, configuredFeatures);
+        AlpineTundraPlacements.register(context, configuredFeatures);
+        SkySeaPlacements.register(context, configuredFeatures);
+        GrimcapPlacements.register(context, configuredFeatures);
+        SulfurSpringsPlacements.register(context, configuredFeatures);
+
         PlacementUtils.register(
                 context,
                 Vegetation.FROZEN_FOREST_ELM_TREES,
                 configuredFeatures.getOrThrow(FConfiguredFeatures.Vegetation.Trees.FROZEN_ELM),
-                PlacementUtils.countExtra(0, 0.1F, 1),
+                PlacementUtils.countExtra(2, 0.1F, 1),
                 InSquarePlacement.spread(),
                 SurfaceWaterDepthFilter.forMaxDepth(0),
                 PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
@@ -81,170 +70,74 @@ public class FPlacedFeatures {
         PlacementUtils.register(
                 context,
                 Vegetation.THIN_SHORT_FLOOR_VELWOOD_TREES,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.Vegetation.Trees.VELWOOD_SINGLE_SHORT),
-                CountOnEveryLayerPlacement.of(60),
+                configuredFeatures.getOrThrow(VerdantGladeFeatures.Vegetation.VELWOOD_SINGLE_SHORT),
+                CountOnEveryLayerPlacement.of(25),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-                PlacementUtils.filteredByBlockSurvival(FBlocks.VELWOOD.sapling.get()),
+                PlacementUtils.isEmpty(),
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(FBlocks.VELWOOD.sapling.get().defaultBlockState().setValue(FlippableSaplingBlock.VERTICAL_DIRECTION, Direction.DOWN), BlockPos.ZERO)),
+                BiomeFilter.biome()
+        );
+
+        PlacementUtils.register(
+                context,
+                Vegetation.THIN_SHORT_CEILING_VELWOOD_TREES,
+                configuredFeatures.getOrThrow(VerdantGladeFeatures.Vegetation.VELWOOD_SINGLE_SHORT),
+                CountOnEveryLayerPlacement.of(50),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                PlacementUtils.isEmpty(),
+                EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
+                BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(FBlocks.VELWOOD.sapling.get().defaultBlockState().setValue(FlippableSaplingBlock.VERTICAL_DIRECTION, Direction.UP), BlockPos.ZERO)),
                 BiomeFilter.biome()
         );
 
         PlacementUtils.register(
                 context,
                 Vegetation.THIN_TALL_FLOOR_VELWOOD_TREES,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.Vegetation.Trees.VELWOOD_SINGLE_TALL),
-                CountOnEveryLayerPlacement.of(20),
+                configuredFeatures.getOrThrow(VerdantGladeFeatures.Vegetation.VELWOOD_SINGLE_TALL),
+                CountOnEveryLayerPlacement.of(10),
                 InSquarePlacement.spread(),
+                PlacementUtils.isEmpty(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-                PlacementUtils.filteredByBlockSurvival(FBlocks.VELWOOD.sapling.get()),
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(FBlocks.VELWOOD.sapling.get().defaultBlockState().setValue(FlippableSaplingBlock.VERTICAL_DIRECTION, Direction.UP), BlockPos.ZERO)),
+
                 BiomeFilter.biome()
         );
 
         PlacementUtils.register(
                 context,
                 Vegetation.BIG_VELWOOD_TREES,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.Vegetation.Trees.VELWOOD_DOUBLE),
+                configuredFeatures.getOrThrow(VerdantGladeFeatures.Vegetation.VELWOOD_DOUBLE),
                 CountOnEveryLayerPlacement.of(20),
                 InSquarePlacement.spread(),
-                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-                PlacementUtils.filteredByBlockSurvival(FBlocks.VELWOOD.sapling.get()),
-                BiomeFilter.biome()
-        );
-
-        PlacementUtils.register(
-                context,
-                Raw.SANGUITE_PILLARS,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.Pillars.SANGUITE_PILLAR),
-                RarityFilter.onAverageOnceEvery(7),
-                InSquarePlacement.spread(),
-                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 PlacementUtils.isEmpty(),
-                //EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
-
-                BiomeFilter.biome()
-        );
-
-        PlacementUtils.register(
-                context,
-                Vegetation.GROVE_MILDEW_FUZZ,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.Vegetation.MILDEW_FUZZ),
-                NoiseBasedCountPlacement.of(120, 80.0, 0.0),
-                InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
-                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                //PlacementUtils.filteredByBlockSurvival(FBlocks.VELWOOD.sapling.get()),
                 BiomeFilter.biome()
         );
 
-        PlacementUtils.register(
-                context,
-                Vegetation.TUNDRA_FLOWERS,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.TUNDRA_FLOWERS),
-                RarityFilter.onAverageOnceEvery(7),
-                InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP,
-                CountPlacement.of(ClampedInt.of(UniformInt.of(-3, 1), 0, 1)),
-                BiomeFilter.biome()
-        );
 
-        PlacementUtils.register(
-                context,
-                Vegetation.GROVE_MEDIUM_RED_GRIMCAP,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.Fungus.MEDIUM_GRIMCAP),
-                CountPlacement.of(64),
-                InSquarePlacement.spread(),
-                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
-                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
-                BiomeFilter.biome()
-        );
-
-        PlacementUtils.register(
-                context,
-                Vegetation.GROVE_LARGE_GRIMCAP,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.Fungus.LARGE_GRIMCAP),
-                CountPlacement.of(64),
-                InSquarePlacement.spread(),
-                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
-                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
-                BiomeFilter.biome()
-        );
-
-        PlacementUtils.register(
-                context,
-                Vegetation.GROVE_GIANT_GRIMCAP,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.Fungus.GIANT_GRIMCAP),
-                RarityFilter.onAverageOnceEvery(4),
-                InSquarePlacement.spread(),
-                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-                BiomeFilter.biome()
-        );
-
-        PlacementUtils.register(
-                context,
-                Deltas.GRIMCAP_ACID,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.Grimcap.SANGUITE_ACID_DELTAS),
-                CountOnEveryLayerPlacement.of(40),
-                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-                BiomeFilter.biome()
-        );
 
         PlacementUtils.register(
                 context,
                 Vegetation.SPORADIC_CANDELOPUE,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.VERDANT_SINGLE_CANDELOUPE),
-                CountPlacement.of(64),
+                configuredFeatures.getOrThrow(VerdantGladeFeatures.Vegetation.CANDELOPUE),
+                CountPlacement.of(21),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 RandomOffsetPlacement.vertical(ConstantInt.of(1)),
-                BiomeFilter.biome()
-        );
-
-        PlacementUtils.register(
-                context,
-                Vegetation.GROVE_BULBSACKS,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.GRIMCAP_BULBSACK),
-                //RarityFilter.onAverageOnceEvery(7),
-                //new RidgedCountPlacement(4f, 0.7f, 999f),
-                //InSquarePlacement.spread(),
-                //PlacementUtils.FULL_RANGE,
+                PlacementUtils.filteredByBlockSurvival(FBlocks.ATTACHED_CANDELOUPE_STEM.get()),
                 BiomeFilter.biome()
         );
 
 
-        PlacementUtils.register(
-                context,
-                Vegetation.BEARBERRY_PATCH,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.TUNDRA_BEARBERRY),
-                RarityFilter.onAverageOnceEvery(7),
-                InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP,
-                CountPlacement.of(ClampedInt.of(UniformInt.of(-3, 1), 0, 1)),
-                //CountPlacement.of(ClampedInt.of(UniformInt.of(-3, 1), 0, 1)),
-                BiomeFilter.biome()
-        );
-
-        PlacementUtils.register(
-                context,
-                Surface.SMALL_DIORITE_BOULDERS,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.DIORITE_BOULDERS),
-                RarityFilter.onAverageOnceEvery(10),
-                InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
-                BiomeFilter.biome()
-        );
-
-        PlacementUtils.register(
-                context,
-                Surface.LARGE_DIORITE_BOULDERS,
-                configuredFeatures.getOrThrow(FConfiguredFeatures.LARGE_DIORITE_BOULDERS),
-                RarityFilter.onAverageOnceEvery(60),
-                InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
-                BiomeFilter.biome()
-        );
 
         // coals
         registerCommonOre(context, configuredFeatures, Ores.EDELSTONE_COAL_ORE, FConfiguredFeatures.EDELSTONE_COAL_ORE, 30, 0, 300);
@@ -265,7 +158,7 @@ public class FPlacedFeatures {
                 FOrePlacement.commonOrePlacement(count, HeightRangePlacement.uniform(VerticalAnchor.absolute(fromY), VerticalAnchor.absolute(toY))));
     }
 
-    private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,
+    public static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,
                                  List<PlacementModifier> modifiers) {
         context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
     }

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/snow_height10",
+  "textures": {
+    "particle": "frostwork:block/soap_leaping",
+    "texture": "frostwork:block/soap_leaping"
+  }
+}

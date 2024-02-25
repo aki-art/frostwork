@@ -26,7 +26,7 @@ public class BottleOfFoamItem extends PlaceOnWaterBlockItem {
         InteractionResultHolder<ItemStack> result = super.use(level, player, hand);
 
         if(result.getResult() == InteractionResult.CONSUME) {
-            // give back bottle
+            // todo give back bottle
         }
 
         return result;

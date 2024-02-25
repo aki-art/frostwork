@@ -1,19 +1,22 @@
 package io.github.akiart.frostwork.common.worldgen.biome.biomeConfigs;
 
-import io.github.akiart.frostwork.common.worldgen.FCarvers;
-import io.github.akiart.frostwork.common.worldgen.features.FPlacedFeatures;
+import io.github.akiart.frostwork.common.worldgen.FNoises;
+import io.github.akiart.frostwork.common.worldgen.biome.FBiomes;
+import io.github.akiart.frostwork.common.worldgen.features.placedFeatures.AlpineTundraPlacements;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 
 public class AlpineTundraConfig extends BaseBiomeConfig {
 
     public AlpineTundraConfig(BootstapContext<Biome> context) {
-        super(context);
+        super(context, true);
     }
 
     @Override
@@ -23,18 +26,13 @@ public class AlpineTundraConfig extends BaseBiomeConfig {
                 .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.RABBIT, 5, 4, 4))
                 .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.FOX, 2, 1, 4));
 
-        biomeBuilder
-                .addCarver(GenerationStep.Carving.AIR, FCarvers.FANTASIA_CAVE);
-
         BiomeDefaultFeatures.addFerns(biomeBuilder);
         biomeBuilder
-                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, FPlacedFeatures.Surface.SMALL_DIORITE_BOULDERS)
-                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, FPlacedFeatures.Surface.LARGE_DIORITE_BOULDERS)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.TUNDRA_FLOWERS)
+                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, AlpineTundraPlacements.SMALL_DIORITE_BOULDERS)
+                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, AlpineTundraPlacements.LARGE_DIORITE_BOULDERS)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AlpineTundraPlacements.TUNDRA_FLOWERS)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_TAIGA)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.BEARBERRY_PATCH);
-
-        addCommonSurfaceFeatures(biomeBuilder);
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AlpineTundraPlacements.BEARBERRY_PATCH);
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
@@ -53,5 +51,45 @@ public class AlpineTundraConfig extends BaseBiomeConfig {
                         //.backgroundMusic(Musics.createGameMusic(ModSounds.BAR_BRAWL.getHolder().get()))
                         .build())
                 .build();
+    }
+
+    public static SurfaceRules.RuleSource createSurfaceRules() {
+        return SurfaceRules.sequence(
+                SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(FBiomes.Surface.ALPINE_TUNDRA),
+                        //SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(),
+                            SurfaceRules.sequence(
+                                    // if on surface, grass or gravel
+                                    SurfaceRules.ifTrue(
+                                            SurfaceRules.ON_FLOOR,
+                                            SurfaceRules.sequence(
+                                                    // if underwater, just place dirt
+                                                    SurfaceRules.ifTrue(
+                                                            SurfaceRules.waterBlockCheck(0, 0),
+                                                                    SurfaceRules.sequence(
+                                                                        // random gravel
+                                                                        SurfaceRules.ifTrue(
+                                                                                SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, -99, -0.5),
+                                                                                GRAVEL
+                                                                        ),
+                                                                        // random dry grass
+                                                                        SurfaceRules.ifTrue(
+                                                                                SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, 0.15),
+                                                                                DRY_GRASS
+                                                                        ),
+                                                                        // the rest is regular grass
+                                                                        GRASS)
+                                                                ),
+                                                                defaultState(Blocks.YELLOW_TERRACOTTA)
+                                                            )
+                                                    )
+                                            )
+                                    ),
+                                    // below grass, place dirt
+                                    SurfaceRules.ifTrue(
+                                        SurfaceRules.UNDER_FLOOR,
+                                        DIRT
+                                    )
+                            );
     }
 }

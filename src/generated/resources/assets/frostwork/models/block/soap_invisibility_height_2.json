@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/snow_height4",
+  "textures": {
+    "particle": "frostwork:block/soap_invisibility",
+    "texture": "frostwork:block/soap_invisibility"
+  }
+}

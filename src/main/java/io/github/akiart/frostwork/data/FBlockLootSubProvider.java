@@ -1,8 +1,8 @@
 package io.github.akiart.frostwork.data;
 
 import io.github.akiart.frostwork.Frostwork;
-import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.block.BlockRegistryUtil;
+import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.item.FItems;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -28,6 +28,7 @@ public class FBlockLootSubProvider extends FBlockLootSubProviderBase {
         dropSelf(FBlocks.WOLF_BLOCK.get());
         add(FBlocks.GRIMCAP_GILL.get(), createSilkTouchOnlyTable(FBlocks.GRIMCAP_GILL.get()));
 
+
         //createSilkTouchOnlyTable(FBlocks.OVERGROWN_SANGUITE.get());
        // otherWhenSilkTouch(FBlocks.OVERGROWN_SANGUITE.get(), FBlocks.SANGUITE.block.get());
 
@@ -50,17 +51,26 @@ public class FBlockLootSubProvider extends FBlockLootSubProviderBase {
                 )
         ));
 
+        layeredDropSelf(FBlocks.SOAP_INVISIBILITY);
+        layeredDropSelf(FBlocks.SOAP_REGENERATION);
+        layeredDropSelf(FBlocks.SOAP_LEAPING);
+        layeredDropSelf(FBlocks.SOAP_SWIFTNESS);
+
         addMissingTemp();
     }
 
-    //TODO
+    // TODO
+    // temporarily make all blocks no drop i didn't set yet so the game doesn't complain
     private void addMissingTemp() {
         FBlocks.BLOCKS.getEntries().forEach(block -> {
-            if(!this.map.containsKey(block.getId())) {
-                if(block != FBlocks.ACID && block != FBlocks.CANDELOUPE) {
-                    add(block.get(), noDrop());
-                    Frostwork.LOGGER.warn("No loottable set: " + block.getId());
-                }
+            if(!this.map.containsKey(block.get().getLootTable())) {
+
+                // liquids must not have a loot table
+                if (block == FBlocks.ACID || block == FBlocks.AIR_BUBBLE_COLUMN)
+                    return;
+
+                add(block.get(), noDrop());
+                Frostwork.LOGGER.warn("No loottable set: " + block.getId());
             }
         });
     }

@@ -28,6 +28,14 @@ public class FBlockTagsProvider extends BlockTagsProvider {
         BlockRegistryUtil.getMushrooms().forEach(this::tree);
         BlockRegistryUtil.getWoods().forEach(this::tree);
 
+        tag(FTags.Blocks.DOWNPOUR_GROUND_REPLACEABLE).add(
+                FBlocks.SOAPSTONE.block.get()
+        );
+
+        tag(FTags.Blocks.SULFUR_POOL_REPLACEABLE)
+                .addTag(Tags.Blocks.STONE)
+                .addTag(BlockTags.TERRACOTTA);
+
         tag(FTags.Blocks.SUSTAINS_CANDELOUPE_FRUIT).add(
                 Blocks.MUD,
                 Blocks.MOSS_BLOCK,

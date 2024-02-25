@@ -31,6 +31,7 @@ public class FItemModelProvider extends FItemModelProviderBase {
         fromBlock(FBlocks.OVERGROWTH);
         fromBlock(FBlocks.MILDEW);
         fromBlock(FBlocks.DRY_GRASS);
+        fromBlock(FBlocks.SULFUR);
         fromBlock(FBlocks.MILDEW_FUZZ);
         fromBlock(FBlocks.SOMEWHAT_OVERGROWN_SANGUITE);
         fromBlock(FBlocks.PURPLE_GRIMCAP_CAP);
@@ -39,6 +40,10 @@ public class FItemModelProvider extends FItemModelProviderBase {
         fromBlock(FBlocks.PURPLE_SCLERITE);
         fromBlock(FBlocks.BLUE_SCLERITE);
         fromBlock(FBlocks.BLACK_SCLERITE);
+
+        miscItem(FItems.POINTED_CRYSTALMUD);
+        miscItem(FItems.STARBRIGHT);
+        miscItem(FItems.ICICLE);
 
         carpet(FBlocks.OVERGROWTH.getId().getPath(), new ResourceLocation((getBlockTexture(FBlocks.OVERGROWN_SANGUITE.get()) + "_top")));
 
@@ -76,6 +81,11 @@ public class FItemModelProvider extends FItemModelProviderBase {
         fromBlock(FBlocks.VERDANT_GOLD_ORE);
 
         fromBlock(FBlocks.MARLSTONE_LAPIS_ORE);
+
+//        fromBlock(FBlocks.SOAP_SWIFTNESS);
+//        fromBlock(FBlocks.SOAP_REGENERATION);
+//        fromBlock(FBlocks.SOAP_LEAPING);
+//        fromBlock(FBlocks.SOAP_INVISIBILITY);
     }
 
     private void foods() {

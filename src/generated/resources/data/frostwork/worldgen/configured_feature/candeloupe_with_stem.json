@@ -1,7 +1,16 @@
 {
-  "type": "minecraft:simple_block",
+  "type": "frostwork:stemmed",
   "config": {
-    "to_place": {
+    "fruit": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "frostwork:attached_candeloupe_stem",
+        "Properties": {
+          "facing": "north"
+        }
+      }
+    },
+    "stem": {
       "type": "minecraft:simple_state_provider",
       "state": {
         "Name": "frostwork:candeloupe",

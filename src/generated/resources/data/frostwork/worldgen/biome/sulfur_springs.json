@@ -1,0 +1,51 @@
+{
+  "carvers": {
+    "air": "frostwork:fantasia_cave"
+  },
+  "downfall": 0.8,
+  "effects": {
+    "fog_color": 9543081,
+    "foliage_color": 3962923,
+    "grass_color": 13350267,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "sky_color": 15319350,
+    "water_color": 3137725,
+    "water_fog_color": 3137725
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "frostwork:marlstone_wolframite_ore",
+      "frostwork:marlstone_buried_object",
+      "frostwork:marlstone_coal_ore"
+    ],
+    [],
+    [],
+    [
+      "frostwork:acid_ponds"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.8
+}

@@ -1,21 +1,29 @@
 package io.github.akiart.frostwork.data;
 
 import io.github.akiart.frostwork.Frostwork;
+import io.github.akiart.frostwork.common.block.blockTypes.LayeredBlock;
 import io.github.akiart.frostwork.common.block.registrySets.AbstractWoodBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.MushroomBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
+import java.util.List;
 import java.util.Set;
 
 public abstract class FBlockLootSubProviderBase extends BlockLootSubProvider {
@@ -29,6 +37,31 @@ public abstract class FBlockLootSubProviderBase extends BlockLootSubProvider {
                 .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
     }
 
+protected void layeredDropSelf(DeferredBlock<? extends LayeredBlock> block) {
+        add(block.get(),
+                itemLike -> LootTable.lootTable()
+                        .withPool(
+                                LootPool.lootPool()
+                                        .setRolls(ConstantValue.exactly(1.0F))
+                                        .add(
+                                                this.applyExplosionDecay(
+                                                        block.get(),
+                                                        LootItem.lootTableItem(itemLike)
+                                                                .apply(
+                                                                        List.of(2, 3, 4, 5, 6, 7, 8),
+                                                                        count -> SetItemCountFunction.setCount(ConstantValue.exactly((float) count))
+                                                                                .when(
+                                                                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(itemLike)
+                                                                                                .setProperties(
+                                                                                                        StatePropertiesPredicate.Builder.properties()
+                                                                                                                .hasProperty(LayeredBlock.LAYERS, count)
+                                                                                                )
+                                                                                )
+                                                                )
+                                                )
+                                        )
+                        ));
+    }
 
 
     protected void stone(StoneBlockSet set) {

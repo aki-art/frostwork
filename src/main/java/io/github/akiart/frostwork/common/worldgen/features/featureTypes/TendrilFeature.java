@@ -3,6 +3,7 @@ package io.github.akiart.frostwork.common.worldgen.features.featureTypes;
 import com.mojang.serialization.Codec;
 import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.block.blockTypes.BulbSackBlock;
+import io.github.akiart.frostwork.common.worldgen.FNoiseGenerationSettings;
 import io.github.akiart.frostwork.common.worldgen.biome.FBiomes;
 import io.github.akiart.frostwork.common.worldgen.features.configTypes.Tendrils2DConfig;
 import io.github.akiart.frostwork.lib.FastNoiseLite;
@@ -104,7 +105,7 @@ public class TendrilFeature extends Feature<Tendrils2DConfig> {
 
         noise.SetSeed((int)(level.getSeed() % Integer.MAX_VALUE));
 
-        for(int y = 9; y < 220; y++) {
+        for(int y = 9; y < FNoiseGenerationSettings.CAVES_TOP; y++) {
             for (int x = 0; x < 16; x++) {
                 for (int z = 0; z < 16; z++) {
                     mutableBlockPos.set(context.origin()).move(x, y, z);

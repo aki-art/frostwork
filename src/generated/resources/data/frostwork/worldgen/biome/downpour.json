@@ -1,0 +1,62 @@
+{
+  "carvers": {
+    "air": "frostwork:fantasia_cave"
+  },
+  "downfall": 0.0,
+  "effects": {
+    "fog_color": 3964382,
+    "foliage_color": 2123876,
+    "grass_color": 2057073,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "minecraft:music.overworld.lush_caves"
+    },
+    "particle": {
+      "options": {
+        "type": "minecraft:rain"
+      },
+      "probability": 0.025
+    },
+    "sky_color": 5069167,
+    "water_color": 2978520,
+    "water_fog_color": 2978520
+  },
+  "features": [
+    [],
+    [],
+    [
+      "frostwork:ceiling_lights"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "frostwork:downpour_ponds",
+      "frostwork:ceiling_stars"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.4
+}

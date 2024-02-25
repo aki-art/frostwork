@@ -38,7 +38,8 @@
       "frostwork:sporadic_candeloupe",
       "frostwork:thin_tall_velwood_trees",
       "frostwork:thin_short_velwood_trees",
-      "frostwork:big_velwood_trees"
+      "frostwork:thin_short_ceiling_velwood_trees",
+      "frostwork:underground_fern_patch"
     ]
   ],
   "has_precipitation": true,

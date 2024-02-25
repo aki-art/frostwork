@@ -11,7 +11,8 @@ import net.minecraft.world.level.biome.Biome;
 public class FBiomes {
     public static class Surface {
         public static final ResourceKey<Biome> ALPINE_TUNDRA = key("alpine_tundra");
-        public static final ResourceKey<Biome> FROZE_FOREST = key("frozen_forest");
+        public static final ResourceKey<Biome> FROZEN_FOREST = key("frozen_forest");
+        public static final ResourceKey<Biome> SULFUR_SPRINGS = key("sulfur_springs");
 
     }
 
@@ -20,6 +21,7 @@ public class FBiomes {
         public static final ResourceKey<Biome> VERDANT_GLADE = key("verdant_glade");
         public static final ResourceKey<Biome> HIVE = key("hive");
         public static final ResourceKey<Biome> GRIMCAP_GROVE = key("grimcap_grove");
+        public static final ResourceKey<Biome> DOWNPOUR = key("downpour");
     }
 
     public static class Debug {
@@ -37,12 +39,14 @@ public class FBiomes {
 
     public static void boostrap(BootstapContext<Biome> context) {
         context.register(Surface.ALPINE_TUNDRA, new AlpineTundraConfig(context).create());
-        context.register(Surface.FROZE_FOREST, new FrozenForestConfig(context).create());
+        context.register(Surface.FROZEN_FOREST, new FrozenForestConfig(context).create());
+        context.register(Surface.SULFUR_SPRINGS, new SulfurSpringsConfig(context).create());
 
         context.register(Cave.FROZEN_CAVE, new FrozenCaveConfig(context).create());
         context.register(Cave.VERDANT_GLADE, new VerdantGladeConfig(context).create());
         context.register(Cave.GRIMCAP_GROVE, new GrimcapGroveConfig(context).create());
         context.register(Cave.HIVE, new HiveConfig(context).create());
+        context.register(Cave.DOWNPOUR, new SkySeaConfig(context).create());
 
         context.register(Sky.FLOATING_MOUNTAINS, new DebugBiomeConfig(context, 0x10278388).create());
 

@@ -2,6 +2,7 @@ package io.github.akiart.frostwork.client;
 
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.worldgen.FDimensionTypes;
+import io.github.akiart.frostwork.common.worldgen.FNoiseGenerationSettings;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.FogRenderer;
@@ -37,7 +38,7 @@ public class FogRenderTweaks {
 
         var y = event.getCamera().getPosition().y;
 
-        if(y > 220)
+        if(y > FNoiseGenerationSettings.CAVES_TOP)
             return;
 
         var nearPlane = 20f;

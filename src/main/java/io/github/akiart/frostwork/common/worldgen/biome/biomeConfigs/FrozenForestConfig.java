@@ -1,7 +1,6 @@
 package io.github.akiart.frostwork.common.worldgen.biome.biomeConfigs;
 
 import io.github.akiart.frostwork.common.block.FBlocks;
-import io.github.akiart.frostwork.common.worldgen.FCarvers;
 import io.github.akiart.frostwork.common.worldgen.biome.FBiomes;
 import io.github.akiart.frostwork.common.worldgen.features.FPlacedFeatures;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
@@ -14,20 +13,17 @@ import net.minecraft.world.level.levelgen.SurfaceRules;
 
 public class FrozenForestConfig extends BaseBiomeConfig{
     public FrozenForestConfig(BootstapContext<Biome> context) {
-        super(context);
+        super(context, true);
     }
 
     @Override
     protected Biome configure(BiomeGenerationSettings.Builder biomeBuilder, MobSpawnSettings.Builder spawnBuilder) {
-        biomeBuilder
-                .addCarver(GenerationStep.Carving.AIR, FCarvers.FANTASIA_CAVE);
 
         BiomeDefaultFeatures.addFerns(biomeBuilder);
         biomeBuilder
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_TAIGA)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.FROZEN_FOREST_ELM_TREES);
 
-        addCommonSurfaceFeatures(biomeBuilder);
 
         BiomeDefaultFeatures.addSurfaceFreezing(biomeBuilder);
 
@@ -52,10 +48,17 @@ public class FrozenForestConfig extends BaseBiomeConfig{
 
     public static SurfaceRules.RuleSource createSurfaceRules()
     {
-        return SurfaceRules.sequence(
-                SurfaceRules.ifTrue(
-                        SurfaceRules.isBiome(FBiomes.Surface.FROZE_FOREST),
-                        SurfaceRules.state(FBlocks.FROZEN_DIRT.get().defaultBlockState().setValue(SnowyDirtBlock.SNOWY, true))
+        return SurfaceRules.ifTrue(
+                SurfaceRules.isBiome(FBiomes.Surface.FROZEN_FOREST),
+                SurfaceRules.sequence(
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.ON_FLOOR,
+                                SurfaceRules.state(FBlocks.FROZEN_DIRT.get().defaultBlockState().setValue(SnowyDirtBlock.SNOWY, true))
+                        ),
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.UNDER_FLOOR,
+                                SurfaceRules.state(FBlocks.FROZEN_DIRT.get().defaultBlockState().setValue(SnowyDirtBlock.SNOWY, false))
+                        )
                 )
         );
     }

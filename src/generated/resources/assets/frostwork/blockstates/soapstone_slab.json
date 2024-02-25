@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "frostwork:block/soapstone_slab"
+    },
+    "type=double": {
+      "model": "frostwork:block/soapstone"
+    },
+    "type=top": {
+      "model": "frostwork:block/soapstone_slab_top"
+    }
+  }
+}

@@ -1,10 +1,13 @@
 package io.github.akiart.frostwork.common.block;
 
 import io.github.akiart.frostwork.common.block.blockTypes.FlippableSaplingBlock;
+import io.github.akiart.frostwork.common.block.blockTypes.LayeredBlock;
 import io.github.akiart.frostwork.common.block.blockTypes.PeltBlock;
+import io.github.akiart.frostwork.common.block.blockTypes.SoapBlock;
 import io.github.akiart.frostwork.common.block.registrySets.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -39,6 +42,20 @@ public class BlockRegistryUtil {
                 .offsetType(BlockBehaviour.OffsetType.XZ)
                 .ignitedByLava()
                 .pushReaction(PushReaction.DESTROY)));
+    }
+
+    public static DeferredBlock<SoapBlock> soap(String name, Supplier<MobEffect> effect, int duration, MapColor color) {
+        return register(name, () -> new SoapBlock(BlockBehaviour.Properties.of()
+                .mapColor(color)
+                .replaceable()
+                .strength(0.1F)
+                .forceSolidOff()
+                //.requiresCorrectToolForDrops()
+                .isViewBlocking((state, level, pos) -> state.getValue(LayeredBlock.LAYERS) >= 8)
+                .sound(SoundType.CANDLE)
+                .pushReaction(PushReaction.DESTROY),
+                effect,
+                duration));
     }
 
     public static WoodBlockSet registerTransparentWoodSet(String name, MapColor plankColor, MapColor barkColor, MapColor leavesColor, WoodType woodType, TreeGrower grower) {

@@ -7,8 +7,8 @@ import io.github.akiart.frostwork.common.block.registrySets.StoneBlockSet;
 import io.github.akiart.frostwork.common.block.registrySets.WoodBlockSet;
 import io.github.akiart.frostwork.common.fluid.FFluids;
 import io.github.akiart.frostwork.common.item.FItems;
-import io.github.akiart.frostwork.common.worldgen.features.FConfiguredFeatures;
 import io.github.akiart.frostwork.common.worldgen.features.FTreeGrowers;
+import io.github.akiart.frostwork.common.worldgen.features.configuredFeatures.GrimcapFeatures;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -54,7 +54,7 @@ public class FBlocks {
     //public static final ThinWoodBlockSet ASPEN = BlockRegistryUtil.registerThinWoodSet("aspen", MapColor.SAND, MapColor.SNOW, MapColor.COLOR_YELLOW, WoodType.BIRCH, FTreeGrowers.ELM);
 
     // Mushrooms
-    public static final MushroomBlockSet GRIMCAP = BlockRegistryUtil.registerMushroomSet("grimcap", MapColor.SAND, MapColor.NETHER, WoodType.OAK, SoundType.FUNGUS, FConfiguredFeatures.Fungus.LARGE_GRIMCAP);
+    public static final MushroomBlockSet GRIMCAP = BlockRegistryUtil.registerMushroomSet("grimcap", MapColor.SAND, MapColor.NETHER, WoodType.OAK, SoundType.FUNGUS, GrimcapFeatures.LARGE_GRIMCAP);
 
     public static final DeferredBlock<HugeMushroomBlock> PURPLE_GRIMCAP_CAP = BlockRegistryUtil.register("purple_grimcap_cap",
             () -> new HugeMushroomBlock(BlockBehaviour.Properties
@@ -70,6 +70,7 @@ public class FBlocks {
     // Stones
     public static final StoneBlockSet OBSIDIAN_BRICKS = BlockRegistryUtil.registerStones("obsidian_bricks", 5f, 20f, MapColor.COLOR_BLACK, true);
     public static final StoneBlockSet EDELSTONE = BlockRegistryUtil.registerStones("edelstone", TUNING.COBBLE_HARDNESS, TUNING.COBBLE_RESISTANCE, MapColor.CLAY, true);
+    public static final StoneBlockSet SOAPSTONE = BlockRegistryUtil.registerStones("soapstone", TUNING.COBBLE_HARDNESS, TUNING.COBBLE_RESISTANCE, MapColor.TERRACOTTA_CYAN, true);
     public static final StoneBlockSet CRACKED_EDELSTONE_BRICKS = BlockRegistryUtil.registerStones("cracked_edelstone_bricks", TUNING.COBBLE_HARDNESS, TUNING.COBBLE_RESISTANCE, MapColor.CLAY, false);
     public static final StoneBlockSet POLISHED_EDELSTONE = BlockRegistryUtil.registerStones("polished_edelstone", TUNING.COBBLE_HARDNESS, TUNING.COBBLE_RESISTANCE, MapColor.CLAY, false);
     public static final StoneBlockSet EDELSTONE_BRICKS = BlockRegistryUtil.registerStones("edelstone_bricks", TUNING.COBBLE_HARDNESS, TUNING.COBBLE_RESISTANCE, MapColor.CLAY, false);
@@ -123,8 +124,31 @@ public class FBlocks {
     public static final DeferredBlock<Block> MARLSTONE_BURIED_OBJECT = BlockRegistryUtil.register("marlstone_buried_object", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.MARLSTONE.block.get())));
 
     public static final DeferredBlock<Block> VERDANT_BURIED_OBJECT = BlockRegistryUtil.register("verdant_rock_buried_object", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.VERDANT_ROCK.block.get())));
+    public static final DeferredBlock<Block> SULFUR = BlockRegistryUtil.register("sulfur",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_YELLOW)
+                    .strength(3f, 1f)
+                    .ignitedByLava()
+                    .sound(SoundType.BASALT)));
     public static final DeferredBlock<Block> VERDANT_GOLD_ORE = BlockRegistryUtil.register("verdant_rock_gold_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.VERDANT_ROCK.block.get())));
     public static final DeferredBlock<Block> VERDANT_WOLFRAMITE_ORE = BlockRegistryUtil.register("verdant_rock_wolframite_ore", () -> new Block(BlockBehaviour.Properties.ofFullCopy(FBlocks.VERDANT_ROCK.block.get())));
+
+    public static final DeferredBlock<SpeleothemBlock> POINTED_CRYSTALMUD = BlockRegistryUtil.register("pointed_crystalmud",
+            () -> new SpeleothemBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POINTED_DRIPSTONE)));
+
+    public static final DeferredBlock<IcicleBlock> ICICLE = BlockRegistryUtil.register("icicle",
+            () -> new IcicleBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.ICE)
+                    .forceSolidOn()
+                    .instrument(NoteBlockInstrument.CHIME)
+                    .noOcclusion()
+                    .sound(SoundType.GLASS)
+                    .randomTicks()
+                    .strength(1.5F, 3.0F)
+                    .dynamicShape()
+                    .offsetType(BlockBehaviour.OffsetType.XZ)
+                    .pushReaction(PushReaction.DESTROY)
+                    .isRedstoneConductor((state, level, pos) -> false)));
 
     public static final DeferredBlock<FTransparentBlock> MALACHITE_ICE_ORE = BlockRegistryUtil.register("malachite_ice_ore", () -> new FTransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ICE)
             .sound(SoundType.GLASS)
@@ -139,6 +163,12 @@ public class FBlocks {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.AMETHYST_BLOCK)
                     .lightLevel(state -> 3)
                     .mapColor(MapColor.COLOR_GREEN)));
+
+    // Soaps
+    public static DeferredBlock<SoapBlock> SOAP_INVISIBILITY = BlockRegistryUtil.soap("soap_invisibility", () -> MobEffects.INVISIBILITY, 30, MapColor.COLOR_LIGHT_BLUE);
+    public static DeferredBlock<SoapBlock> SOAP_LEAPING = BlockRegistryUtil.soap("soap_leaping", () -> MobEffects.JUMP, 30, MapColor.COLOR_YELLOW);
+    public static DeferredBlock<SoapBlock> SOAP_REGENERATION = BlockRegistryUtil.soap("soap_regeneration", () -> MobEffects.REGENERATION, 30, MapColor.COLOR_PINK);
+    public static DeferredBlock<SoapBlock> SOAP_SWIFTNESS = BlockRegistryUtil.soap("soap_swiftness", () -> MobEffects.MOVEMENT_SPEED, 30, MapColor.COLOR_LIGHT_BLUE);
 
     // Plants
     public static DeferredBlock<TallFlowerBlock> LAVENDER = BlockRegistryUtil.basicTallFlower("lavender");
@@ -175,11 +205,23 @@ public class FBlocks {
                     .pushReaction(PushReaction.DESTROY)
             ));
 
+    public static final DeferredBlock<StarBrightBlock> STARBRIGHT = BlockRegistryUtil.register("starbright",
+            () -> new StarBrightBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .instabreak()
+                    .emissiveRendering((pState, pLevel, pPos) -> true)
+                    .lightLevel(state -> 6)
+                    .sound(SoundType.FLOWERING_AZALEA)
+                    .offsetType(BlockBehaviour.OffsetType.XZ)
+                    .pushReaction(PushReaction.DESTROY)
+            ));
+
     public static final DeferredBlock<CandeloupeFruitBlock> CANDELOUPE = BlockRegistryUtil.register("candeloupe",
             () -> new CandeloupeFruitBlock(BlockBehaviour.Properties.of()
                     .ignitedByLava()
                     .mapColor(MapColor.GLOW_LICHEN)
-                    .lightLevel(state -> 8)
+                    .lightLevel(state -> 10)
                     .forceSolidOn()
                     .noOcclusion()
                     .strength(1.0F)
@@ -285,4 +327,28 @@ public class FBlocks {
             () -> new AcidLiquidBlock(FFluids.ACID_SOURCE, BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)
                     .lightLevel(state -> 4)
                     .mapColor(MapColor.COLOR_LIGHT_GREEN)));
+
+    public static final  DeferredBlock<BubbleEmitterBlock> BUBBLE_VENT = BlockRegistryUtil.register(
+            "bubble_vent",
+            () -> new BubbleEmitterBlock(
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.COLOR_BROWN)
+                            .instrument(NoteBlockInstrument.COW_BELL)
+                            .strength(0.5F)
+                            .sound(SoundType.SOUL_SAND)
+            )
+    );
+
+    public static final  DeferredBlock<AirBubbleColumnBlock> AIR_BUBBLE_COLUMN = BlockRegistryUtil.register(
+            "air_bubble_column",
+            () -> new AirBubbleColumnBlock(
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.WATER)
+                            .replaceable()
+                            .noCollission()
+                            .noLootTable()
+                            .pushReaction(PushReaction.DESTROY)
+                            .sound(SoundType.EMPTY)
+            )
+    );
 }

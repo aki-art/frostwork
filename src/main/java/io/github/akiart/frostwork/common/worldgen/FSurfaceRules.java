@@ -6,8 +6,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.akiart.frostwork.Frostwork;
 import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.worldgen.biome.FBiomes;
-import io.github.akiart.frostwork.common.worldgen.biome.biomeConfigs.FrozenForestConfig;
-import io.github.akiart.frostwork.common.worldgen.biome.biomeConfigs.VerdantGladeConfig;
+import io.github.akiart.frostwork.common.worldgen.biome.biomeConfigs.*;
 import io.github.akiart.frostwork.lib.FastNoiseLite;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -66,25 +65,6 @@ public class FSurfaceRules {
 
         initNoise();
 
-        // patches of dry grass and grass, with bits of gravel between
-        SurfaceRules.RuleSource tundra = SurfaceRules.sequence(
-                SurfaceRules.ifTrue(
-                        SurfaceRules.isBiome(FBiomes.Surface.ALPINE_TUNDRA),
-                        SurfaceRules.ifTrue(
-                                SurfaceRules.ON_FLOOR,
-                                SurfaceRules.sequence(
-                                    SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, -99, -0.5),
-                                            GRAVEL),
-                                        SurfaceRules.ifTrue(
-                                                SurfaceRules.noiseCondition(FNoises.ALPINE_TUNDRA_SURFACE, 0.15),
-                                                DRY_GRASS
-                                        ),
-                                        GRASS)
-                        )
-
-                )
-        );
 
         SurfaceRules.RuleSource grimcapGrove = SurfaceRules.sequence(
                 SurfaceRules.ifTrue(
@@ -183,12 +163,14 @@ public class FSurfaceRules {
                         ))
                 )
                 .add(
-                        tundra,
+                        AlpineTundraConfig.createSurfaceRules(),
                         frozen_cavern,
                         VerdantGladeConfig.createSurfaceRules(),
                         hive,
                         grimcapGrove,
-                        FrozenForestConfig.createSurfaceRules()
+                        FrozenForestConfig.createSurfaceRules(),
+                        SkySeaConfig.createSurfaceRules(),
+                        SulfurSpringsConfig.createSurfaceRules()
                 )
                 //.add(test2);
         ;

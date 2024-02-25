@@ -18,4 +18,7 @@ public class FEffects {
     public static final DeferredHolder<MobEffect, MobEffect> POISON_RESISTANCE = EFFECTS.register("poison_resistance",
             () -> new PoisonResistanceEffect(MobEffectCategory.BENEFICIAL, Consts.COLORS.POISON_RESISTANCE));
 
+    public static final DeferredHolder<MobEffect, MobEffect> SCENTED = EFFECTS.register("scented",
+            () -> new ScentedEffect(MobEffectCategory.NEUTRAL, Consts.COLORS.FRAIL_EFFECT));
+
 }

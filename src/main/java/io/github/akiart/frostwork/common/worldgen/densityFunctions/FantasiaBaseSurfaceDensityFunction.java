@@ -2,6 +2,7 @@ package io.github.akiart.frostwork.common.worldgen.densityFunctions;
 
 
 import com.mojang.serialization.MapCodec;
+import io.github.akiart.frostwork.common.worldgen.FNoiseGenerationSettings;
 import io.github.akiart.frostwork.lib.FastNoiseLite;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.util.RandomSource;
@@ -16,7 +17,7 @@ public final class FantasiaBaseSurfaceDensityFunction implements DensityFunction
     FastNoiseLite surfaceNoise;
     FastNoiseLite surfaceWarpA;
     FastNoiseLite surfaceWarpB;
-    int top = 220;
+    int top = FNoiseGenerationSettings.CAVES_TOP;
     private float terrainScale = 2.3f;
 
     public FantasiaBaseSurfaceDensityFunction(long pSeed) {

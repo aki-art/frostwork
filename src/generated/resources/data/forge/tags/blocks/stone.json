@@ -1,18 +1,19 @@
 {
   "values": [
-    "frostwork:edelstone",
-    "frostwork:verdant_rock",
-    "frostwork:marlstone_bricks",
-    "frostwork:sanguite",
-    "frostwork:polished_malachite",
-    "frostwork:cracked_edelstone_bricks",
-    "frostwork:marlstone",
-    "frostwork:polished_aquamire",
     "frostwork:obsidian_bricks",
-    "frostwork:pith",
-    "frostwork:edelstone_bricks",
-    "frostwork:polished_sanguite",
+    "frostwork:soapstone",
     "frostwork:polished_edelstone",
-    "frostwork:aquamire"
+    "frostwork:polished_aquamire",
+    "frostwork:polished_malachite",
+    "frostwork:marlstone_bricks",
+    "frostwork:marlstone",
+    "frostwork:aquamire",
+    "frostwork:polished_sanguite",
+    "frostwork:edelstone",
+    "frostwork:cracked_edelstone_bricks",
+    "frostwork:pith",
+    "frostwork:verdant_rock",
+    "frostwork:edelstone_bricks",
+    "frostwork:sanguite"
   ]
 }

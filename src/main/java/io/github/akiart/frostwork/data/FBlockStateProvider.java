@@ -2,7 +2,11 @@ package io.github.akiart.frostwork.data;
 
 import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.block.BlockRegistryUtil;
+import io.github.akiart.frostwork.common.block.blockTypes.BulbSackBlock;
+import io.github.akiart.frostwork.common.block.blockTypes.LayeredBlock;
 import io.github.akiart.frostwork.common.block.blockTypes.PeltBlock;
+import io.github.akiart.frostwork.common.block.blockTypes.StarBrightBlock;
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -26,6 +30,7 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         simpleBlock(FBlocks.EDELSTONE_COAL_ORE.get());
         simpleBlock(FBlocks.WOLF_BLOCK.get());
         simpleBlock(FBlocks.MALACHITE_BLOCK.get());
+        simpleBlock(FBlocks.SULFUR.get());
         mushroomBlock(FBlocks.PURPLE_GRIMCAP_CAP, getLocation("grimcap_stem_top"));
         snowyBlock(FBlocks.FROZEN_DIRT.get());
         simpleBlock(FBlocks.MILDEW.get());
@@ -34,6 +39,9 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         translucentSimpleBlock(FBlocks.BLUE_SCLERITE);
         translucentSimpleBlock(FBlocks.PURPLE_SCLERITE);
         translucentSimpleBlock(FBlocks.BLACK_SCLERITE);
+
+        dripstoneLike(FBlocks.POINTED_CRYSTALMUD);
+        dripstoneLike(FBlocks.ICICLE);
 
         overgrowth();
         overgrownSanguite();
@@ -73,6 +81,11 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         simpleBlock(FBlocks.VERDANT_GOLD_ORE.get());
 
         simpleBlock(FBlocks.MARLSTONE_LAPIS_ORE.get());
+
+        layered(FBlocks.SOAP_INVISIBILITY);
+        layered(FBlocks.SOAP_LEAPING);
+        layered(FBlocks.SOAP_REGENERATION);
+        layered(FBlocks.SOAP_SWIFTNESS);
     }
 
     private void plants() {
@@ -85,9 +98,53 @@ public class FBlockStateProvider extends FBlockStateProviderBase{
         candeloupe(FBlocks.CARVED_CANDELOUPE, getLocation("carved_candeloupe"));
         bulbSack(FBlocks.BULBSACK);
         fuzz(FBlocks.MILDEW_FUZZ);
+        starbright(FBlocks.STARBRIGHT);
 
         stem(FBlocks.CANDELOUPE_STEM, FBlocks.ATTACHED_CANDELOUPE_STEM);
 
+    }
+
+    // todo: probably cache the model so it doesn't break with resource packs
+    private void layered(DeferredBlock<? extends LayeredBlock> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+
+            var layer = state.getValue(LayeredBlock.LAYERS);
+            var name = getBlockName(block).getPath() + "_height_" + layer;
+
+            if(layer < 8) {
+                var snowModel = getVanillaLocation("snow_height" + (layer * 2));
+
+                var model = models().withExistingParent(name, snowModel)
+                        .texture("texture", blockTexture(block.get()))
+                        .texture("particle", blockTexture(block.get()));
+
+                return ConfiguredModel.builder()
+                        .modelFile(model)
+                        .build();
+            }
+
+            return ConfiguredModel.builder()
+                    .modelFile(models().cubeAll(name, blockTexture(block.get())))
+                    .build();
+        });
+    }
+
+    private void starbright(DeferredBlock<StarBrightBlock> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+
+            var facing = state.getValue(BulbSackBlock.FACING);
+            var onSide = facing.getAxis().isHorizontal();
+            var name = getLocation(getBlockName(block).getPath() + "_" + state.getValue(StarBrightBlock.VARIANT));
+
+            int x = onSide ? 90 : (facing == Direction.DOWN ? 180 : 0);
+            int y = onSide ? ((((int)facing.toYRot()) + 180) % 360) : 0;
+
+            return ConfiguredModel.builder()
+                    .modelFile(models().getExistingFile(name))
+                    .rotationX(x)
+                    .rotationY(y)
+                    .build();
+        });
     }
 
     private void fuzz(DeferredBlock<? extends Block> block) {

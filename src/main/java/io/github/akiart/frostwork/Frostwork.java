@@ -17,6 +17,7 @@ import io.github.akiart.frostwork.common.worldgen.FantasiaBiomeSource;
 import io.github.akiart.frostwork.common.worldgen.LayeredNoiseChunkGenerator;
 import io.github.akiart.frostwork.common.worldgen.densityFunctions.*;
 import io.github.akiart.frostwork.common.worldgen.features.FFeatures;
+import io.github.akiart.frostwork.common.worldgen.features.FFoliagePlayerTypes;
 import io.github.akiart.frostwork.common.worldgen.features.placementModifiers.FPlacementModifierTypes;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -69,6 +70,7 @@ public class Frostwork {
         FParticles.PARTICLES.register(modEventBus);
         FFeatures.FEATURES.register(modEventBus);
         FPlacementModifierTypes.PLACEMENT_MODIFIERS.register(modEventBus);
+        FFoliagePlayerTypes.FOLIAGE_PLACER_TYPES.register(modEventBus);
 
         for(var feature : FFeatures.FEATURES.getEntries())
             LOGGER.info("feature: " + feature.getId());

@@ -1,8 +1,7 @@
 package io.github.akiart.frostwork.common.worldgen.biome.biomeConfigs;
 
 import io.github.akiart.frostwork.client.particles.FParticles;
-import io.github.akiart.frostwork.common.worldgen.FCarvers;
-import io.github.akiart.frostwork.common.worldgen.features.FPlacedFeatures;
+import io.github.akiart.frostwork.common.worldgen.features.placedFeatures.GrimcapPlacements;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.sounds.Musics;
 import net.minecraft.sounds.SoundEvents;
@@ -12,23 +11,20 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 public class GrimcapGroveConfig extends BaseBiomeConfig {
 
     public GrimcapGroveConfig(BootstapContext<Biome> context) {
-        super(context);
+        super(context, false);
     }
 
     @Override
     protected Biome configure(BiomeGenerationSettings.Builder biomeBuilder, MobSpawnSettings.Builder spawnBuilder) {
 
         biomeBuilder
-                .addCarver(GenerationStep.Carving.AIR, FCarvers.FANTASIA_CAVE);
-
-        biomeBuilder
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.GROVE_BULBSACKS)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.GROVE_MEDIUM_RED_GRIMCAP)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.GROVE_LARGE_GRIMCAP)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FPlacedFeatures.Vegetation.GROVE_MILDEW_FUZZ)
-                .addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, FPlacedFeatures.Deltas.GRIMCAP_ACID)
-                .addFeature(GenerationStep.Decoration.RAW_GENERATION, FPlacedFeatures.Raw.SANGUITE_PILLARS)
-                .addFeature(GenerationStep.Decoration.RAW_GENERATION, FPlacedFeatures.Vegetation.GROVE_GIANT_GRIMCAP);
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GrimcapPlacements.GROVE_BULBSACKS)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GrimcapPlacements.GROVE_MEDIUM_RED_GRIMCAP)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GrimcapPlacements.GROVE_LARGE_GRIMCAP)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GrimcapPlacements.GROVE_MILDEW_FUZZ)
+                .addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, GrimcapPlacements.GRIMCAP_ACID)
+                .addFeature(GenerationStep.Decoration.RAW_GENERATION, GrimcapPlacements.SANGUITE_PILLARS)
+                .addFeature(GenerationStep.Decoration.RAW_GENERATION, GrimcapPlacements.GROVE_GIANT_GRIMCAP);
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)

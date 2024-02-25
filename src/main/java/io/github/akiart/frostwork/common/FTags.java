@@ -18,6 +18,8 @@ public class FTags {
         public static final TagKey<Block> EDELSTONE_REPLACEABLE = TagKey.create(Registries.BLOCK, new ResourceLocation(Frostwork.MOD_ID, "edelstone_replaceable"));
         public static final TagKey<Block> MOLD = TagKey.create(Registries.BLOCK, new ResourceLocation(Frostwork.MOD_ID, "mold"));
         public static final TagKey<Block> SUSTAINS_CANDELOUPE_FRUIT = TagKey.create(Registries.BLOCK, new ResourceLocation(Frostwork.MOD_ID, "sustains_candeloupe_fruit"));
+        public static final TagKey<Block> DOWNPOUR_GROUND_REPLACEABLE = TagKey.create(Registries.BLOCK, new ResourceLocation(Frostwork.MOD_ID, "downpour_ground_replaceable"));
+        public static final TagKey<Block> SULFUR_POOL_REPLACEABLE = TagKey.create(Registries.BLOCK, new ResourceLocation(Frostwork.MOD_ID, "sulfur_pool_replaceable"));
 
     }
 

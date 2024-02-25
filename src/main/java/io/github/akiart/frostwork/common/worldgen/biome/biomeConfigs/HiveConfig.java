@@ -1,21 +1,16 @@
 package io.github.akiart.frostwork.common.worldgen.biome.biomeConfigs;
 
-import io.github.akiart.frostwork.common.worldgen.FCarvers;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.world.level.biome.*;
-import net.minecraft.world.level.levelgen.GenerationStep;
 
 public class HiveConfig extends BaseBiomeConfig {
 
     public HiveConfig(BootstapContext<Biome> context) {
-        super(context);
+        super(context, false);
     }
 
     @Override
     protected Biome configure(BiomeGenerationSettings.Builder biomeBuilder, MobSpawnSettings.Builder spawnBuilder) {
-
-        biomeBuilder
-                .addCarver(GenerationStep.Carving.AIR, FCarvers.FANTASIA_CAVE);
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)

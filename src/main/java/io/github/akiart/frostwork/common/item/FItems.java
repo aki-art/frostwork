@@ -6,6 +6,7 @@ import io.github.akiart.frostwork.common.block.FBlocks;
 import io.github.akiart.frostwork.common.fluid.FFluids;
 import io.github.akiart.frostwork.common.item.itemTypes.BottleOfFoamItem;
 import io.github.akiart.frostwork.common.item.itemTypes.HunterArmorItem;
+import io.github.akiart.frostwork.common.item.itemTypes.LavaPotionItem;
 import io.github.akiart.frostwork.common.item.itemTypes.WurmArrowItem;
 import io.github.akiart.frostwork.common.item.registrySets.MushroomItemSet;
 import io.github.akiart.frostwork.common.item.registrySets.StoneItemSet;
@@ -43,9 +44,13 @@ public class FItems {
     public static final DeferredItem<BlockItem> GRIMCAP_GILL = ItemRegistryUtil.registerFromBlock(FBlocks.GRIMCAP_GILL);
     public static final DeferredItem<BlockItem> PURPLE_GRIMCAP_CAP = ItemRegistryUtil.registerFromBlock(FBlocks.PURPLE_GRIMCAP_CAP);
 
+    public static DeferredItem<BlockItem> POINTED_CRYSTALMUD = ItemRegistryUtil.registerFromBlock(FBlocks.POINTED_CRYSTALMUD);
+    public static DeferredItem<BlockItem> ICICLE = ItemRegistryUtil.registerFromBlock(FBlocks.ICICLE);
+
     // Stones
     public static final StoneItemSet OBSIDIAN_BRICKS = ItemRegistryUtil.registerStoneItems(FBlocks.OBSIDIAN_BRICKS);
     public static final StoneItemSet EDELSTONE = ItemRegistryUtil.registerStoneItems(FBlocks.EDELSTONE);
+    public static final StoneItemSet SOAPSTONE = ItemRegistryUtil.registerStoneItems(FBlocks.SOAPSTONE);
     public static final StoneItemSet EDELSTONE_BRICKS = ItemRegistryUtil.registerStoneItems(FBlocks.EDELSTONE_BRICKS);
     public static final StoneItemSet CRACKED_EDELSTONE_BRICKS = ItemRegistryUtil.registerStoneItems(FBlocks.CRACKED_EDELSTONE_BRICKS);
     public static final StoneItemSet POLISHED_EDELSTONE = ItemRegistryUtil.registerStoneItems(FBlocks.POLISHED_EDELSTONE);
@@ -79,14 +84,22 @@ public class FItems {
 
 
     public static final DeferredItem<BlockItem> MALACHITE_ICE_ORE = ItemRegistryUtil.registerFromBlock(FBlocks.MALACHITE_ICE_ORE);
+    public static final DeferredItem<BlockItem> SULFUR = ItemRegistryUtil.registerFromBlock(FBlocks.SULFUR);
 
     // Pelts
     public static final DeferredItem<BlockItem> HUNTER_PELT_BROWN = ItemRegistryUtil.registerFromBlock(FBlocks.HUNTER_PELT_BROWN);
     public static final DeferredItem<BlockItem> HUNTER_PELT_CREAM = ItemRegistryUtil.registerFromBlock(FBlocks.HUNTER_PELT_CREAM);
 
+    // Soaps
+    public static DeferredItem<BlockItem> SOAP_INVISIBILITY = ItemRegistryUtil.registerFromBlock(FBlocks.SOAP_INVISIBILITY);
+    public static DeferredItem<BlockItem> SOAP_LEAPING = ItemRegistryUtil.registerFromBlock(FBlocks.SOAP_LEAPING);
+    public static DeferredItem<BlockItem> SOAP_REGENERATION = ItemRegistryUtil.registerFromBlock(FBlocks.SOAP_REGENERATION);
+    public static DeferredItem<BlockItem> SOAP_SWIFTNESS = ItemRegistryUtil.registerFromBlock(FBlocks.SOAP_SWIFTNESS);
+
     // Plants
     public static final DeferredItem<BlockItem> LAVENDER = ItemRegistryUtil.registerFromBlock(FBlocks.LAVENDER);
     public static final DeferredItem<BlockItem> YARROW = ItemRegistryUtil.registerFromBlock(FBlocks.YARROW);
+    public static final DeferredItem<BlockItem> STARBRIGHT = ItemRegistryUtil.registerFromBlock(FBlocks.STARBRIGHT);
     public static final DeferredItem<BlockItem> FORGET_ME_NOW = ItemRegistryUtil.registerFromBlock(FBlocks.FORGET_ME_NOW);
     public static final DeferredItem<BlockItem> BEARBERRY = ItemRegistryUtil.registerFromBlock(FBlocks.BEARBERRY);
     public static final DeferredItem<BlockItem> CANDELOUPE = ItemRegistryUtil.registerFromBlock(FBlocks.CANDELOUPE);
@@ -119,9 +132,11 @@ public class FItems {
     public static final DeferredItem<BlockItem> OVERGROWN_SANGUITE = ItemRegistryUtil.registerFromBlock(FBlocks.OVERGROWN_SANGUITE);
     //public static final DeferredItem<BlockItem> FOAM = ItemRegistryUtil.registerFromBlock(FBlocks.FOAM);
     public static final DeferredItem<BlockItem> OVERGROWTH = ItemRegistryUtil.registerFromBlock(FBlocks.OVERGROWTH);
+    public static final DeferredItem<BlockItem> BUBBLE_VENT = ItemRegistryUtil.registerFromBlock(FBlocks.BUBBLE_VENT);
     public static final DeferredItem<BlockItem> MALACHITE_BLOCK = ItemRegistryUtil.registerFromBlock(FBlocks.MALACHITE_BLOCK);
     public static final DeferredItem<BottleOfFoamItem> BOTTLE_OF_FOAM = ItemRegistryUtil.register("bottle_of_foam", () -> new BottleOfFoamItem(FBlocks.FOAM.get(), new Item.Properties()));
     public static final DeferredItem<Item> SAP_O_MITE_BOTTLE = ItemRegistryUtil.register("sap_o_mite_bottle", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<LavaPotionItem> LAVA_POTION = ItemRegistryUtil.register("lava_potion", () -> new LavaPotionItem(new Item.Properties()));
     public static final DeferredItem<Item> TATZELWURM_SCALE = ItemRegistryUtil.register("tatzelwurm_scale", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> ACID_BUCKET = ItemRegistryUtil.register("acid_bucket",
             () -> new BucketItem(FFluids.ACID_SOURCE, new Item.Properties()

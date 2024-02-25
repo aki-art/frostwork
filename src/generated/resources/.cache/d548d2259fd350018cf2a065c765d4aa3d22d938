@@ -1,4 +1,4 @@
-// 1.20.4	2024-02-16T14:53:45.626735	Item Models: frostwork
+// 1.20.4	2024-02-24T05:16:39.7196131	Item Models: frostwork
 60cb02f8185575d6bb334f1739f7ee956338d3fd assets/frostwork/models/item/acid_bucket.json
 c4f111fb6eaeb2eb878ad963a3ca346968be5da1 assets/frostwork/models/item/aquamire.json
 d1db1648114a7e53db818b708cdde47ff27e72cf assets/frostwork/models/item/aquamire_slab.json
@@ -82,6 +82,7 @@ cfea5d459ab1a857a677281dba479a3f2616de08 assets/frostwork/models/item/grimcap_st
 d7bada32aabbe722653a0255b52f32805909047d assets/frostwork/models/item/hunter_armor.json
 577ae907e34052ac2e687a4af33a4e8bbb1b962d assets/frostwork/models/item/hunter_pelt_brown.json
 087fbd73749d389dbceab4f949960d472a6da934 assets/frostwork/models/item/hunter_pelt_cream.json
+16bd4e78a5510608c5666547a1fcf7a3e589ab0d assets/frostwork/models/item/icicle.json
 ec057456fc83db2a2659347c8db4df3b88f59a4f assets/frostwork/models/item/infested_velwood.json
 1e828b9d5dd86b67b40864c6c09cab80fe32d09e assets/frostwork/models/item/lavender.json
 57054170ba250a82700ddf377206a5f555529358 assets/frostwork/models/item/malachite_block.json
@@ -116,6 +117,7 @@ f0514c4ac8404910d451f955d789e68234effafa assets/frostwork/models/item/overgrowth
 31af7510c9c72a271c0e5cefd131374a2082bd7a assets/frostwork/models/item/pith_slab.json
 8bced83c9467799f3ece361d92ac1b9bb994833a assets/frostwork/models/item/pith_stairs.json
 31845c9c7733392d931cbe0a00b2013a0e067ac6 assets/frostwork/models/item/pith_wall.json
+cadaa6f9d20831ce5770f968fcf9505a992b1243 assets/frostwork/models/item/pointed_crystalmud.json
 26ffaff54f4d7727f530b7a94c2370ba758044ea assets/frostwork/models/item/polished_aquamire.json
 c061fc659eed74961da2e5b8fc2075f9fa9f2e02 assets/frostwork/models/item/polished_aquamire_slab.json
 a07608906d2ca83f7a78c588675f75f41837767a assets/frostwork/models/item/polished_aquamire_stairs.json
@@ -139,7 +141,15 @@ f4e0c9dc9701434f289817a411650b3e6630869f assets/frostwork/models/item/sanguite_s
 12f9f2f7b1236cfd406cb986acb67cfba1bfbc41 assets/frostwork/models/item/sanguite_stairs.json
 1ac721175370bd3df564cb2741de736f7b93d0cd assets/frostwork/models/item/sanguite_wall.json
 847b24fb95ae3e7bb4d87d08a6321e1d45fffe92 assets/frostwork/models/item/sap_o_mite_bottle.json
+43818a9e93374b98b607d0a19968b95facea3f3d assets/frostwork/models/item/soapstone.json
+dc8d8d72c8b6cdafba1767d2af9f1d972b788c4c assets/frostwork/models/item/soapstone_button.json
+f42f16c690b704b3a88ad66bb6d27bbbecb5d00c assets/frostwork/models/item/soapstone_pressure_plate.json
+90b0d4bb29bf502a88d2b5f173ed052c9925229a assets/frostwork/models/item/soapstone_slab.json
+edd2324fb813deaa342b2af87010bedbdbaaef0e assets/frostwork/models/item/soapstone_stairs.json
+d8068e684f771ffe4af8627c3daec0220cd8828d assets/frostwork/models/item/soapstone_wall.json
 0f406b57935dfc5c7de5c78a08d5fbf5d6eb1164 assets/frostwork/models/item/somewhat_overgrown_sanguite.json
+334953a337d09693bbb06fb16a6d78e71cf12063 assets/frostwork/models/item/starbright.json
+3e37c903ec054ada0bd31035524cd8c534c507ad assets/frostwork/models/item/sulfur.json
 fe10d8946dc5069adadda1db9e8bd12df7db6b4f assets/frostwork/models/item/tatzelwurm_arrow.json
 b7c288583afb9ba7c2abe1e671e391fa57eb10f7 assets/frostwork/models/item/tatzelwurm_scale.json
 ad0c4ebf73ee0d25a9606ccaae32869ec5861f2f assets/frostwork/models/item/velwood_button.json

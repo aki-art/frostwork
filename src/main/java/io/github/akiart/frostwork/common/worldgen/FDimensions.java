@@ -33,7 +33,8 @@ public class FDimensions {
 
         Climate.ParameterList<Holder<Biome>> surfaceBiomes = new Climate.ParameterList<>(
                 List.of(
-                    Pair.of(Climate.parameters(0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Surface.FROZE_FOREST))
+                    //Pair.of(Climate.parameters(0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Surface.FROZEN_FOREST)),
+                    Pair.of(Climate.parameters(0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Surface.ALPINE_TUNDRA))
                    // Pair.of(Climate.parameters(-0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Debug.DEBUG_BLUE))
                 )
         );
@@ -41,9 +42,9 @@ public class FDimensions {
         Climate.ParameterList<Holder<Biome>> caveBiomes = new Climate.ParameterList<>(
                 List.of(
                         //Pair.of(Climate.parameters(0.5F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Cave.HIVE))
-                        Pair.of(Climate.parameters(0.5F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Cave.VERDANT_GLADE)),
-                        Pair.of(Climate.parameters(0.5F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Cave.GRIMCAP_GROVE)),
-                        Pair.of(Climate.parameters(-2F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Cave.FROZEN_CAVE))
+                        Pair.of(Climate.parameters(0.3F, 0.3F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Cave.GRIMCAP_GROVE))
+                        //Pair.of(Climate.parameters(0.5F, 0.7F, 0.0F, 0.2F, 1F, 0.8F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Cave.GRIMCAP_GROVE))//,
+                        //Pair.of(Climate.parameters(-2F, 0.2F, 0.0F, 0.2F, 1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(FBiomes.Cave.FROZEN_CAVE))
                 )
         );
 

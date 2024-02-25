@@ -45,6 +45,7 @@ public class FLanguageProvider extends LanguageProvider {
     private void blocks() {
         add(FBlocks.EDELSTONE_COAL_ORE.get(), "Edelstone Coal Ore");
         add(FBlocks.MALACHITE_ICE_ORE.get(), "Malachite Ore");
+        add(FBlocks.SULFUR.get(), "Sulfur");
         add(FBlocks.WOLF_BLOCK.get(), "Wolf Block");
         add(FBlocks.OVERGROWN_SANGUITE.get(), "Overgrown Sanguite");
         add(FBlocks.OVERGROWTH.get(), "Mildew Carpet");
@@ -55,6 +56,7 @@ public class FLanguageProvider extends LanguageProvider {
         add(FBlocks.YARROW.get(), "Yarrow");
         add(FBlocks.FORGET_ME_NOW.get(), "Forget-Me-Now");
         add(FBlocks.FOAM.get(), "Foam");
+        add(FBlocks.STARBRIGHT.get(), "Starbright");
         add(FBlocks.ACID.get(), "Acid");
         add(FBlocks.INFESTED_VELWOOD.get(), "Infested Velwood");
 
@@ -70,6 +72,8 @@ public class FLanguageProvider extends LanguageProvider {
 
         add(FBlocks.HUNTER_PELT_BROWN.get(), "Tan Hunter Pelt");
         add(FBlocks.HUNTER_PELT_CREAM.get(), "Cream Hunter Pelt");
+
+        add(FBlocks.POINTED_CRYSTALMUD.get(), "Crystallized Mud Speleothem");
     }
 
     private void effects() {
@@ -112,9 +116,10 @@ public class FLanguageProvider extends LanguageProvider {
         addStones("Marlstone", FBlocks.MARLSTONE);
         addStones("Marlstone Brick", FBlocks.MARLSTONE_BRICKS);
         addStones("Aquamire", FBlocks.AQUAMIRE);
-        addStones("Verdant Rock", FBlocks.VERDANT_ROCK);
+        addStones("Crystallized Mud", FBlocks.VERDANT_ROCK);
         addStones("Polished Aquamire", FBlocks.POLISHED_AQUAMIRE);
         addStones("Pith", FBlocks.PITH);
+        addStones("Soapstone", FBlocks.SOAPSTONE);
     }
 
     private void addTree(String name, AbstractWoodBlockSet woodSet) {

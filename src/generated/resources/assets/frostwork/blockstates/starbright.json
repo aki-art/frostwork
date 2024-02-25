@@ -1,0 +1,134 @@
+{
+  "variants": {
+    "facing=down,variant=0": {
+      "model": "frostwork:block/starbright_0",
+      "x": 180
+    },
+    "facing=down,variant=1": {
+      "model": "frostwork:block/starbright_1",
+      "x": 180
+    },
+    "facing=down,variant=2": {
+      "model": "frostwork:block/starbright_2",
+      "x": 180
+    },
+    "facing=down,variant=3": {
+      "model": "frostwork:block/starbright_3",
+      "x": 180
+    },
+    "facing=down,variant=4": {
+      "model": "frostwork:block/starbright_4",
+      "x": 180
+    },
+    "facing=east,variant=0": {
+      "model": "frostwork:block/starbright_0",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,variant=1": {
+      "model": "frostwork:block/starbright_1",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,variant=2": {
+      "model": "frostwork:block/starbright_2",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,variant=3": {
+      "model": "frostwork:block/starbright_3",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,variant=4": {
+      "model": "frostwork:block/starbright_4",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,variant=0": {
+      "model": "frostwork:block/starbright_0",
+      "x": 90
+    },
+    "facing=north,variant=1": {
+      "model": "frostwork:block/starbright_1",
+      "x": 90
+    },
+    "facing=north,variant=2": {
+      "model": "frostwork:block/starbright_2",
+      "x": 90
+    },
+    "facing=north,variant=3": {
+      "model": "frostwork:block/starbright_3",
+      "x": 90
+    },
+    "facing=north,variant=4": {
+      "model": "frostwork:block/starbright_4",
+      "x": 90
+    },
+    "facing=south,variant=0": {
+      "model": "frostwork:block/starbright_0",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,variant=1": {
+      "model": "frostwork:block/starbright_1",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,variant=2": {
+      "model": "frostwork:block/starbright_2",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,variant=3": {
+      "model": "frostwork:block/starbright_3",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,variant=4": {
+      "model": "frostwork:block/starbright_4",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up,variant=0": {
+      "model": "frostwork:block/starbright_0"
+    },
+    "facing=up,variant=1": {
+      "model": "frostwork:block/starbright_1"
+    },
+    "facing=up,variant=2": {
+      "model": "frostwork:block/starbright_2"
+    },
+    "facing=up,variant=3": {
+      "model": "frostwork:block/starbright_3"
+    },
+    "facing=up,variant=4": {
+      "model": "frostwork:block/starbright_4"
+    },
+    "facing=west,variant=0": {
+      "model": "frostwork:block/starbright_0",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,variant=1": {
+      "model": "frostwork:block/starbright_1",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,variant=2": {
+      "model": "frostwork:block/starbright_2",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,variant=3": {
+      "model": "frostwork:block/starbright_3",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,variant=4": {
+      "model": "frostwork:block/starbright_4",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -228,7 +228,6 @@ public class FantasiaDimensionRenderInfo extends DimensionSpecialEffects {
 
     private void drawNormalSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy) {
         var renderer = Minecraft.getInstance().levelRenderer;
-
     }
 
     private static void renderSkyBox(PoseStack poseStack, BufferBuilder bufferbuilder, Tesselator tesselator, float starBrightness) {

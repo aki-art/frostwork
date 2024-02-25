@@ -1,4 +1,4 @@
-package io.github.akiart.frostwork.common.block.blockTypes;
+package io.github.akiart.frostwork.common.block.util;
 
 import net.minecraft.util.StringRepresentable;
 

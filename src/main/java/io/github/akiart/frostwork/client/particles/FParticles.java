@@ -15,4 +15,5 @@ public class FParticles {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> ACID_BUBBLE = PARTICLES.register("acid_bubble", () -> new SimpleParticleType(true));
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GRIM_SPORE = PARTICLES.register("grimcap_spore", () -> new SimpleParticleType(true));
     public static final DeferredHolder<ParticleType<?>, VelwoodInfestationParticleOptions> VELMITE_INFECTION = PARTICLES.register("velmite_infection", () -> new VelwoodInfestationParticleOptions(Vec3.ZERO));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> AIR_BUBBLE = PARTICLES.register("air_bubble", () -> new SimpleParticleType(true));
 }

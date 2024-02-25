@@ -17,11 +17,14 @@ public class FNoiseGenerationSettings {
     private static final int MIN_Y = 0;
     private static final int MAX_Y = 448;
     private static final int PLATEOUS_Y = 70;
+    public static final int CAVES_TOP = 190;
     private static final int SEA_LEVEL = 198;
     protected static final NoiseSettings FANTASIA_NOISE_SETTINGS = NoiseSettings.create(0, 448, 1, 2);
     protected static final ResourceKey<NoiseGeneratorSettings> FANTASIA_NOISE_SETTINGS_ID =  ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(Frostwork.MOD_ID, "fantasia_noise"));
     private static final ResourceKey<DensityFunction> SHIFT_X = createKey("shift_x");
     private static final ResourceKey<DensityFunction> SHIFT_Z = createKey("shift_z");
+    private static final ResourceKey<DensityFunction> ORE_VEIN_A = createKey("ore_vein_a");
+    private static final ResourceKey<DensityFunction> ORE_VEIN_B = createKey("ore_vein_b");
     private static final ResourceKey<DensityFunction> Y = createKey("y");
     private static final ResourceKey<DensityFunction> BASE_3D_NOISE_NETHER = createKey("nether/base_3d_noise");
     private static final ResourceKey<DensityFunction> SPAGHET = createKey("spaghetti_3d_2");
@@ -40,7 +43,7 @@ public class FNoiseGenerationSettings {
                 fantasia(context.lookup(Registries.DENSITY_FUNCTION), context.lookup(Registries.NOISE)),
                 FSurfaceRules.frostworkSurface(),
                 new OverworldBiomeBuilder().spawnTarget(),
-                220,
+                240,
                 false,
                 true,
                 false,
@@ -126,7 +129,7 @@ public class FNoiseGenerationSettings {
 
         var undergroundRivers = DensityFunctions.flatCache(new WarpedSimplexDensityFunction(3.240f, 2, 0.05f, 1f));
         undergroundRivers = DensityFunctions.mul(undergroundRivers, DensityFunctions.constant(-1f));
-        undergroundRivers = DensityFunctions.min(undergroundRivers, plateaus);
+        //undergroundRivers = DensityFunctions.min(undergroundRivers, plateaus);
 
         var carvedRivers = DensityFunctions.add(undergroundPlateaus(densityFunctions, noiseParameters), undergroundRivers);
 
@@ -135,18 +138,20 @@ public class FNoiseGenerationSettings {
         var baseSimplex = DensityFunctions.mul(
                 DensityFunctions.add(
                     new WarpedSimplexDensityFunction(-0.38f, 3, 1, 1.66f),
-                    DensityFunctions.constant(0)), // -0.4f
+                    DensityFunctions.constant(-0.05f)), // -0.4f
                 DensityFunctions.constant(0.34f));
 
+        // caves get progressively smaller towards top (regressively?)
         var shrinkCavesNearTop = DensityFunctions.add(
                 new ExponentialYGradientDensityFunction(0.00003f, -0.4f),
                 baseSimplex);
 
         var croppedCaves = DensityFunctions.rangeChoice(
-                getFunction(densityFunctions, Y), 0, 220, shrinkCavesNearTop, DensityFunctions.constant(1)
+                getFunction(densityFunctions, Y), 0, CAVES_TOP, shrinkCavesNearTop, DensityFunctions.constant(1)
         );
 
-        var closeCavesNearTop = DensityFunctions.add(croppedCaves, DensityFunctions.yClampedGradient(170, 210, 0, 10));
+        // diminish and close down large caves near top
+        var closeCavesNearTop = DensityFunctions.add(croppedCaves, DensityFunctions.yClampedGradient(140, 160, 0, 10));
         var clampedCaves = DensityFunctions.min(closeCavesNearTop, DensityFunctions.constant(1));
 
         var surfaceDepth = baseDepth(densityFunctions);
@@ -155,11 +160,29 @@ public class FNoiseGenerationSettings {
         var spaghet = getFunction(densityFunctions, SPAGHETTI_2D);
         var cavedWorld = DensityFunctions.min(scrapedTop, spaghet);
 
-        var closeFloor = DensityFunctions.add(cavedWorld, new ExponentialDensityFunction(16f, 2f));
+        // dig out some spaghetti caves that are guaranteed to connect surface to underworld
+        // these caves are part of noise gen so surface builder will apply on them
+        // credit for idea: https://www.planetminecraft.com/data-pack/noodle-world-generation-experiment/
+        var noodles = DensityFunctions.rangeChoice(
+                DensityFunctions.add(
+                        DensityFunctions.noise(noiseParameters.getOrThrow(Noises.ORE_VEIN_A), 1.25f, 2f).square(),
+                        DensityFunctions.noise(noiseParameters.getOrThrow(Noises.ORE_VEIN_B), 1.25f, 2f).square()),
+                0,
+                0.008f,
+                DensityFunctions.constant(0),
+                DensityFunctions.constant(1)
+        );
+
+        var noodleCaved = DensityFunctions.min(cavedWorld, noodles);
+
+
+        var closeFloor = DensityFunctions.add(noodleCaved, new ExponentialDensityFunction(16f, 2f));
         var plateoud = DensityFunctions.add(closeFloor, plateaus);
 
+
+
         var bigCaves = new BigCavesDensityFunction(0.61f, 4,  2.5f, 0.5f, 0.9f );
-        return closeFloor; // plateoud;
+        return DensityFunctions.interpolated(surfaceDepth); // plateoud;
        // return new WarpedSimplexDensityFunction(-0.38f, 3, 1, 1.66f); // DensityFunctions.interpolated(plateoud); //DensityFunctions.mul(caves, scrapeSurface));
     }
 
@@ -176,7 +199,7 @@ public class FNoiseGenerationSettings {
 
         return new NoiseRouter(
                 DensityFunctions.constant(-1),
-                DensityFunctions.constant(-999),
+                DensityFunctions.constant(-1),
                 DensityFunctions.constant(-1),
 
                 // no lava
@@ -189,7 +212,8 @@ public class FNoiseGenerationSettings {
                 baseDepthButLower(pDensityFunctions),
                 DensityFunctions.zero(),
                 // actual initial slideFantasia(pDensityFunctions),
-                DensityFunctions.constant(1),
+                //DensityFunctions.constant(1),
+                fantasiaFinalDensity(pDensityFunctions, pNoiseParameters),
                 fantasiaFinalDensity(pDensityFunctions, pNoiseParameters),
                 // no veins
                 DensityFunctions.zero(),

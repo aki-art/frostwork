@@ -58,7 +58,7 @@ public class FantasiaBiomeSource extends BiomeSource {
         // harder separation between surface and cave biomes.
         var actualY = y * 4;
 
-        var surface = 220;
+        var surface = FNoiseGenerationSettings.CAVES_TOP;
         var buffer = 10;
 
         var surfaceSample = sampler.sample(x, surface / 4, z);
@@ -70,8 +70,7 @@ public class FantasiaBiomeSource extends BiomeSource {
         if(isSurface)
             return surfaceParameters.findValue(surfaceSample);
         else {
-
-            return caveParameters.values().get(0).getSecond();
+            return caveParameters.findValue(sampler.sample(x, y, z));
 //            if(actualY > 120) {
 //                return caveParameters.values().get(1).getSecond();
 //            }

@@ -6,6 +6,7 @@ import io.github.akiart.frostwork.common.worldgen.features.featureTypes.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -23,4 +24,6 @@ public class FFeatures {
     public static final DeferredHolder<Feature<?>, Feature<PillarFeatureConfig>> PILLAR = FEATURES.register("pillar", () -> new PillarFeature(PillarFeatureConfig.CODEC));
     public static final DeferredHolder<Feature<?>, Feature<DiscConfig>> DISC = FEATURES.register("disc", () -> new DiscFeature(DiscConfig.CODEC));
     public static final DeferredHolder<Feature<?>, Feature<VelwoodTreeFeatureConfig>> VELWOOD_TREE = FEATURES.register("velwood_tree", () -> new VelwoodTreeFeature(VelwoodTreeFeatureConfig.CODEC));
+    public static final DeferredHolder<Feature<?>, Feature<StemmedPlantFeatureConfig>> STEMMED_FEATURE = FEATURES.register("stemmed", () -> new StemmedPlantFeature(StemmedPlantFeatureConfig.CODEC));
+    public static final DeferredHolder<Feature<?>, Feature<VegetationPatchConfiguration>> ACID_POND = FEATURES.register("acid_pond", () -> new AcidPondFeature(VegetationPatchConfiguration.CODEC));
   }

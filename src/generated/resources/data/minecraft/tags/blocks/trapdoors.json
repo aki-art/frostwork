@@ -1,8 +1,8 @@
 {
   "values": [
     "frostwork:grimcap_trapdoor",
-    "frostwork:velwood_trapdoor",
     "frostwork:elm_trapdoor",
+    "frostwork:velwood_trapdoor",
     "frostwork:frozen_elm_trapdoor"
   ]
 }

@@ -1,7 +1,6 @@
 package io.github.akiart.frostwork.common.item.itemTypes;
 
 import io.github.akiart.frostwork.common.entity.entityTypes.WurmArrow;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -28,6 +27,6 @@ public class WurmArrowItem extends ArrowItem {
 
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> tooltip, TooltipFlag pFlag) {
-        tooltip.add(Component.translatable(MobEffects.POISON.getDescriptionId()).withStyle(ChatFormatting.GREEN));
+        tooltip.add(Component.translatable(MobEffects.POISON.getDescriptionId()).withColor(0x0000FF));//.withStyle(ChatFormatting.GREEN));
     }
 }
